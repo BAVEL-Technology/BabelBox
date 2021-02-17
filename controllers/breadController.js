@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const mongoCreate = require('../utils/mongoCreate.js')
 const camelcase = require('camelcase')
-
 module.exports = {
   browse: async (req, res) => {
     try {
@@ -34,6 +33,8 @@ module.exports = {
       console.log(Model)
       const data = await Model.findOneAndUpdate({_id: req.params.id}, req.body)
       console.log(data)
+      const io = req.app.get('socketio');
+      io.emit('breadUpdate', data);
       res.status(200).json(data)
     } catch (err) {
       console.log(err)

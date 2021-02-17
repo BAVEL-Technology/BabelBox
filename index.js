@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const routes = require('./routes');
 const app = express();
+const socket = require('socket.io');
 const mongoCreate = require('./utils/mongoCreate.js')
 //hello
 app.use(cors());
@@ -103,7 +104,23 @@ app.get('/', (req, res) => {
    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
 
-app.listen(PORT, function() {
+const start = () => {
+  const server = app.listen(PORT, function() {
+    console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+  });
   mongoCreate.createDataTables()
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-});
+  const io = socket(server);
+  app.set('socketio', io);
+  const newConnection = (socket) => {
+    const callback = (data) => {
+      console.log('Got it yall');
+    }
+    
+    console.log('new connection: ' + socket.id);
+    socket.on('I got it wrong', callback);
+  }
+
+  io.sockets.on('connection', newConnection);
+}
+
+start()

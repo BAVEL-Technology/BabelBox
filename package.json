@@ -36,6 +36,8 @@
     "mongoose-bcrypt": "^1.9.0",
     "multer": "^1.4.2",
     "path": "^0.12.7",
-    "sirv-cli": "^1.0.0"
+    "sirv-cli": "^1.0.0",
+    "socket.io": "^3.1.1",
+    "socket.io-client": "^3.1.1"
   }
 }

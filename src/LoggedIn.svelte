@@ -1,31 +1,21 @@
 <script>
+import api from "./utils/api.js";
 export let loggedin
 export let currentUser
 export let checkUser
 export let loadData
 
 const login = async () => {
-  let token = await fetch(`/api/users/login`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        username: document.querySelector('#username').value,
-        password: document.querySelector('#password').value
-      })
+  let token = await api.login({
+    username: document.querySelector('#username').value,
+    password: document.querySelector('#password').value
   })
-  token = await token.json();
-  console.log(token)
   if (token.message) {
     console.log(token.message)
     return
   }
   window.sessionStorage.setItem("api_key", token.token);
   let user = await checkUser()
-  user = await user.json();
-  console.log(user)
   if (user.username) {
     currentUser = user
     loggedin = true

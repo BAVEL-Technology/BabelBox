@@ -32,7 +32,13 @@ const createDataTables = async () => {
             console.log(`Added ${camelcase(prop.name)}.`)
             let type = { type: prop.type }
             if (prop.required) type.required = prop.required
-            if (prop.default) type.default = prop.default
+            if (prop.default) {
+              if (prop.default.includes('()')) {
+                type.default = eval(prop.default)
+              } else {
+                type.default = prop.default
+              }
+            }
             schema[camelcase(prop.name)] = type
           })
           let modelSchema = new mongoose.Schema(schema, { collection: modelName })

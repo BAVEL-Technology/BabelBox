@@ -1,5 +1,7 @@
 <script>
 import TypeIcon from './TypeIcon.svelte';
+import api from "./utils/api.js";
+import { getHeaders } from "./utils/dataCleaner.js";
 export let headers
 export let activeTable
 export let hoverNewField
@@ -7,18 +9,11 @@ export let dataTables
 export let fetchData
 export let displayedData
 export let currentUser
+export let token
 
 let editFieldName
 let fieldEdit
 let settingDefault
-
-const editField = (field) => {
-  if (fieldEdit == field) {
-    fieldEdit = ''
-  } else {
-    fieldEdit = field
-  }
-}
 
 const editThisFieldName = (field) => {
   editFieldName = field
@@ -29,120 +24,75 @@ const editThisFieldName = (field) => {
 }
 
 const changeFieldName = async (field, id) => {
-  let domId = field.replace(/ /g, "-")
-  let name = document.querySelector(`#${domId}`).value
-  await fetch(`/api/database/${activeTable.replace(/ /g, "-")}/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ name })
-  })
-  editFieldName = ''
-  const dataResponse = await fetch(`api/database`)
-  let data = await dataResponse.json();
-  dataTables = data
-  let tableHeaders = dataTables.filter((dt) => dt.name == activeTable)[0]
-  if (tableHeaders) {
-    headers = tableHeaders.props
-    headers = headers.map((h) => {
-			h.owner = tableHeaders.owner
-			return h
-		})
-  } else {
-    headers = []
+  try {
+    let domId = field.replace(/ /g, "-")
+    let name = document.querySelector(`#${domId}`).value
+    let update = await api.put(
+      `database/${activeTable.replace(/ /g, "-")}/${id}`,
+      token,
+      { name }
+    )
+    editFieldName = ''
+    displayedData = await api.get(activeTable.replace(/ /g, "-"), token)
+    dataTables = await api.get('database', token)
+    headers = getHeaders(dataTables, activeTable)
+  } catch (err) {
+    console.log(err)
   }
-  const tableDataResposne = await fetchData(activeTable)
-  data = await tableDataResposne.json()
-  displayedData = data
 }
 
 const changeDefault = async (field, id) => {
-  let domId = field.replace(/ /g, "-")
-  let defaultValue = document.querySelector(`#default-${domId}`).value
-  await fetch(`/api/database/${activeTable.replace(/ /g, "-")}/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ default: defaultValue })
-  })
-  settingDefault = ''
-  fieldEdit = ''
-  const dataResponse = await fetch(`api/database`)
-  let data = await dataResponse.json();
-  dataTables = data
-  let tableHeaders = dataTables.filter((dt) => dt.name == activeTable)[0]
-  if (tableHeaders) {
-    headers = tableHeaders.props
-    headers = headers.map((h) => {
-			h.owner = tableHeaders.owner
-			return h
-		})
-  } else {
-    headers = []
+  try {
+    let domId = field.replace(/ /g, "-")
+    let defaultValue = document.querySelector(`#default-${domId}`).value
+    let update = await api.put(
+      `database/${activeTable.replace(/ /g, "-")}/${id}`,
+      token,
+      { default: defaultValue }
+    )
+    settingDefault = ''
+    fieldEdit = ''
+    displayedData = await api.get(activeTable.replace(/ /g, "-"), token)
+    dataTables = await api.get('database', token)
+    headers = getHeaders(dataTables, activeTable)
+  } catch (err) {
+    console.log(err)
   }
-  const tableDataResposne = await fetchData(activeTable)
-  data = await tableDataResposne.json()
-  displayedData = data
 }
 
 const changeType = async (field, id, type) => {
-  await fetch(`/api/database/${activeTable.replace(/ /g, "-")}/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ type })
-  })
-  fieldEdit = ''
-  const dataResponse = await fetch(`api/database`)
-  let data = await dataResponse.json();
-  dataTables = data
-  let tableHeaders = dataTables.filter((dt) => dt.name == activeTable)[0]
-  if (tableHeaders) {
-    headers = tableHeaders.props
-    headers = headers.map((h) => {
-			h.owner = tableHeaders.owner
-			return h
-		})
-  } else {
-    headers = []
+  try {
+    let update = await api.put(
+      `database/${activeTable.replace(/ /g, "-")}/${id}`,
+      token,
+      { type }
+    )
+    fieldEdit = ''
+    displayedData = await api.get(activeTable.replace(/ /g, "-"), token)
+    dataTables = await api.get('database', token)
+    headers = getHeaders(dataTables, activeTable)
+  } catch (err) {
+    console.log(err)
   }
-  const tableDataResposne = await fetchData(activeTable)
-  data = await tableDataResposne.json()
-  displayedData = data
 }
 
 const newColHeader = async (table) => {
-  const id = 'column' + Math.floor(Math.random() * Math.floor(100));
-  await fetch(`/api/database/${table}`, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ props: {
+  try {
+    const id = 'column' + Math.floor(Math.random() * Math.floor(100));
+    let col = await api.put(
+      `database/${table}`,
+      token,
+      { props: {
           name: id,
           type: "String"
         }
-      })
-  })
-  const dataResponse = await fetch(`api/database`)
-  let data = await dataResponse.json();
-  dataTables = data
-  let tableHeaders = dataTables.filter((dt) => dt.name == table)[0]
-  if (tableHeaders) {
-    headers = tableHeaders.props
-    headers = headers.map((h) => {
-			h.owner = tableHeaders.owner
-			return h
-		})
-  } else {
-    headers = []
+      }
+    )
+    displayedData = await api.get(activeTable.replace(/ /g, "-"), token)
+    dataTables = await api.get('database', token)
+    headers = getHeaders(dataTables, activeTable)
+  } catch (err) {
+    console.log(err)
   }
 }
 </script>
@@ -166,7 +116,7 @@ const newColHeader = async (table) => {
             {:else}
               <span class="text-gray-900 text-base font-medium flex-grow">{header.name}</span>
               {#if header.owner == currentUser.username}
-                <svg on:click={() => editField(header.name)} class="cursor-pointer h-3 w-3 text-gray-900 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg on:click={() => fieldEdit == header.name ? fieldEdit = '' : fieldEdit = header.name} class="cursor-pointer h-3 w-3 text-gray-900 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                 </svg>
               {/if}

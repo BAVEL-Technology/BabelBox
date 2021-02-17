@@ -126,7 +126,11 @@ module.exports = {
   },
 
   currentUser: async (req, res) => {
-    const user = await db.User.findById(req.user.id);
-    res.json(user);
+    try {
+      const user = await db.User.findById(req.user.id);
+      res.status(200).json(user);
+    } catch (err) {
+      console.log(err)
+    }
   }
 }

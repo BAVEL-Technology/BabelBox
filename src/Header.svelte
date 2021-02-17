@@ -1,4 +1,6 @@
 <script>
+import api from "./utils/api.js";
+import { getHeaders } from "./utils/dataCleaner.js"
 export let dataTables
 export let activeTable
 export let headers
@@ -6,119 +8,81 @@ export let fetchData
 export let displayedData
 export let currentUser
 export let showAPIDocs
+export let token
 
 let editable;
 
 const createNewTable = async () => {
-  const id = 'Table ' + Math.floor(Math.random() * Math.floor(100));
-  let newTable = await fetch(`/api/database`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
+  try {
+    const id = 'Table ' + Math.floor(Math.random() * Math.floor(100));
+    let table = await api.post(
+      'database',
+      token,
+      {
         name: id,
         owner: currentUser.username
-      })
-  })
-  let newTableResponse = await newTable.json()
-  if (newTableResponse.status == 'duplicate') {
-    createNewTable()
+      }
+    )
+    if (table.status == 'duplicate') createNewTable()
+    dataTables = await api.get('database', token)
+    headers = getHeaders(dataTables, activeTable)
+    activeTable = id.toLowerCase()
+    editable = id.toLowerCase()
+  } catch (err) {
+    console.log(err)
   }
-  const dataResponse = await fetch(`api/database`)
-  let data = await dataResponse.json();
-  activeTable = id.toLowerCase()
-  editable = id.toLowerCase()
-  dataTables = data
 }
 
-const activate = async(table) => {
-  activeTable = table.replace(/-/g, " ")
-  const tableDataResposne = await fetchData(table)
-  let data = await tableDataResposne.json()
-  displayedData = data
-  let tableHeaders = dataTables.filter((dt) => dt.name == table.replace(/-/g, " "))[0]
-  if (tableHeaders) {
-    headers = tableHeaders.props
-    headers = headers.map((h) => {
-			h.owner = tableHeaders.owner
-			return h
-		})
-  } else {
-    headers = []
+const activate = async (table) => {
+  try {
+    activeTable = table.replace(/-/g, " ")
+    displayedData = await api.get(table ,token)
+    headers = getHeaders(dataTables, activeTable)
+  } catch (err) {
+    console.log(err)
   }
-  console.log(table)
-  console.log(displayedData)
-  console.log(tableHeaders)
-  console.log(headers)
 }
 
-const editTable = (table) => {
-  editable = table
-}
 const changeTableName = async (table) => {
   try {
     let name = document.querySelector(`#${table}`).value
-    let change = await fetch(`/api/database/${table}`, {
-        method: 'PUT',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ name })
-    })
-    const dataResponse = await fetch(`api/database`)
-    let data = await dataResponse.json();
-    let changeData = await change.json();
-    console.log(changeData)
+    let table = await api.put(`database/${table}`, token, { name })
     editable = ''
-    dataTables = data
+    dataTables = await api.get('database', token)
     activeTable = name.toLowerCase()
   } catch (err) {
     console.log(err)
   }
 }
+
 const deleteTable = async (table) => {
   try {
-    await fetch(`/api/database/${table}`, {
-        method: 'DELETE',
-    })
-    const dataResponse = await fetch(`api/database`)
-    let data = await dataResponse.json();
+    let table = await api.destroy(`database/${table}`, token)
     editable = ''
-    dataTables = data
+    dataTables = await api.get('database', token)
     activeTable = dataTables[0].name
-    const tableDataResposne = await fetchData(activeTable)
-    data = await tableDataResposne.json()
-    displayedData = data
+    displayedData = await api.get(activeTable, token)
   } catch (err) {
     console.log(err)
   }
 }
+
 const uploadFile = () => {
-    document.getElementById('json-file').click()
-  }
+  document.getElementById('json-file').click()
+}
 
-  const importJSON = async (table) => {
-    try {
-      let photo = document.getElementById("json-file").files[0];
-      let formData = new FormData();
-
-      formData.append("filename", photo);
-      let data = await fetch(`/api/database/${table}/import`, {method: "POST", body: formData})
-      data = await data.json()
-      console.log(data)
-      const dataResponse = await fetch(`api/database`)
-      data = await dataResponse.json();
-      dataTables = data
-      const tableDataResposne = await fetchData(activeTable)
-      data = await tableDataResposne.json()
-      displayedData = data
-    } catch (err) {
-      console.log(err)
-    }
+const importJSON = async (table) => {
+  try {
+    let file = document.getElementById("json-file").files[0];
+    let formData = new FormData();
+    formData.append("file", file);
+    let data = await api.post(`database/${table}/import`, token, formData)
+    dataTables = await api.get('database', token)
+    displayedData = await api.get(activeTable, token)
+  } catch (err) {
+    console.log(err)
   }
+}
 
 </script>
 
@@ -169,7 +133,7 @@ const uploadFile = () => {
             <span class="truncate">{data.name[0].toUpperCase() + data.name.substring(1)}</span>
             {#if data.name == activeTable && data.owner == currentUser.username}
             <div class="flex items-center">
-              <svg on:click={() => editTable(data.name)} class="h-3 w-3 text-green-200 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg on:click={() => editable = data.name} class="h-3 w-3 text-green-200 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
               </svg>
               <svg on:click={() => deleteTable(data.name.replace(/ /g, "-"))} class="h-3 w-3 text-green-200 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
