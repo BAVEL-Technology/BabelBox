@@ -1,1 +1,2 @@
-# BabelBox
+# BabelBox 🤡
+## Backend application for BabelBox. 

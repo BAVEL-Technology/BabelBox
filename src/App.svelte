@@ -4,6 +4,7 @@ import Header from "./Header.svelte";
 import TableHeader from "./TableHeader.svelte";
 import camelcase from "camelcase";
 import LoggedIn from "./LoggedIn.svelte"
+import ApiDocs from "./ApiDocs.svelte"
 	let dataTables = []
 	let displayedData = []
 	let headers = []
@@ -11,6 +12,7 @@ import LoggedIn from "./LoggedIn.svelte"
 	let hoverNewField = false
 	let loggedin = false
 	let currentUser
+	let showAPIDocs = false
 
 	const checkUser = async () => {
 	 	return await fetch(`/api/users`, {
@@ -133,6 +135,7 @@ import LoggedIn from "./LoggedIn.svelte"
 	}
 
 	const newColHeader = async () => {
+		const id = 'column' + Math.floor(Math.random() * Math.floor(100));
 	  await fetch(`/api/database/${activeTable.replace(/ /g, "-")}`, {
 	      method: 'PUT',
 	      headers: {
@@ -140,7 +143,7 @@ import LoggedIn from "./LoggedIn.svelte"
 	        'Content-Type': 'application/json'
 	      },
 	      body: JSON.stringify({ props: {
-	          name: 'Awesome column',
+	          name: id,
 	          type: "String"
 	        }
 	      })
@@ -164,9 +167,10 @@ import LoggedIn from "./LoggedIn.svelte"
 
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <body class="h-screen">
+		<ApiDocs headers={headers} activeTable={activeTable} showAPIDocs={showAPIDocs}/>
 		<LoggedIn bind:currentUser={currentUser} loadData={loadData} checkUser={checkUser} bind:loggedin={loggedin}/>
-		<Header currentUser={currentUser} dataTables={dataTables} bind:activeTable={activeTable} bind:headers={headers} fetchData={fetchData} bind:displayedData={displayedData}/>
-		<div class="w-screen h-full flex justify-center overflow-x-scroll">
+		<Header bind:showAPIDocs={showAPIDocs} currentUser={currentUser} dataTables={dataTables} bind:activeTable={activeTable} bind:headers={headers} fetchData={fetchData} bind:displayedData={displayedData}/>
+		<div class="pb-6 w-screen h-full flex justify-center overflow-x-scroll">
 		{#if headers.length > 0}
 			<table class="min-w-full">
 				<TableHeader currentUser={currentUser} fetchData={fetchData} bind:hoverNewField={hoverNewField} bind:headers={headers} bind:activeTable={activeTable} bind:dataTables={dataTables} bind:displayedData={displayedData}/>
@@ -228,9 +232,9 @@ import LoggedIn from "./LoggedIn.svelte"
 				</tbody>
 		</table>
 		{:else}
-			<div class="w-3/4 h-full flex items-center justify-center">
+			<div class="w-3/4 h-full flex items-center -mt-24 justify-center">
 				<div class="flex flex-col absolute -ml-48">
-					<p class="text-3xl w-96 my-12 text-center font-semibold">You don't have any fields yet! Get Cooking!</p>
+					<p class="text-3xl w-96 my-12 text-center font-semibold">You don't have any fields yet! Get crafting!</p>
 					<div on:click={newColHeader} class="bg-green-200 text-gray-900 font-semibold text-lg p-2 flex items-center justify-center rounded-lg cursor-pointer transform duration-150 shadow-md hover:-translate-y-1 hover:shadow-lg">Create First Field</div>
 				</div>
 				<img class="h-3/4 object-scale" src="./empty.png" />

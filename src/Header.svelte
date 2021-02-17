@@ -5,6 +5,7 @@ export let headers
 export let fetchData
 export let displayedData
 export let currentUser
+export let showAPIDocs
 
 let editable;
 
@@ -118,12 +119,41 @@ const uploadFile = () => {
       console.log(err)
     }
   }
+
 </script>
 
 <div class="example flex flex-col bg-green-200 border-b-4 border-green-600 w-screen overflow-x-scroll">
-  <div class="flex w-full items-center justify-between">
-  <p class="ml-8 mt-4 text-lg font-semibold text-green-600">Babel Database</p>
-  <div class="self-end h-8 w-8 rounded-full bg-green-600 flex items-center justify-center text-green-200 text-lg p-2 mr-8 mt-4">{currentUser ? currentUser.username[0].toUpperCase() : ''}</div>
+  <div class="flex w-full justify-between">
+  <div class="flex items-center ml-8 mt-4">
+  <img class="h-16 w-16 object-cover mr-6" src="./mongo.png" />
+  <p class="text-lg font-semibold text-green-600">Babel Database</p>
+  </div>
+  <div class="flex space-x-4 mr-8 mt-4">
+    <ul class="flex space-x-4">
+      <li on:click={() => showAPIDocs = !showAPIDocs} class="flex items-center cursor-pointer transform duration-150 hover:-translate-y-1">
+        <svg class="h-4 w-4 text-green-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        </svg>
+        <span class="text-sm font-semibold text-green-600 truncate">API Docs</span>
+      </li>
+      <li on:click={createNewTable} class="flex items-center cursor-pointer transform duration-150 hover:-translate-y-1">
+        <svg class="h-4 w-4 text-green-600 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"  stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+        </svg>
+        <span class="text-sm font-semibold text-green-600 truncate">Add Table</span>
+      </li>
+      <li on:click={uploadFile} class="flex items-center cursor-pointer transform duration-150 hover:-translate-y-1">
+        <svg class="h-4 w-4 text-green-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+        </svg>
+        <span class="text-sm font-semibold text-green-600 truncate">Upload JSON</span>
+      </li>
+      <li class="hidden">
+      <input on:change={() => importJSON(activeTable.replace(/ /g, "-"))} id="json-file" type="file" class="invisible"/>
+      </li>
+    </ul>
+    <div class="h-8 w-8 rounded-full bg-green-600 flex items-center justify-center text-green-200 text-lg p-2 mr-8 mt-4">{currentUser ? currentUser.username[0].toUpperCase() : ''}</div>
+  </div>
   </div>
   <div class="px-20 pt-12">
     <ul class="flex items-center px-4">
@@ -150,22 +180,6 @@ const uploadFile = () => {
           {/if}
         </li>
       {/each}
-      <li on:click={createNewTable} class="flex items-center cursor-pointer ml-12">
-        <span class="bg-green-600 flex items-center justify-center p-1 rounded-md mr-2">
-          <svg class="h-4 w-4 text-green-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"  stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-          </svg>
-        </span>
-        <span class="text-sm font-semibold text-green-600 truncate">Add Table</span>
-      </li>
-      <li on:click={uploadFile} class="flex items-center cursor-pointer ml-12">
-        <svg class="h-4 w-4 text-green-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-        </svg>
-        <span class="text-sm font-semibold text-green-600 truncate">Upload JSON</span>
-      <li>
-      <input on:change={() => importJSON(activeTable.replace(/ /g, "-"))} id="json-file" type="file" class="invisible"/>
-      </li>
     </ul>
   </div>
   </div>
