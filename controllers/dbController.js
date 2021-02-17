@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const mongoCreate = require('../utils/mongoCreate.js')
 const mongo = require('../utils/mongoConnection.js')
 const camelcase = require('camelcase');
+const fs = require("fs");
+const path = require("path");
 
 Array.prototype.asyncForEach = async function (callback) {
   for (let i = 0; i < this.length; i++) {
@@ -226,4 +228,24 @@ module.exports = {
       res.status(400).json(err)
     }
   },
+
+  importJSON: async (req, res) => {
+    try {
+      console.log(camelcase(req.params.table))
+      let Model = mongoCreate.mongoModels[camelcase(req.params.table)]
+      console.log(camelcase(req.params.table)[0].toUpperCase() + req.params.table.substring(1))
+      if (!Model) Model = mongoose.connection.models[camelcase(req.params.table)[0].toUpperCase() + req.params.table.substring(1)]
+      console.log(Model)
+      console.log(req.file);
+      const absolutePath = path.join(__dirname, req.file.path);
+      const jsonString = fs.readFileSync('./' + req.file.path, "utf-8");
+      const jsonObject = JSON.parse(jsonString);
+      console.log(jsonObject);
+      Model.collection.insertMany(jsonObject)
+      res.status(200).json(jsonObject)
+    } catch (err) {
+      console.log(err)
+      res.status(400).json(err)
+    }
+  }
 }

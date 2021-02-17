@@ -1,5 +1,9 @@
 const router = require("express").Router();
 const databaseController = require("../../controllers/dbController");
+const multer = require("multer");
+const upload = multer({
+    dest: "uploads/" // "uploads"
+});
 
 // Browse or Add tables
 // Matches with "/api/database"
@@ -20,5 +24,8 @@ router.route("/:table")
     .get(databaseController.readField)
     .put(databaseController.editField)
     .delete(databaseController.destroyField)
+
+  router.route("/:table/import")
+    .post(upload.single("filename"), databaseController.importJSON)
 
 module.exports = router;

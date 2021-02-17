@@ -150,6 +150,8 @@ const newColHeader = async (table) => {
 <thead class="justify-between sticky top-0 border-b-4 border-gray-300">
   <tr class="">
     <th class="p-2 bg-gray-200 border-l border-r border-gray-400 text-left bg-gray-200">
+    </th>
+    <th class="p-2 bg-gray-200 border-l border-r border-gray-400 text-left bg-gray-200">
       <span class="text-gray-900 text-base font-medium">id</span>
     </th>
       {#each headers as header}

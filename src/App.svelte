@@ -83,6 +83,29 @@ import LoggedIn from "./LoggedIn.svelte"
 		}
 	}
 
+	const deleteRecord = async (id) => {
+		await fetch(`/api/${activeTable.replace(/ /g, "-")}/${id}`, {
+				method: 'DELETE',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				}
+		})
+		const tableDataResposne = await fetchData(activeTable.replace(/ /g, "-"))
+		let data = await tableDataResposne.json()
+		displayedData = data
+		let tableHeaders = dataTables.filter((dt) => dt.name == activeTable)[0]
+		if (tableHeaders) {
+			headers = tableHeaders.props
+			headers = headers.map((h) => {
+				h.owner = tableHeaders.owner
+				return h
+			})
+		} else {
+			headers = []
+		}
+	}
+
 	const newRecord = async () => {
 		console.log(activeTable.replace(/ /g, "-"))
 		await fetch(`/api/${activeTable.replace(/ /g, "-")}`, {
@@ -151,6 +174,13 @@ import LoggedIn from "./LoggedIn.svelte"
 					{#each displayedData as data}
 						<tr class="bg-white">
 							<td class="bg-white border border-gray-300 text-left">
+								<span on:click={() => deleteRecord(data._id)} class="flex items-center justify-center">
+									<svg class="h-4 w-4 text-gray-700 hover:text-gray-900 cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+									</svg>
+								</span>
+							</td>
+							<td class="bg-white border border-gray-300 text-left">
 								<span class="text-center ml-2 text-base">
 									{data._id}
 								</span>
@@ -185,6 +215,11 @@ import LoggedIn from "./LoggedIn.svelte"
 								</span>
 							</td>
 						{/each}
+						<td class="border border-gray-300 text-left">
+							<span class="text-center ml-2 text-base">
+
+							</span>
+						</td>
 						<td class={`border border-gray-300 text-left ${hoverNewField ? '' : 'hidden'}`}>
 							<span class="text-center ml-2 text-base">
 							</span>

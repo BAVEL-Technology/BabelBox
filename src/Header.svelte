@@ -95,6 +95,29 @@ const deleteTable = async (table) => {
     console.log(err)
   }
 }
+const uploadFile = () => {
+    document.getElementById('json-file').click()
+  }
+
+  const importJSON = async (table) => {
+    try {
+      let photo = document.getElementById("json-file").files[0];
+      let formData = new FormData();
+
+      formData.append("filename", photo);
+      let data = await fetch(`/api/database/${table}/import`, {method: "POST", body: formData})
+      data = await data.json()
+      console.log(data)
+      const dataResponse = await fetch(`api/database`)
+      data = await dataResponse.json();
+      dataTables = data
+      const tableDataResposne = await fetchData(activeTable)
+      data = await tableDataResposne.json()
+      displayedData = data
+    } catch (err) {
+      console.log(err)
+    }
+  }
 </script>
 
 <div class="example flex flex-col bg-green-200 border-b-4 border-green-600 w-screen overflow-x-scroll">
@@ -129,11 +152,19 @@ const deleteTable = async (table) => {
       {/each}
       <li on:click={createNewTable} class="flex items-center cursor-pointer ml-12">
         <span class="bg-green-600 flex items-center justify-center p-1 rounded-md mr-2">
-          <svg class="h-3 w-3 text-green-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"  stroke="currentColor">
+          <svg class="h-4 w-4 text-green-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"  stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
           </svg>
         </span>
         <span class="text-sm font-semibold text-green-600 truncate">Add Table</span>
+      </li>
+      <li on:click={uploadFile} class="flex items-center cursor-pointer ml-12">
+        <svg class="h-4 w-4 text-green-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+        </svg>
+        <span class="text-sm font-semibold text-green-600 truncate">Upload JSON</span>
+      <li>
+      <input on:change={() => importJSON(activeTable.replace(/ /g, "-"))} id="json-file" type="file" class="invisible"/>
       </li>
     </ul>
   </div>
