@@ -36,6 +36,7 @@ const createNewTable = async () => {
 const activate = async (table) => {
   try {
     activeTable = table.replace(/-/g, " ")
+    console.log(table)
     displayedData = await api.get(table ,token)
     		console.log(displayedData)
     headers = getHeaders(dataTables, activeTable)

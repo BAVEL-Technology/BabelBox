@@ -57,6 +57,22 @@ const changeType = async (field, id, type) => {
   }
 }
 
+const changeBcrypt = async (field, id, bcrypt) => {
+  try {
+    let update = await api.put(
+      `database/${activeTable.replace(/ /g, "-")}/${id}`,
+      token,
+      { bcrypt }
+    )
+    fieldEdit = ''
+    displayedData = await api.get(activeTable.replace(/ /g, "-"), token)
+    dataTables = await api.get('database', token)
+    headers = getHeaders(dataTables, activeTable)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 const newColHeader = async (table) => {
   try {
     const id = 'column' + Math.floor(Math.random() * Math.floor(100));
@@ -143,6 +159,10 @@ const setDefault = (name, def, _id) => {
               <li on:click={() => changeType(header.name, header._id, 'Mixed')} class={`rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${header.type == 'Mixed' ? 'text-white' : 'text-gray-400'} text-sm font-medium`}>
                 <TypeIcon type="Mixed" color={header.type == 'Mixed' ? 'text-white' : 'text-gray-400'}/>
                 Mixed
+              </li>
+              <li on:click={() => changeBcrypt(header.name, header._id, !header.bcrypt)} class={`rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${header.bcrypt ? 'text-white' : 'text-gray-400'} text-sm font-medium`}>
+                <TypeIcon type={{name: 'bcrypt', value: header.bcrypt}} color={header.bcrypt ? 'text-white' : 'text-gray-400'}/>
+                bcrypt
               </li>
             </ul>
           </div>

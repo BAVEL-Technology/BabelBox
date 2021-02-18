@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 var app = (function () {
     'use strict';
 
@@ -419,7 +419,7 @@ var app = (function () {
     const api = {
     		login: async (body) => {
     			try {
-    				return fetch(`/api/users/login`, {
+    				return fetch(`/api/r/admins/login`, {
     						method: 'POST',
     						headers: {
     							'Accept': 'application/json',
@@ -510,7 +510,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (133:10) {:else}
+    // (134:10) {:else}
     function create_else_block(ctx) {
     	let span;
     	let t0_value = /*data*/ ctx[21].name[0].toUpperCase() + /*data*/ ctx[21].name.substring(1) + "";
@@ -527,7 +527,7 @@ var app = (function () {
     			if (if_block) if_block.c();
     			if_block_anchor = empty();
     			attr_dev(span, "class", "truncate");
-    			add_location(span, file, 133, 12, 5740);
+    			add_location(span, file, 134, 12, 5763);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -564,14 +564,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(133:10) {:else}",
+    		source: "(134:10) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (128:10) {#if editable == data.name}
+    // (129:10) {#if editable == data.name}
     function create_if_block(ctx) {
     	let input;
     	let input_value_value;
@@ -595,18 +595,18 @@ var app = (function () {
     			attr_dev(input, "class", "apperance-none focus:outline-none w-auto bg-green-600 border-none");
     			input.value = input_value_value = /*data*/ ctx[21].name[0].toUpperCase() + /*data*/ ctx[21].name.substring(1);
     			attr_dev(input, "id", input_id_value = /*data*/ ctx[21].name.replace(/ /g, "-"));
-    			add_location(input, file, 128, 12, 5201);
+    			add_location(input, file, 129, 12, 5224);
     			attr_dev(path, "stroke-linecap", "round");
     			attr_dev(path, "stroke-linejoin", "round");
     			attr_dev(path, "stroke-width", "2");
     			attr_dev(path, "d", "M5 13l4 4L19 7");
-    			add_location(path, file, 130, 14, 5599);
+    			add_location(path, file, 131, 14, 5622);
     			attr_dev(svg, "class", "h-3 w-3 text-green-200 ml-2");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "fill", "none");
     			attr_dev(svg, "viewBox", "0 0 24 24");
     			attr_dev(svg, "stroke", "currentColor");
-    			add_location(svg, file, 129, 12, 5391);
+    			add_location(svg, file, 130, 12, 5414);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, input, anchor);
@@ -643,14 +643,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(128:10) {#if editable == data.name}",
+    		source: "(129:10) {#if editable == data.name}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (135:12) {#if data.name == activeTable && data.owner == currentUser.username}
+    // (136:12) {#if data.name == activeTable && data.owner == currentUser.username}
     function create_if_block_1(ctx) {
     	let div;
     	let svg0;
@@ -681,26 +681,26 @@ var app = (function () {
     			attr_dev(path0, "stroke-linejoin", "round");
     			attr_dev(path0, "stroke-width", "2");
     			attr_dev(path0, "d", "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z");
-    			add_location(path0, file, 137, 16, 6148);
+    			add_location(path0, file, 138, 16, 6171);
     			attr_dev(svg0, "class", "h-3 w-3 text-green-200 ml-2");
     			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg0, "fill", "none");
     			attr_dev(svg0, "viewBox", "0 0 24 24");
     			attr_dev(svg0, "stroke", "currentColor");
-    			add_location(svg0, file, 136, 14, 5963);
+    			add_location(svg0, file, 137, 14, 5986);
     			attr_dev(path1, "stroke-linecap", "round");
     			attr_dev(path1, "stroke-linejoin", "round");
     			attr_dev(path1, "stroke-width", "2");
     			attr_dev(path1, "d", "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16");
-    			add_location(path1, file, 140, 16, 6563);
+    			add_location(path1, file, 141, 16, 6586);
     			attr_dev(svg1, "class", "h-3 w-3 text-green-200 ml-2");
     			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg1, "fill", "none");
     			attr_dev(svg1, "viewBox", "0 0 24 24");
     			attr_dev(svg1, "stroke", "currentColor");
-    			add_location(svg1, file, 139, 14, 6357);
+    			add_location(svg1, file, 140, 14, 6380);
     			attr_dev(div, "class", "flex items-center");
-    			add_location(div, file, 135, 12, 5917);
+    			add_location(div, file, 136, 12, 5940);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -733,14 +733,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(135:12) {#if data.name == activeTable && data.owner == currentUser.username}",
+    		source: "(136:12) {#if data.name == activeTable && data.owner == currentUser.username}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (125:6) {#each dataTables as data}
+    // (126:6) {#each dataTables as data}
     function create_each_block(ctx) {
     	let li;
     	let div;
@@ -773,13 +773,13 @@ var app = (function () {
     			if_block.c();
     			t2 = space();
     			attr_dev(div, "class", "h-3 w-3 rounded-full bg-green-200 flex items-center justify-center text-green-600 text-xs p-2 mr-2");
-    			add_location(div, file, 126, 10, 5003);
+    			add_location(div, file, 127, 10, 5026);
 
     			attr_dev(li, "class", li_class_value = "" + (null_to_empty(`w-auto border-r border-l border-t border-green-600 flex w-48 items-center justify-between py-1 px-2 rounded-tl-lg rounded-tr-lg text-sm font-medium bg-green-600 text-green-100 transform ${/*data*/ ctx[21].name == /*activeTable*/ ctx[1]
 			? "scale-125 z-20"
-			: "-ml-1"} origin-bottom shadow-lg cursor-pointer`) + " svelte-70ag7j"));
+			: "-ml-1"} origin-bottom shadow-lg cursor-pointer`) + " svelte-1sfhy2t"));
 
-    			add_location(li, file, 125, 8, 4640);
+    			add_location(li, file, 126, 8, 4663);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -812,7 +812,7 @@ var app = (function () {
 
     			if (dirty & /*dataTables, activeTable*/ 3 && li_class_value !== (li_class_value = "" + (null_to_empty(`w-auto border-r border-l border-t border-green-600 flex w-48 items-center justify-between py-1 px-2 rounded-tl-lg rounded-tr-lg text-sm font-medium bg-green-600 text-green-100 transform ${/*data*/ ctx[21].name == /*activeTable*/ ctx[1]
 			? "scale-125 z-20"
-			: "-ml-1"} origin-bottom shadow-lg cursor-pointer`) + " svelte-70ag7j"))) {
+			: "-ml-1"} origin-bottom shadow-lg cursor-pointer`) + " svelte-1sfhy2t"))) {
     				attr_dev(li, "class", li_class_value);
     			}
     		},
@@ -828,7 +828,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(125:6) {#each dataTables as data}",
+    		source: "(126:6) {#each dataTables as data}",
     		ctx
     	});
 
@@ -935,76 +935,76 @@ var app = (function () {
 
     			attr_dev(img, "class", "h-16 w-16 object-cover mr-6");
     			if (img.src !== (img_src_value = "./mongo.png")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file, 92, 2, 2396);
+    			add_location(img, file, 93, 2, 2419);
     			attr_dev(p, "class", "text-lg font-semibold text-green-600");
-    			add_location(p, file, 93, 2, 2460);
+    			add_location(p, file, 94, 2, 2483);
     			attr_dev(div0, "class", "flex items-center ml-8 mt-4");
-    			add_location(div0, file, 91, 2, 2352);
+    			add_location(div0, file, 92, 2, 2375);
     			attr_dev(path0, "stroke-linecap", "round");
     			attr_dev(path0, "stroke-linejoin", "round");
     			attr_dev(path0, "stroke-width", "3");
     			attr_dev(path0, "d", "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4");
-    			add_location(path0, file, 99, 10, 2898);
+    			add_location(path0, file, 100, 10, 2921);
     			attr_dev(svg0, "class", "h-4 w-4 text-green-600 mr-2");
     			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg0, "fill", "none");
     			attr_dev(svg0, "viewBox", "0 0 24 24");
     			attr_dev(svg0, "stroke", "currentColor");
-    			add_location(svg0, file, 98, 8, 2757);
+    			add_location(svg0, file, 99, 8, 2780);
     			attr_dev(span0, "class", "text-sm font-semibold text-green-600 truncate");
-    			add_location(span0, file, 101, 8, 3036);
+    			add_location(span0, file, 102, 8, 3059);
     			attr_dev(li0, "class", "flex items-center cursor-pointer transform duration-150 hover:-translate-y-1");
-    			add_location(li0, file, 97, 6, 2615);
+    			add_location(li0, file, 98, 6, 2638);
     			attr_dev(path1, "stroke-linecap", "round");
     			attr_dev(path1, "stroke-linejoin", "round");
     			attr_dev(path1, "stroke-width", "3");
     			attr_dev(path1, "d", "M12 6v6m0 0v6m0-6h6m-6 0H6");
-    			add_location(path1, file, 105, 10, 3396);
+    			add_location(path1, file, 106, 10, 3419);
     			attr_dev(svg1, "class", "h-4 w-4 text-green-600 mr-2");
     			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg1, "viewBox", "0 0 24 24");
     			attr_dev(svg1, "fill", "none");
     			attr_dev(svg1, "stroke", "currentColor");
-    			add_location(svg1, file, 104, 8, 3254);
+    			add_location(svg1, file, 105, 8, 3277);
     			attr_dev(span1, "class", "text-sm font-semibold text-green-600 truncate");
-    			add_location(span1, file, 107, 8, 3523);
+    			add_location(span1, file, 108, 8, 3546);
     			attr_dev(li1, "class", "flex items-center cursor-pointer transform duration-150 hover:-translate-y-1");
-    			add_location(li1, file, 103, 6, 3130);
+    			add_location(li1, file, 104, 6, 3153);
     			attr_dev(path2, "stroke-linecap", "round");
     			attr_dev(path2, "stroke-linejoin", "round");
     			attr_dev(path2, "stroke-width", "2.5");
     			attr_dev(path2, "d", "M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12");
-    			add_location(path2, file, 111, 10, 3879);
+    			add_location(path2, file, 112, 10, 3902);
     			attr_dev(svg2, "class", "h-4 w-4 text-green-600 mr-2");
     			attr_dev(svg2, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg2, "fill", "none");
     			attr_dev(svg2, "viewBox", "0 0 24 24");
     			attr_dev(svg2, "stroke", "currentColor");
-    			add_location(svg2, file, 110, 8, 3738);
+    			add_location(svg2, file, 111, 8, 3761);
     			attr_dev(span2, "class", "text-sm font-semibold text-green-600 truncate");
-    			add_location(span2, file, 113, 8, 4067);
+    			add_location(span2, file, 114, 8, 4090);
     			attr_dev(li2, "class", "flex items-center cursor-pointer transform duration-150 hover:-translate-y-1");
-    			add_location(li2, file, 109, 6, 3618);
+    			add_location(li2, file, 110, 6, 3641);
     			attr_dev(input, "id", "json-file");
     			attr_dev(input, "type", "file");
     			attr_dev(input, "class", "invisible");
-    			add_location(input, file, 116, 6, 4190);
+    			add_location(input, file, 117, 6, 4213);
     			attr_dev(li3, "class", "hidden");
-    			add_location(li3, file, 115, 6, 4164);
+    			add_location(li3, file, 116, 6, 4187);
     			attr_dev(ul0, "class", "flex space-x-4");
-    			add_location(ul0, file, 96, 4, 2581);
+    			add_location(ul0, file, 97, 4, 2604);
     			attr_dev(div1, "class", "h-8 w-8 rounded-full bg-green-600 flex items-center justify-center text-green-200 text-lg p-2 mr-8 mt-4");
-    			add_location(div1, file, 119, 4, 4331);
+    			add_location(div1, file, 120, 4, 4354);
     			attr_dev(div2, "class", "flex space-x-4 mr-8 mt-4");
-    			add_location(div2, file, 95, 2, 2538);
+    			add_location(div2, file, 96, 2, 2561);
     			attr_dev(div3, "class", "flex w-full justify-between");
-    			add_location(div3, file, 90, 2, 2308);
+    			add_location(div3, file, 91, 2, 2331);
     			attr_dev(ul1, "class", "flex items-center px-4");
-    			add_location(ul1, file, 123, 4, 4563);
+    			add_location(ul1, file, 124, 4, 4586);
     			attr_dev(div4, "class", "px-20 pt-12");
-    			add_location(div4, file, 122, 2, 4533);
-    			attr_dev(div5, "class", "example flex flex-col bg-green-200 border-b-4 border-green-600 w-screen overflow-x-scroll svelte-70ag7j");
-    			add_location(div5, file, 89, 0, 2202);
+    			add_location(div4, file, 123, 2, 4556);
+    			attr_dev(div5, "class", "example flex flex-col bg-green-200 border-b-4 border-green-600 w-screen overflow-x-scroll svelte-1sfhy2t");
+    			add_location(div5, file, 90, 0, 2225);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1141,6 +1141,7 @@ var app = (function () {
     	const activate = async table => {
     		try {
     			$$invalidate(1, activeTable = table.replace(/-/g, " "));
+    			console.log(table);
     			$$invalidate(12, displayedData = await api.get(table, token));
     			console.log(displayedData);
     			$$invalidate(11, headers = getHeaders(dataTables, activeTable));
@@ -1411,8 +1412,8 @@ var app = (function () {
 
     const file$1 = "src/TypeIcon.svelte";
 
-    // (19:0) {:else}
-    function create_else_block$1(ctx) {
+    // (29:0) {:else}
+    function create_else_block_1(ctx) {
     	let t_value = /*type*/ ctx[0][0] + "";
     	let t;
 
@@ -1433,9 +1434,60 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_else_block$1.name,
+    		id: create_else_block_1.name,
     		type: "else",
-    		source: "(19:0) {:else}",
+    		source: "(29:0) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (19:32) 
+    function create_if_block_5(ctx) {
+    	let if_block_anchor;
+
+    	function select_block_type_1(ctx, dirty) {
+    		if (/*type*/ ctx[0].value) return create_if_block_6;
+    		return create_else_block$1;
+    	}
+
+    	let current_block_type = select_block_type_1(ctx);
+    	let if_block = current_block_type(ctx);
+
+    	const block = {
+    		c: function create() {
+    			if_block.c();
+    			if_block_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			if_block.m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (current_block_type === (current_block_type = select_block_type_1(ctx)) && if_block) {
+    				if_block.p(ctx, dirty);
+    			} else {
+    				if_block.d(1);
+    				if_block = current_block_type(ctx);
+
+    				if (if_block) {
+    					if_block.c();
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if_block.d(detaching);
+    			if (detaching) detach_dev(if_block_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_5.name,
+    		type: "if",
+    		source: "(19:32) ",
     		ctx
     	});
 
@@ -1661,6 +1713,100 @@ var app = (function () {
     	return block;
     }
 
+    // (24:2) {:else}
+    function create_else_block$1(ctx) {
+    	let svg;
+    	let path;
+    	let svg_class_value;
+
+    	const block = {
+    		c: function create() {
+    			svg = svg_element("svg");
+    			path = svg_element("path");
+    			attr_dev(path, "stroke-linecap", "round");
+    			attr_dev(path, "stroke-linejoin", "round");
+    			attr_dev(path, "stroke-width", "2");
+    			attr_dev(path, "d", "M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z");
+    			add_location(path, file$1, 25, 6, 4621);
+    			attr_dev(svg, "class", svg_class_value = `h-4 w-4 ${/*color*/ ctx[1] || "text-gray-500"}`);
+    			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
+    			attr_dev(svg, "fill", "none");
+    			attr_dev(svg, "viewBox", "0 0 24 24");
+    			attr_dev(svg, "stroke", "currentColor");
+    			add_location(svg, file$1, 24, 4, 4474);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, svg, anchor);
+    			append_dev(svg, path);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*color*/ 2 && svg_class_value !== (svg_class_value = `h-4 w-4 ${/*color*/ ctx[1] || "text-gray-500"}`)) {
+    				attr_dev(svg, "class", svg_class_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(svg);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block$1.name,
+    		type: "else",
+    		source: "(24:2) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (20:2) {#if type.value}
+    function create_if_block_6(ctx) {
+    	let svg;
+    	let path;
+    	let svg_class_value;
+
+    	const block = {
+    		c: function create() {
+    			svg = svg_element("svg");
+    			path = svg_element("path");
+    			attr_dev(path, "stroke-linecap", "round");
+    			attr_dev(path, "stroke-linejoin", "round");
+    			attr_dev(path, "stroke-width", "2");
+    			attr_dev(path, "d", "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z");
+    			add_location(path, file$1, 21, 6, 4271);
+    			attr_dev(svg, "class", svg_class_value = `h-4 w-4 ${/*color*/ ctx[1] || "text-gray-500"}`);
+    			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
+    			attr_dev(svg, "fill", "none");
+    			attr_dev(svg, "viewBox", "0 0 24 24");
+    			attr_dev(svg, "stroke", "currentColor");
+    			add_location(svg, file$1, 20, 4, 4124);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, svg, anchor);
+    			append_dev(svg, path);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*color*/ 2 && svg_class_value !== (svg_class_value = `h-4 w-4 ${/*color*/ ctx[1] || "text-gray-500"}`)) {
+    				attr_dev(svg, "class", svg_class_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(svg);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_6.name,
+    		type: "if",
+    		source: "(20:2) {#if type.value}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
     function create_fragment$1(ctx) {
     	let span;
 
@@ -1670,7 +1816,8 @@ var app = (function () {
     		if (/*type*/ ctx[0] == "Boolean") return create_if_block_2;
     		if (/*type*/ ctx[0] == "Date") return create_if_block_3;
     		if (/*type*/ ctx[0] == "Mixed") return create_if_block_4;
-    		return create_else_block$1;
+    		if (/*type*/ ctx[0].name == "bcrypt") return create_if_block_5;
+    		return create_else_block_1;
     	}
 
     	let current_block_type = select_block_type(ctx);
@@ -1800,18 +1947,18 @@ var app = (function () {
 
     function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[28] = list[i];
+    	child_ctx[30] = list[i];
     	return child_ctx;
     }
 
-    // (103:12) {:else}
+    // (119:12) {:else}
     function create_else_block$2(ctx) {
     	let span;
-    	let t0_value = /*header*/ ctx[28].name + "";
+    	let t0_value = /*header*/ ctx[30].name + "";
     	let t0;
     	let t1;
     	let if_block_anchor;
-    	let if_block = /*header*/ ctx[28].owner == /*currentUser*/ ctx[4].username && create_if_block_1$2(ctx);
+    	let if_block = /*header*/ ctx[30].owner == /*currentUser*/ ctx[4].username && create_if_block_1$2(ctx);
 
     	const block = {
     		c: function create() {
@@ -1821,7 +1968,7 @@ var app = (function () {
     			if (if_block) if_block.c();
     			if_block_anchor = empty();
     			attr_dev(span, "class", "text-gray-900 text-base font-medium flex-grow");
-    			add_location(span, file$2, 103, 14, 3250);
+    			add_location(span, file$2, 119, 14, 3674);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -1831,9 +1978,9 @@ var app = (function () {
     			insert_dev(target, if_block_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*headers*/ 1 && t0_value !== (t0_value = /*header*/ ctx[28].name + "")) set_data_dev(t0, t0_value);
+    			if (dirty[0] & /*headers*/ 1 && t0_value !== (t0_value = /*header*/ ctx[30].name + "")) set_data_dev(t0, t0_value);
 
-    			if (/*header*/ ctx[28].owner == /*currentUser*/ ctx[4].username) {
+    			if (/*header*/ ctx[30].owner == /*currentUser*/ ctx[4].username) {
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
@@ -1858,14 +2005,14 @@ var app = (function () {
     		block,
     		id: create_else_block$2.name,
     		type: "else",
-    		source: "(103:12) {:else}",
+    		source: "(119:12) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (98:12) {#if editFieldName == header.name}
+    // (114:12) {#if editFieldName == header.name}
     function create_if_block$2(ctx) {
     	let input;
     	let input_id_value;
@@ -1877,7 +2024,7 @@ var app = (function () {
     	let dispose;
 
     	function click_handler() {
-    		return /*click_handler*/ ctx[16](/*header*/ ctx[28]);
+    		return /*click_handler*/ ctx[17](/*header*/ ctx[30]);
     	}
 
     	const block = {
@@ -1886,21 +2033,21 @@ var app = (function () {
     			t = space();
     			svg = svg_element("svg");
     			path = svg_element("path");
-    			attr_dev(input, "id", input_id_value = /*header*/ ctx[28].name.replace(/ /g, "-"));
+    			attr_dev(input, "id", input_id_value = /*header*/ ctx[30].name.replace(/ /g, "-"));
     			attr_dev(input, "class", "focus:outline-none apperance-none bg-gray-200 flex-grow");
-    			input.value = input_value_value = /*header*/ ctx[28].name;
-    			add_location(input, file$2, 98, 14, 2740);
+    			input.value = input_value_value = /*header*/ ctx[30].name;
+    			add_location(input, file$2, 114, 14, 3164);
     			attr_dev(path, "stroke-linecap", "round");
     			attr_dev(path, "stroke-linejoin", "round");
     			attr_dev(path, "stroke-width", "2");
     			attr_dev(path, "d", "M5 13l4 4L19 7");
-    			add_location(path, file$2, 100, 16, 3103);
+    			add_location(path, file$2, 116, 16, 3527);
     			attr_dev(svg, "class", "cursor-pointer h-3 w-3 text-gray-900 ml-2");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "fill", "none");
     			attr_dev(svg, "viewBox", "0 0 24 24");
     			attr_dev(svg, "stroke", "currentColor");
-    			add_location(svg, file$2, 99, 14, 2884);
+    			add_location(svg, file$2, 115, 14, 3308);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, input, anchor);
@@ -1916,11 +2063,11 @@ var app = (function () {
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
 
-    			if (dirty & /*headers*/ 1 && input_id_value !== (input_id_value = /*header*/ ctx[28].name.replace(/ /g, "-"))) {
+    			if (dirty[0] & /*headers*/ 1 && input_id_value !== (input_id_value = /*header*/ ctx[30].name.replace(/ /g, "-"))) {
     				attr_dev(input, "id", input_id_value);
     			}
 
-    			if (dirty & /*headers*/ 1 && input_value_value !== (input_value_value = /*header*/ ctx[28].name) && input.value !== input_value_value) {
+    			if (dirty[0] & /*headers*/ 1 && input_value_value !== (input_value_value = /*header*/ ctx[30].name) && input.value !== input_value_value) {
     				prop_dev(input, "value", input_value_value);
     			}
     		},
@@ -1937,14 +2084,14 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(98:12) {#if editFieldName == header.name}",
+    		source: "(114:12) {#if editFieldName == header.name}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (105:14) {#if header.owner == currentUser.username}
+    // (121:14) {#if header.owner == currentUser.username}
     function create_if_block_1$2(ctx) {
     	let svg;
     	let path;
@@ -1952,7 +2099,7 @@ var app = (function () {
     	let dispose;
 
     	function click_handler_1() {
-    		return /*click_handler_1*/ ctx[17](/*header*/ ctx[28]);
+    		return /*click_handler_1*/ ctx[18](/*header*/ ctx[30]);
     	}
 
     	const block = {
@@ -1963,13 +2110,13 @@ var app = (function () {
     			attr_dev(path, "stroke-linejoin", "round");
     			attr_dev(path, "stroke-width", "2");
     			attr_dev(path, "d", "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z");
-    			add_location(path, file$2, 106, 18, 3652);
+    			add_location(path, file$2, 122, 18, 4076);
     			attr_dev(svg, "class", "cursor-pointer h-3 w-3 text-gray-900 ml-2");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "fill", "none");
     			attr_dev(svg, "viewBox", "0 0 24 24");
     			attr_dev(svg, "stroke", "currentColor");
-    			add_location(svg, file$2, 105, 16, 3404);
+    			add_location(svg, file$2, 121, 16, 3828);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, svg, anchor);
@@ -1994,14 +2141,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$2.name,
     		type: "if",
-    		source: "(105:14) {#if header.owner == currentUser.username}",
+    		source: "(121:14) {#if header.owner == currentUser.username}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (94:6) {#each headers as header}
+    // (110:6) {#each headers as header}
     function create_each_block$1(ctx) {
     	let th;
     	let div0;
@@ -2021,7 +2168,7 @@ var app = (function () {
     	let path2;
     	let t4;
     	let span;
-    	let t5_value = (/*header*/ ctx[28].default || "Set Default") + "";
+    	let t5_value = (/*header*/ ctx[30].default || "Set Default") + "";
     	let t5;
     	let li1_class_value;
     	let t6;
@@ -2049,18 +2196,23 @@ var app = (function () {
     	let typeicon5;
     	let t15;
     	let li6_class_value;
+    	let t16;
+    	let li7;
+    	let typeicon6;
+    	let t17;
+    	let li7_class_value;
     	let div1_class_value;
     	let current;
     	let mounted;
     	let dispose;
 
     	typeicon0 = new TypeIcon({
-    			props: { type: /*header*/ ctx[28].type },
+    			props: { type: /*header*/ ctx[30].type },
     			$$inline: true
     		});
 
     	function select_block_type(ctx, dirty) {
-    		if (/*editFieldName*/ ctx[5] == /*header*/ ctx[28].name) return create_if_block$2;
+    		if (/*editFieldName*/ ctx[5] == /*header*/ ctx[30].name) return create_if_block$2;
     		return create_else_block$2;
     	}
 
@@ -2068,17 +2220,17 @@ var app = (function () {
     	let if_block = current_block_type(ctx);
 
     	function click_handler_2() {
-    		return /*click_handler_2*/ ctx[18](/*header*/ ctx[28]);
+    		return /*click_handler_2*/ ctx[19](/*header*/ ctx[30]);
     	}
 
     	function click_handler_3() {
-    		return /*click_handler_3*/ ctx[19](/*header*/ ctx[28]);
+    		return /*click_handler_3*/ ctx[20](/*header*/ ctx[30]);
     	}
 
     	typeicon1 = new TypeIcon({
     			props: {
     				type: "String",
-    				color: /*header*/ ctx[28].type == "String"
+    				color: /*header*/ ctx[30].type == "String"
     				? "text-white"
     				: "text-gray-400"
     			},
@@ -2086,13 +2238,13 @@ var app = (function () {
     		});
 
     	function click_handler_4() {
-    		return /*click_handler_4*/ ctx[20](/*header*/ ctx[28]);
+    		return /*click_handler_4*/ ctx[21](/*header*/ ctx[30]);
     	}
 
     	typeicon2 = new TypeIcon({
     			props: {
     				type: "Number",
-    				color: /*header*/ ctx[28].type == "Number"
+    				color: /*header*/ ctx[30].type == "Number"
     				? "text-white"
     				: "text-gray-400"
     			},
@@ -2100,13 +2252,13 @@ var app = (function () {
     		});
 
     	function click_handler_5() {
-    		return /*click_handler_5*/ ctx[21](/*header*/ ctx[28]);
+    		return /*click_handler_5*/ ctx[22](/*header*/ ctx[30]);
     	}
 
     	typeicon3 = new TypeIcon({
     			props: {
     				type: "Boolean",
-    				color: /*header*/ ctx[28].type == "Boolean"
+    				color: /*header*/ ctx[30].type == "Boolean"
     				? "text-white"
     				: "text-gray-400"
     			},
@@ -2114,13 +2266,13 @@ var app = (function () {
     		});
 
     	function click_handler_6() {
-    		return /*click_handler_6*/ ctx[22](/*header*/ ctx[28]);
+    		return /*click_handler_6*/ ctx[23](/*header*/ ctx[30]);
     	}
 
     	typeicon4 = new TypeIcon({
     			props: {
     				type: "Date",
-    				color: /*header*/ ctx[28].type == "Date"
+    				color: /*header*/ ctx[30].type == "Date"
     				? "text-white"
     				: "text-gray-400"
     			},
@@ -2128,13 +2280,13 @@ var app = (function () {
     		});
 
     	function click_handler_7() {
-    		return /*click_handler_7*/ ctx[23](/*header*/ ctx[28]);
+    		return /*click_handler_7*/ ctx[24](/*header*/ ctx[30]);
     	}
 
     	typeicon5 = new TypeIcon({
     			props: {
     				type: "Mixed",
-    				color: /*header*/ ctx[28].type == "Mixed"
+    				color: /*header*/ ctx[30].type == "Mixed"
     				? "text-white"
     				: "text-gray-400"
     			},
@@ -2142,7 +2294,24 @@ var app = (function () {
     		});
 
     	function click_handler_8() {
-    		return /*click_handler_8*/ ctx[24](/*header*/ ctx[28]);
+    		return /*click_handler_8*/ ctx[25](/*header*/ ctx[30]);
+    	}
+
+    	typeicon6 = new TypeIcon({
+    			props: {
+    				type: {
+    					name: "bcrypt",
+    					value: /*header*/ ctx[30].bcrypt
+    				},
+    				color: /*header*/ ctx[30].bcrypt
+    				? "text-white"
+    				: "text-gray-400"
+    			},
+    			$$inline: true
+    		});
+
+    	function click_handler_9() {
+    		return /*click_handler_9*/ ctx[26](/*header*/ ctx[30]);
     	}
 
     	const block = {
@@ -2187,84 +2356,94 @@ var app = (function () {
     			li6 = element("li");
     			create_component(typeicon5.$$.fragment);
     			t15 = text("\n                Mixed");
+    			t16 = space();
+    			li7 = element("li");
+    			create_component(typeicon6.$$.fragment);
+    			t17 = text("\n                bcrypt");
     			attr_dev(div0, "class", "flex items-center");
-    			add_location(div0, file$2, 95, 10, 2604);
+    			add_location(div0, file$2, 111, 10, 3028);
     			attr_dev(path0, "stroke-linecap", "round");
     			attr_dev(path0, "stroke-linejoin", "round");
     			attr_dev(path0, "stroke-width", "2");
     			attr_dev(path0, "d", "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z");
-    			add_location(path0, file$2, 115, 16, 4385);
+    			add_location(path0, file$2, 131, 16, 4809);
     			attr_dev(svg0, "class", "text-white h-4 w-4 mr-3");
     			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg0, "fill", "none");
     			attr_dev(svg0, "viewBox", "0 0 24 24");
     			attr_dev(svg0, "stroke", "currentColor");
-    			add_location(svg0, file$2, 114, 14, 4242);
+    			add_location(svg0, file$2, 130, 14, 4666);
     			attr_dev(li0, "class", "rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center text-white text-sm font-medium");
-    			add_location(li0, file$2, 113, 14, 4070);
+    			add_location(li0, file$2, 129, 14, 4494);
     			attr_dev(path1, "stroke-linecap", "round");
     			attr_dev(path1, "stroke-linejoin", "round");
     			attr_dev(path1, "stroke-width", "2");
     			attr_dev(path1, "d", "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z");
-    			add_location(path1, file$2, 121, 16, 5046);
+    			add_location(path1, file$2, 137, 16, 5470);
     			attr_dev(path2, "stroke-linecap", "round");
     			attr_dev(path2, "stroke-linejoin", "round");
     			attr_dev(path2, "stroke-width", "2");
     			attr_dev(path2, "d", "M15 12a3 3 0 11-6 0 3 3 0 016 0z");
-    			add_location(path2, file$2, 122, 16, 5623);
+    			add_location(path2, file$2, 138, 16, 6047);
     			attr_dev(svg1, "class", "flex-shrink-0 h-4 w-4 mr-3");
     			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg1, "fill", "none");
     			attr_dev(svg1, "viewBox", "0 0 24 24");
     			attr_dev(svg1, "stroke", "currentColor");
-    			add_location(svg1, file$2, 120, 14, 4900);
+    			add_location(svg1, file$2, 136, 14, 5324);
     			attr_dev(span, "class", "truncate");
-    			add_location(span, file$2, 124, 16, 5770);
+    			add_location(span, file$2, 140, 16, 6194);
 
-    			attr_dev(li1, "class", li1_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].default
+    			attr_dev(li1, "class", li1_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[30].default
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`);
 
-    			add_location(li1, file$2, 119, 14, 4646);
+    			add_location(li1, file$2, 135, 14, 5070);
 
-    			attr_dev(li2, "class", li2_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].type == "String"
+    			attr_dev(li2, "class", li2_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[30].type == "String"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`);
 
-    			add_location(li2, file$2, 126, 14, 5868);
+    			add_location(li2, file$2, 142, 14, 6292);
 
-    			attr_dev(li3, "class", li3_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].type == "Number"
+    			attr_dev(li3, "class", li3_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[30].type == "Number"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`);
 
-    			add_location(li3, file$2, 130, 14, 6256);
+    			add_location(li3, file$2, 146, 14, 6680);
 
-    			attr_dev(li4, "class", li4_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].type == "Boolean"
+    			attr_dev(li4, "class", li4_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[30].type == "Boolean"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`);
 
-    			add_location(li4, file$2, 134, 14, 6644);
+    			add_location(li4, file$2, 150, 14, 7068);
 
-    			attr_dev(li5, "class", li5_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].type == "Date"
+    			attr_dev(li5, "class", li5_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[30].type == "Date"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`);
 
-    			add_location(li5, file$2, 138, 14, 7037);
+    			add_location(li5, file$2, 154, 14, 7461);
 
-    			attr_dev(li6, "class", li6_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].type == "Mixed"
+    			attr_dev(li6, "class", li6_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[30].type == "Mixed"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`);
 
-    			add_location(li6, file$2, 142, 14, 7415);
-    			add_location(ul, file$2, 112, 12, 4051);
+    			add_location(li6, file$2, 158, 14, 7839);
 
-    			attr_dev(div1, "class", div1_class_value = `flex flex-col absolute z-10 mt-4 w-48 p-2 bg-gray-700 rounded-md ${/*fieldEdit*/ ctx[2] == /*header*/ ctx[28].name
+    			attr_dev(li7, "class", li7_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[30].bcrypt
+			? "text-white"
+			: "text-gray-400"} text-sm font-medium`);
+
+    			add_location(li7, file$2, 162, 14, 8222);
+    			add_location(ul, file$2, 128, 12, 4475);
+
+    			attr_dev(div1, "class", div1_class_value = `flex flex-col absolute z-10 mt-4 w-48 p-2 bg-gray-700 rounded-md ${/*fieldEdit*/ ctx[2] == /*header*/ ctx[30].name
 			? ""
 			: "hidden"}`);
 
-    			add_location(div1, file$2, 111, 10, 3914);
+    			add_location(div1, file$2, 127, 10, 4338);
     			attr_dev(th, "class", "p-2 bg-gray-200 border-l border-r border-gray-400 text-left");
-    			add_location(th, file$2, 94, 8, 2521);
+    			add_location(th, file$2, 110, 8, 2945);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, th, anchor);
@@ -2307,6 +2486,10 @@ var app = (function () {
     			append_dev(ul, li6);
     			mount_component(typeicon5, li6, null);
     			append_dev(li6, t15);
+    			append_dev(ul, t16);
+    			append_dev(ul, li7);
+    			mount_component(typeicon6, li7, null);
+    			append_dev(li7, t17);
     			current = true;
 
     			if (!mounted) {
@@ -2317,7 +2500,8 @@ var app = (function () {
     					listen_dev(li3, "click", click_handler_5, false, false, false),
     					listen_dev(li4, "click", click_handler_6, false, false, false),
     					listen_dev(li5, "click", click_handler_7, false, false, false),
-    					listen_dev(li6, "click", click_handler_8, false, false, false)
+    					listen_dev(li6, "click", click_handler_8, false, false, false),
+    					listen_dev(li7, "click", click_handler_9, false, false, false)
     				];
 
     				mounted = true;
@@ -2326,7 +2510,7 @@ var app = (function () {
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
     			const typeicon0_changes = {};
-    			if (dirty & /*headers*/ 1) typeicon0_changes.type = /*header*/ ctx[28].type;
+    			if (dirty[0] & /*headers*/ 1) typeicon0_changes.type = /*header*/ ctx[30].type;
     			typeicon0.$set(typeicon0_changes);
 
     			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
@@ -2341,9 +2525,9 @@ var app = (function () {
     				}
     			}
 
-    			if ((!current || dirty & /*headers*/ 1) && t5_value !== (t5_value = (/*header*/ ctx[28].default || "Set Default") + "")) set_data_dev(t5, t5_value);
+    			if ((!current || dirty[0] & /*headers*/ 1) && t5_value !== (t5_value = (/*header*/ ctx[30].default || "Set Default") + "")) set_data_dev(t5, t5_value);
 
-    			if (!current || dirty & /*headers*/ 1 && li1_class_value !== (li1_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].default
+    			if (!current || dirty[0] & /*headers*/ 1 && li1_class_value !== (li1_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[30].default
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`)) {
     				attr_dev(li1, "class", li1_class_value);
@@ -2351,13 +2535,13 @@ var app = (function () {
 
     			const typeicon1_changes = {};
 
-    			if (dirty & /*headers*/ 1) typeicon1_changes.color = /*header*/ ctx[28].type == "String"
+    			if (dirty[0] & /*headers*/ 1) typeicon1_changes.color = /*header*/ ctx[30].type == "String"
     			? "text-white"
     			: "text-gray-400";
 
     			typeicon1.$set(typeicon1_changes);
 
-    			if (!current || dirty & /*headers*/ 1 && li2_class_value !== (li2_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].type == "String"
+    			if (!current || dirty[0] & /*headers*/ 1 && li2_class_value !== (li2_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[30].type == "String"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`)) {
     				attr_dev(li2, "class", li2_class_value);
@@ -2365,13 +2549,13 @@ var app = (function () {
 
     			const typeicon2_changes = {};
 
-    			if (dirty & /*headers*/ 1) typeicon2_changes.color = /*header*/ ctx[28].type == "Number"
+    			if (dirty[0] & /*headers*/ 1) typeicon2_changes.color = /*header*/ ctx[30].type == "Number"
     			? "text-white"
     			: "text-gray-400";
 
     			typeicon2.$set(typeicon2_changes);
 
-    			if (!current || dirty & /*headers*/ 1 && li3_class_value !== (li3_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].type == "Number"
+    			if (!current || dirty[0] & /*headers*/ 1 && li3_class_value !== (li3_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[30].type == "Number"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`)) {
     				attr_dev(li3, "class", li3_class_value);
@@ -2379,13 +2563,13 @@ var app = (function () {
 
     			const typeicon3_changes = {};
 
-    			if (dirty & /*headers*/ 1) typeicon3_changes.color = /*header*/ ctx[28].type == "Boolean"
+    			if (dirty[0] & /*headers*/ 1) typeicon3_changes.color = /*header*/ ctx[30].type == "Boolean"
     			? "text-white"
     			: "text-gray-400";
 
     			typeicon3.$set(typeicon3_changes);
 
-    			if (!current || dirty & /*headers*/ 1 && li4_class_value !== (li4_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].type == "Boolean"
+    			if (!current || dirty[0] & /*headers*/ 1 && li4_class_value !== (li4_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[30].type == "Boolean"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`)) {
     				attr_dev(li4, "class", li4_class_value);
@@ -2393,13 +2577,13 @@ var app = (function () {
 
     			const typeicon4_changes = {};
 
-    			if (dirty & /*headers*/ 1) typeicon4_changes.color = /*header*/ ctx[28].type == "Date"
+    			if (dirty[0] & /*headers*/ 1) typeicon4_changes.color = /*header*/ ctx[30].type == "Date"
     			? "text-white"
     			: "text-gray-400";
 
     			typeicon4.$set(typeicon4_changes);
 
-    			if (!current || dirty & /*headers*/ 1 && li5_class_value !== (li5_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].type == "Date"
+    			if (!current || dirty[0] & /*headers*/ 1 && li5_class_value !== (li5_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[30].type == "Date"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`)) {
     				attr_dev(li5, "class", li5_class_value);
@@ -2407,19 +2591,38 @@ var app = (function () {
 
     			const typeicon5_changes = {};
 
-    			if (dirty & /*headers*/ 1) typeicon5_changes.color = /*header*/ ctx[28].type == "Mixed"
+    			if (dirty[0] & /*headers*/ 1) typeicon5_changes.color = /*header*/ ctx[30].type == "Mixed"
     			? "text-white"
     			: "text-gray-400";
 
     			typeicon5.$set(typeicon5_changes);
 
-    			if (!current || dirty & /*headers*/ 1 && li6_class_value !== (li6_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].type == "Mixed"
+    			if (!current || dirty[0] & /*headers*/ 1 && li6_class_value !== (li6_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[30].type == "Mixed"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`)) {
     				attr_dev(li6, "class", li6_class_value);
     			}
 
-    			if (!current || dirty & /*fieldEdit, headers*/ 5 && div1_class_value !== (div1_class_value = `flex flex-col absolute z-10 mt-4 w-48 p-2 bg-gray-700 rounded-md ${/*fieldEdit*/ ctx[2] == /*header*/ ctx[28].name
+    			const typeicon6_changes = {};
+
+    			if (dirty[0] & /*headers*/ 1) typeicon6_changes.type = {
+    				name: "bcrypt",
+    				value: /*header*/ ctx[30].bcrypt
+    			};
+
+    			if (dirty[0] & /*headers*/ 1) typeicon6_changes.color = /*header*/ ctx[30].bcrypt
+    			? "text-white"
+    			: "text-gray-400";
+
+    			typeicon6.$set(typeicon6_changes);
+
+    			if (!current || dirty[0] & /*headers*/ 1 && li7_class_value !== (li7_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[30].bcrypt
+			? "text-white"
+			: "text-gray-400"} text-sm font-medium`)) {
+    				attr_dev(li7, "class", li7_class_value);
+    			}
+
+    			if (!current || dirty[0] & /*fieldEdit, headers*/ 5 && div1_class_value !== (div1_class_value = `flex flex-col absolute z-10 mt-4 w-48 p-2 bg-gray-700 rounded-md ${/*fieldEdit*/ ctx[2] == /*header*/ ctx[30].name
 			? ""
 			: "hidden"}`)) {
     				attr_dev(div1, "class", div1_class_value);
@@ -2433,6 +2636,7 @@ var app = (function () {
     			transition_in(typeicon3.$$.fragment, local);
     			transition_in(typeicon4.$$.fragment, local);
     			transition_in(typeicon5.$$.fragment, local);
+    			transition_in(typeicon6.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
@@ -2442,6 +2646,7 @@ var app = (function () {
     			transition_out(typeicon3.$$.fragment, local);
     			transition_out(typeicon4.$$.fragment, local);
     			transition_out(typeicon5.$$.fragment, local);
+    			transition_out(typeicon6.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
@@ -2453,6 +2658,7 @@ var app = (function () {
     			destroy_component(typeicon3);
     			destroy_component(typeicon4);
     			destroy_component(typeicon5);
+    			destroy_component(typeicon6);
     			mounted = false;
     			run_all(dispose);
     		}
@@ -2462,7 +2668,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(94:6) {#each headers as header}",
+    		source: "(110:6) {#each headers as header}",
     		ctx
     	});
 
@@ -2516,23 +2722,23 @@ var app = (function () {
     			span1 = element("span");
     			span1.textContent = "+";
     			attr_dev(th0, "class", "p-2 bg-gray-200 border-l border-r border-gray-400 text-left bg-gray-200");
-    			add_location(th0, file$2, 88, 4, 2221);
+    			add_location(th0, file$2, 104, 4, 2645);
     			attr_dev(span0, "class", "text-gray-900 text-base font-medium");
-    			add_location(span0, file$2, 91, 6, 2411);
+    			add_location(span0, file$2, 107, 6, 2835);
     			attr_dev(th1, "class", "p-2 bg-gray-200 border-l border-r border-gray-400 text-left bg-gray-200");
-    			add_location(th1, file$2, 90, 4, 2320);
+    			add_location(th1, file$2, 106, 4, 2744);
     			attr_dev(span1, "class", "text-gray-900 text-base font-medium px-4");
-    			add_location(span1, file$2, 151, 8, 8140);
+    			add_location(span1, file$2, 171, 8, 8972);
 
     			attr_dev(th2, "class", th2_class_value = `${/*headers*/ ctx[0][0].owner == /*currentUser*/ ctx[4].username
 			? ""
 			: "hidden"} p-2 bg-gray-200 border-l border-r border-gray-400 text-center cursor-pointer`);
 
-    			add_location(th2, file$2, 150, 6, 7853);
+    			add_location(th2, file$2, 170, 6, 8685);
     			attr_dev(tr, "class", "");
-    			add_location(tr, file$2, 87, 2, 2203);
+    			add_location(tr, file$2, 103, 2, 2627);
     			attr_dev(thead, "class", "justify-between sticky top-0 border-b-4 border-gray-300");
-    			add_location(thead, file$2, 86, 0, 2129);
+    			add_location(thead, file$2, 102, 0, 2553);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2557,16 +2763,16 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(th2, "mouseover", /*mouseover_handler*/ ctx[25], false, false, false),
-    					listen_dev(th2, "mouseout", /*mouseout_handler*/ ctx[26], false, false, false),
-    					listen_dev(th2, "click", /*click_handler_9*/ ctx[27], false, false, false)
+    					listen_dev(th2, "mouseover", /*mouseover_handler*/ ctx[27], false, false, false),
+    					listen_dev(th2, "mouseout", /*mouseout_handler*/ ctx[28], false, false, false),
+    					listen_dev(th2, "click", /*click_handler_10*/ ctx[29], false, false, false)
     				];
 
     				mounted = true;
     			}
     		},
-    		p: function update(ctx, [dirty]) {
-    			if (dirty & /*fieldEdit, headers, changeType, setDefault, editThisFieldName, changeFieldName, editFieldName, currentUser*/ 1525) {
+    		p: function update(ctx, dirty) {
+    			if (dirty[0] & /*fieldEdit, headers, changeBcrypt, changeType, setDefault, editThisFieldName, changeFieldName, editFieldName, currentUser*/ 3061) {
     				each_value = /*headers*/ ctx[0];
     				validate_each_argument(each_value);
     				let i;
@@ -2594,7 +2800,7 @@ var app = (function () {
     				check_outros();
     			}
 
-    			if (!current || dirty & /*headers, currentUser*/ 17 && th2_class_value !== (th2_class_value = `${/*headers*/ ctx[0][0].owner == /*currentUser*/ ctx[4].username
+    			if (!current || dirty[0] & /*headers, currentUser*/ 17 && th2_class_value !== (th2_class_value = `${/*headers*/ ctx[0][0].owner == /*currentUser*/ ctx[4].username
 			? ""
 			: "hidden"} p-2 bg-gray-200 border-l border-r border-gray-400 text-center cursor-pointer`)) {
     				attr_dev(th2, "class", th2_class_value);
@@ -2670,8 +2876,8 @@ var app = (function () {
     			let name = document.querySelector(`#${domId}`).value;
     			let update = await api.put(`database/${activeTable.replace(/ /g, "-")}/${id}`, token, { name });
     			$$invalidate(5, editFieldName = "");
-    			$$invalidate(12, displayedData = await api.get(activeTable.replace(/ /g, "-"), token));
-    			$$invalidate(11, dataTables = await api.get("database", token));
+    			$$invalidate(13, displayedData = await api.get(activeTable.replace(/ /g, "-"), token));
+    			$$invalidate(12, dataTables = await api.get("database", token));
     			$$invalidate(0, headers = getHeaders(dataTables, activeTable));
     		} catch(err) {
     			console.log(err);
@@ -2682,8 +2888,20 @@ var app = (function () {
     		try {
     			let update = await api.put(`database/${activeTable.replace(/ /g, "-")}/${id}`, token, { type });
     			$$invalidate(2, fieldEdit = "");
-    			$$invalidate(12, displayedData = await api.get(activeTable.replace(/ /g, "-"), token));
-    			$$invalidate(11, dataTables = await api.get("database", token));
+    			$$invalidate(13, displayedData = await api.get(activeTable.replace(/ /g, "-"), token));
+    			$$invalidate(12, dataTables = await api.get("database", token));
+    			$$invalidate(0, headers = getHeaders(dataTables, activeTable));
+    		} catch(err) {
+    			console.log(err);
+    		}
+    	};
+
+    	const changeBcrypt = async (field, id, bcrypt) => {
+    		try {
+    			let update = await api.put(`database/${activeTable.replace(/ /g, "-")}/${id}`, token, { bcrypt });
+    			$$invalidate(2, fieldEdit = "");
+    			$$invalidate(13, displayedData = await api.get(activeTable.replace(/ /g, "-"), token));
+    			$$invalidate(12, dataTables = await api.get("database", token));
     			$$invalidate(0, headers = getHeaders(dataTables, activeTable));
     		} catch(err) {
     			console.log(err);
@@ -2694,8 +2912,8 @@ var app = (function () {
     		try {
     			const id = "column" + Math.floor(Math.random() * Math.floor(100));
     			let col = await api.put(`database/${table}`, token, { props: { name: id, type: "String" } });
-    			$$invalidate(12, displayedData = await api.get(activeTable.replace(/ /g, "-"), token));
-    			$$invalidate(11, dataTables = await api.get("database", token));
+    			$$invalidate(13, displayedData = await api.get(activeTable.replace(/ /g, "-"), token));
+    			$$invalidate(12, dataTables = await api.get("database", token));
     			$$invalidate(0, headers = getHeaders(dataTables, activeTable));
     		} catch(err) {
     			console.log(err);
@@ -2705,7 +2923,7 @@ var app = (function () {
     	const setDefault = (name, def, _id) => {
     		console.log("settingDefault");
     		console.log(def);
-    		$$invalidate(13, settingDefault = { name, def, _id });
+    		$$invalidate(14, settingDefault = { name, def, _id });
     	};
 
     	const writable_props = [
@@ -2738,20 +2956,21 @@ var app = (function () {
     	const click_handler_6 = header => changeType(header.name, header._id, "Boolean");
     	const click_handler_7 = header => changeType(header.name, header._id, "Date");
     	const click_handler_8 = header => changeType(header.name, header._id, "Mixed");
+    	const click_handler_9 = header => changeBcrypt(header.name, header._id, !header.bcrypt);
     	const mouseover_handler = () => $$invalidate(1, hoverNewField = true);
     	const mouseout_handler = () => $$invalidate(1, hoverNewField = false);
-    	const click_handler_9 = () => newColHeader(activeTable);
+    	const click_handler_10 = () => newColHeader(activeTable);
 
     	$$self.$$set = $$props => {
     		if ("headers" in $$props) $$invalidate(0, headers = $$props.headers);
     		if ("activeTable" in $$props) $$invalidate(3, activeTable = $$props.activeTable);
     		if ("hoverNewField" in $$props) $$invalidate(1, hoverNewField = $$props.hoverNewField);
-    		if ("dataTables" in $$props) $$invalidate(11, dataTables = $$props.dataTables);
-    		if ("fetchData" in $$props) $$invalidate(14, fetchData = $$props.fetchData);
-    		if ("displayedData" in $$props) $$invalidate(12, displayedData = $$props.displayedData);
+    		if ("dataTables" in $$props) $$invalidate(12, dataTables = $$props.dataTables);
+    		if ("fetchData" in $$props) $$invalidate(15, fetchData = $$props.fetchData);
+    		if ("displayedData" in $$props) $$invalidate(13, displayedData = $$props.displayedData);
     		if ("currentUser" in $$props) $$invalidate(4, currentUser = $$props.currentUser);
-    		if ("token" in $$props) $$invalidate(15, token = $$props.token);
-    		if ("settingDefault" in $$props) $$invalidate(13, settingDefault = $$props.settingDefault);
+    		if ("token" in $$props) $$invalidate(16, token = $$props.token);
+    		if ("settingDefault" in $$props) $$invalidate(14, settingDefault = $$props.settingDefault);
     		if ("fieldEdit" in $$props) $$invalidate(2, fieldEdit = $$props.fieldEdit);
     	};
 
@@ -2773,6 +2992,7 @@ var app = (function () {
     		editThisFieldName,
     		changeFieldName,
     		changeType,
+    		changeBcrypt,
     		newColHeader,
     		setDefault
     	});
@@ -2781,12 +3001,12 @@ var app = (function () {
     		if ("headers" in $$props) $$invalidate(0, headers = $$props.headers);
     		if ("activeTable" in $$props) $$invalidate(3, activeTable = $$props.activeTable);
     		if ("hoverNewField" in $$props) $$invalidate(1, hoverNewField = $$props.hoverNewField);
-    		if ("dataTables" in $$props) $$invalidate(11, dataTables = $$props.dataTables);
-    		if ("fetchData" in $$props) $$invalidate(14, fetchData = $$props.fetchData);
-    		if ("displayedData" in $$props) $$invalidate(12, displayedData = $$props.displayedData);
+    		if ("dataTables" in $$props) $$invalidate(12, dataTables = $$props.dataTables);
+    		if ("fetchData" in $$props) $$invalidate(15, fetchData = $$props.fetchData);
+    		if ("displayedData" in $$props) $$invalidate(13, displayedData = $$props.displayedData);
     		if ("currentUser" in $$props) $$invalidate(4, currentUser = $$props.currentUser);
-    		if ("token" in $$props) $$invalidate(15, token = $$props.token);
-    		if ("settingDefault" in $$props) $$invalidate(13, settingDefault = $$props.settingDefault);
+    		if ("token" in $$props) $$invalidate(16, token = $$props.token);
+    		if ("settingDefault" in $$props) $$invalidate(14, settingDefault = $$props.settingDefault);
     		if ("editFieldName" in $$props) $$invalidate(5, editFieldName = $$props.editFieldName);
     		if ("fieldEdit" in $$props) $$invalidate(2, fieldEdit = $$props.fieldEdit);
     	};
@@ -2805,6 +3025,7 @@ var app = (function () {
     		editThisFieldName,
     		changeFieldName,
     		changeType,
+    		changeBcrypt,
     		newColHeader,
     		setDefault,
     		dataTables,
@@ -2821,9 +3042,10 @@ var app = (function () {
     		click_handler_6,
     		click_handler_7,
     		click_handler_8,
+    		click_handler_9,
     		mouseover_handler,
     		mouseout_handler,
-    		click_handler_9
+    		click_handler_10
     	];
     }
 
@@ -2831,18 +3053,26 @@ var app = (function () {
     	constructor(options) {
     		super(options);
 
-    		init(this, options, instance$2, create_fragment$2, safe_not_equal, {
-    			headers: 0,
-    			activeTable: 3,
-    			hoverNewField: 1,
-    			dataTables: 11,
-    			fetchData: 14,
-    			displayedData: 12,
-    			currentUser: 4,
-    			token: 15,
-    			settingDefault: 13,
-    			fieldEdit: 2
-    		});
+    		init(
+    			this,
+    			options,
+    			instance$2,
+    			create_fragment$2,
+    			safe_not_equal,
+    			{
+    				headers: 0,
+    				activeTable: 3,
+    				hoverNewField: 1,
+    				dataTables: 12,
+    				fetchData: 15,
+    				displayedData: 13,
+    				currentUser: 4,
+    				token: 16,
+    				settingDefault: 14,
+    				fieldEdit: 2
+    			},
+    			[-1, -1]
+    		);
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -2866,15 +3096,15 @@ var app = (function () {
     			console_1$1.warn("<TableHeader> was created without expected prop 'hoverNewField'");
     		}
 
-    		if (/*dataTables*/ ctx[11] === undefined && !("dataTables" in props)) {
+    		if (/*dataTables*/ ctx[12] === undefined && !("dataTables" in props)) {
     			console_1$1.warn("<TableHeader> was created without expected prop 'dataTables'");
     		}
 
-    		if (/*fetchData*/ ctx[14] === undefined && !("fetchData" in props)) {
+    		if (/*fetchData*/ ctx[15] === undefined && !("fetchData" in props)) {
     			console_1$1.warn("<TableHeader> was created without expected prop 'fetchData'");
     		}
 
-    		if (/*displayedData*/ ctx[12] === undefined && !("displayedData" in props)) {
+    		if (/*displayedData*/ ctx[13] === undefined && !("displayedData" in props)) {
     			console_1$1.warn("<TableHeader> was created without expected prop 'displayedData'");
     		}
 
@@ -2882,11 +3112,11 @@ var app = (function () {
     			console_1$1.warn("<TableHeader> was created without expected prop 'currentUser'");
     		}
 
-    		if (/*token*/ ctx[15] === undefined && !("token" in props)) {
+    		if (/*token*/ ctx[16] === undefined && !("token" in props)) {
     			console_1$1.warn("<TableHeader> was created without expected prop 'token'");
     		}
 
-    		if (/*settingDefault*/ ctx[13] === undefined && !("settingDefault" in props)) {
+    		if (/*settingDefault*/ ctx[14] === undefined && !("settingDefault" in props)) {
     			console_1$1.warn("<TableHeader> was created without expected prop 'settingDefault'");
     		}
 
@@ -3315,7 +3545,7 @@ var app = (function () {
     		c: function create() {
     			t = text(",");
     			br = element("br");
-    			add_location(br, file$4, 18, 94, 1259);
+    			add_location(br, file$4, 18, 94, 1262);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t, anchor);
@@ -3415,7 +3645,7 @@ var app = (function () {
     		c: function create() {
     			t = text(",");
     			br = element("br");
-    			add_location(br, file$4, 27, 94, 1651);
+    			add_location(br, file$4, 27, 94, 1654);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t, anchor);
@@ -3677,39 +3907,39 @@ var app = (function () {
     			p3 = element("p");
     			p3.textContent = "🚀";
     			attr_dev(p0, "class", "text-xl font-semibold text-green-200 p-4");
-    			add_location(p0, file$4, 8, 2, 264);
+    			add_location(p0, file$4, 8, 2, 267);
     			attr_dev(p1, "class", "text-lg font-semibold text-green-200 px-4 pb-4");
-    			add_location(p1, file$4, 9, 2, 412);
+    			add_location(p1, file$4, 9, 2, 415);
     			attr_dev(li0, "class", "break-words");
-    			add_location(li0, file$4, 11, 4, 581);
+    			add_location(li0, file$4, 11, 4, 584);
     			attr_dev(li1, "class", "break-words");
-    			add_location(li1, file$4, 12, 4, 660);
+    			add_location(li1, file$4, 12, 4, 663);
     			attr_dev(li2, "class", "break-words");
-    			add_location(li2, file$4, 13, 4, 791);
+    			add_location(li2, file$4, 13, 4, 794);
     			attr_dev(li3, "class", "break-words");
-    			add_location(li3, file$4, 14, 4, 936);
-    			add_location(br0, file$4, 16, 19, 1125);
-    			add_location(br1, file$4, 20, 6, 1289);
+    			add_location(li3, file$4, 14, 4, 939);
+    			add_location(br0, file$4, 16, 19, 1128);
+    			add_location(br1, file$4, 20, 6, 1292);
     			attr_dev(li4, "class", "break-words");
-    			add_location(li4, file$4, 15, 4, 1081);
+    			add_location(li4, file$4, 15, 4, 1084);
     			attr_dev(li5, "class", "break-words");
-    			add_location(li5, file$4, 23, 4, 1328);
-    			add_location(br2, file$4, 25, 19, 1517);
-    			add_location(br3, file$4, 29, 6, 1681);
+    			add_location(li5, file$4, 23, 4, 1331);
+    			add_location(br2, file$4, 25, 19, 1520);
+    			add_location(br3, file$4, 29, 6, 1684);
     			attr_dev(li6, "class", "break-words");
-    			add_location(li6, file$4, 24, 4, 1473);
+    			add_location(li6, file$4, 24, 4, 1476);
     			attr_dev(li7, "class", "break-words");
-    			add_location(li7, file$4, 32, 4, 1720);
+    			add_location(li7, file$4, 32, 4, 1723);
     			attr_dev(ul, "class", "flex flex-col space-y-3 px-4 font-mono text-green-200 text-xs");
-    			add_location(ul, file$4, 10, 2, 502);
+    			add_location(ul, file$4, 10, 2, 505);
     			attr_dev(p2, "class", "text-xl font-semibold text-green-200 p-4");
-    			add_location(p2, file$4, 34, 2, 1876);
+    			add_location(p2, file$4, 34, 2, 1879);
     			attr_dev(p3, "class", "text-lg font-semibold text-green-200 px-4 pb-4");
-    			add_location(p3, file$4, 35, 2, 1956);
+    			add_location(p3, file$4, 35, 2, 1959);
 
-    			attr_dev(div, "class", div_class_value = `fixed z-50 h-screen w-96 transform duration-300 flex flex-col ${/*showAPIDocs*/ ctx[0]
+    			attr_dev(div, "class", div_class_value = `fixed z-50 h-screen w-1/2 transform duration-300 flex flex-col ${/*showAPIDocs*/ ctx[0]
 			? "translate-x-0"
-			: "-translate-x-96"} bg-gray-800`);
+			: "-translate-x-full"} bg-gray-800`);
 
     			add_location(div, file$4, 7, 0, 119);
     		},
@@ -3854,9 +4084,9 @@ var app = (function () {
     			? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
     			: "") + "")) set_data_dev(t33, t33_value);
 
-    			if (dirty & /*showAPIDocs*/ 1 && div_class_value !== (div_class_value = `fixed z-50 h-screen w-96 transform duration-300 flex flex-col ${/*showAPIDocs*/ ctx[0]
+    			if (dirty & /*showAPIDocs*/ 1 && div_class_value !== (div_class_value = `fixed z-50 h-screen w-1/2 transform duration-300 flex flex-col ${/*showAPIDocs*/ ctx[0]
 			? "translate-x-0"
-			: "-translate-x-96"} bg-gray-800`)) {
+			: "-translate-x-full"} bg-gray-800`)) {
     				attr_dev(div, "class", div_class_value);
     			}
     		},
@@ -11112,60 +11342,73 @@ var app = (function () {
     const { console: console_1$4 } = globals;
     const file$6 = "src/App.svelte";
 
-    // (95:2) {#if settingDefault}
-    function create_if_block_1$4(ctx) {
+    // (94:2) {#if settingDefault}
+    function create_if_block_2$1(ctx) {
+    	let div4;
     	let div3;
-    	let div2;
     	let p;
     	let t1;
     	let textarea;
     	let textarea_id_value;
     	let textarea_value_value;
     	let t2;
-    	let div1;
+    	let div2;
     	let div0;
+    	let t4;
+    	let div1;
     	let mounted;
     	let dispose;
 
     	const block = {
     		c: function create() {
+    			div4 = element("div");
     			div3 = element("div");
-    			div2 = element("div");
     			p = element("p");
     			p.textContent = "Set default value. Use \"()\" notation for functions.";
     			t1 = space();
     			textarea = element("textarea");
     			t2 = space();
-    			div1 = element("div");
+    			div2 = element("div");
     			div0 = element("div");
-    			div0.textContent = "Save";
+    			div0.textContent = "Cancel";
+    			t4 = space();
+    			div1 = element("div");
+    			div1.textContent = "Save";
     			attr_dev(p, "class", "text-md font-semibold text-gray-900");
-    			add_location(p, file$6, 97, 4, 2685);
+    			add_location(p, file$6, 96, 4, 2603);
     			attr_dev(textarea, "id", textarea_id_value = `default-${/*settingDefault*/ ctx[8].name}`);
     			attr_dev(textarea, "class", "focus:outline-none border-2 border-green-200 text-gray-900 apperance-none bg-white rounded-lg w-full p-2");
     			textarea.value = textarea_value_value = /*settingDefault*/ ctx[8].def;
-    			add_location(textarea, file$6, 98, 5, 2793);
-    			attr_dev(div0, "class", "bg-green-600 text-white cursor-pointer p-2 rounded-lg flex items-center justify-center");
-    			add_location(div0, file$6, 100, 6, 3035);
-    			attr_dev(div1, "class", "w-full flex justify-end");
-    			add_location(div1, file$6, 99, 5, 2991);
-    			attr_dev(div2, "class", "rounded-lg bg-white p-12 flex flex-col items-center justify-center space-y-4");
-    			add_location(div2, file$6, 96, 4, 2590);
-    			attr_dev(div3, "class", "bg-transparent h-screen w-screen z-50 fixed flex items-center justify-center");
-    			add_location(div3, file$6, 95, 3, 2495);
+    			add_location(textarea, file$6, 97, 5, 2711);
+    			attr_dev(div0, "class", "bg-red-600 text-white cursor-pointer p-2 rounded-lg flex items-center justify-center mr-6");
+    			add_location(div0, file$6, 99, 5, 2952);
+    			attr_dev(div1, "class", "bg-green-600 text-white cursor-pointer p-2 rounded-lg flex items-center justify-center");
+    			add_location(div1, file$6, 100, 6, 3111);
+    			attr_dev(div2, "class", "w-full flex justify-end");
+    			add_location(div2, file$6, 98, 5, 2909);
+    			attr_dev(div3, "class", "rounded-lg bg-white p-12 flex flex-col items-center justify-center space-y-4");
+    			add_location(div3, file$6, 95, 4, 2508);
+    			attr_dev(div4, "class", "bg-transparent h-screen w-screen z-50 fixed flex items-center justify-center");
+    			add_location(div4, file$6, 94, 3, 2413);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div3, anchor);
+    			insert_dev(target, div4, anchor);
+    			append_dev(div4, div3);
+    			append_dev(div3, p);
+    			append_dev(div3, t1);
+    			append_dev(div3, textarea);
+    			append_dev(div3, t2);
     			append_dev(div3, div2);
-    			append_dev(div2, p);
-    			append_dev(div2, t1);
-    			append_dev(div2, textarea);
-    			append_dev(div2, t2);
+    			append_dev(div2, div0);
+    			append_dev(div2, t4);
     			append_dev(div2, div1);
-    			append_dev(div1, div0);
 
     			if (!mounted) {
-    				dispose = listen_dev(div0, "click", /*click_handler*/ ctx[14], false, false, false);
+    				dispose = [
+    					listen_dev(div0, "click", /*click_handler*/ ctx[14], false, false, false),
+    					listen_dev(div1, "click", /*click_handler_1*/ ctx[15], false, false, false)
+    				];
+
     				mounted = true;
     			}
     		},
@@ -11179,9 +11422,91 @@ var app = (function () {
     			}
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div3);
+    			if (detaching) detach_dev(div4);
     			mounted = false;
-    			dispose();
+    			run_all(dispose);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_2$1.name,
+    		type: "if",
+    		source: "(94:2) {#if settingDefault}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (111:2) {#if !loggedin}
+    function create_if_block_1$4(ctx) {
+    	let loggedin_1;
+    	let updating_currentUser;
+    	let updating_loggedin;
+    	let current;
+
+    	function loggedin_1_currentUser_binding(value) {
+    		/*loggedin_1_currentUser_binding*/ ctx[16](value);
+    	}
+
+    	function loggedin_1_loggedin_binding(value) {
+    		/*loggedin_1_loggedin_binding*/ ctx[17](value);
+    	}
+
+    	let loggedin_1_props = {
+    		loadData: /*loadData*/ ctx[11],
+    		checkUser: /*checkUser*/ ctx[10]
+    	};
+
+    	if (/*currentUser*/ ctx[5] !== void 0) {
+    		loggedin_1_props.currentUser = /*currentUser*/ ctx[5];
+    	}
+
+    	if (/*loggedin*/ ctx[4] !== void 0) {
+    		loggedin_1_props.loggedin = /*loggedin*/ ctx[4];
+    	}
+
+    	loggedin_1 = new LoggedIn({ props: loggedin_1_props, $$inline: true });
+    	binding_callbacks.push(() => bind(loggedin_1, "currentUser", loggedin_1_currentUser_binding));
+    	binding_callbacks.push(() => bind(loggedin_1, "loggedin", loggedin_1_loggedin_binding));
+
+    	const block = {
+    		c: function create() {
+    			create_component(loggedin_1.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(loggedin_1, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const loggedin_1_changes = {};
+
+    			if (!updating_currentUser && dirty & /*currentUser*/ 32) {
+    				updating_currentUser = true;
+    				loggedin_1_changes.currentUser = /*currentUser*/ ctx[5];
+    				add_flush_callback(() => updating_currentUser = false);
+    			}
+
+    			if (!updating_loggedin && dirty & /*loggedin*/ 16) {
+    				updating_loggedin = true;
+    				loggedin_1_changes.loggedin = /*loggedin*/ ctx[4];
+    				add_flush_callback(() => updating_loggedin = false);
+    			}
+
+    			loggedin_1.$set(loggedin_1_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(loggedin_1.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(loggedin_1.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(loggedin_1, detaching);
     		}
     	};
 
@@ -11189,14 +11514,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$4.name,
     		type: "if",
-    		source: "(95:2) {#if settingDefault}",
+    		source: "(111:2) {#if !loggedin}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (116:2) {:else}
+    // (118:2) {:else}
     function create_else_block$4(ctx) {
     	let div2;
     	let div1;
@@ -11221,16 +11546,16 @@ var app = (function () {
     			t3 = space();
     			img = element("img");
     			attr_dev(p, "class", "text-3xl w-96 my-12 text-center font-semibold");
-    			add_location(p, file$6, 118, 5, 4618);
+    			add_location(p, file$6, 120, 5, 4721);
     			attr_dev(div0, "class", "bg-green-200 text-gray-900 font-semibold text-lg p-2 flex items-center justify-center rounded-lg cursor-pointer transform duration-150 shadow-md hover:-translate-y-1 hover:shadow-lg");
-    			add_location(div0, file$6, 119, 5, 4729);
+    			add_location(div0, file$6, 121, 5, 4832);
     			attr_dev(div1, "class", "flex flex-col absolute -ml-48");
-    			add_location(div1, file$6, 117, 4, 4569);
+    			add_location(div1, file$6, 119, 4, 4672);
     			attr_dev(img, "class", "h-3/4 object-scale");
     			if (img.src !== (img_src_value = "./empty.png")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file$6, 121, 4, 4988);
+    			add_location(img, file$6, 123, 4, 5091);
     			attr_dev(div2, "class", "w-3/4 h-full flex items-center -mt-24 justify-center");
-    			add_location(div2, file$6, 116, 3, 4498);
+    			add_location(div2, file$6, 118, 3, 4601);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
@@ -11260,14 +11585,14 @@ var app = (function () {
     		block,
     		id: create_else_block$4.name,
     		type: "else",
-    		source: "(116:2) {:else}",
+    		source: "(118:2) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (114:2) {#if headers.length > 0}
+    // (116:2) {#if headers.length > 0}
     function create_if_block$5(ctx) {
     	let table;
     	let updating_fieldEdit;
@@ -11278,23 +11603,23 @@ var app = (function () {
     	let current;
 
     	function table_fieldEdit_binding(value) {
-    		/*table_fieldEdit_binding*/ ctx[21](value);
+    		/*table_fieldEdit_binding*/ ctx[22](value);
     	}
 
     	function table_settingDefault_binding(value) {
-    		/*table_settingDefault_binding*/ ctx[22](value);
+    		/*table_settingDefault_binding*/ ctx[23](value);
     	}
 
     	function table_dataTables_binding(value) {
-    		/*table_dataTables_binding*/ ctx[23](value);
+    		/*table_dataTables_binding*/ ctx[24](value);
     	}
 
     	function table_displayedData_binding(value) {
-    		/*table_displayedData_binding*/ ctx[24](value);
+    		/*table_displayedData_binding*/ ctx[25](value);
     	}
 
     	function table_headers_binding(value) {
-    		/*table_headers_binding*/ ctx[25](value);
+    		/*table_headers_binding*/ ctx[26](value);
     	}
 
     	let table_props = {
@@ -11395,7 +11720,7 @@ var app = (function () {
     		block,
     		id: create_if_block$5.name,
     		type: "if",
-    		source: "(114:2) {#if headers.length > 0}",
+    		source: "(116:2) {#if headers.length > 0}",
     		ctx
     	});
 
@@ -11403,27 +11728,22 @@ var app = (function () {
     }
 
     function create_fragment$6(ctx) {
-    	let link;
-    	let t0;
     	let body;
-    	let t1;
+    	let t0;
     	let apidocs;
+    	let t1;
     	let t2;
-    	let loggedin_1;
-    	let updating_currentUser;
-    	let updating_loggedin;
-    	let t3;
     	let header;
     	let updating_showAPIDocs;
     	let updating_activeTable;
     	let updating_headers;
     	let updating_displayedData;
-    	let t4;
+    	let t3;
     	let div;
     	let current_block_type_index;
-    	let if_block1;
+    	let if_block2;
     	let current;
-    	let if_block0 = /*settingDefault*/ ctx[8] && create_if_block_1$4(ctx);
+    	let if_block0 = /*settingDefault*/ ctx[8] && create_if_block_2$1(ctx);
 
     	apidocs = new ApiDocs({
     			props: {
@@ -11434,45 +11754,22 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	function loggedin_1_currentUser_binding(value) {
-    		/*loggedin_1_currentUser_binding*/ ctx[15](value);
-    	}
-
-    	function loggedin_1_loggedin_binding(value) {
-    		/*loggedin_1_loggedin_binding*/ ctx[16](value);
-    	}
-
-    	let loggedin_1_props = {
-    		loadData: /*loadData*/ ctx[11],
-    		checkUser: /*checkUser*/ ctx[10]
-    	};
-
-    	if (/*currentUser*/ ctx[5] !== void 0) {
-    		loggedin_1_props.currentUser = /*currentUser*/ ctx[5];
-    	}
-
-    	if (/*loggedin*/ ctx[4] !== void 0) {
-    		loggedin_1_props.loggedin = /*loggedin*/ ctx[4];
-    	}
-
-    	loggedin_1 = new LoggedIn({ props: loggedin_1_props, $$inline: true });
-    	binding_callbacks.push(() => bind(loggedin_1, "currentUser", loggedin_1_currentUser_binding));
-    	binding_callbacks.push(() => bind(loggedin_1, "loggedin", loggedin_1_loggedin_binding));
+    	let if_block1 = !/*loggedin*/ ctx[4] && create_if_block_1$4(ctx);
 
     	function header_showAPIDocs_binding(value) {
-    		/*header_showAPIDocs_binding*/ ctx[17](value);
+    		/*header_showAPIDocs_binding*/ ctx[18](value);
     	}
 
     	function header_activeTable_binding(value) {
-    		/*header_activeTable_binding*/ ctx[18](value);
+    		/*header_activeTable_binding*/ ctx[19](value);
     	}
 
     	function header_headers_binding(value) {
-    		/*header_headers_binding*/ ctx[19](value);
+    		/*header_headers_binding*/ ctx[20](value);
     	}
 
     	function header_displayedData_binding(value) {
-    		/*header_displayedData_binding*/ ctx[20](value);
+    		/*header_displayedData_binding*/ ctx[21](value);
     	}
 
     	let header_props = {
@@ -11511,46 +11808,39 @@ var app = (function () {
     	}
 
     	current_block_type_index = select_block_type(ctx);
-    	if_block1 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    	if_block2 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
 
     	const block = {
     		c: function create() {
-    			link = element("link");
-    			t0 = space();
     			body = element("body");
     			if (if_block0) if_block0.c();
-    			t1 = space();
+    			t0 = space();
     			create_component(apidocs.$$.fragment);
+    			t1 = space();
+    			if (if_block1) if_block1.c();
     			t2 = space();
-    			create_component(loggedin_1.$$.fragment);
-    			t3 = space();
     			create_component(header.$$.fragment);
-    			t4 = space();
+    			t3 = space();
     			div = element("div");
-    			if_block1.c();
-    			attr_dev(link, "href", "https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css");
-    			attr_dev(link, "rel", "stylesheet");
-    			add_location(link, file$6, 92, 0, 2359);
+    			if_block2.c();
     			attr_dev(div, "class", "pb-6 w-screen h-full flex justify-center overflow-x-scroll");
-    			add_location(div, file$6, 112, 2, 4128);
+    			add_location(div, file$6, 114, 2, 4231);
     			attr_dev(body, "class", "h-screen");
-    			add_location(body, file$6, 93, 0, 2445);
+    			add_location(body, file$6, 92, 0, 2363);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, link, anchor);
-    			insert_dev(target, t0, anchor);
     			insert_dev(target, body, anchor);
     			if (if_block0) if_block0.m(body, null);
-    			append_dev(body, t1);
+    			append_dev(body, t0);
     			mount_component(apidocs, body, null);
+    			append_dev(body, t1);
+    			if (if_block1) if_block1.m(body, null);
     			append_dev(body, t2);
-    			mount_component(loggedin_1, body, null);
-    			append_dev(body, t3);
     			mount_component(header, body, null);
-    			append_dev(body, t4);
+    			append_dev(body, t3);
     			append_dev(body, div);
     			if_blocks[current_block_type_index].m(div, null);
     			current = true;
@@ -11560,9 +11850,9 @@ var app = (function () {
     				if (if_block0) {
     					if_block0.p(ctx, dirty);
     				} else {
-    					if_block0 = create_if_block_1$4(ctx);
+    					if_block0 = create_if_block_2$1(ctx);
     					if_block0.c();
-    					if_block0.m(body, t1);
+    					if_block0.m(body, t0);
     				}
     			} else if (if_block0) {
     				if_block0.d(1);
@@ -11574,21 +11864,30 @@ var app = (function () {
     			if (dirty & /*activeTable*/ 8) apidocs_changes.activeTable = /*activeTable*/ ctx[3];
     			if (dirty & /*showAPIDocs*/ 64) apidocs_changes.showAPIDocs = /*showAPIDocs*/ ctx[6];
     			apidocs.$set(apidocs_changes);
-    			const loggedin_1_changes = {};
 
-    			if (!updating_currentUser && dirty & /*currentUser*/ 32) {
-    				updating_currentUser = true;
-    				loggedin_1_changes.currentUser = /*currentUser*/ ctx[5];
-    				add_flush_callback(() => updating_currentUser = false);
+    			if (!/*loggedin*/ ctx[4]) {
+    				if (if_block1) {
+    					if_block1.p(ctx, dirty);
+
+    					if (dirty & /*loggedin*/ 16) {
+    						transition_in(if_block1, 1);
+    					}
+    				} else {
+    					if_block1 = create_if_block_1$4(ctx);
+    					if_block1.c();
+    					transition_in(if_block1, 1);
+    					if_block1.m(body, t2);
+    				}
+    			} else if (if_block1) {
+    				group_outros();
+
+    				transition_out(if_block1, 1, 1, () => {
+    					if_block1 = null;
+    				});
+
+    				check_outros();
     			}
 
-    			if (!updating_loggedin && dirty & /*loggedin*/ 16) {
-    				updating_loggedin = true;
-    				loggedin_1_changes.loggedin = /*loggedin*/ ctx[4];
-    				add_flush_callback(() => updating_loggedin = false);
-    			}
-
-    			loggedin_1.$set(loggedin_1_changes);
     			const header_changes = {};
     			if (dirty & /*token*/ 128) header_changes.token = /*token*/ ctx[7];
     			if (dirty & /*currentUser*/ 32) header_changes.currentUser = /*currentUser*/ ctx[5];
@@ -11632,41 +11931,39 @@ var app = (function () {
     				});
 
     				check_outros();
-    				if_block1 = if_blocks[current_block_type_index];
+    				if_block2 = if_blocks[current_block_type_index];
 
-    				if (!if_block1) {
-    					if_block1 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
-    					if_block1.c();
+    				if (!if_block2) {
+    					if_block2 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    					if_block2.c();
     				} else {
-    					if_block1.p(ctx, dirty);
+    					if_block2.p(ctx, dirty);
     				}
 
-    				transition_in(if_block1, 1);
-    				if_block1.m(div, null);
+    				transition_in(if_block2, 1);
+    				if_block2.m(div, null);
     			}
     		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(apidocs.$$.fragment, local);
-    			transition_in(loggedin_1.$$.fragment, local);
-    			transition_in(header.$$.fragment, local);
     			transition_in(if_block1);
+    			transition_in(header.$$.fragment, local);
+    			transition_in(if_block2);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(apidocs.$$.fragment, local);
-    			transition_out(loggedin_1.$$.fragment, local);
-    			transition_out(header.$$.fragment, local);
     			transition_out(if_block1);
+    			transition_out(header.$$.fragment, local);
+    			transition_out(if_block2);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(link);
-    			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(body);
     			if (if_block0) if_block0.d();
     			destroy_component(apidocs);
-    			destroy_component(loggedin_1);
+    			if (if_block1) if_block1.d();
     			destroy_component(header);
     			if_blocks[current_block_type_index].d();
     		}
@@ -11699,7 +11996,7 @@ var app = (function () {
 
     	const checkUser = async () => {
     		$$invalidate(7, token = window.sessionStorage.getItem("api_key"));
-    		return api.get("users", token);
+    		return api.get("/r/admins", token);
     	};
 
     	const loadData = async () => {
@@ -11762,7 +12059,8 @@ var app = (function () {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1$4.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
-    	const click_handler = () => changeDefault(settingDefault.name, settingDefault._id);
+    	const click_handler = () => $$invalidate(8, settingDefault = "");
+    	const click_handler_1 = () => changeDefault(settingDefault.name, settingDefault._id);
 
     	function loggedin_1_currentUser_binding(value) {
     		currentUser = value;
@@ -11878,6 +12176,7 @@ var app = (function () {
     		newColHeader,
     		changeDefault,
     		click_handler,
+    		click_handler_1,
     		loggedin_1_currentUser_binding,
     		loggedin_1_loggedin_binding,
     		header_showAPIDocs_binding,

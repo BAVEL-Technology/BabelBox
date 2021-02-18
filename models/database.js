@@ -6,7 +6,8 @@ var DatabaseSchema = new mongoose.Schema({
         name: { type: 'String', required: false },
         type: { type: 'String', required: false },
         required: {type: 'Boolean', default: false},
-        default: { type: 'Mixed', default: null}
+        default: { type: 'Mixed', default: null},
+        bcrypt: { type: 'Boolean', default: false}
       }],
     created_at: { type: 'Date', default: Date.now },
     updated_at: { type: Date, default: Date.now }

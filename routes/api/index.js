@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const userRoutes = require("./users");
+const adminRoutes = require("./admins");
 const databaseRoutes = require("./database");
 const breadRoutes = require("./bread");
 
@@ -7,7 +7,7 @@ const breadRoutes = require("./bread");
 router.use("/database", databaseRoutes);
 
 // User routes
-router.use("/users", userRoutes);
+router.use("/r/admins", adminRoutes);
 
 // Bread routes
 router.use("/", breadRoutes);

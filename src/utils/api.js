@@ -1,7 +1,7 @@
 const api = {
 		login: async (body) => {
 			try {
-				return fetch(`/api/users/login`, {
+				return fetch(`/api/r/admins/login`, {
 						method: 'POST',
 						headers: {
 							'Accept': 'application/json',

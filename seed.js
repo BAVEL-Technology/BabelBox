@@ -11,7 +11,7 @@ const seedDB = async () => {
   const salt = await bcrypt.genSalt(10);
   let password = await bcrypt.hash('q$^K4~DYdMSk4[{,z:jR&amp;.[:', salt);
 
-  let userSeeds = [
+  let adminSeeds = [
     {
       username: 'nickgraffis',
       password
@@ -42,8 +42,8 @@ const seedDB = async () => {
     }
   ]
 
-  db.User.deleteMany({})
-    .then(() => db.User.collection.insertMany(userSeeds))
+  db.Admins.deleteMany({})
+    .then(() => db.Admins.collection.insertMany(adminSeeds))
     .then(data => {
       console.log(data.result.n + " records inserted!");
       process.exit(0);

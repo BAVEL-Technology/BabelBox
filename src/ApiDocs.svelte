@@ -5,7 +5,7 @@ export let activeTable
 export let headers
 </script>
 
-<div class={`fixed z-50 h-screen w-96 transform duration-300 flex flex-col ${showAPIDocs ? 'translate-x-0' : '-translate-x-96'} bg-gray-800`}>
+<div class={`fixed z-50 h-screen w-1/2 transform duration-300 flex flex-col ${showAPIDocs ? 'translate-x-0' : '-translate-x-full'} bg-gray-800`}>
   <p class="text-xl font-semibold text-green-200 p-4">API Docs for {activeTable ? activeTable[0].toUpperCase() + activeTable.substring(1) : ''}</p>
   <p class="text-lg font-semibold text-green-200 px-4 pb-4">🍞 BREAD Based API Routes</p>
   <ul class="flex flex-col space-y-3 px-4 font-mono text-green-200 text-xs">
