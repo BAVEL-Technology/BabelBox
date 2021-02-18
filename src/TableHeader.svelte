@@ -10,10 +10,10 @@ export let fetchData
 export let displayedData
 export let currentUser
 export let token
+export let settingDefault
 
 let editFieldName
-let fieldEdit
-let settingDefault
+export let fieldEdit
 
 const editThisFieldName = (field) => {
   editFieldName = field
@@ -33,25 +33,6 @@ const changeFieldName = async (field, id) => {
       { name }
     )
     editFieldName = ''
-    displayedData = await api.get(activeTable.replace(/ /g, "-"), token)
-    dataTables = await api.get('database', token)
-    headers = getHeaders(dataTables, activeTable)
-  } catch (err) {
-    console.log(err)
-  }
-}
-
-const changeDefault = async (field, id) => {
-  try {
-    let domId = field.replace(/ /g, "-")
-    let defaultValue = document.querySelector(`#default-${domId}`).value
-    let update = await api.put(
-      `database/${activeTable.replace(/ /g, "-")}/${id}`,
-      token,
-      { default: defaultValue }
-    )
-    settingDefault = ''
-    fieldEdit = ''
     displayedData = await api.get(activeTable.replace(/ /g, "-"), token)
     dataTables = await api.get('database', token)
     headers = getHeaders(dataTables, activeTable)
@@ -95,6 +76,12 @@ const newColHeader = async (table) => {
     console.log(err)
   }
 }
+
+const setDefault = (name, def, _id) => {
+  console.log('settingDefault')
+  console.log(def)
+  settingDefault = {name, def, _id }
+}
 </script>
 
 <thead class="justify-between sticky top-0 border-b-4 border-gray-300">
@@ -122,7 +109,7 @@ const newColHeader = async (table) => {
               {/if}
             {/if}
           </div>
-          <div class={`flex flex-col absolute z-10 mt-4 p-2 bg-gray-700 rounded-md ${fieldEdit == header.name ? '' : 'hidden'}`}>
+          <div class={`flex flex-col absolute z-10 mt-4 w-48 p-2 bg-gray-700 rounded-md ${fieldEdit == header.name ? '' : 'hidden'}`}>
             <ul>
               <li on:click={() => editThisFieldName(header.name)} class="rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center text-white text-sm font-medium">
               <svg class="text-white h-4 w-4 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -130,19 +117,12 @@ const newColHeader = async (table) => {
               </svg>
                 Edit Field Name
               </li>
-              <li on:click={() => settingDefault = header.name} class={`rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${header.default ? 'text-white' : 'text-gray-400'} text-sm font-medium`}>
-              <svg class="h-4 w-4 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <li on:click={() => setDefault(header.name.replace(/ /g, "-"), header.default, header._id)} class={`rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${header.default ? 'text-white' : 'text-gray-400'} text-sm font-medium`}>
+              <svg class="flex-shrink-0 h-4 w-4 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
-                {#if settingDefault}
-                  <input id={`default-${header.name.replace(/ /g, "-")}`} class="focus:outline-none apperance-none bg-white rounded-sm flex-grow" value={header.default} />
-                  <svg on:click={() => changeDefault(header.name, header._id)} class="cursor-pointer h-3 w-3 text-gray-900 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                {:else}
-                  <span>{header.default || 'Set Default'}</span>
-                {/if}
+                <span class="truncate">{header.default || 'Set Default'}</span>
               </li>
               <li on:click={() => changeType(header.name, header._id, 'String')} class={`rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${header.type == 'String' ? 'text-white' : 'text-gray-400'} text-sm font-medium`}>
                 <TypeIcon type="String" color={header.type == 'String' ? 'text-white' : 'text-gray-400'}/>

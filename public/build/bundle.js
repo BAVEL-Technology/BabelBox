@@ -510,7 +510,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (132:10) {:else}
+    // (133:10) {:else}
     function create_else_block(ctx) {
     	let span;
     	let t0_value = /*data*/ ctx[21].name[0].toUpperCase() + /*data*/ ctx[21].name.substring(1) + "";
@@ -527,7 +527,7 @@ var app = (function () {
     			if (if_block) if_block.c();
     			if_block_anchor = empty();
     			attr_dev(span, "class", "truncate");
-    			add_location(span, file, 132, 12, 5707);
+    			add_location(span, file, 133, 12, 5740);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -564,14 +564,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(132:10) {:else}",
+    		source: "(133:10) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (127:10) {#if editable == data.name}
+    // (128:10) {#if editable == data.name}
     function create_if_block(ctx) {
     	let input;
     	let input_value_value;
@@ -595,18 +595,18 @@ var app = (function () {
     			attr_dev(input, "class", "apperance-none focus:outline-none w-auto bg-green-600 border-none");
     			input.value = input_value_value = /*data*/ ctx[21].name[0].toUpperCase() + /*data*/ ctx[21].name.substring(1);
     			attr_dev(input, "id", input_id_value = /*data*/ ctx[21].name.replace(/ /g, "-"));
-    			add_location(input, file, 127, 12, 5168);
+    			add_location(input, file, 128, 12, 5201);
     			attr_dev(path, "stroke-linecap", "round");
     			attr_dev(path, "stroke-linejoin", "round");
     			attr_dev(path, "stroke-width", "2");
     			attr_dev(path, "d", "M5 13l4 4L19 7");
-    			add_location(path, file, 129, 14, 5566);
+    			add_location(path, file, 130, 14, 5599);
     			attr_dev(svg, "class", "h-3 w-3 text-green-200 ml-2");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "fill", "none");
     			attr_dev(svg, "viewBox", "0 0 24 24");
     			attr_dev(svg, "stroke", "currentColor");
-    			add_location(svg, file, 128, 12, 5358);
+    			add_location(svg, file, 129, 12, 5391);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, input, anchor);
@@ -643,14 +643,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(127:10) {#if editable == data.name}",
+    		source: "(128:10) {#if editable == data.name}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (134:12) {#if data.name == activeTable && data.owner == currentUser.username}
+    // (135:12) {#if data.name == activeTable && data.owner == currentUser.username}
     function create_if_block_1(ctx) {
     	let div;
     	let svg0;
@@ -681,26 +681,26 @@ var app = (function () {
     			attr_dev(path0, "stroke-linejoin", "round");
     			attr_dev(path0, "stroke-width", "2");
     			attr_dev(path0, "d", "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z");
-    			add_location(path0, file, 136, 16, 6115);
+    			add_location(path0, file, 137, 16, 6148);
     			attr_dev(svg0, "class", "h-3 w-3 text-green-200 ml-2");
     			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg0, "fill", "none");
     			attr_dev(svg0, "viewBox", "0 0 24 24");
     			attr_dev(svg0, "stroke", "currentColor");
-    			add_location(svg0, file, 135, 14, 5930);
+    			add_location(svg0, file, 136, 14, 5963);
     			attr_dev(path1, "stroke-linecap", "round");
     			attr_dev(path1, "stroke-linejoin", "round");
     			attr_dev(path1, "stroke-width", "2");
     			attr_dev(path1, "d", "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16");
-    			add_location(path1, file, 139, 16, 6530);
+    			add_location(path1, file, 140, 16, 6563);
     			attr_dev(svg1, "class", "h-3 w-3 text-green-200 ml-2");
     			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg1, "fill", "none");
     			attr_dev(svg1, "viewBox", "0 0 24 24");
     			attr_dev(svg1, "stroke", "currentColor");
-    			add_location(svg1, file, 138, 14, 6324);
+    			add_location(svg1, file, 139, 14, 6357);
     			attr_dev(div, "class", "flex items-center");
-    			add_location(div, file, 134, 12, 5884);
+    			add_location(div, file, 135, 12, 5917);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -733,14 +733,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(134:12) {#if data.name == activeTable && data.owner == currentUser.username}",
+    		source: "(135:12) {#if data.name == activeTable && data.owner == currentUser.username}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (124:6) {#each dataTables as data}
+    // (125:6) {#each dataTables as data}
     function create_each_block(ctx) {
     	let li;
     	let div;
@@ -773,13 +773,13 @@ var app = (function () {
     			if_block.c();
     			t2 = space();
     			attr_dev(div, "class", "h-3 w-3 rounded-full bg-green-200 flex items-center justify-center text-green-600 text-xs p-2 mr-2");
-    			add_location(div, file, 125, 10, 4970);
+    			add_location(div, file, 126, 10, 5003);
 
     			attr_dev(li, "class", li_class_value = "" + (null_to_empty(`w-auto border-r border-l border-t border-green-600 flex w-48 items-center justify-between py-1 px-2 rounded-tl-lg rounded-tr-lg text-sm font-medium bg-green-600 text-green-100 transform ${/*data*/ ctx[21].name == /*activeTable*/ ctx[1]
 			? "scale-125 z-20"
 			: "-ml-1"} origin-bottom shadow-lg cursor-pointer`) + " svelte-70ag7j"));
 
-    			add_location(li, file, 124, 8, 4607);
+    			add_location(li, file, 125, 8, 4640);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -828,7 +828,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(124:6) {#each dataTables as data}",
+    		source: "(125:6) {#each dataTables as data}",
     		ctx
     	});
 
@@ -935,76 +935,76 @@ var app = (function () {
 
     			attr_dev(img, "class", "h-16 w-16 object-cover mr-6");
     			if (img.src !== (img_src_value = "./mongo.png")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file, 91, 2, 2363);
+    			add_location(img, file, 92, 2, 2396);
     			attr_dev(p, "class", "text-lg font-semibold text-green-600");
-    			add_location(p, file, 92, 2, 2427);
+    			add_location(p, file, 93, 2, 2460);
     			attr_dev(div0, "class", "flex items-center ml-8 mt-4");
-    			add_location(div0, file, 90, 2, 2319);
+    			add_location(div0, file, 91, 2, 2352);
     			attr_dev(path0, "stroke-linecap", "round");
     			attr_dev(path0, "stroke-linejoin", "round");
     			attr_dev(path0, "stroke-width", "3");
     			attr_dev(path0, "d", "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4");
-    			add_location(path0, file, 98, 10, 2865);
+    			add_location(path0, file, 99, 10, 2898);
     			attr_dev(svg0, "class", "h-4 w-4 text-green-600 mr-2");
     			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg0, "fill", "none");
     			attr_dev(svg0, "viewBox", "0 0 24 24");
     			attr_dev(svg0, "stroke", "currentColor");
-    			add_location(svg0, file, 97, 8, 2724);
+    			add_location(svg0, file, 98, 8, 2757);
     			attr_dev(span0, "class", "text-sm font-semibold text-green-600 truncate");
-    			add_location(span0, file, 100, 8, 3003);
+    			add_location(span0, file, 101, 8, 3036);
     			attr_dev(li0, "class", "flex items-center cursor-pointer transform duration-150 hover:-translate-y-1");
-    			add_location(li0, file, 96, 6, 2582);
+    			add_location(li0, file, 97, 6, 2615);
     			attr_dev(path1, "stroke-linecap", "round");
     			attr_dev(path1, "stroke-linejoin", "round");
     			attr_dev(path1, "stroke-width", "3");
     			attr_dev(path1, "d", "M12 6v6m0 0v6m0-6h6m-6 0H6");
-    			add_location(path1, file, 104, 10, 3363);
+    			add_location(path1, file, 105, 10, 3396);
     			attr_dev(svg1, "class", "h-4 w-4 text-green-600 mr-2");
     			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg1, "viewBox", "0 0 24 24");
     			attr_dev(svg1, "fill", "none");
     			attr_dev(svg1, "stroke", "currentColor");
-    			add_location(svg1, file, 103, 8, 3221);
+    			add_location(svg1, file, 104, 8, 3254);
     			attr_dev(span1, "class", "text-sm font-semibold text-green-600 truncate");
-    			add_location(span1, file, 106, 8, 3490);
+    			add_location(span1, file, 107, 8, 3523);
     			attr_dev(li1, "class", "flex items-center cursor-pointer transform duration-150 hover:-translate-y-1");
-    			add_location(li1, file, 102, 6, 3097);
+    			add_location(li1, file, 103, 6, 3130);
     			attr_dev(path2, "stroke-linecap", "round");
     			attr_dev(path2, "stroke-linejoin", "round");
     			attr_dev(path2, "stroke-width", "2.5");
     			attr_dev(path2, "d", "M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12");
-    			add_location(path2, file, 110, 10, 3846);
+    			add_location(path2, file, 111, 10, 3879);
     			attr_dev(svg2, "class", "h-4 w-4 text-green-600 mr-2");
     			attr_dev(svg2, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg2, "fill", "none");
     			attr_dev(svg2, "viewBox", "0 0 24 24");
     			attr_dev(svg2, "stroke", "currentColor");
-    			add_location(svg2, file, 109, 8, 3705);
+    			add_location(svg2, file, 110, 8, 3738);
     			attr_dev(span2, "class", "text-sm font-semibold text-green-600 truncate");
-    			add_location(span2, file, 112, 8, 4034);
+    			add_location(span2, file, 113, 8, 4067);
     			attr_dev(li2, "class", "flex items-center cursor-pointer transform duration-150 hover:-translate-y-1");
-    			add_location(li2, file, 108, 6, 3585);
+    			add_location(li2, file, 109, 6, 3618);
     			attr_dev(input, "id", "json-file");
     			attr_dev(input, "type", "file");
     			attr_dev(input, "class", "invisible");
-    			add_location(input, file, 115, 6, 4157);
+    			add_location(input, file, 116, 6, 4190);
     			attr_dev(li3, "class", "hidden");
-    			add_location(li3, file, 114, 6, 4131);
+    			add_location(li3, file, 115, 6, 4164);
     			attr_dev(ul0, "class", "flex space-x-4");
-    			add_location(ul0, file, 95, 4, 2548);
+    			add_location(ul0, file, 96, 4, 2581);
     			attr_dev(div1, "class", "h-8 w-8 rounded-full bg-green-600 flex items-center justify-center text-green-200 text-lg p-2 mr-8 mt-4");
-    			add_location(div1, file, 118, 4, 4298);
+    			add_location(div1, file, 119, 4, 4331);
     			attr_dev(div2, "class", "flex space-x-4 mr-8 mt-4");
-    			add_location(div2, file, 94, 2, 2505);
+    			add_location(div2, file, 95, 2, 2538);
     			attr_dev(div3, "class", "flex w-full justify-between");
-    			add_location(div3, file, 89, 2, 2275);
+    			add_location(div3, file, 90, 2, 2308);
     			attr_dev(ul1, "class", "flex items-center px-4");
-    			add_location(ul1, file, 122, 4, 4530);
+    			add_location(ul1, file, 123, 4, 4563);
     			attr_dev(div4, "class", "px-20 pt-12");
-    			add_location(div4, file, 121, 2, 4500);
+    			add_location(div4, file, 122, 2, 4533);
     			attr_dev(div5, "class", "example flex flex-col bg-green-200 border-b-4 border-green-600 w-screen overflow-x-scroll svelte-70ag7j");
-    			add_location(div5, file, 88, 0, 2169);
+    			add_location(div5, file, 89, 0, 2202);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1142,6 +1142,7 @@ var app = (function () {
     		try {
     			$$invalidate(1, activeTable = table.replace(/-/g, " "));
     			$$invalidate(12, displayedData = await api.get(table, token));
+    			console.log(displayedData);
     			$$invalidate(11, headers = getHeaders(dataTables, activeTable));
     		} catch(err) {
     			console.log(err);
@@ -1151,7 +1152,7 @@ var app = (function () {
     	const changeTableName = async table => {
     		try {
     			let name = document.querySelector(`#${table}`).value;
-    			let table = await api.put(`database/${table}`, token, { name });
+    			let model = await api.put(`database/${table}`, token, { name });
     			$$invalidate(4, editable = "");
     			$$invalidate(0, dataTables = await api.get("database", token));
     			$$invalidate(1, activeTable = name.toLowerCase());
@@ -1799,18 +1800,18 @@ var app = (function () {
 
     function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[29] = list[i];
+    	child_ctx[28] = list[i];
     	return child_ctx;
     }
 
-    // (116:12) {:else}
-    function create_else_block_1(ctx) {
+    // (103:12) {:else}
+    function create_else_block$2(ctx) {
     	let span;
-    	let t0_value = /*header*/ ctx[29].name + "";
+    	let t0_value = /*header*/ ctx[28].name + "";
     	let t0;
     	let t1;
     	let if_block_anchor;
-    	let if_block = /*header*/ ctx[29].owner == /*currentUser*/ ctx[3].username && create_if_block_2$1(ctx);
+    	let if_block = /*header*/ ctx[28].owner == /*currentUser*/ ctx[4].username && create_if_block_1$2(ctx);
 
     	const block = {
     		c: function create() {
@@ -1820,7 +1821,7 @@ var app = (function () {
     			if (if_block) if_block.c();
     			if_block_anchor = empty();
     			attr_dev(span, "class", "text-gray-900 text-base font-medium flex-grow");
-    			add_location(span, file$2, 116, 14, 3674);
+    			add_location(span, file$2, 103, 14, 3250);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -1830,13 +1831,13 @@ var app = (function () {
     			insert_dev(target, if_block_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*headers*/ 1 && t0_value !== (t0_value = /*header*/ ctx[29].name + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*headers*/ 1 && t0_value !== (t0_value = /*header*/ ctx[28].name + "")) set_data_dev(t0, t0_value);
 
-    			if (/*header*/ ctx[29].owner == /*currentUser*/ ctx[3].username) {
+    			if (/*header*/ ctx[28].owner == /*currentUser*/ ctx[4].username) {
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
-    					if_block = create_if_block_2$1(ctx);
+    					if_block = create_if_block_1$2(ctx);
     					if_block.c();
     					if_block.m(if_block_anchor.parentNode, if_block_anchor);
     				}
@@ -1855,17 +1856,17 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_else_block_1.name,
+    		id: create_else_block$2.name,
     		type: "else",
-    		source: "(116:12) {:else}",
+    		source: "(103:12) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (111:12) {#if editFieldName == header.name}
-    function create_if_block_1$2(ctx) {
+    // (98:12) {#if editFieldName == header.name}
+    function create_if_block$2(ctx) {
     	let input;
     	let input_id_value;
     	let input_value_value;
@@ -1876,7 +1877,7 @@ var app = (function () {
     	let dispose;
 
     	function click_handler() {
-    		return /*click_handler*/ ctx[16](/*header*/ ctx[29]);
+    		return /*click_handler*/ ctx[16](/*header*/ ctx[28]);
     	}
 
     	const block = {
@@ -1885,21 +1886,21 @@ var app = (function () {
     			t = space();
     			svg = svg_element("svg");
     			path = svg_element("path");
-    			attr_dev(input, "id", input_id_value = /*header*/ ctx[29].name.replace(/ /g, "-"));
+    			attr_dev(input, "id", input_id_value = /*header*/ ctx[28].name.replace(/ /g, "-"));
     			attr_dev(input, "class", "focus:outline-none apperance-none bg-gray-200 flex-grow");
-    			input.value = input_value_value = /*header*/ ctx[29].name;
-    			add_location(input, file$2, 111, 14, 3164);
+    			input.value = input_value_value = /*header*/ ctx[28].name;
+    			add_location(input, file$2, 98, 14, 2740);
     			attr_dev(path, "stroke-linecap", "round");
     			attr_dev(path, "stroke-linejoin", "round");
     			attr_dev(path, "stroke-width", "2");
     			attr_dev(path, "d", "M5 13l4 4L19 7");
-    			add_location(path, file$2, 113, 16, 3527);
+    			add_location(path, file$2, 100, 16, 3103);
     			attr_dev(svg, "class", "cursor-pointer h-3 w-3 text-gray-900 ml-2");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "fill", "none");
     			attr_dev(svg, "viewBox", "0 0 24 24");
     			attr_dev(svg, "stroke", "currentColor");
-    			add_location(svg, file$2, 112, 14, 3308);
+    			add_location(svg, file$2, 99, 14, 2884);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, input, anchor);
@@ -1915,11 +1916,11 @@ var app = (function () {
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
 
-    			if (dirty[0] & /*headers*/ 1 && input_id_value !== (input_id_value = /*header*/ ctx[29].name.replace(/ /g, "-"))) {
+    			if (dirty & /*headers*/ 1 && input_id_value !== (input_id_value = /*header*/ ctx[28].name.replace(/ /g, "-"))) {
     				attr_dev(input, "id", input_id_value);
     			}
 
-    			if (dirty[0] & /*headers*/ 1 && input_value_value !== (input_value_value = /*header*/ ctx[29].name) && input.value !== input_value_value) {
+    			if (dirty & /*headers*/ 1 && input_value_value !== (input_value_value = /*header*/ ctx[28].name) && input.value !== input_value_value) {
     				prop_dev(input, "value", input_value_value);
     			}
     		},
@@ -1934,24 +1935,24 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_1$2.name,
+    		id: create_if_block$2.name,
     		type: "if",
-    		source: "(111:12) {#if editFieldName == header.name}",
+    		source: "(98:12) {#if editFieldName == header.name}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (118:14) {#if header.owner == currentUser.username}
-    function create_if_block_2$1(ctx) {
+    // (105:14) {#if header.owner == currentUser.username}
+    function create_if_block_1$2(ctx) {
     	let svg;
     	let path;
     	let mounted;
     	let dispose;
 
     	function click_handler_1() {
-    		return /*click_handler_1*/ ctx[17](/*header*/ ctx[29]);
+    		return /*click_handler_1*/ ctx[17](/*header*/ ctx[28]);
     	}
 
     	const block = {
@@ -1962,13 +1963,13 @@ var app = (function () {
     			attr_dev(path, "stroke-linejoin", "round");
     			attr_dev(path, "stroke-width", "2");
     			attr_dev(path, "d", "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z");
-    			add_location(path, file$2, 119, 18, 4076);
+    			add_location(path, file$2, 106, 18, 3652);
     			attr_dev(svg, "class", "cursor-pointer h-3 w-3 text-gray-900 ml-2");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "fill", "none");
     			attr_dev(svg, "viewBox", "0 0 24 24");
     			attr_dev(svg, "stroke", "currentColor");
-    			add_location(svg, file$2, 118, 16, 3828);
+    			add_location(svg, file$2, 105, 16, 3404);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, svg, anchor);
@@ -1991,130 +1992,16 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_2$1.name,
+    		id: create_if_block_1$2.name,
     		type: "if",
-    		source: "(118:14) {#if header.owner == currentUser.username}",
+    		source: "(105:14) {#if header.owner == currentUser.username}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (143:16) {:else}
-    function create_else_block$2(ctx) {
-    	let span;
-    	let t_value = (/*header*/ ctx[29].default || "Set Default") + "";
-    	let t;
-
-    	const block = {
-    		c: function create() {
-    			span = element("span");
-    			t = text(t_value);
-    			add_location(span, file$2, 143, 18, 6724);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, span, anchor);
-    			append_dev(span, t);
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*headers*/ 1 && t_value !== (t_value = (/*header*/ ctx[29].default || "Set Default") + "")) set_data_dev(t, t_value);
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(span);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_else_block$2.name,
-    		type: "else",
-    		source: "(143:16) {:else}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (138:16) {#if settingDefault}
-    function create_if_block$2(ctx) {
-    	let input;
-    	let input_id_value;
-    	let input_value_value;
-    	let t;
-    	let svg;
-    	let path;
-    	let mounted;
-    	let dispose;
-
-    	function click_handler_3() {
-    		return /*click_handler_3*/ ctx[19](/*header*/ ctx[29]);
-    	}
-
-    	const block = {
-    		c: function create() {
-    			input = element("input");
-    			t = space();
-    			svg = svg_element("svg");
-    			path = svg_element("path");
-    			attr_dev(input, "id", input_id_value = `default-${/*header*/ ctx[29].name.replace(/ /g, "-")}`);
-    			attr_dev(input, "class", "focus:outline-none apperance-none bg-white rounded-sm flex-grow");
-    			input.value = input_value_value = /*header*/ ctx[29].default;
-    			add_location(input, file$2, 138, 18, 6172);
-    			attr_dev(path, "stroke-linecap", "round");
-    			attr_dev(path, "stroke-linejoin", "round");
-    			attr_dev(path, "stroke-width", "2");
-    			attr_dev(path, "d", "M5 13l4 4L19 7");
-    			add_location(path, file$2, 140, 20, 6565);
-    			attr_dev(svg, "class", "cursor-pointer h-3 w-3 text-gray-900 ml-2");
-    			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
-    			attr_dev(svg, "fill", "none");
-    			attr_dev(svg, "viewBox", "0 0 24 24");
-    			attr_dev(svg, "stroke", "currentColor");
-    			add_location(svg, file$2, 139, 18, 6344);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, input, anchor);
-    			insert_dev(target, t, anchor);
-    			insert_dev(target, svg, anchor);
-    			append_dev(svg, path);
-
-    			if (!mounted) {
-    				dispose = listen_dev(svg, "click", click_handler_3, false, false, false);
-    				mounted = true;
-    			}
-    		},
-    		p: function update(new_ctx, dirty) {
-    			ctx = new_ctx;
-
-    			if (dirty[0] & /*headers*/ 1 && input_id_value !== (input_id_value = `default-${/*header*/ ctx[29].name.replace(/ /g, "-")}`)) {
-    				attr_dev(input, "id", input_id_value);
-    			}
-
-    			if (dirty[0] & /*headers*/ 1 && input_value_value !== (input_value_value = /*header*/ ctx[29].default) && input.value !== input_value_value) {
-    				prop_dev(input, "value", input_value_value);
-    			}
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(input);
-    			if (detaching) detach_dev(t);
-    			if (detaching) detach_dev(svg);
-    			mounted = false;
-    			dispose();
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_if_block$2.name,
-    		type: "if",
-    		source: "(138:16) {#if settingDefault}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (107:6) {#each headers as header}
+    // (94:6) {#each headers as header}
     function create_each_block$1(ctx) {
     	let th;
     	let div0;
@@ -2133,31 +2020,34 @@ var app = (function () {
     	let path1;
     	let path2;
     	let t4;
-    	let li1_class_value;
+    	let span;
+    	let t5_value = (/*header*/ ctx[28].default || "Set Default") + "";
     	let t5;
+    	let li1_class_value;
+    	let t6;
     	let li2;
     	let typeicon1;
-    	let t6;
-    	let li2_class_value;
     	let t7;
+    	let li2_class_value;
+    	let t8;
     	let li3;
     	let typeicon2;
-    	let t8;
-    	let li3_class_value;
     	let t9;
+    	let li3_class_value;
+    	let t10;
     	let li4;
     	let typeicon3;
-    	let t10;
-    	let li4_class_value;
     	let t11;
+    	let li4_class_value;
+    	let t12;
     	let li5;
     	let typeicon4;
-    	let t12;
-    	let li5_class_value;
     	let t13;
+    	let li5_class_value;
+    	let t14;
     	let li6;
     	let typeicon5;
-    	let t14;
+    	let t15;
     	let li6_class_value;
     	let div1_class_value;
     	let current;
@@ -2165,38 +2055,44 @@ var app = (function () {
     	let dispose;
 
     	typeicon0 = new TypeIcon({
-    			props: { type: /*header*/ ctx[29].type },
+    			props: { type: /*header*/ ctx[28].type },
     			$$inline: true
     		});
 
     	function select_block_type(ctx, dirty) {
-    		if (/*editFieldName*/ ctx[4] == /*header*/ ctx[29].name) return create_if_block_1$2;
-    		return create_else_block_1;
-    	}
-
-    	let current_block_type = select_block_type(ctx);
-    	let if_block0 = current_block_type(ctx);
-
-    	function click_handler_2() {
-    		return /*click_handler_2*/ ctx[18](/*header*/ ctx[29]);
-    	}
-
-    	function select_block_type_1(ctx, dirty) {
-    		if (/*settingDefault*/ ctx[6]) return create_if_block$2;
+    		if (/*editFieldName*/ ctx[5] == /*header*/ ctx[28].name) return create_if_block$2;
     		return create_else_block$2;
     	}
 
-    	let current_block_type_1 = select_block_type_1(ctx);
-    	let if_block1 = current_block_type_1(ctx);
+    	let current_block_type = select_block_type(ctx);
+    	let if_block = current_block_type(ctx);
 
-    	function click_handler_4() {
-    		return /*click_handler_4*/ ctx[20](/*header*/ ctx[29]);
+    	function click_handler_2() {
+    		return /*click_handler_2*/ ctx[18](/*header*/ ctx[28]);
+    	}
+
+    	function click_handler_3() {
+    		return /*click_handler_3*/ ctx[19](/*header*/ ctx[28]);
     	}
 
     	typeicon1 = new TypeIcon({
     			props: {
     				type: "String",
-    				color: /*header*/ ctx[29].type == "String"
+    				color: /*header*/ ctx[28].type == "String"
+    				? "text-white"
+    				: "text-gray-400"
+    			},
+    			$$inline: true
+    		});
+
+    	function click_handler_4() {
+    		return /*click_handler_4*/ ctx[20](/*header*/ ctx[28]);
+    	}
+
+    	typeicon2 = new TypeIcon({
+    			props: {
+    				type: "Number",
+    				color: /*header*/ ctx[28].type == "Number"
     				? "text-white"
     				: "text-gray-400"
     			},
@@ -2204,13 +2100,13 @@ var app = (function () {
     		});
 
     	function click_handler_5() {
-    		return /*click_handler_5*/ ctx[21](/*header*/ ctx[29]);
+    		return /*click_handler_5*/ ctx[21](/*header*/ ctx[28]);
     	}
 
-    	typeicon2 = new TypeIcon({
+    	typeicon3 = new TypeIcon({
     			props: {
-    				type: "Number",
-    				color: /*header*/ ctx[29].type == "Number"
+    				type: "Boolean",
+    				color: /*header*/ ctx[28].type == "Boolean"
     				? "text-white"
     				: "text-gray-400"
     			},
@@ -2218,13 +2114,13 @@ var app = (function () {
     		});
 
     	function click_handler_6() {
-    		return /*click_handler_6*/ ctx[22](/*header*/ ctx[29]);
+    		return /*click_handler_6*/ ctx[22](/*header*/ ctx[28]);
     	}
 
-    	typeicon3 = new TypeIcon({
+    	typeicon4 = new TypeIcon({
     			props: {
-    				type: "Boolean",
-    				color: /*header*/ ctx[29].type == "Boolean"
+    				type: "Date",
+    				color: /*header*/ ctx[28].type == "Date"
     				? "text-white"
     				: "text-gray-400"
     			},
@@ -2232,13 +2128,13 @@ var app = (function () {
     		});
 
     	function click_handler_7() {
-    		return /*click_handler_7*/ ctx[23](/*header*/ ctx[29]);
+    		return /*click_handler_7*/ ctx[23](/*header*/ ctx[28]);
     	}
 
-    	typeicon4 = new TypeIcon({
+    	typeicon5 = new TypeIcon({
     			props: {
-    				type: "Date",
-    				color: /*header*/ ctx[29].type == "Date"
+    				type: "Mixed",
+    				color: /*header*/ ctx[28].type == "Mixed"
     				? "text-white"
     				: "text-gray-400"
     			},
@@ -2246,21 +2142,7 @@ var app = (function () {
     		});
 
     	function click_handler_8() {
-    		return /*click_handler_8*/ ctx[24](/*header*/ ctx[29]);
-    	}
-
-    	typeicon5 = new TypeIcon({
-    			props: {
-    				type: "Mixed",
-    				color: /*header*/ ctx[29].type == "Mixed"
-    				? "text-white"
-    				: "text-gray-400"
-    			},
-    			$$inline: true
-    		});
-
-    	function click_handler_9() {
-    		return /*click_handler_9*/ ctx[25](/*header*/ ctx[29]);
+    		return /*click_handler_8*/ ctx[24](/*header*/ ctx[28]);
     	}
 
     	const block = {
@@ -2269,7 +2151,7 @@ var app = (function () {
     			div0 = element("div");
     			create_component(typeicon0.$$.fragment);
     			t0 = space();
-    			if_block0.c();
+    			if_block.c();
     			t1 = space();
     			div1 = element("div");
     			ul = element("ul");
@@ -2283,110 +2165,113 @@ var app = (function () {
     			path1 = svg_element("path");
     			path2 = svg_element("path");
     			t4 = space();
-    			if_block1.c();
-    			t5 = space();
+    			span = element("span");
+    			t5 = text(t5_value);
+    			t6 = space();
     			li2 = element("li");
     			create_component(typeicon1.$$.fragment);
-    			t6 = text("\n                String");
-    			t7 = space();
+    			t7 = text("\n                String");
+    			t8 = space();
     			li3 = element("li");
     			create_component(typeicon2.$$.fragment);
-    			t8 = text("\n                Number");
-    			t9 = space();
+    			t9 = text("\n                Number");
+    			t10 = space();
     			li4 = element("li");
     			create_component(typeicon3.$$.fragment);
-    			t10 = text("\n                Boolean");
-    			t11 = space();
+    			t11 = text("\n                Boolean");
+    			t12 = space();
     			li5 = element("li");
     			create_component(typeicon4.$$.fragment);
-    			t12 = text("\n                Date");
-    			t13 = space();
+    			t13 = text("\n                Date");
+    			t14 = space();
     			li6 = element("li");
     			create_component(typeicon5.$$.fragment);
-    			t14 = text("\n                Mixed");
+    			t15 = text("\n                Mixed");
     			attr_dev(div0, "class", "flex items-center");
-    			add_location(div0, file$2, 108, 10, 3028);
+    			add_location(div0, file$2, 95, 10, 2604);
     			attr_dev(path0, "stroke-linecap", "round");
     			attr_dev(path0, "stroke-linejoin", "round");
     			attr_dev(path0, "stroke-width", "2");
     			attr_dev(path0, "d", "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z");
-    			add_location(path0, file$2, 128, 16, 4804);
+    			add_location(path0, file$2, 115, 16, 4385);
     			attr_dev(svg0, "class", "text-white h-4 w-4 mr-3");
     			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg0, "fill", "none");
     			attr_dev(svg0, "viewBox", "0 0 24 24");
     			attr_dev(svg0, "stroke", "currentColor");
-    			add_location(svg0, file$2, 127, 14, 4661);
+    			add_location(svg0, file$2, 114, 14, 4242);
     			attr_dev(li0, "class", "rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center text-white text-sm font-medium");
-    			add_location(li0, file$2, 126, 14, 4489);
+    			add_location(li0, file$2, 113, 14, 4070);
     			attr_dev(path1, "stroke-linecap", "round");
     			attr_dev(path1, "stroke-linejoin", "round");
     			attr_dev(path1, "stroke-width", "2");
     			attr_dev(path1, "d", "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z");
-    			add_location(path1, file$2, 134, 16, 5409);
+    			add_location(path1, file$2, 121, 16, 5046);
     			attr_dev(path2, "stroke-linecap", "round");
     			attr_dev(path2, "stroke-linejoin", "round");
     			attr_dev(path2, "stroke-width", "2");
     			attr_dev(path2, "d", "M15 12a3 3 0 11-6 0 3 3 0 016 0z");
-    			add_location(path2, file$2, 135, 16, 5986);
-    			attr_dev(svg1, "class", "h-4 w-4 mr-3");
+    			add_location(path2, file$2, 122, 16, 5623);
+    			attr_dev(svg1, "class", "flex-shrink-0 h-4 w-4 mr-3");
     			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg1, "fill", "none");
     			attr_dev(svg1, "viewBox", "0 0 24 24");
     			attr_dev(svg1, "stroke", "currentColor");
-    			add_location(svg1, file$2, 133, 14, 5277);
+    			add_location(svg1, file$2, 120, 14, 4900);
+    			attr_dev(span, "class", "truncate");
+    			add_location(span, file$2, 124, 16, 5770);
 
-    			attr_dev(li1, "class", li1_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[29].default
+    			attr_dev(li1, "class", li1_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].default
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`);
 
-    			add_location(li1, file$2, 132, 14, 5065);
+    			add_location(li1, file$2, 119, 14, 4646);
 
-    			attr_dev(li2, "class", li2_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[29].type == "String"
+    			attr_dev(li2, "class", li2_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].type == "String"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`);
 
-    			add_location(li2, file$2, 146, 14, 6827);
+    			add_location(li2, file$2, 126, 14, 5868);
 
-    			attr_dev(li3, "class", li3_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[29].type == "Number"
+    			attr_dev(li3, "class", li3_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].type == "Number"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`);
 
-    			add_location(li3, file$2, 150, 14, 7215);
+    			add_location(li3, file$2, 130, 14, 6256);
 
-    			attr_dev(li4, "class", li4_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[29].type == "Boolean"
+    			attr_dev(li4, "class", li4_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].type == "Boolean"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`);
 
-    			add_location(li4, file$2, 154, 14, 7603);
+    			add_location(li4, file$2, 134, 14, 6644);
 
-    			attr_dev(li5, "class", li5_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[29].type == "Date"
+    			attr_dev(li5, "class", li5_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].type == "Date"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`);
 
-    			add_location(li5, file$2, 158, 14, 7996);
+    			add_location(li5, file$2, 138, 14, 7037);
 
-    			attr_dev(li6, "class", li6_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[29].type == "Mixed"
+    			attr_dev(li6, "class", li6_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].type == "Mixed"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`);
 
-    			add_location(li6, file$2, 162, 14, 8374);
-    			add_location(ul, file$2, 125, 12, 4470);
+    			add_location(li6, file$2, 142, 14, 7415);
+    			add_location(ul, file$2, 112, 12, 4051);
 
-    			attr_dev(div1, "class", div1_class_value = `flex flex-col absolute z-10 mt-4 p-2 bg-gray-700 rounded-md ${/*fieldEdit*/ ctx[5] == /*header*/ ctx[29].name
+    			attr_dev(div1, "class", div1_class_value = `flex flex-col absolute z-10 mt-4 w-48 p-2 bg-gray-700 rounded-md ${/*fieldEdit*/ ctx[2] == /*header*/ ctx[28].name
 			? ""
 			: "hidden"}`);
 
-    			add_location(div1, file$2, 124, 10, 4338);
+    			add_location(div1, file$2, 111, 10, 3914);
     			attr_dev(th, "class", "p-2 bg-gray-200 border-l border-r border-gray-400 text-left");
-    			add_location(th, file$2, 107, 8, 2945);
+    			add_location(th, file$2, 94, 8, 2521);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, th, anchor);
     			append_dev(th, div0);
     			mount_component(typeicon0, div0, null);
     			append_dev(div0, t0);
-    			if_block0.m(div0, null);
+    			if_block.m(div0, null);
     			append_dev(th, t1);
     			append_dev(th, div1);
     			append_dev(div1, ul);
@@ -2400,38 +2285,39 @@ var app = (function () {
     			append_dev(svg1, path1);
     			append_dev(svg1, path2);
     			append_dev(li1, t4);
-    			if_block1.m(li1, null);
-    			append_dev(ul, t5);
+    			append_dev(li1, span);
+    			append_dev(span, t5);
+    			append_dev(ul, t6);
     			append_dev(ul, li2);
     			mount_component(typeicon1, li2, null);
-    			append_dev(li2, t6);
-    			append_dev(ul, t7);
+    			append_dev(li2, t7);
+    			append_dev(ul, t8);
     			append_dev(ul, li3);
     			mount_component(typeicon2, li3, null);
-    			append_dev(li3, t8);
-    			append_dev(ul, t9);
+    			append_dev(li3, t9);
+    			append_dev(ul, t10);
     			append_dev(ul, li4);
     			mount_component(typeicon3, li4, null);
-    			append_dev(li4, t10);
-    			append_dev(ul, t11);
+    			append_dev(li4, t11);
+    			append_dev(ul, t12);
     			append_dev(ul, li5);
     			mount_component(typeicon4, li5, null);
-    			append_dev(li5, t12);
-    			append_dev(ul, t13);
+    			append_dev(li5, t13);
+    			append_dev(ul, t14);
     			append_dev(ul, li6);
     			mount_component(typeicon5, li6, null);
-    			append_dev(li6, t14);
+    			append_dev(li6, t15);
     			current = true;
 
     			if (!mounted) {
     				dispose = [
     					listen_dev(li0, "click", click_handler_2, false, false, false),
-    					listen_dev(li1, "click", click_handler_4, false, false, false),
-    					listen_dev(li2, "click", click_handler_5, false, false, false),
-    					listen_dev(li3, "click", click_handler_6, false, false, false),
-    					listen_dev(li4, "click", click_handler_7, false, false, false),
-    					listen_dev(li5, "click", click_handler_8, false, false, false),
-    					listen_dev(li6, "click", click_handler_9, false, false, false)
+    					listen_dev(li1, "click", click_handler_3, false, false, false),
+    					listen_dev(li2, "click", click_handler_4, false, false, false),
+    					listen_dev(li3, "click", click_handler_5, false, false, false),
+    					listen_dev(li4, "click", click_handler_6, false, false, false),
+    					listen_dev(li5, "click", click_handler_7, false, false, false),
+    					listen_dev(li6, "click", click_handler_8, false, false, false)
     				];
 
     				mounted = true;
@@ -2440,34 +2326,24 @@ var app = (function () {
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
     			const typeicon0_changes = {};
-    			if (dirty[0] & /*headers*/ 1) typeicon0_changes.type = /*header*/ ctx[29].type;
+    			if (dirty & /*headers*/ 1) typeicon0_changes.type = /*header*/ ctx[28].type;
     			typeicon0.$set(typeicon0_changes);
 
-    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block0) {
-    				if_block0.p(ctx, dirty);
+    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
+    				if_block.p(ctx, dirty);
     			} else {
-    				if_block0.d(1);
-    				if_block0 = current_block_type(ctx);
+    				if_block.d(1);
+    				if_block = current_block_type(ctx);
 
-    				if (if_block0) {
-    					if_block0.c();
-    					if_block0.m(div0, null);
+    				if (if_block) {
+    					if_block.c();
+    					if_block.m(div0, null);
     				}
     			}
 
-    			if (current_block_type_1 === (current_block_type_1 = select_block_type_1(ctx)) && if_block1) {
-    				if_block1.p(ctx, dirty);
-    			} else {
-    				if_block1.d(1);
-    				if_block1 = current_block_type_1(ctx);
+    			if ((!current || dirty & /*headers*/ 1) && t5_value !== (t5_value = (/*header*/ ctx[28].default || "Set Default") + "")) set_data_dev(t5, t5_value);
 
-    				if (if_block1) {
-    					if_block1.c();
-    					if_block1.m(li1, null);
-    				}
-    			}
-
-    			if (!current || dirty[0] & /*headers*/ 1 && li1_class_value !== (li1_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[29].default
+    			if (!current || dirty & /*headers*/ 1 && li1_class_value !== (li1_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].default
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`)) {
     				attr_dev(li1, "class", li1_class_value);
@@ -2475,13 +2351,13 @@ var app = (function () {
 
     			const typeicon1_changes = {};
 
-    			if (dirty[0] & /*headers*/ 1) typeicon1_changes.color = /*header*/ ctx[29].type == "String"
+    			if (dirty & /*headers*/ 1) typeicon1_changes.color = /*header*/ ctx[28].type == "String"
     			? "text-white"
     			: "text-gray-400";
 
     			typeicon1.$set(typeicon1_changes);
 
-    			if (!current || dirty[0] & /*headers*/ 1 && li2_class_value !== (li2_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[29].type == "String"
+    			if (!current || dirty & /*headers*/ 1 && li2_class_value !== (li2_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].type == "String"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`)) {
     				attr_dev(li2, "class", li2_class_value);
@@ -2489,13 +2365,13 @@ var app = (function () {
 
     			const typeicon2_changes = {};
 
-    			if (dirty[0] & /*headers*/ 1) typeicon2_changes.color = /*header*/ ctx[29].type == "Number"
+    			if (dirty & /*headers*/ 1) typeicon2_changes.color = /*header*/ ctx[28].type == "Number"
     			? "text-white"
     			: "text-gray-400";
 
     			typeicon2.$set(typeicon2_changes);
 
-    			if (!current || dirty[0] & /*headers*/ 1 && li3_class_value !== (li3_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[29].type == "Number"
+    			if (!current || dirty & /*headers*/ 1 && li3_class_value !== (li3_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].type == "Number"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`)) {
     				attr_dev(li3, "class", li3_class_value);
@@ -2503,13 +2379,13 @@ var app = (function () {
 
     			const typeicon3_changes = {};
 
-    			if (dirty[0] & /*headers*/ 1) typeicon3_changes.color = /*header*/ ctx[29].type == "Boolean"
+    			if (dirty & /*headers*/ 1) typeicon3_changes.color = /*header*/ ctx[28].type == "Boolean"
     			? "text-white"
     			: "text-gray-400";
 
     			typeicon3.$set(typeicon3_changes);
 
-    			if (!current || dirty[0] & /*headers*/ 1 && li4_class_value !== (li4_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[29].type == "Boolean"
+    			if (!current || dirty & /*headers*/ 1 && li4_class_value !== (li4_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].type == "Boolean"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`)) {
     				attr_dev(li4, "class", li4_class_value);
@@ -2517,13 +2393,13 @@ var app = (function () {
 
     			const typeicon4_changes = {};
 
-    			if (dirty[0] & /*headers*/ 1) typeicon4_changes.color = /*header*/ ctx[29].type == "Date"
+    			if (dirty & /*headers*/ 1) typeicon4_changes.color = /*header*/ ctx[28].type == "Date"
     			? "text-white"
     			: "text-gray-400";
 
     			typeicon4.$set(typeicon4_changes);
 
-    			if (!current || dirty[0] & /*headers*/ 1 && li5_class_value !== (li5_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[29].type == "Date"
+    			if (!current || dirty & /*headers*/ 1 && li5_class_value !== (li5_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].type == "Date"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`)) {
     				attr_dev(li5, "class", li5_class_value);
@@ -2531,19 +2407,19 @@ var app = (function () {
 
     			const typeicon5_changes = {};
 
-    			if (dirty[0] & /*headers*/ 1) typeicon5_changes.color = /*header*/ ctx[29].type == "Mixed"
+    			if (dirty & /*headers*/ 1) typeicon5_changes.color = /*header*/ ctx[28].type == "Mixed"
     			? "text-white"
     			: "text-gray-400";
 
     			typeicon5.$set(typeicon5_changes);
 
-    			if (!current || dirty[0] & /*headers*/ 1 && li6_class_value !== (li6_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[29].type == "Mixed"
+    			if (!current || dirty & /*headers*/ 1 && li6_class_value !== (li6_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[28].type == "Mixed"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`)) {
     				attr_dev(li6, "class", li6_class_value);
     			}
 
-    			if (!current || dirty[0] & /*fieldEdit, headers*/ 33 && div1_class_value !== (div1_class_value = `flex flex-col absolute z-10 mt-4 p-2 bg-gray-700 rounded-md ${/*fieldEdit*/ ctx[5] == /*header*/ ctx[29].name
+    			if (!current || dirty & /*fieldEdit, headers*/ 5 && div1_class_value !== (div1_class_value = `flex flex-col absolute z-10 mt-4 w-48 p-2 bg-gray-700 rounded-md ${/*fieldEdit*/ ctx[2] == /*header*/ ctx[28].name
 			? ""
 			: "hidden"}`)) {
     				attr_dev(div1, "class", div1_class_value);
@@ -2571,8 +2447,7 @@ var app = (function () {
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(th);
     			destroy_component(typeicon0);
-    			if_block0.d();
-    			if_block1.d();
+    			if_block.d();
     			destroy_component(typeicon1);
     			destroy_component(typeicon2);
     			destroy_component(typeicon3);
@@ -2587,7 +2462,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(107:6) {#each headers as header}",
+    		source: "(94:6) {#each headers as header}",
     		ctx
     	});
 
@@ -2641,23 +2516,23 @@ var app = (function () {
     			span1 = element("span");
     			span1.textContent = "+";
     			attr_dev(th0, "class", "p-2 bg-gray-200 border-l border-r border-gray-400 text-left bg-gray-200");
-    			add_location(th0, file$2, 101, 4, 2645);
+    			add_location(th0, file$2, 88, 4, 2221);
     			attr_dev(span0, "class", "text-gray-900 text-base font-medium");
-    			add_location(span0, file$2, 104, 6, 2835);
+    			add_location(span0, file$2, 91, 6, 2411);
     			attr_dev(th1, "class", "p-2 bg-gray-200 border-l border-r border-gray-400 text-left bg-gray-200");
-    			add_location(th1, file$2, 103, 4, 2744);
+    			add_location(th1, file$2, 90, 4, 2320);
     			attr_dev(span1, "class", "text-gray-900 text-base font-medium px-4");
-    			add_location(span1, file$2, 171, 8, 9099);
+    			add_location(span1, file$2, 151, 8, 8140);
 
-    			attr_dev(th2, "class", th2_class_value = `${/*headers*/ ctx[0][0].owner == /*currentUser*/ ctx[3].username
+    			attr_dev(th2, "class", th2_class_value = `${/*headers*/ ctx[0][0].owner == /*currentUser*/ ctx[4].username
 			? ""
 			: "hidden"} p-2 bg-gray-200 border-l border-r border-gray-400 text-center cursor-pointer`);
 
-    			add_location(th2, file$2, 170, 6, 8812);
+    			add_location(th2, file$2, 150, 6, 7853);
     			attr_dev(tr, "class", "");
-    			add_location(tr, file$2, 100, 2, 2627);
+    			add_location(tr, file$2, 87, 2, 2203);
     			attr_dev(thead, "class", "justify-between sticky top-0 border-b-4 border-gray-300");
-    			add_location(thead, file$2, 99, 0, 2553);
+    			add_location(thead, file$2, 86, 0, 2129);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2682,16 +2557,16 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(th2, "mouseover", /*mouseover_handler*/ ctx[26], false, false, false),
-    					listen_dev(th2, "mouseout", /*mouseout_handler*/ ctx[27], false, false, false),
-    					listen_dev(th2, "click", /*click_handler_10*/ ctx[28], false, false, false)
+    					listen_dev(th2, "mouseover", /*mouseover_handler*/ ctx[25], false, false, false),
+    					listen_dev(th2, "mouseout", /*mouseout_handler*/ ctx[26], false, false, false),
+    					listen_dev(th2, "click", /*click_handler_9*/ ctx[27], false, false, false)
     				];
 
     				mounted = true;
     			}
     		},
-    		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*fieldEdit, headers, changeType, settingDefault, changeDefault, editThisFieldName, changeFieldName, editFieldName, currentUser*/ 2041) {
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*fieldEdit, headers, changeType, setDefault, editThisFieldName, changeFieldName, editFieldName, currentUser*/ 1525) {
     				each_value = /*headers*/ ctx[0];
     				validate_each_argument(each_value);
     				let i;
@@ -2719,7 +2594,7 @@ var app = (function () {
     				check_outros();
     			}
 
-    			if (!current || dirty[0] & /*headers, currentUser*/ 9 && th2_class_value !== (th2_class_value = `${/*headers*/ ctx[0][0].owner == /*currentUser*/ ctx[3].username
+    			if (!current || dirty & /*headers, currentUser*/ 17 && th2_class_value !== (th2_class_value = `${/*headers*/ ctx[0][0].owner == /*currentUser*/ ctx[4].username
 			? ""
 			: "hidden"} p-2 bg-gray-200 border-l border-r border-gray-400 text-center cursor-pointer`)) {
     				attr_dev(th2, "class", th2_class_value);
@@ -2773,12 +2648,12 @@ var app = (function () {
     	let { displayedData } = $$props;
     	let { currentUser } = $$props;
     	let { token } = $$props;
+    	let { settingDefault } = $$props;
     	let editFieldName;
-    	let fieldEdit;
-    	let settingDefault;
+    	let { fieldEdit } = $$props;
 
     	const editThisFieldName = field => {
-    		$$invalidate(4, editFieldName = field);
+    		$$invalidate(5, editFieldName = field);
     		let id = field.replace(/ /g, "-");
 
     		setTimeout(
@@ -2794,24 +2669,9 @@ var app = (function () {
     			let domId = field.replace(/ /g, "-");
     			let name = document.querySelector(`#${domId}`).value;
     			let update = await api.put(`database/${activeTable.replace(/ /g, "-")}/${id}`, token, { name });
-    			$$invalidate(4, editFieldName = "");
-    			$$invalidate(13, displayedData = await api.get(activeTable.replace(/ /g, "-"), token));
-    			$$invalidate(12, dataTables = await api.get("database", token));
-    			$$invalidate(0, headers = getHeaders(dataTables, activeTable));
-    		} catch(err) {
-    			console.log(err);
-    		}
-    	};
-
-    	const changeDefault = async (field, id) => {
-    		try {
-    			let domId = field.replace(/ /g, "-");
-    			let defaultValue = document.querySelector(`#default-${domId}`).value;
-    			let update = await api.put(`database/${activeTable.replace(/ /g, "-")}/${id}`, token, { default: defaultValue });
-    			$$invalidate(6, settingDefault = "");
-    			$$invalidate(5, fieldEdit = "");
-    			$$invalidate(13, displayedData = await api.get(activeTable.replace(/ /g, "-"), token));
-    			$$invalidate(12, dataTables = await api.get("database", token));
+    			$$invalidate(5, editFieldName = "");
+    			$$invalidate(12, displayedData = await api.get(activeTable.replace(/ /g, "-"), token));
+    			$$invalidate(11, dataTables = await api.get("database", token));
     			$$invalidate(0, headers = getHeaders(dataTables, activeTable));
     		} catch(err) {
     			console.log(err);
@@ -2821,9 +2681,9 @@ var app = (function () {
     	const changeType = async (field, id, type) => {
     		try {
     			let update = await api.put(`database/${activeTable.replace(/ /g, "-")}/${id}`, token, { type });
-    			$$invalidate(5, fieldEdit = "");
-    			$$invalidate(13, displayedData = await api.get(activeTable.replace(/ /g, "-"), token));
-    			$$invalidate(12, dataTables = await api.get("database", token));
+    			$$invalidate(2, fieldEdit = "");
+    			$$invalidate(12, displayedData = await api.get(activeTable.replace(/ /g, "-"), token));
+    			$$invalidate(11, dataTables = await api.get("database", token));
     			$$invalidate(0, headers = getHeaders(dataTables, activeTable));
     		} catch(err) {
     			console.log(err);
@@ -2834,12 +2694,18 @@ var app = (function () {
     		try {
     			const id = "column" + Math.floor(Math.random() * Math.floor(100));
     			let col = await api.put(`database/${table}`, token, { props: { name: id, type: "String" } });
-    			$$invalidate(13, displayedData = await api.get(activeTable.replace(/ /g, "-"), token));
-    			$$invalidate(12, dataTables = await api.get("database", token));
+    			$$invalidate(12, displayedData = await api.get(activeTable.replace(/ /g, "-"), token));
+    			$$invalidate(11, dataTables = await api.get("database", token));
     			$$invalidate(0, headers = getHeaders(dataTables, activeTable));
     		} catch(err) {
     			console.log(err);
     		}
+    	};
+
+    	const setDefault = (name, def, _id) => {
+    		console.log("settingDefault");
+    		console.log(def);
+    		$$invalidate(13, settingDefault = { name, def, _id });
     	};
 
     	const writable_props = [
@@ -2850,7 +2716,9 @@ var app = (function () {
     		"fetchData",
     		"displayedData",
     		"currentUser",
-    		"token"
+    		"token",
+    		"settingDefault",
+    		"fieldEdit"
     	];
 
     	Object.keys($$props).forEach(key => {
@@ -2860,30 +2728,31 @@ var app = (function () {
     	const click_handler = header => changeFieldName(header.name, header._id);
 
     	const click_handler_1 = header => fieldEdit == header.name
-    	? $$invalidate(5, fieldEdit = "")
-    	: $$invalidate(5, fieldEdit = header.name);
+    	? $$invalidate(2, fieldEdit = "")
+    	: $$invalidate(2, fieldEdit = header.name);
 
     	const click_handler_2 = header => editThisFieldName(header.name);
-    	const click_handler_3 = header => changeDefault(header.name, header._id);
-    	const click_handler_4 = header => $$invalidate(6, settingDefault = header.name);
-    	const click_handler_5 = header => changeType(header.name, header._id, "String");
-    	const click_handler_6 = header => changeType(header.name, header._id, "Number");
-    	const click_handler_7 = header => changeType(header.name, header._id, "Boolean");
-    	const click_handler_8 = header => changeType(header.name, header._id, "Date");
-    	const click_handler_9 = header => changeType(header.name, header._id, "Mixed");
+    	const click_handler_3 = header => setDefault(header.name.replace(/ /g, "-"), header.default, header._id);
+    	const click_handler_4 = header => changeType(header.name, header._id, "String");
+    	const click_handler_5 = header => changeType(header.name, header._id, "Number");
+    	const click_handler_6 = header => changeType(header.name, header._id, "Boolean");
+    	const click_handler_7 = header => changeType(header.name, header._id, "Date");
+    	const click_handler_8 = header => changeType(header.name, header._id, "Mixed");
     	const mouseover_handler = () => $$invalidate(1, hoverNewField = true);
     	const mouseout_handler = () => $$invalidate(1, hoverNewField = false);
-    	const click_handler_10 = () => newColHeader(activeTable);
+    	const click_handler_9 = () => newColHeader(activeTable);
 
     	$$self.$$set = $$props => {
     		if ("headers" in $$props) $$invalidate(0, headers = $$props.headers);
-    		if ("activeTable" in $$props) $$invalidate(2, activeTable = $$props.activeTable);
+    		if ("activeTable" in $$props) $$invalidate(3, activeTable = $$props.activeTable);
     		if ("hoverNewField" in $$props) $$invalidate(1, hoverNewField = $$props.hoverNewField);
-    		if ("dataTables" in $$props) $$invalidate(12, dataTables = $$props.dataTables);
+    		if ("dataTables" in $$props) $$invalidate(11, dataTables = $$props.dataTables);
     		if ("fetchData" in $$props) $$invalidate(14, fetchData = $$props.fetchData);
-    		if ("displayedData" in $$props) $$invalidate(13, displayedData = $$props.displayedData);
-    		if ("currentUser" in $$props) $$invalidate(3, currentUser = $$props.currentUser);
+    		if ("displayedData" in $$props) $$invalidate(12, displayedData = $$props.displayedData);
+    		if ("currentUser" in $$props) $$invalidate(4, currentUser = $$props.currentUser);
     		if ("token" in $$props) $$invalidate(15, token = $$props.token);
+    		if ("settingDefault" in $$props) $$invalidate(13, settingDefault = $$props.settingDefault);
+    		if ("fieldEdit" in $$props) $$invalidate(2, fieldEdit = $$props.fieldEdit);
     	};
 
     	$$self.$capture_state = () => ({
@@ -2898,28 +2767,28 @@ var app = (function () {
     		displayedData,
     		currentUser,
     		token,
+    		settingDefault,
     		editFieldName,
     		fieldEdit,
-    		settingDefault,
     		editThisFieldName,
     		changeFieldName,
-    		changeDefault,
     		changeType,
-    		newColHeader
+    		newColHeader,
+    		setDefault
     	});
 
     	$$self.$inject_state = $$props => {
     		if ("headers" in $$props) $$invalidate(0, headers = $$props.headers);
-    		if ("activeTable" in $$props) $$invalidate(2, activeTable = $$props.activeTable);
+    		if ("activeTable" in $$props) $$invalidate(3, activeTable = $$props.activeTable);
     		if ("hoverNewField" in $$props) $$invalidate(1, hoverNewField = $$props.hoverNewField);
-    		if ("dataTables" in $$props) $$invalidate(12, dataTables = $$props.dataTables);
+    		if ("dataTables" in $$props) $$invalidate(11, dataTables = $$props.dataTables);
     		if ("fetchData" in $$props) $$invalidate(14, fetchData = $$props.fetchData);
-    		if ("displayedData" in $$props) $$invalidate(13, displayedData = $$props.displayedData);
-    		if ("currentUser" in $$props) $$invalidate(3, currentUser = $$props.currentUser);
+    		if ("displayedData" in $$props) $$invalidate(12, displayedData = $$props.displayedData);
+    		if ("currentUser" in $$props) $$invalidate(4, currentUser = $$props.currentUser);
     		if ("token" in $$props) $$invalidate(15, token = $$props.token);
-    		if ("editFieldName" in $$props) $$invalidate(4, editFieldName = $$props.editFieldName);
-    		if ("fieldEdit" in $$props) $$invalidate(5, fieldEdit = $$props.fieldEdit);
-    		if ("settingDefault" in $$props) $$invalidate(6, settingDefault = $$props.settingDefault);
+    		if ("settingDefault" in $$props) $$invalidate(13, settingDefault = $$props.settingDefault);
+    		if ("editFieldName" in $$props) $$invalidate(5, editFieldName = $$props.editFieldName);
+    		if ("fieldEdit" in $$props) $$invalidate(2, fieldEdit = $$props.fieldEdit);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -2929,18 +2798,18 @@ var app = (function () {
     	return [
     		headers,
     		hoverNewField,
+    		fieldEdit,
     		activeTable,
     		currentUser,
     		editFieldName,
-    		fieldEdit,
-    		settingDefault,
     		editThisFieldName,
     		changeFieldName,
-    		changeDefault,
     		changeType,
     		newColHeader,
+    		setDefault,
     		dataTables,
     		displayedData,
+    		settingDefault,
     		fetchData,
     		token,
     		click_handler,
@@ -2952,10 +2821,9 @@ var app = (function () {
     		click_handler_6,
     		click_handler_7,
     		click_handler_8,
-    		click_handler_9,
     		mouseover_handler,
     		mouseout_handler,
-    		click_handler_10
+    		click_handler_9
     	];
     }
 
@@ -2963,24 +2831,18 @@ var app = (function () {
     	constructor(options) {
     		super(options);
 
-    		init(
-    			this,
-    			options,
-    			instance$2,
-    			create_fragment$2,
-    			safe_not_equal,
-    			{
-    				headers: 0,
-    				activeTable: 2,
-    				hoverNewField: 1,
-    				dataTables: 12,
-    				fetchData: 14,
-    				displayedData: 13,
-    				currentUser: 3,
-    				token: 15
-    			},
-    			[-1, -1]
-    		);
+    		init(this, options, instance$2, create_fragment$2, safe_not_equal, {
+    			headers: 0,
+    			activeTable: 3,
+    			hoverNewField: 1,
+    			dataTables: 11,
+    			fetchData: 14,
+    			displayedData: 12,
+    			currentUser: 4,
+    			token: 15,
+    			settingDefault: 13,
+    			fieldEdit: 2
+    		});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -2996,7 +2858,7 @@ var app = (function () {
     			console_1$1.warn("<TableHeader> was created without expected prop 'headers'");
     		}
 
-    		if (/*activeTable*/ ctx[2] === undefined && !("activeTable" in props)) {
+    		if (/*activeTable*/ ctx[3] === undefined && !("activeTable" in props)) {
     			console_1$1.warn("<TableHeader> was created without expected prop 'activeTable'");
     		}
 
@@ -3004,7 +2866,7 @@ var app = (function () {
     			console_1$1.warn("<TableHeader> was created without expected prop 'hoverNewField'");
     		}
 
-    		if (/*dataTables*/ ctx[12] === undefined && !("dataTables" in props)) {
+    		if (/*dataTables*/ ctx[11] === undefined && !("dataTables" in props)) {
     			console_1$1.warn("<TableHeader> was created without expected prop 'dataTables'");
     		}
 
@@ -3012,16 +2874,24 @@ var app = (function () {
     			console_1$1.warn("<TableHeader> was created without expected prop 'fetchData'");
     		}
 
-    		if (/*displayedData*/ ctx[13] === undefined && !("displayedData" in props)) {
+    		if (/*displayedData*/ ctx[12] === undefined && !("displayedData" in props)) {
     			console_1$1.warn("<TableHeader> was created without expected prop 'displayedData'");
     		}
 
-    		if (/*currentUser*/ ctx[3] === undefined && !("currentUser" in props)) {
+    		if (/*currentUser*/ ctx[4] === undefined && !("currentUser" in props)) {
     			console_1$1.warn("<TableHeader> was created without expected prop 'currentUser'");
     		}
 
     		if (/*token*/ ctx[15] === undefined && !("token" in props)) {
     			console_1$1.warn("<TableHeader> was created without expected prop 'token'");
+    		}
+
+    		if (/*settingDefault*/ ctx[13] === undefined && !("settingDefault" in props)) {
+    			console_1$1.warn("<TableHeader> was created without expected prop 'settingDefault'");
+    		}
+
+    		if (/*fieldEdit*/ ctx[2] === undefined && !("fieldEdit" in props)) {
+    			console_1$1.warn("<TableHeader> was created without expected prop 'fieldEdit'");
     		}
     	}
 
@@ -3086,6 +2956,22 @@ var app = (function () {
     	}
 
     	set token(value) {
+    		throw new Error("<TableHeader>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get settingDefault() {
+    		throw new Error("<TableHeader>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set settingDefault(value) {
+    		throw new Error("<TableHeader>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get fieldEdit() {
+    		throw new Error("<TableHeader>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set fieldEdit(value) {
     		throw new Error("<TableHeader>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -10220,23 +10106,23 @@ var app = (function () {
 
     function get_each_context$3(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[20] = list[i];
+    	child_ctx[24] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_1$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[23] = list[i];
+    	child_ctx[27] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[20] = list[i];
+    	child_ctx[24] = list[i];
     	return child_ctx;
     }
 
-    // (86:14) {:else}
+    // (90:14) {:else}
     function create_else_block$3(ctx) {
     	let input;
     	let input_value_value;
@@ -10244,15 +10130,15 @@ var app = (function () {
     	let dispose;
 
     	function keyup_handler() {
-    		return /*keyup_handler*/ ctx[17](/*header*/ ctx[20], /*data*/ ctx[23]);
+    		return /*keyup_handler*/ ctx[21](/*header*/ ctx[24], /*data*/ ctx[27]);
     	}
 
     	const block = {
     		c: function create() {
     			input = element("input");
     			attr_dev(input, "class", "apperance-none focus:outline-none w-11/12");
-    			input.value = input_value_value = /*data*/ ctx[23][camelcase(/*header*/ ctx[20].name.toLowerCase())] || "";
-    			add_location(input, file$5, 86, 16, 2921);
+    			input.value = input_value_value = /*data*/ ctx[27][camelcase(/*header*/ ctx[24].name[0].toLowerCase() + /*header*/ ctx[24].name.substring(1))] || "";
+    			add_location(input, file$5, 90, 16, 3054);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, input, anchor);
@@ -10265,7 +10151,7 @@ var app = (function () {
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
 
-    			if (dirty & /*displayedData, headers*/ 5 && input_value_value !== (input_value_value = /*data*/ ctx[23][camelcase(/*header*/ ctx[20].name.toLowerCase())] || "") && input.value !== input_value_value) {
+    			if (dirty[0] & /*displayedData, headers*/ 5 && input_value_value !== (input_value_value = /*data*/ ctx[27][camelcase(/*header*/ ctx[24].name[0].toLowerCase() + /*header*/ ctx[24].name.substring(1))] || "") && input.value !== input_value_value) {
     				prop_dev(input, "value", input_value_value);
     			}
     		},
@@ -10280,14 +10166,14 @@ var app = (function () {
     		block,
     		id: create_else_block$3.name,
     		type: "else",
-    		source: "(86:14) {:else}",
+    		source: "(90:14) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (84:14) {#if header.bcrypt}
+    // (88:14) {#if header.bcrypt}
     function create_if_block$4(ctx) {
     	let t;
 
@@ -10308,20 +10194,20 @@ var app = (function () {
     		block,
     		id: create_if_block$4.name,
     		type: "if",
-    		source: "(84:14) {#if header.bcrypt}",
+    		source: "(88:14) {#if header.bcrypt}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (81:8) {#each headers as header}
+    // (85:8) {#each headers as header}
     function create_each_block_2(ctx) {
     	let td;
     	let span;
 
     	function select_block_type(ctx, dirty) {
-    		if (/*header*/ ctx[20].bcrypt) return create_if_block$4;
+    		if (/*header*/ ctx[24].bcrypt) return create_if_block$4;
     		return create_else_block$3;
     	}
 
@@ -10334,9 +10220,9 @@ var app = (function () {
     			span = element("span");
     			if_block.c();
     			attr_dev(span, "class", "text-center ml-2 text-base");
-    			add_location(span, file$5, 82, 12, 2778);
+    			add_location(span, file$5, 86, 12, 2911);
     			attr_dev(td, "class", "border border-gray-300 text-left");
-    			add_location(td, file$5, 81, 10, 2720);
+    			add_location(td, file$5, 85, 10, 2853);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -10366,14 +10252,14 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(81:8) {#each headers as header}",
+    		source: "(85:8) {#each headers as header}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (67:4) {#each displayedData as data}
+    // (71:4) {#each displayedData as data}
     function create_each_block_1$1(ctx) {
     	let tr;
     	let td0;
@@ -10383,7 +10269,7 @@ var app = (function () {
     	let t0;
     	let td1;
     	let span1;
-    	let t1_value = /*data*/ ctx[23]._id + "";
+    	let t1_value = /*data*/ ctx[27]._id + "";
     	let t1;
     	let t2;
     	let t3;
@@ -10394,7 +10280,7 @@ var app = (function () {
     	let dispose;
 
     	function click_handler() {
-    		return /*click_handler*/ ctx[16](/*data*/ ctx[23]);
+    		return /*click_handler*/ ctx[20](/*data*/ ctx[27]);
     	}
 
     	let each_value_2 = /*headers*/ ctx[0];
@@ -10429,27 +10315,27 @@ var app = (function () {
     			attr_dev(path, "stroke-linejoin", "round");
     			attr_dev(path, "stroke-width", "2");
     			attr_dev(path, "d", "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16");
-    			add_location(path, file$5, 71, 14, 2253);
+    			add_location(path, file$5, 75, 14, 2386);
     			attr_dev(svg, "class", "h-4 w-4 text-gray-700 hover:text-gray-900 cursor-pointer");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "fill", "none");
     			attr_dev(svg, "viewBox", "0 0 24 24");
     			attr_dev(svg, "stroke", "currentColor");
-    			add_location(svg, file$5, 70, 12, 2079);
+    			add_location(svg, file$5, 74, 12, 2212);
     			attr_dev(span0, "class", "flex items-center justify-center");
-    			add_location(span0, file$5, 69, 10, 1979);
+    			add_location(span0, file$5, 73, 10, 2112);
     			attr_dev(td0, "class", "bg-white border border-gray-300 text-left");
-    			add_location(td0, file$5, 68, 8, 1914);
+    			add_location(td0, file$5, 72, 8, 2047);
     			attr_dev(span1, "class", "text-center ml-2 text-base");
-    			add_location(span1, file$5, 76, 10, 2579);
+    			add_location(span1, file$5, 80, 10, 2712);
     			attr_dev(td1, "class", "bg-white border border-gray-300 text-left");
-    			add_location(td1, file$5, 75, 8, 2514);
+    			add_location(td1, file$5, 79, 8, 2647);
     			attr_dev(span2, "class", "text-center ml-2 text-base");
-    			add_location(span2, file$5, 92, 10, 3261);
-    			attr_dev(td2, "class", td2_class_value = `border border-gray-300 text-left ${/*hoverNewField*/ ctx[6] ? "" : "hidden"}`);
-    			add_location(td2, file$5, 91, 8, 3170);
+    			add_location(span2, file$5, 96, 10, 3424);
+    			attr_dev(td2, "class", td2_class_value = `border border-gray-300 text-left ${/*hoverNewField*/ ctx[8] ? "" : "hidden"}`);
+    			add_location(td2, file$5, 95, 8, 3333);
     			attr_dev(tr, "class", "bg-white");
-    			add_location(tr, file$5, 67, 6, 1884);
+    			add_location(tr, file$5, 71, 6, 2017);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -10478,9 +10364,9 @@ var app = (function () {
     		},
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
-    			if (dirty & /*displayedData*/ 4 && t1_value !== (t1_value = /*data*/ ctx[23]._id + "")) set_data_dev(t1, t1_value);
+    			if (dirty[0] & /*displayedData*/ 4 && t1_value !== (t1_value = /*data*/ ctx[27]._id + "")) set_data_dev(t1, t1_value);
 
-    			if (dirty & /*headers, displayedData, camelcase, updateField*/ 133) {
+    			if (dirty[0] & /*headers, displayedData, updateField*/ 517) {
     				each_value_2 = /*headers*/ ctx[0];
     				validate_each_argument(each_value_2);
     				let i;
@@ -10504,7 +10390,7 @@ var app = (function () {
     				each_blocks.length = each_value_2.length;
     			}
 
-    			if (dirty & /*hoverNewField*/ 64 && td2_class_value !== (td2_class_value = `border border-gray-300 text-left ${/*hoverNewField*/ ctx[6] ? "" : "hidden"}`)) {
+    			if (dirty[0] & /*hoverNewField*/ 256 && td2_class_value !== (td2_class_value = `border border-gray-300 text-left ${/*hoverNewField*/ ctx[8] ? "" : "hidden"}`)) {
     				attr_dev(td2, "class", td2_class_value);
     			}
     		},
@@ -10520,14 +10406,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1$1.name,
     		type: "each",
-    		source: "(67:4) {#each displayedData as data}",
+    		source: "(71:4) {#each displayedData as data}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (104:6) {#each headers as header}
+    // (108:6) {#each headers as header}
     function create_each_block$3(ctx) {
     	let td;
     	let span;
@@ -10537,9 +10423,9 @@ var app = (function () {
     			td = element("td");
     			span = element("span");
     			attr_dev(span, "class", "text-center ml-2 text-base");
-    			add_location(span, file$5, 105, 10, 3677);
+    			add_location(span, file$5, 109, 10, 3840);
     			attr_dev(td, "class", "border border-gray-300 text-left");
-    			add_location(td, file$5, 104, 8, 3621);
+    			add_location(td, file$5, 108, 8, 3784);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -10554,7 +10440,7 @@ var app = (function () {
     		block,
     		id: create_each_block$3.name,
     		type: "each",
-    		source: "(104:6) {#each headers as header}",
+    		source: "(108:6) {#each headers as header}",
     		ctx
     	});
 
@@ -10564,6 +10450,8 @@ var app = (function () {
     function create_fragment$5(ctx) {
     	let table;
     	let tableheader;
+    	let updating_fieldEdit;
+    	let updating_settingDefault;
     	let updating_hoverNewField;
     	let updating_headers;
     	let updating_activeTable;
@@ -10587,33 +10475,49 @@ var app = (function () {
     	let mounted;
     	let dispose;
 
+    	function tableheader_fieldEdit_binding(value) {
+    		/*tableheader_fieldEdit_binding*/ ctx[13](value);
+    	}
+
+    	function tableheader_settingDefault_binding(value) {
+    		/*tableheader_settingDefault_binding*/ ctx[14](value);
+    	}
+
     	function tableheader_hoverNewField_binding(value) {
-    		/*tableheader_hoverNewField_binding*/ ctx[11](value);
+    		/*tableheader_hoverNewField_binding*/ ctx[15](value);
     	}
 
     	function tableheader_headers_binding(value) {
-    		/*tableheader_headers_binding*/ ctx[12](value);
+    		/*tableheader_headers_binding*/ ctx[16](value);
     	}
 
     	function tableheader_activeTable_binding(value) {
-    		/*tableheader_activeTable_binding*/ ctx[13](value);
+    		/*tableheader_activeTable_binding*/ ctx[17](value);
     	}
 
     	function tableheader_dataTables_binding(value) {
-    		/*tableheader_dataTables_binding*/ ctx[14](value);
+    		/*tableheader_dataTables_binding*/ ctx[18](value);
     	}
 
     	function tableheader_displayedData_binding(value) {
-    		/*tableheader_displayedData_binding*/ ctx[15](value);
+    		/*tableheader_displayedData_binding*/ ctx[19](value);
     	}
 
     	let tableheader_props = {
-    		token: /*token*/ ctx[4],
-    		currentUser: /*currentUser*/ ctx[5]
+    		token: /*token*/ ctx[6],
+    		currentUser: /*currentUser*/ ctx[7]
     	};
 
-    	if (/*hoverNewField*/ ctx[6] !== void 0) {
-    		tableheader_props.hoverNewField = /*hoverNewField*/ ctx[6];
+    	if (/*fieldEdit*/ ctx[5] !== void 0) {
+    		tableheader_props.fieldEdit = /*fieldEdit*/ ctx[5];
+    	}
+
+    	if (/*settingDefault*/ ctx[4] !== void 0) {
+    		tableheader_props.settingDefault = /*settingDefault*/ ctx[4];
+    	}
+
+    	if (/*hoverNewField*/ ctx[8] !== void 0) {
+    		tableheader_props.hoverNewField = /*hoverNewField*/ ctx[8];
     	}
 
     	if (/*headers*/ ctx[0] !== void 0) {
@@ -10633,6 +10537,8 @@ var app = (function () {
     	}
 
     	tableheader = new TableHeader({ props: tableheader_props, $$inline: true });
+    	binding_callbacks.push(() => bind(tableheader, "fieldEdit", tableheader_fieldEdit_binding));
+    	binding_callbacks.push(() => bind(tableheader, "settingDefault", tableheader_settingDefault_binding));
     	binding_callbacks.push(() => bind(tableheader, "hoverNewField", tableheader_hoverNewField_binding));
     	binding_callbacks.push(() => bind(tableheader, "headers", tableheader_headers_binding));
     	binding_callbacks.push(() => bind(tableheader, "activeTable", tableheader_activeTable_binding));
@@ -10683,23 +10589,23 @@ var app = (function () {
     			td2 = element("td");
     			span2 = element("span");
     			attr_dev(span0, "class", "text-center ml-2 text-base");
-    			add_location(span0, file$5, 99, 8, 3499);
+    			add_location(span0, file$5, 103, 8, 3662);
     			attr_dev(td0, "class", "border border-gray-300 text-left");
-    			add_location(td0, file$5, 98, 6, 3445);
+    			add_location(td0, file$5, 102, 6, 3608);
     			attr_dev(span1, "class", "text-center ml-2 text-base");
-    			add_location(span1, file$5, 111, 8, 3826);
+    			add_location(span1, file$5, 115, 8, 3989);
     			attr_dev(td1, "class", "border border-gray-300 text-left");
-    			add_location(td1, file$5, 110, 6, 3772);
+    			add_location(td1, file$5, 114, 6, 3935);
     			attr_dev(span2, "class", "text-center ml-2 text-base");
-    			add_location(span2, file$5, 116, 8, 3992);
-    			attr_dev(td2, "class", td2_class_value = `border border-gray-300 text-left ${/*hoverNewField*/ ctx[6] ? "" : "hidden"}`);
-    			add_location(td2, file$5, 115, 6, 3903);
+    			add_location(span2, file$5, 120, 8, 4155);
+    			attr_dev(td2, "class", td2_class_value = `border border-gray-300 text-left ${/*hoverNewField*/ ctx[8] ? "" : "hidden"}`);
+    			add_location(td2, file$5, 119, 6, 4066);
     			attr_dev(tr, "class", "bg-white hover:bg-gray-100 cursor-pointer");
-    			add_location(tr, file$5, 97, 4, 3363);
+    			add_location(tr, file$5, 101, 4, 3526);
     			attr_dev(tbody, "class", "bg-gray-200");
-    			add_location(tbody, file$5, 65, 2, 1816);
+    			add_location(tbody, file$5, 69, 2, 1949);
     			attr_dev(table, "class", "min-w-full");
-    			add_location(table, file$5, 63, 0, 1577);
+    			add_location(table, file$5, 67, 0, 1646);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -10733,40 +10639,52 @@ var app = (function () {
     			current = true;
 
     			if (!mounted) {
-    				dispose = listen_dev(tr, "click", /*newRecord*/ ctx[9], false, false, false);
+    				dispose = listen_dev(tr, "click", /*newRecord*/ ctx[11], false, false, false);
     				mounted = true;
     			}
     		},
-    		p: function update(ctx, [dirty]) {
+    		p: function update(ctx, dirty) {
     			const tableheader_changes = {};
-    			if (dirty & /*token*/ 16) tableheader_changes.token = /*token*/ ctx[4];
-    			if (dirty & /*currentUser*/ 32) tableheader_changes.currentUser = /*currentUser*/ ctx[5];
+    			if (dirty[0] & /*token*/ 64) tableheader_changes.token = /*token*/ ctx[6];
+    			if (dirty[0] & /*currentUser*/ 128) tableheader_changes.currentUser = /*currentUser*/ ctx[7];
 
-    			if (!updating_hoverNewField && dirty & /*hoverNewField*/ 64) {
+    			if (!updating_fieldEdit && dirty[0] & /*fieldEdit*/ 32) {
+    				updating_fieldEdit = true;
+    				tableheader_changes.fieldEdit = /*fieldEdit*/ ctx[5];
+    				add_flush_callback(() => updating_fieldEdit = false);
+    			}
+
+    			if (!updating_settingDefault && dirty[0] & /*settingDefault*/ 16) {
+    				updating_settingDefault = true;
+    				tableheader_changes.settingDefault = /*settingDefault*/ ctx[4];
+    				add_flush_callback(() => updating_settingDefault = false);
+    			}
+
+    			if (!updating_hoverNewField && dirty[0] & /*hoverNewField*/ 256) {
     				updating_hoverNewField = true;
-    				tableheader_changes.hoverNewField = /*hoverNewField*/ ctx[6];
+    				tableheader_changes.hoverNewField = /*hoverNewField*/ ctx[8];
     				add_flush_callback(() => updating_hoverNewField = false);
     			}
 
-    			if (!updating_headers && dirty & /*headers*/ 1) {
+    			if (!updating_headers && dirty[0] & /*headers*/ 1) {
     				updating_headers = true;
     				tableheader_changes.headers = /*headers*/ ctx[0];
     				add_flush_callback(() => updating_headers = false);
     			}
 
-    			if (!updating_activeTable && dirty & /*activeTable*/ 2) {
+    			if (!updating_activeTable && dirty[0] & /*activeTable*/ 2) {
     				updating_activeTable = true;
     				tableheader_changes.activeTable = /*activeTable*/ ctx[1];
     				add_flush_callback(() => updating_activeTable = false);
     			}
 
-    			if (!updating_dataTables && dirty & /*dataTables*/ 8) {
+    			if (!updating_dataTables && dirty[0] & /*dataTables*/ 8) {
     				updating_dataTables = true;
     				tableheader_changes.dataTables = /*dataTables*/ ctx[3];
     				add_flush_callback(() => updating_dataTables = false);
     			}
 
-    			if (!updating_displayedData && dirty & /*displayedData*/ 4) {
+    			if (!updating_displayedData && dirty[0] & /*displayedData*/ 4) {
     				updating_displayedData = true;
     				tableheader_changes.displayedData = /*displayedData*/ ctx[2];
     				add_flush_callback(() => updating_displayedData = false);
@@ -10774,7 +10692,7 @@ var app = (function () {
 
     			tableheader.$set(tableheader_changes);
 
-    			if (dirty & /*hoverNewField, headers, displayedData, camelcase, updateField, deleteRecord*/ 453) {
+    			if (dirty[0] & /*hoverNewField, headers, displayedData, updateField, deleteRecord*/ 1797) {
     				each_value_1 = /*displayedData*/ ctx[2];
     				validate_each_argument(each_value_1);
     				let i;
@@ -10798,7 +10716,7 @@ var app = (function () {
     				each_blocks_1.length = each_value_1.length;
     			}
 
-    			if (dirty & /*headers*/ 1) {
+    			if (dirty[0] & /*headers*/ 1) {
     				const old_length = each_value.length;
     				each_value = /*headers*/ ctx[0];
     				validate_each_argument(each_value);
@@ -10821,7 +10739,7 @@ var app = (function () {
     				each_blocks.length = each_value.length;
     			}
 
-    			if (!current || dirty & /*hoverNewField*/ 64 && td2_class_value !== (td2_class_value = `border border-gray-300 text-left ${/*hoverNewField*/ ctx[6] ? "" : "hidden"}`)) {
+    			if (!current || dirty[0] & /*hoverNewField*/ 256 && td2_class_value !== (td2_class_value = `border border-gray-300 text-left ${/*hoverNewField*/ ctx[8] ? "" : "hidden"}`)) {
     				attr_dev(td2, "class", td2_class_value);
     			}
     		},
@@ -10865,10 +10783,11 @@ var app = (function () {
     	let { displayedData } = $$props;
     	let { newColHeader } = $$props;
     	let { dataTables } = $$props;
+    	let { settingDefault } = $$props;
+    	let { fieldEdit } = $$props;
 
     	const reload = async () => {
     		try {
-    			console.log("reloading");
     			$$invalidate(2, displayedData = await api.get(activeTable.replace(/ /g, "-"), token));
     			$$invalidate(0, headers = getHeaders(dataTables, activeTable));
     		} catch(err) {
@@ -10883,7 +10802,10 @@ var app = (function () {
 
     	const updateField = async (field, id) => {
     		try {
-    			let update = await api.put(`${activeTable.replace(/ /g, "-")}/${id}`, token, { [camelcase(field)]: event.target.value });
+    			let update = await api.put(`${activeTable.replace(/ /g, "-")}`, token, {
+    				updates: { [camelcase(field)]: event.target.value },
+    				filters: { _id: id }
+    			});
     		} catch(err) {
     			console.log(err);
     		}
@@ -10916,16 +10838,28 @@ var app = (function () {
     		"activeTable",
     		"displayedData",
     		"newColHeader",
-    		"dataTables"
+    		"dataTables",
+    		"settingDefault",
+    		"fieldEdit"
     	];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1$3.warn(`<Table> was created with unknown prop '${key}'`);
     	});
 
+    	function tableheader_fieldEdit_binding(value) {
+    		fieldEdit = value;
+    		$$invalidate(5, fieldEdit);
+    	}
+
+    	function tableheader_settingDefault_binding(value) {
+    		settingDefault = value;
+    		$$invalidate(4, settingDefault);
+    	}
+
     	function tableheader_hoverNewField_binding(value) {
     		hoverNewField = value;
-    		$$invalidate(6, hoverNewField);
+    		$$invalidate(8, hoverNewField);
     	}
 
     	function tableheader_headers_binding(value) {
@@ -10952,13 +10886,15 @@ var app = (function () {
     	const keyup_handler = (header, data) => updateField(header.name, data._id);
 
     	$$self.$$set = $$props => {
-    		if ("token" in $$props) $$invalidate(4, token = $$props.token);
-    		if ("currentUser" in $$props) $$invalidate(5, currentUser = $$props.currentUser);
+    		if ("token" in $$props) $$invalidate(6, token = $$props.token);
+    		if ("currentUser" in $$props) $$invalidate(7, currentUser = $$props.currentUser);
     		if ("headers" in $$props) $$invalidate(0, headers = $$props.headers);
     		if ("activeTable" in $$props) $$invalidate(1, activeTable = $$props.activeTable);
     		if ("displayedData" in $$props) $$invalidate(2, displayedData = $$props.displayedData);
-    		if ("newColHeader" in $$props) $$invalidate(10, newColHeader = $$props.newColHeader);
+    		if ("newColHeader" in $$props) $$invalidate(12, newColHeader = $$props.newColHeader);
     		if ("dataTables" in $$props) $$invalidate(3, dataTables = $$props.dataTables);
+    		if ("settingDefault" in $$props) $$invalidate(4, settingDefault = $$props.settingDefault);
+    		if ("fieldEdit" in $$props) $$invalidate(5, fieldEdit = $$props.fieldEdit);
     	};
 
     	$$self.$capture_state = () => ({
@@ -10973,6 +10909,8 @@ var app = (function () {
     		displayedData,
     		newColHeader,
     		dataTables,
+    		settingDefault,
+    		fieldEdit,
     		io,
     		reload,
     		socket,
@@ -10983,14 +10921,16 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("token" in $$props) $$invalidate(4, token = $$props.token);
-    		if ("currentUser" in $$props) $$invalidate(5, currentUser = $$props.currentUser);
+    		if ("token" in $$props) $$invalidate(6, token = $$props.token);
+    		if ("currentUser" in $$props) $$invalidate(7, currentUser = $$props.currentUser);
     		if ("headers" in $$props) $$invalidate(0, headers = $$props.headers);
     		if ("activeTable" in $$props) $$invalidate(1, activeTable = $$props.activeTable);
     		if ("displayedData" in $$props) $$invalidate(2, displayedData = $$props.displayedData);
-    		if ("newColHeader" in $$props) $$invalidate(10, newColHeader = $$props.newColHeader);
+    		if ("newColHeader" in $$props) $$invalidate(12, newColHeader = $$props.newColHeader);
     		if ("dataTables" in $$props) $$invalidate(3, dataTables = $$props.dataTables);
-    		if ("hoverNewField" in $$props) $$invalidate(6, hoverNewField = $$props.hoverNewField);
+    		if ("settingDefault" in $$props) $$invalidate(4, settingDefault = $$props.settingDefault);
+    		if ("fieldEdit" in $$props) $$invalidate(5, fieldEdit = $$props.fieldEdit);
+    		if ("hoverNewField" in $$props) $$invalidate(8, hoverNewField = $$props.hoverNewField);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -11002,6 +10942,8 @@ var app = (function () {
     		activeTable,
     		displayedData,
     		dataTables,
+    		settingDefault,
+    		fieldEdit,
     		token,
     		currentUser,
     		hoverNewField,
@@ -11009,6 +10951,8 @@ var app = (function () {
     		deleteRecord,
     		newRecord,
     		newColHeader,
+    		tableheader_fieldEdit_binding,
+    		tableheader_settingDefault_binding,
     		tableheader_hoverNewField_binding,
     		tableheader_headers_binding,
     		tableheader_activeTable_binding,
@@ -11023,15 +10967,25 @@ var app = (function () {
     	constructor(options) {
     		super(options);
 
-    		init(this, options, instance$5, create_fragment$5, safe_not_equal, {
-    			token: 4,
-    			currentUser: 5,
-    			headers: 0,
-    			activeTable: 1,
-    			displayedData: 2,
-    			newColHeader: 10,
-    			dataTables: 3
-    		});
+    		init(
+    			this,
+    			options,
+    			instance$5,
+    			create_fragment$5,
+    			safe_not_equal,
+    			{
+    				token: 6,
+    				currentUser: 7,
+    				headers: 0,
+    				activeTable: 1,
+    				displayedData: 2,
+    				newColHeader: 12,
+    				dataTables: 3,
+    				settingDefault: 4,
+    				fieldEdit: 5
+    			},
+    			[-1, -1]
+    		);
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -11043,11 +10997,11 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*token*/ ctx[4] === undefined && !("token" in props)) {
+    		if (/*token*/ ctx[6] === undefined && !("token" in props)) {
     			console_1$3.warn("<Table> was created without expected prop 'token'");
     		}
 
-    		if (/*currentUser*/ ctx[5] === undefined && !("currentUser" in props)) {
+    		if (/*currentUser*/ ctx[7] === undefined && !("currentUser" in props)) {
     			console_1$3.warn("<Table> was created without expected prop 'currentUser'");
     		}
 
@@ -11063,12 +11017,20 @@ var app = (function () {
     			console_1$3.warn("<Table> was created without expected prop 'displayedData'");
     		}
 
-    		if (/*newColHeader*/ ctx[10] === undefined && !("newColHeader" in props)) {
+    		if (/*newColHeader*/ ctx[12] === undefined && !("newColHeader" in props)) {
     			console_1$3.warn("<Table> was created without expected prop 'newColHeader'");
     		}
 
     		if (/*dataTables*/ ctx[3] === undefined && !("dataTables" in props)) {
     			console_1$3.warn("<Table> was created without expected prop 'dataTables'");
+    		}
+
+    		if (/*settingDefault*/ ctx[4] === undefined && !("settingDefault" in props)) {
+    			console_1$3.warn("<Table> was created without expected prop 'settingDefault'");
+    		}
+
+    		if (/*fieldEdit*/ ctx[5] === undefined && !("fieldEdit" in props)) {
+    			console_1$3.warn("<Table> was created without expected prop 'fieldEdit'");
     		}
     	}
 
@@ -11127,6 +11089,22 @@ var app = (function () {
     	set dataTables(value) {
     		throw new Error("<Table>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
+
+    	get settingDefault() {
+    		throw new Error("<Table>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set settingDefault(value) {
+    		throw new Error("<Table>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get fieldEdit() {
+    		throw new Error("<Table>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set fieldEdit(value) {
+    		throw new Error("<Table>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
     }
 
     /* src/App.svelte generated by Svelte v3.32.3 */
@@ -11134,7 +11112,91 @@ var app = (function () {
     const { console: console_1$4 } = globals;
     const file$6 = "src/App.svelte";
 
-    // (79:2) {:else}
+    // (95:2) {#if settingDefault}
+    function create_if_block_1$4(ctx) {
+    	let div3;
+    	let div2;
+    	let p;
+    	let t1;
+    	let textarea;
+    	let textarea_id_value;
+    	let textarea_value_value;
+    	let t2;
+    	let div1;
+    	let div0;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			div3 = element("div");
+    			div2 = element("div");
+    			p = element("p");
+    			p.textContent = "Set default value. Use \"()\" notation for functions.";
+    			t1 = space();
+    			textarea = element("textarea");
+    			t2 = space();
+    			div1 = element("div");
+    			div0 = element("div");
+    			div0.textContent = "Save";
+    			attr_dev(p, "class", "text-md font-semibold text-gray-900");
+    			add_location(p, file$6, 97, 4, 2685);
+    			attr_dev(textarea, "id", textarea_id_value = `default-${/*settingDefault*/ ctx[8].name}`);
+    			attr_dev(textarea, "class", "focus:outline-none border-2 border-green-200 text-gray-900 apperance-none bg-white rounded-lg w-full p-2");
+    			textarea.value = textarea_value_value = /*settingDefault*/ ctx[8].def;
+    			add_location(textarea, file$6, 98, 5, 2793);
+    			attr_dev(div0, "class", "bg-green-600 text-white cursor-pointer p-2 rounded-lg flex items-center justify-center");
+    			add_location(div0, file$6, 100, 6, 3035);
+    			attr_dev(div1, "class", "w-full flex justify-end");
+    			add_location(div1, file$6, 99, 5, 2991);
+    			attr_dev(div2, "class", "rounded-lg bg-white p-12 flex flex-col items-center justify-center space-y-4");
+    			add_location(div2, file$6, 96, 4, 2590);
+    			attr_dev(div3, "class", "bg-transparent h-screen w-screen z-50 fixed flex items-center justify-center");
+    			add_location(div3, file$6, 95, 3, 2495);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div3, anchor);
+    			append_dev(div3, div2);
+    			append_dev(div2, p);
+    			append_dev(div2, t1);
+    			append_dev(div2, textarea);
+    			append_dev(div2, t2);
+    			append_dev(div2, div1);
+    			append_dev(div1, div0);
+
+    			if (!mounted) {
+    				dispose = listen_dev(div0, "click", /*click_handler*/ ctx[14], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*settingDefault*/ 256 && textarea_id_value !== (textarea_id_value = `default-${/*settingDefault*/ ctx[8].name}`)) {
+    				attr_dev(textarea, "id", textarea_id_value);
+    			}
+
+    			if (dirty & /*settingDefault*/ 256 && textarea_value_value !== (textarea_value_value = /*settingDefault*/ ctx[8].def)) {
+    				prop_dev(textarea, "value", textarea_value_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div3);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1$4.name,
+    		type: "if",
+    		source: "(95:2) {#if settingDefault}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (116:2) {:else}
     function create_else_block$4(ctx) {
     	let div2;
     	let div1;
@@ -11159,16 +11221,16 @@ var app = (function () {
     			t3 = space();
     			img = element("img");
     			attr_dev(p, "class", "text-3xl w-96 my-12 text-center font-semibold");
-    			add_location(p, file$6, 81, 5, 2633);
+    			add_location(p, file$6, 118, 5, 4618);
     			attr_dev(div0, "class", "bg-green-200 text-gray-900 font-semibold text-lg p-2 flex items-center justify-center rounded-lg cursor-pointer transform duration-150 shadow-md hover:-translate-y-1 hover:shadow-lg");
-    			add_location(div0, file$6, 82, 5, 2744);
+    			add_location(div0, file$6, 119, 5, 4729);
     			attr_dev(div1, "class", "flex flex-col absolute -ml-48");
-    			add_location(div1, file$6, 80, 4, 2584);
+    			add_location(div1, file$6, 117, 4, 4569);
     			attr_dev(img, "class", "h-3/4 object-scale");
     			if (img.src !== (img_src_value = "./empty.png")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file$6, 84, 4, 3003);
+    			add_location(img, file$6, 121, 4, 4988);
     			attr_dev(div2, "class", "w-3/4 h-full flex items-center -mt-24 justify-center");
-    			add_location(div2, file$6, 79, 3, 2513);
+    			add_location(div2, file$6, 116, 3, 4498);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
@@ -11180,7 +11242,7 @@ var app = (function () {
     			append_dev(div2, img);
 
     			if (!mounted) {
-    				dispose = listen_dev(div0, "click", /*newColHeader*/ ctx[10], false, false, false);
+    				dispose = listen_dev(div0, "click", /*newColHeader*/ ctx[12], false, false, false);
     				mounted = true;
     			}
     		},
@@ -11198,39 +11260,57 @@ var app = (function () {
     		block,
     		id: create_else_block$4.name,
     		type: "else",
-    		source: "(79:2) {:else}",
+    		source: "(116:2) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (77:2) {#if headers.length > 0}
+    // (114:2) {#if headers.length > 0}
     function create_if_block$5(ctx) {
     	let table;
+    	let updating_fieldEdit;
+    	let updating_settingDefault;
     	let updating_dataTables;
     	let updating_displayedData;
     	let updating_headers;
     	let current;
 
+    	function table_fieldEdit_binding(value) {
+    		/*table_fieldEdit_binding*/ ctx[21](value);
+    	}
+
+    	function table_settingDefault_binding(value) {
+    		/*table_settingDefault_binding*/ ctx[22](value);
+    	}
+
     	function table_dataTables_binding(value) {
-    		/*table_dataTables_binding*/ ctx[17](value);
+    		/*table_dataTables_binding*/ ctx[23](value);
     	}
 
     	function table_displayedData_binding(value) {
-    		/*table_displayedData_binding*/ ctx[18](value);
+    		/*table_displayedData_binding*/ ctx[24](value);
     	}
 
     	function table_headers_binding(value) {
-    		/*table_headers_binding*/ ctx[19](value);
+    		/*table_headers_binding*/ ctx[25](value);
     	}
 
     	let table_props = {
-    		newColHeader: /*newColHeader*/ ctx[10],
+    		newColHeader: /*newColHeader*/ ctx[12],
     		token: /*token*/ ctx[7],
     		activeTable: /*activeTable*/ ctx[3],
     		currentUser: /*currentUser*/ ctx[5]
     	};
+
+    	if (/*fieldEdit*/ ctx[9] !== void 0) {
+    		table_props.fieldEdit = /*fieldEdit*/ ctx[9];
+    	}
+
+    	if (/*settingDefault*/ ctx[8] !== void 0) {
+    		table_props.settingDefault = /*settingDefault*/ ctx[8];
+    	}
 
     	if (/*dataTables*/ ctx[0] !== void 0) {
     		table_props.dataTables = /*dataTables*/ ctx[0];
@@ -11245,6 +11325,8 @@ var app = (function () {
     	}
 
     	table = new Table({ props: table_props, $$inline: true });
+    	binding_callbacks.push(() => bind(table, "fieldEdit", table_fieldEdit_binding));
+    	binding_callbacks.push(() => bind(table, "settingDefault", table_settingDefault_binding));
     	binding_callbacks.push(() => bind(table, "dataTables", table_dataTables_binding));
     	binding_callbacks.push(() => bind(table, "displayedData", table_displayedData_binding));
     	binding_callbacks.push(() => bind(table, "headers", table_headers_binding));
@@ -11262,6 +11344,18 @@ var app = (function () {
     			if (dirty & /*token*/ 128) table_changes.token = /*token*/ ctx[7];
     			if (dirty & /*activeTable*/ 8) table_changes.activeTable = /*activeTable*/ ctx[3];
     			if (dirty & /*currentUser*/ 32) table_changes.currentUser = /*currentUser*/ ctx[5];
+
+    			if (!updating_fieldEdit && dirty & /*fieldEdit*/ 512) {
+    				updating_fieldEdit = true;
+    				table_changes.fieldEdit = /*fieldEdit*/ ctx[9];
+    				add_flush_callback(() => updating_fieldEdit = false);
+    			}
+
+    			if (!updating_settingDefault && dirty & /*settingDefault*/ 256) {
+    				updating_settingDefault = true;
+    				table_changes.settingDefault = /*settingDefault*/ ctx[8];
+    				add_flush_callback(() => updating_settingDefault = false);
+    			}
 
     			if (!updating_dataTables && dirty & /*dataTables*/ 1) {
     				updating_dataTables = true;
@@ -11301,7 +11395,7 @@ var app = (function () {
     		block,
     		id: create_if_block$5.name,
     		type: "if",
-    		source: "(77:2) {#if headers.length > 0}",
+    		source: "(114:2) {#if headers.length > 0}",
     		ctx
     	});
 
@@ -11312,22 +11406,24 @@ var app = (function () {
     	let link;
     	let t0;
     	let body;
-    	let apidocs;
     	let t1;
+    	let apidocs;
+    	let t2;
     	let loggedin_1;
     	let updating_currentUser;
     	let updating_loggedin;
-    	let t2;
+    	let t3;
     	let header;
     	let updating_showAPIDocs;
     	let updating_activeTable;
     	let updating_headers;
     	let updating_displayedData;
-    	let t3;
+    	let t4;
     	let div;
     	let current_block_type_index;
-    	let if_block;
+    	let if_block1;
     	let current;
+    	let if_block0 = /*settingDefault*/ ctx[8] && create_if_block_1$4(ctx);
 
     	apidocs = new ApiDocs({
     			props: {
@@ -11339,16 +11435,16 @@ var app = (function () {
     		});
 
     	function loggedin_1_currentUser_binding(value) {
-    		/*loggedin_1_currentUser_binding*/ ctx[11](value);
+    		/*loggedin_1_currentUser_binding*/ ctx[15](value);
     	}
 
     	function loggedin_1_loggedin_binding(value) {
-    		/*loggedin_1_loggedin_binding*/ ctx[12](value);
+    		/*loggedin_1_loggedin_binding*/ ctx[16](value);
     	}
 
     	let loggedin_1_props = {
-    		loadData: /*loadData*/ ctx[9],
-    		checkUser: /*checkUser*/ ctx[8]
+    		loadData: /*loadData*/ ctx[11],
+    		checkUser: /*checkUser*/ ctx[10]
     	};
 
     	if (/*currentUser*/ ctx[5] !== void 0) {
@@ -11364,19 +11460,19 @@ var app = (function () {
     	binding_callbacks.push(() => bind(loggedin_1, "loggedin", loggedin_1_loggedin_binding));
 
     	function header_showAPIDocs_binding(value) {
-    		/*header_showAPIDocs_binding*/ ctx[13](value);
+    		/*header_showAPIDocs_binding*/ ctx[17](value);
     	}
 
     	function header_activeTable_binding(value) {
-    		/*header_activeTable_binding*/ ctx[14](value);
+    		/*header_activeTable_binding*/ ctx[18](value);
     	}
 
     	function header_headers_binding(value) {
-    		/*header_headers_binding*/ ctx[15](value);
+    		/*header_headers_binding*/ ctx[19](value);
     	}
 
     	function header_displayedData_binding(value) {
-    		/*header_displayedData_binding*/ ctx[16](value);
+    		/*header_displayedData_binding*/ ctx[20](value);
     	}
 
     	let header_props = {
@@ -11415,28 +11511,30 @@ var app = (function () {
     	}
 
     	current_block_type_index = select_block_type(ctx);
-    	if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    	if_block1 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
 
     	const block = {
     		c: function create() {
     			link = element("link");
     			t0 = space();
     			body = element("body");
-    			create_component(apidocs.$$.fragment);
+    			if (if_block0) if_block0.c();
     			t1 = space();
-    			create_component(loggedin_1.$$.fragment);
+    			create_component(apidocs.$$.fragment);
     			t2 = space();
-    			create_component(header.$$.fragment);
+    			create_component(loggedin_1.$$.fragment);
     			t3 = space();
+    			create_component(header.$$.fragment);
+    			t4 = space();
     			div = element("div");
-    			if_block.c();
+    			if_block1.c();
     			attr_dev(link, "href", "https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css");
     			attr_dev(link, "rel", "stylesheet");
-    			add_location(link, file$6, 70, 0, 1704);
+    			add_location(link, file$6, 92, 0, 2359);
     			attr_dev(div, "class", "pb-6 w-screen h-full flex justify-center overflow-x-scroll");
-    			add_location(div, file$6, 75, 2, 2207);
+    			add_location(div, file$6, 112, 2, 4128);
     			attr_dev(body, "class", "h-screen");
-    			add_location(body, file$6, 71, 0, 1790);
+    			add_location(body, file$6, 93, 0, 2445);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -11445,17 +11543,32 @@ var app = (function () {
     			insert_dev(target, link, anchor);
     			insert_dev(target, t0, anchor);
     			insert_dev(target, body, anchor);
-    			mount_component(apidocs, body, null);
+    			if (if_block0) if_block0.m(body, null);
     			append_dev(body, t1);
-    			mount_component(loggedin_1, body, null);
+    			mount_component(apidocs, body, null);
     			append_dev(body, t2);
-    			mount_component(header, body, null);
+    			mount_component(loggedin_1, body, null);
     			append_dev(body, t3);
+    			mount_component(header, body, null);
+    			append_dev(body, t4);
     			append_dev(body, div);
     			if_blocks[current_block_type_index].m(div, null);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
+    			if (/*settingDefault*/ ctx[8]) {
+    				if (if_block0) {
+    					if_block0.p(ctx, dirty);
+    				} else {
+    					if_block0 = create_if_block_1$4(ctx);
+    					if_block0.c();
+    					if_block0.m(body, t1);
+    				}
+    			} else if (if_block0) {
+    				if_block0.d(1);
+    				if_block0 = null;
+    			}
+
     			const apidocs_changes = {};
     			if (dirty & /*headers*/ 4) apidocs_changes.headers = /*headers*/ ctx[2];
     			if (dirty & /*activeTable*/ 8) apidocs_changes.activeTable = /*activeTable*/ ctx[3];
@@ -11519,17 +11632,17 @@ var app = (function () {
     				});
 
     				check_outros();
-    				if_block = if_blocks[current_block_type_index];
+    				if_block1 = if_blocks[current_block_type_index];
 
-    				if (!if_block) {
-    					if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
-    					if_block.c();
+    				if (!if_block1) {
+    					if_block1 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    					if_block1.c();
     				} else {
-    					if_block.p(ctx, dirty);
+    					if_block1.p(ctx, dirty);
     				}
 
-    				transition_in(if_block, 1);
-    				if_block.m(div, null);
+    				transition_in(if_block1, 1);
+    				if_block1.m(div, null);
     			}
     		},
     		i: function intro(local) {
@@ -11537,20 +11650,21 @@ var app = (function () {
     			transition_in(apidocs.$$.fragment, local);
     			transition_in(loggedin_1.$$.fragment, local);
     			transition_in(header.$$.fragment, local);
-    			transition_in(if_block);
+    			transition_in(if_block1);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(apidocs.$$.fragment, local);
     			transition_out(loggedin_1.$$.fragment, local);
     			transition_out(header.$$.fragment, local);
-    			transition_out(if_block);
+    			transition_out(if_block1);
     			current = false;
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(link);
     			if (detaching) detach_dev(t0);
     			if (detaching) detach_dev(body);
+    			if (if_block0) if_block0.d();
     			destroy_component(apidocs);
     			destroy_component(loggedin_1);
     			destroy_component(header);
@@ -11580,6 +11694,8 @@ var app = (function () {
     	let currentUser;
     	let showAPIDocs = false;
     	let token;
+    	let settingDefault = "";
+    	let fieldEdit;
 
     	const checkUser = async () => {
     		$$invalidate(7, token = window.sessionStorage.getItem("api_key"));
@@ -11624,11 +11740,29 @@ var app = (function () {
     		}
     	};
 
+    	const changeDefault = async (field, id) => {
+    		try {
+    			let domId = field.replace(/ /g, "-");
+    			let defaultValue = document.querySelector(`#default-${domId}`).value;
+    			console.log(defaultValue);
+    			let update = await api.put(`database/${activeTable.replace(/ /g, "-")}/${id}`, token, { default: defaultValue });
+    			$$invalidate(8, settingDefault = "");
+    			$$invalidate(9, fieldEdit = "");
+    			$$invalidate(1, displayedData = await api.get(activeTable.replace(/ /g, "-"), token));
+    			$$invalidate(0, dataTables = await api.get("database", token));
+    			$$invalidate(2, headers = getHeaders(dataTables, activeTable));
+    		} catch(err) {
+    			console.log(err);
+    		}
+    	};
+
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1$4.warn(`<App> was created with unknown prop '${key}'`);
     	});
+
+    	const click_handler = () => changeDefault(settingDefault.name, settingDefault._id);
 
     	function loggedin_1_currentUser_binding(value) {
     		currentUser = value;
@@ -11658,6 +11792,16 @@ var app = (function () {
     	function header_displayedData_binding(value) {
     		displayedData = value;
     		$$invalidate(1, displayedData);
+    	}
+
+    	function table_fieldEdit_binding(value) {
+    		fieldEdit = value;
+    		$$invalidate(9, fieldEdit);
+    	}
+
+    	function table_settingDefault_binding(value) {
+    		settingDefault = value;
+    		$$invalidate(8, settingDefault);
     	}
 
     	function table_dataTables_binding(value) {
@@ -11693,9 +11837,12 @@ var app = (function () {
     		currentUser,
     		showAPIDocs,
     		token,
+    		settingDefault,
+    		fieldEdit,
     		checkUser,
     		loadData,
-    		newColHeader
+    		newColHeader,
+    		changeDefault
     	});
 
     	$$self.$inject_state = $$props => {
@@ -11707,6 +11854,8 @@ var app = (function () {
     		if ("currentUser" in $$props) $$invalidate(5, currentUser = $$props.currentUser);
     		if ("showAPIDocs" in $$props) $$invalidate(6, showAPIDocs = $$props.showAPIDocs);
     		if ("token" in $$props) $$invalidate(7, token = $$props.token);
+    		if ("settingDefault" in $$props) $$invalidate(8, settingDefault = $$props.settingDefault);
+    		if ("fieldEdit" in $$props) $$invalidate(9, fieldEdit = $$props.fieldEdit);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -11722,15 +11871,21 @@ var app = (function () {
     		currentUser,
     		showAPIDocs,
     		token,
+    		settingDefault,
+    		fieldEdit,
     		checkUser,
     		loadData,
     		newColHeader,
+    		changeDefault,
+    		click_handler,
     		loggedin_1_currentUser_binding,
     		loggedin_1_loggedin_binding,
     		header_showAPIDocs_binding,
     		header_activeTable_binding,
     		header_headers_binding,
     		header_displayedData_binding,
+    		table_fieldEdit_binding,
+    		table_settingDefault_binding,
     		table_dataTables_binding,
     		table_displayedData_binding,
     		table_headers_binding

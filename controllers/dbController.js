@@ -109,7 +109,7 @@ module.exports = {
       //Drop the old model
       await delete mongoose.connection.models[camelcase(filter.name)];
       await mongoCreate.createDataTables()
-      console.log('db created')
+      console.log(table)
       res.status(200).json(table)
     } catch (err) {
       console.log(err)

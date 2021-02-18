@@ -37,6 +37,7 @@ const activate = async (table) => {
   try {
     activeTable = table.replace(/-/g, " ")
     displayedData = await api.get(table ,token)
+    		console.log(displayedData)
     headers = getHeaders(dataTables, activeTable)
   } catch (err) {
     console.log(err)
@@ -46,7 +47,7 @@ const activate = async (table) => {
 const changeTableName = async (table) => {
   try {
     let name = document.querySelector(`#${table}`).value
-    let table = await api.put(`database/${table}`, token, { name })
+    let model = await api.put(`database/${table}`, token, { name })
     editable = ''
     dataTables = await api.get('database', token)
     activeTable = name.toLowerCase()

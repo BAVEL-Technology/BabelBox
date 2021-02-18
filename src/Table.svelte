@@ -10,11 +10,12 @@ export let activeTable
 export let displayedData
 export let newColHeader
 export let dataTables
+export let settingDefault
+export let fieldEdit
 import { io } from 'socket.io-client';
 
 const reload = async () => {
   try {
-    console.log('reloading')
     displayedData = await api.get(activeTable.replace(/ /g, "-"), token)
     headers = getHeaders(dataTables, activeTable)
   } catch (err) {
@@ -31,9 +32,12 @@ let hoverNewField = false
 const updateField = async (field, id) => {
   try {
     let update = await api.put(
-      `${activeTable.replace(/ /g, "-")}/${id}`,
+      `${activeTable.replace(/ /g, "-")}`,
       token,
-      { [camelcase(field)]: event.target.value }
+      {
+        updates: { [camelcase(field)]: event.target.value },
+        filters: { _id: id }
+      }
     )
   } catch (err) {
     console.log(err)
@@ -62,7 +66,7 @@ const newRecord = async () => {
 </script>
 
 <table class="min-w-full">
-  <TableHeader token={token} currentUser={currentUser} bind:hoverNewField={hoverNewField} bind:headers={headers} bind:activeTable={activeTable} bind:dataTables={dataTables} bind:displayedData={displayedData}/>
+  <TableHeader bind:fieldEdit={fieldEdit} bind:settingDefault={settingDefault} token={token} currentUser={currentUser} bind:hoverNewField={hoverNewField} bind:headers={headers} bind:activeTable={activeTable} bind:dataTables={dataTables} bind:displayedData={displayedData}/>
   <tbody class="bg-gray-200">
     {#each displayedData as data}
       <tr class="bg-white">
@@ -84,7 +88,7 @@ const newRecord = async () => {
               {#if header.bcrypt}
                 ************
               {:else}
-                <input on:keyup={() => updateField(header.name, data._id)} class="apperance-none focus:outline-none w-11/12" value={data[camelcase(header.name.toLowerCase())] || ''} />
+                <input on:keyup={() => updateField(header.name, data._id)} class="apperance-none focus:outline-none w-11/12" value={data[camelcase(header.name[0].toLowerCase() + header.name.substring(1))] || ''} />
               {/if}
             </span>
           </td>
