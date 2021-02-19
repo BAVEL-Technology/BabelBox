@@ -26,9 +26,11 @@ module.exports = {
   create: async (req, res) => {
     try {
       let t = await db.Tokens.find({ip: req.body.ip})
+      console.log(t)
       for (let i = 0; i < t.length; i++) {
         if (t[i].ip != req.body.ip) {
-          await db.Tokens.deleteOne({_id: t[i]._id})
+          let deleted = await db.Tokens.deleteMany({_id: t[i]._id})
+          console.log(deleted)
         }
       }
       let newT = await db.Tokens.create({
