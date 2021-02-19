@@ -54,7 +54,7 @@ module.exports = {
       console.log(camelcase(req.params.bread)[0].toUpperCase() + req.params.bread.substring(1))
       if (!Model) Model = mongoose.connection.models[camelcase(req.params.bread)[0].toUpperCase() + req.params.bread.substring(1)]
       console.log(Model)
-      const data = await Model.deleteOne({_id: req.params.id})
+      const data = await Model.deleteOne({_id: req.query.id})
       console.log(data)
       res.status(200).json(data)
     } catch (err) {

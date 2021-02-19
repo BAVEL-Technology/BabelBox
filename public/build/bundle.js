@@ -10405,7 +10405,7 @@ var app = (function () {
     			input = element("input");
     			attr_dev(input, "class", "apperance-none focus:outline-none w-11/12");
     			input.value = input_value_value = /*data*/ ctx[27][camelcase(/*header*/ ctx[24].name[0].toLowerCase() + /*header*/ ctx[24].name.substring(1))] || "";
-    			add_location(input, file$5, 90, 16, 3054);
+    			add_location(input, file$5, 90, 16, 3057);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, input, anchor);
@@ -10487,9 +10487,9 @@ var app = (function () {
     			span = element("span");
     			if_block.c();
     			attr_dev(span, "class", "text-center ml-2 text-base");
-    			add_location(span, file$5, 86, 12, 2911);
+    			add_location(span, file$5, 86, 12, 2914);
     			attr_dev(td, "class", "border border-gray-300 text-left");
-    			add_location(td, file$5, 85, 10, 2853);
+    			add_location(td, file$5, 85, 10, 2856);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -10582,27 +10582,27 @@ var app = (function () {
     			attr_dev(path, "stroke-linejoin", "round");
     			attr_dev(path, "stroke-width", "2");
     			attr_dev(path, "d", "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16");
-    			add_location(path, file$5, 75, 14, 2386);
+    			add_location(path, file$5, 75, 14, 2389);
     			attr_dev(svg, "class", "h-4 w-4 text-gray-700 hover:text-gray-900 cursor-pointer");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "fill", "none");
     			attr_dev(svg, "viewBox", "0 0 24 24");
     			attr_dev(svg, "stroke", "currentColor");
-    			add_location(svg, file$5, 74, 12, 2212);
+    			add_location(svg, file$5, 74, 12, 2215);
     			attr_dev(span0, "class", "flex items-center justify-center");
-    			add_location(span0, file$5, 73, 10, 2112);
+    			add_location(span0, file$5, 73, 10, 2115);
     			attr_dev(td0, "class", "bg-white border border-gray-300 text-left");
-    			add_location(td0, file$5, 72, 8, 2047);
+    			add_location(td0, file$5, 72, 8, 2050);
     			attr_dev(span1, "class", "text-center ml-2 text-base");
-    			add_location(span1, file$5, 80, 10, 2712);
+    			add_location(span1, file$5, 80, 10, 2715);
     			attr_dev(td1, "class", "bg-white border border-gray-300 text-left");
-    			add_location(td1, file$5, 79, 8, 2647);
+    			add_location(td1, file$5, 79, 8, 2650);
     			attr_dev(span2, "class", "text-center ml-2 text-base");
-    			add_location(span2, file$5, 96, 10, 3424);
+    			add_location(span2, file$5, 96, 10, 3427);
     			attr_dev(td2, "class", td2_class_value = `border border-gray-300 text-left ${/*hoverNewField*/ ctx[8] ? "" : "hidden"}`);
-    			add_location(td2, file$5, 95, 8, 3333);
+    			add_location(td2, file$5, 95, 8, 3336);
     			attr_dev(tr, "class", "bg-white");
-    			add_location(tr, file$5, 71, 6, 2017);
+    			add_location(tr, file$5, 71, 6, 2020);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -10690,9 +10690,9 @@ var app = (function () {
     			td = element("td");
     			span = element("span");
     			attr_dev(span, "class", "text-center ml-2 text-base");
-    			add_location(span, file$5, 109, 10, 3840);
+    			add_location(span, file$5, 109, 10, 3843);
     			attr_dev(td, "class", "border border-gray-300 text-left");
-    			add_location(td, file$5, 108, 8, 3784);
+    			add_location(td, file$5, 108, 8, 3787);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -10856,23 +10856,23 @@ var app = (function () {
     			td2 = element("td");
     			span2 = element("span");
     			attr_dev(span0, "class", "text-center ml-2 text-base");
-    			add_location(span0, file$5, 103, 8, 3662);
+    			add_location(span0, file$5, 103, 8, 3665);
     			attr_dev(td0, "class", "border border-gray-300 text-left");
-    			add_location(td0, file$5, 102, 6, 3608);
+    			add_location(td0, file$5, 102, 6, 3611);
     			attr_dev(span1, "class", "text-center ml-2 text-base");
-    			add_location(span1, file$5, 115, 8, 3989);
+    			add_location(span1, file$5, 115, 8, 3992);
     			attr_dev(td1, "class", "border border-gray-300 text-left");
-    			add_location(td1, file$5, 114, 6, 3935);
+    			add_location(td1, file$5, 114, 6, 3938);
     			attr_dev(span2, "class", "text-center ml-2 text-base");
-    			add_location(span2, file$5, 120, 8, 4155);
+    			add_location(span2, file$5, 120, 8, 4158);
     			attr_dev(td2, "class", td2_class_value = `border border-gray-300 text-left ${/*hoverNewField*/ ctx[8] ? "" : "hidden"}`);
-    			add_location(td2, file$5, 119, 6, 4066);
+    			add_location(td2, file$5, 119, 6, 4069);
     			attr_dev(tr, "class", "bg-white hover:bg-gray-100 cursor-pointer");
-    			add_location(tr, file$5, 101, 4, 3526);
+    			add_location(tr, file$5, 101, 4, 3529);
     			attr_dev(tbody, "class", "bg-gray-200");
-    			add_location(tbody, file$5, 69, 2, 1949);
+    			add_location(tbody, file$5, 69, 2, 1952);
     			attr_dev(table, "class", "min-w-full");
-    			add_location(table, file$5, 67, 0, 1646);
+    			add_location(table, file$5, 67, 0, 1649);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -11080,7 +11080,7 @@ var app = (function () {
 
     	const deleteRecord = async id => {
     		try {
-    			let record = await api.destroy(`${activeTable.replace(/ /g, "-")}/${id}`, token);
+    			let record = await api.destroy(`${activeTable.replace(/ /g, "-")}?id=${id}`, token);
     			$$invalidate(2, displayedData = await api.get(activeTable.replace(/ /g, "-"), token));
     			$$invalidate(0, headers = getHeaders(dataTables, activeTable));
     		} catch(err) {

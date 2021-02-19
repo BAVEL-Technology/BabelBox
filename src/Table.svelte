@@ -46,7 +46,7 @@ const updateField = async (field, id) => {
 
 const deleteRecord = async (id) => {
   try {
-    let record = await api.destroy(`${activeTable.replace(/ /g, "-")}/${id}`, token)
+    let record = await api.destroy(`${activeTable.replace(/ /g, "-")}?id=${id}`, token)
     displayedData = await api.get(activeTable.replace(/ /g, "-"), token)
     headers = getHeaders(dataTables, activeTable)
   } catch (err) {
