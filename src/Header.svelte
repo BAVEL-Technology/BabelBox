@@ -59,7 +59,7 @@ const changeTableName = async (table) => {
 
 const deleteTable = async (table) => {
   try {
-    let table = await api.destroy(`database/${table}`, token)
+    let deletion = await api.destroy(`database/${table}`, token)
     editable = ''
     dataTables = await api.get('database', token)
     activeTable = dataTables[0].name
