@@ -10,8 +10,8 @@ router.route("/")
 // Matches with "/api/r/admins/:id"
 router.route("/:id")
   .get(adminsController.read)
-  .put(adminsController.update)
-  .delete(adminsController.destroy);
+  .put(auth, adminsController.update)
+  .delete(auth, adminsController.destroy);
 
 // Matches with "/api/r/admins/login"
 router.route("/login")

@@ -35,11 +35,17 @@ import Table from "./Table.svelte"
 		}
 	}
 
-	onMount(async function() {
-		if (!window.sessionStorage.getItem('api_key')) return false
+	onMount(async () => {
+		if (!window.sessionStorage.getItem('api_key')) {
+			let findToken = await api.findToken()
+			findToken = await findToken.json()
+			console.log(findToken)
+			if (findToken.message) return false
+			window.sessionStorage.setItem('api_key', findToken.token)
+		}
 		try {
 			let user = await checkUser()
-			if (user.username) {
+			if (user && user.username) {
 				currentUser = user
 				loggedin = true
 				loadData()

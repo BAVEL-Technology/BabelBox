@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 var app = (function () {
     'use strict';
 
@@ -417,6 +417,34 @@ var app = (function () {
     }
 
     const api = {
+    		findIp: async () => {
+    			try {
+    				const json = (url) => {
+    				  return fetch(url).then(res => res.json());
+    				};
+
+    				let apiKey = '7be25a9ade8a2bde270fcb94aa63d181c06350d44def3855b0846f24';
+    				return json(`https://api.ipdata.co?api-key=${apiKey}`)
+    			} catch (err) {
+    				console.log(err);
+    			}
+    		},
+    		findToken: async () => {
+    			try {
+    				let ip = await api.findIp();
+    				let getToken = await fetch('/api/r/tokens', {
+    						method: 'PUT',
+    						headers: {
+    							'Accept': 'application/json',
+    							'Content-Type': 'application/json'
+    						},
+    						body: JSON.stringify({ ip: ip.ip })
+    				});
+    				return getToken
+    			} catch (err) {
+    				console.log(err);
+    			}
+    		},
     		login: async (body) => {
     			try {
     				return fetch(`/api/r/admins/login`, {
@@ -527,7 +555,7 @@ var app = (function () {
     			if (if_block) if_block.c();
     			if_block_anchor = empty();
     			attr_dev(span, "class", "truncate");
-    			add_location(span, file, 134, 12, 5763);
+    			add_location(span, file, 134, 12, 5762);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -595,18 +623,18 @@ var app = (function () {
     			attr_dev(input, "class", "apperance-none focus:outline-none w-auto bg-green-600 border-none");
     			input.value = input_value_value = /*data*/ ctx[21].name[0].toUpperCase() + /*data*/ ctx[21].name.substring(1);
     			attr_dev(input, "id", input_id_value = /*data*/ ctx[21].name.replace(/ /g, "-"));
-    			add_location(input, file, 129, 12, 5224);
+    			add_location(input, file, 129, 12, 5223);
     			attr_dev(path, "stroke-linecap", "round");
     			attr_dev(path, "stroke-linejoin", "round");
     			attr_dev(path, "stroke-width", "2");
     			attr_dev(path, "d", "M5 13l4 4L19 7");
-    			add_location(path, file, 131, 14, 5622);
+    			add_location(path, file, 131, 14, 5621);
     			attr_dev(svg, "class", "h-3 w-3 text-green-200 ml-2");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "fill", "none");
     			attr_dev(svg, "viewBox", "0 0 24 24");
     			attr_dev(svg, "stroke", "currentColor");
-    			add_location(svg, file, 130, 12, 5414);
+    			add_location(svg, file, 130, 12, 5413);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, input, anchor);
@@ -681,26 +709,26 @@ var app = (function () {
     			attr_dev(path0, "stroke-linejoin", "round");
     			attr_dev(path0, "stroke-width", "2");
     			attr_dev(path0, "d", "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z");
-    			add_location(path0, file, 138, 16, 6171);
+    			add_location(path0, file, 138, 16, 6170);
     			attr_dev(svg0, "class", "h-3 w-3 text-green-200 ml-2");
     			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg0, "fill", "none");
     			attr_dev(svg0, "viewBox", "0 0 24 24");
     			attr_dev(svg0, "stroke", "currentColor");
-    			add_location(svg0, file, 137, 14, 5986);
+    			add_location(svg0, file, 137, 14, 5985);
     			attr_dev(path1, "stroke-linecap", "round");
     			attr_dev(path1, "stroke-linejoin", "round");
     			attr_dev(path1, "stroke-width", "2");
     			attr_dev(path1, "d", "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16");
-    			add_location(path1, file, 141, 16, 6586);
+    			add_location(path1, file, 141, 16, 6585);
     			attr_dev(svg1, "class", "h-3 w-3 text-green-200 ml-2");
     			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg1, "fill", "none");
     			attr_dev(svg1, "viewBox", "0 0 24 24");
     			attr_dev(svg1, "stroke", "currentColor");
-    			add_location(svg1, file, 140, 14, 6380);
+    			add_location(svg1, file, 140, 14, 6379);
     			attr_dev(div, "class", "flex items-center");
-    			add_location(div, file, 136, 12, 5940);
+    			add_location(div, file, 136, 12, 5939);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -773,13 +801,13 @@ var app = (function () {
     			if_block.c();
     			t2 = space();
     			attr_dev(div, "class", "h-3 w-3 rounded-full bg-green-200 flex items-center justify-center text-green-600 text-xs p-2 mr-2");
-    			add_location(div, file, 127, 10, 5026);
+    			add_location(div, file, 127, 10, 5025);
 
     			attr_dev(li, "class", li_class_value = "" + (null_to_empty(`w-auto border-r border-l border-t border-green-600 flex w-48 items-center justify-between py-1 px-2 rounded-tl-lg rounded-tr-lg text-sm font-medium bg-green-600 text-green-100 transform ${/*data*/ ctx[21].name == /*activeTable*/ ctx[1]
 			? "scale-125 z-20"
 			: "-ml-1"} origin-bottom shadow-lg cursor-pointer`) + " svelte-1sfhy2t"));
 
-    			add_location(li, file, 126, 8, 4663);
+    			add_location(li, file, 126, 8, 4662);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -934,75 +962,75 @@ var app = (function () {
     			}
 
     			attr_dev(img, "class", "h-16 w-16 object-cover mr-6");
-    			if (img.src !== (img_src_value = "./mongo.png")) attr_dev(img, "src", img_src_value);
+    			if (img.src !== (img_src_value = "./bbdb.png")) attr_dev(img, "src", img_src_value);
     			add_location(img, file, 93, 2, 2419);
     			attr_dev(p, "class", "text-lg font-semibold text-green-600");
-    			add_location(p, file, 94, 2, 2483);
+    			add_location(p, file, 94, 2, 2482);
     			attr_dev(div0, "class", "flex items-center ml-8 mt-4");
     			add_location(div0, file, 92, 2, 2375);
     			attr_dev(path0, "stroke-linecap", "round");
     			attr_dev(path0, "stroke-linejoin", "round");
     			attr_dev(path0, "stroke-width", "3");
     			attr_dev(path0, "d", "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4");
-    			add_location(path0, file, 100, 10, 2921);
+    			add_location(path0, file, 100, 10, 2920);
     			attr_dev(svg0, "class", "h-4 w-4 text-green-600 mr-2");
     			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg0, "fill", "none");
     			attr_dev(svg0, "viewBox", "0 0 24 24");
     			attr_dev(svg0, "stroke", "currentColor");
-    			add_location(svg0, file, 99, 8, 2780);
+    			add_location(svg0, file, 99, 8, 2779);
     			attr_dev(span0, "class", "text-sm font-semibold text-green-600 truncate");
-    			add_location(span0, file, 102, 8, 3059);
+    			add_location(span0, file, 102, 8, 3058);
     			attr_dev(li0, "class", "flex items-center cursor-pointer transform duration-150 hover:-translate-y-1");
-    			add_location(li0, file, 98, 6, 2638);
+    			add_location(li0, file, 98, 6, 2637);
     			attr_dev(path1, "stroke-linecap", "round");
     			attr_dev(path1, "stroke-linejoin", "round");
     			attr_dev(path1, "stroke-width", "3");
     			attr_dev(path1, "d", "M12 6v6m0 0v6m0-6h6m-6 0H6");
-    			add_location(path1, file, 106, 10, 3419);
+    			add_location(path1, file, 106, 10, 3418);
     			attr_dev(svg1, "class", "h-4 w-4 text-green-600 mr-2");
     			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg1, "viewBox", "0 0 24 24");
     			attr_dev(svg1, "fill", "none");
     			attr_dev(svg1, "stroke", "currentColor");
-    			add_location(svg1, file, 105, 8, 3277);
+    			add_location(svg1, file, 105, 8, 3276);
     			attr_dev(span1, "class", "text-sm font-semibold text-green-600 truncate");
-    			add_location(span1, file, 108, 8, 3546);
+    			add_location(span1, file, 108, 8, 3545);
     			attr_dev(li1, "class", "flex items-center cursor-pointer transform duration-150 hover:-translate-y-1");
-    			add_location(li1, file, 104, 6, 3153);
+    			add_location(li1, file, 104, 6, 3152);
     			attr_dev(path2, "stroke-linecap", "round");
     			attr_dev(path2, "stroke-linejoin", "round");
     			attr_dev(path2, "stroke-width", "2.5");
     			attr_dev(path2, "d", "M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12");
-    			add_location(path2, file, 112, 10, 3902);
+    			add_location(path2, file, 112, 10, 3901);
     			attr_dev(svg2, "class", "h-4 w-4 text-green-600 mr-2");
     			attr_dev(svg2, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg2, "fill", "none");
     			attr_dev(svg2, "viewBox", "0 0 24 24");
     			attr_dev(svg2, "stroke", "currentColor");
-    			add_location(svg2, file, 111, 8, 3761);
+    			add_location(svg2, file, 111, 8, 3760);
     			attr_dev(span2, "class", "text-sm font-semibold text-green-600 truncate");
-    			add_location(span2, file, 114, 8, 4090);
+    			add_location(span2, file, 114, 8, 4089);
     			attr_dev(li2, "class", "flex items-center cursor-pointer transform duration-150 hover:-translate-y-1");
-    			add_location(li2, file, 110, 6, 3641);
+    			add_location(li2, file, 110, 6, 3640);
     			attr_dev(input, "id", "json-file");
     			attr_dev(input, "type", "file");
     			attr_dev(input, "class", "invisible");
-    			add_location(input, file, 117, 6, 4213);
+    			add_location(input, file, 117, 6, 4212);
     			attr_dev(li3, "class", "hidden");
-    			add_location(li3, file, 116, 6, 4187);
+    			add_location(li3, file, 116, 6, 4186);
     			attr_dev(ul0, "class", "flex space-x-4");
-    			add_location(ul0, file, 97, 4, 2604);
+    			add_location(ul0, file, 97, 4, 2603);
     			attr_dev(div1, "class", "h-8 w-8 rounded-full bg-green-600 flex items-center justify-center text-green-200 text-lg p-2 mr-8 mt-4");
-    			add_location(div1, file, 120, 4, 4354);
+    			add_location(div1, file, 120, 4, 4353);
     			attr_dev(div2, "class", "flex space-x-4 mr-8 mt-4");
-    			add_location(div2, file, 96, 2, 2561);
+    			add_location(div2, file, 96, 2, 2560);
     			attr_dev(div3, "class", "flex w-full justify-between");
     			add_location(div3, file, 91, 2, 2331);
     			attr_dev(ul1, "class", "flex items-center px-4");
-    			add_location(ul1, file, 124, 4, 4586);
+    			add_location(ul1, file, 124, 4, 4585);
     			attr_dev(div4, "class", "px-20 pt-12");
-    			add_location(div4, file, 123, 2, 4556);
+    			add_location(div4, file, 123, 2, 4555);
     			attr_dev(div5, "class", "example flex flex-col bg-green-200 border-b-4 border-green-600 w-screen overflow-x-scroll svelte-1sfhy2t");
     			add_location(div5, file, 90, 0, 2225);
     		},
@@ -3328,18 +3356,18 @@ var app = (function () {
     			attr_dev(input0, "class", " bg-green-200 apperance-none border-green-600 border rounded-lg focus:outline-none ring-green-600 text-green-600 ring-4 ring-opacity-0 focus:ring-opacity-80 p-2");
     			attr_dev(input0, "placeholder", "username");
     			attr_dev(input0, "type", "text");
-    			add_location(input0, file$3, 28, 4, 807);
+    			add_location(input0, file$3, 31, 4, 975);
     			attr_dev(input1, "id", "password");
     			attr_dev(input1, "class", "bg-green-200 apperance-none border-green-600 border rounded-lg focus:outline-none ring-green-600 text-green-600 ring-4 ring-opacity-0 focus:ring-opacity-80 p-2");
     			attr_dev(input1, "placeholder", "password");
     			attr_dev(input1, "type", "password");
-    			add_location(input1, file$3, 29, 4, 1039);
+    			add_location(input1, file$3, 32, 4, 1207);
     			attr_dev(div0, "class", "bg-green-600 border-4 border-green-600 hover:bg-green-200 hover:text-green-600 text-white text-xl font-semibold p-2 rounded-lg w-full flex items-center justify-center cursor-pointer");
-    			add_location(div0, file$3, 30, 4, 1274);
+    			add_location(div0, file$3, 33, 4, 1442);
     			attr_dev(div1, "class", "flex-col space-y-6 border-4 border-green-600 rounded-lg bg-green-200 p-12 flex items-center justify-center");
-    			add_location(div1, file$3, 27, 2, 682);
+    			add_location(div1, file$3, 30, 2, 850);
     			attr_dev(div2, "class", div2_class_value = `${/*loggedin*/ ctx[0] ? "hidden" : ""} z-30 fixed w-screen h-screen bg-green-200 flex items-center justify-center`);
-    			add_location(div2, file$3, 26, 0, 561);
+    			add_location(div2, file$3, 29, 0, 729);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3403,6 +3431,15 @@ var app = (function () {
     		}
 
     		window.sessionStorage.setItem("api_key", token.token);
+    		let ip = await api.findIp();
+    		console.log(token.token, ip.ip);
+
+    		await api.post("/r/tokens", "", {
+    			ip: ip.ip,
+    			token: token.token,
+    			access: "admin"
+    		});
+
     		let user = await checkUser();
 
     		if (user.username) {
@@ -11342,7 +11379,7 @@ var app = (function () {
     const { console: console_1$4 } = globals;
     const file$6 = "src/App.svelte";
 
-    // (94:2) {#if settingDefault}
+    // (100:2) {#if settingDefault}
     function create_if_block_2$1(ctx) {
     	let div4;
     	let div3;
@@ -11375,21 +11412,21 @@ var app = (function () {
     			div1 = element("div");
     			div1.textContent = "Save";
     			attr_dev(p, "class", "text-md font-semibold text-gray-900");
-    			add_location(p, file$6, 96, 4, 2603);
+    			add_location(p, file$6, 102, 4, 2804);
     			attr_dev(textarea, "id", textarea_id_value = `default-${/*settingDefault*/ ctx[8].name}`);
     			attr_dev(textarea, "class", "focus:outline-none border-2 border-green-200 text-gray-900 apperance-none bg-white rounded-lg w-full p-2");
     			textarea.value = textarea_value_value = /*settingDefault*/ ctx[8].def;
-    			add_location(textarea, file$6, 97, 5, 2711);
+    			add_location(textarea, file$6, 103, 5, 2912);
     			attr_dev(div0, "class", "bg-red-600 text-white cursor-pointer p-2 rounded-lg flex items-center justify-center mr-6");
-    			add_location(div0, file$6, 99, 5, 2952);
+    			add_location(div0, file$6, 105, 5, 3153);
     			attr_dev(div1, "class", "bg-green-600 text-white cursor-pointer p-2 rounded-lg flex items-center justify-center");
-    			add_location(div1, file$6, 100, 6, 3111);
+    			add_location(div1, file$6, 106, 6, 3312);
     			attr_dev(div2, "class", "w-full flex justify-end");
-    			add_location(div2, file$6, 98, 5, 2909);
+    			add_location(div2, file$6, 104, 5, 3110);
     			attr_dev(div3, "class", "rounded-lg bg-white p-12 flex flex-col items-center justify-center space-y-4");
-    			add_location(div3, file$6, 95, 4, 2508);
+    			add_location(div3, file$6, 101, 4, 2709);
     			attr_dev(div4, "class", "bg-transparent h-screen w-screen z-50 fixed flex items-center justify-center");
-    			add_location(div4, file$6, 94, 3, 2413);
+    			add_location(div4, file$6, 100, 3, 2614);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div4, anchor);
@@ -11432,14 +11469,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2$1.name,
     		type: "if",
-    		source: "(94:2) {#if settingDefault}",
+    		source: "(100:2) {#if settingDefault}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (111:2) {#if !loggedin}
+    // (117:2) {#if !loggedin}
     function create_if_block_1$4(ctx) {
     	let loggedin_1;
     	let updating_currentUser;
@@ -11514,14 +11551,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$4.name,
     		type: "if",
-    		source: "(111:2) {#if !loggedin}",
+    		source: "(117:2) {#if !loggedin}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (118:2) {:else}
+    // (124:2) {:else}
     function create_else_block$4(ctx) {
     	let div2;
     	let div1;
@@ -11546,16 +11583,16 @@ var app = (function () {
     			t3 = space();
     			img = element("img");
     			attr_dev(p, "class", "text-3xl w-96 my-12 text-center font-semibold");
-    			add_location(p, file$6, 120, 5, 4721);
+    			add_location(p, file$6, 126, 5, 4922);
     			attr_dev(div0, "class", "bg-green-200 text-gray-900 font-semibold text-lg p-2 flex items-center justify-center rounded-lg cursor-pointer transform duration-150 shadow-md hover:-translate-y-1 hover:shadow-lg");
-    			add_location(div0, file$6, 121, 5, 4832);
+    			add_location(div0, file$6, 127, 5, 5033);
     			attr_dev(div1, "class", "flex flex-col absolute -ml-48");
-    			add_location(div1, file$6, 119, 4, 4672);
+    			add_location(div1, file$6, 125, 4, 4873);
     			attr_dev(img, "class", "h-3/4 object-scale");
     			if (img.src !== (img_src_value = "./empty.png")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file$6, 123, 4, 5091);
+    			add_location(img, file$6, 129, 4, 5292);
     			attr_dev(div2, "class", "w-3/4 h-full flex items-center -mt-24 justify-center");
-    			add_location(div2, file$6, 118, 3, 4601);
+    			add_location(div2, file$6, 124, 3, 4802);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
@@ -11585,14 +11622,14 @@ var app = (function () {
     		block,
     		id: create_else_block$4.name,
     		type: "else",
-    		source: "(118:2) {:else}",
+    		source: "(124:2) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (116:2) {#if headers.length > 0}
+    // (122:2) {#if headers.length > 0}
     function create_if_block$5(ctx) {
     	let table;
     	let updating_fieldEdit;
@@ -11720,7 +11757,7 @@ var app = (function () {
     		block,
     		id: create_if_block$5.name,
     		type: "if",
-    		source: "(116:2) {#if headers.length > 0}",
+    		source: "(122:2) {#if headers.length > 0}",
     		ctx
     	});
 
@@ -11824,9 +11861,9 @@ var app = (function () {
     			div = element("div");
     			if_block2.c();
     			attr_dev(div, "class", "pb-6 w-screen h-full flex justify-center overflow-x-scroll");
-    			add_location(div, file$6, 114, 2, 4231);
+    			add_location(div, file$6, 120, 2, 4432);
     			attr_dev(body, "class", "h-screen");
-    			add_location(body, file$6, 92, 0, 2363);
+    			add_location(body, file$6, 98, 0, 2564);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -12010,13 +12047,19 @@ var app = (function () {
     		}
     	};
 
-    	onMount(async function () {
-    		if (!window.sessionStorage.getItem("api_key")) return false;
+    	onMount(async () => {
+    		if (!window.sessionStorage.getItem("api_key")) {
+    			let findToken = await api.findToken();
+    			findToken = await findToken.json();
+    			console.log(findToken);
+    			if (findToken.message) return false;
+    			window.sessionStorage.setItem("api_key", findToken.token);
+    		}
 
     		try {
     			let user = await checkUser();
 
-    			if (user.username) {
+    			if (user && user.username) {
     				$$invalidate(5, currentUser = user);
     				$$invalidate(4, loggedin = true);
     				loadData();
