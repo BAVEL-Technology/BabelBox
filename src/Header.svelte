@@ -79,6 +79,14 @@ const importJSON = async (table) => {
     let formData = new FormData();
     formData.append("file", file);
     let data = await api.post(`database/${table}/import`, token, formData)
+    let upload = await fetch(`/api/database/${table}/import`, {
+        method: 'POST',
+        headers: {
+          'token': token
+        },
+        body: formData
+    })
+    upload = upload.json()
     dataTables = await api.get('database', token)
     displayedData = await api.get(activeTable, token)
   } catch (err) {

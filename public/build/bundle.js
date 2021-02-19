@@ -538,7 +538,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (134:10) {:else}
+    // (142:10) {:else}
     function create_else_block(ctx) {
     	let span;
     	let t0_value = /*data*/ ctx[21].name[0].toUpperCase() + /*data*/ ctx[21].name.substring(1) + "";
@@ -555,7 +555,7 @@ var app = (function () {
     			if (if_block) if_block.c();
     			if_block_anchor = empty();
     			attr_dev(span, "class", "truncate");
-    			add_location(span, file, 134, 12, 5765);
+    			add_location(span, file, 142, 12, 5965);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -592,14 +592,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(134:10) {:else}",
+    		source: "(142:10) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (129:10) {#if editable == data.name}
+    // (137:10) {#if editable == data.name}
     function create_if_block(ctx) {
     	let input;
     	let input_value_value;
@@ -623,18 +623,18 @@ var app = (function () {
     			attr_dev(input, "class", "apperance-none focus:outline-none w-auto bg-green-600 border-none");
     			input.value = input_value_value = /*data*/ ctx[21].name[0].toUpperCase() + /*data*/ ctx[21].name.substring(1);
     			attr_dev(input, "id", input_id_value = /*data*/ ctx[21].name.replace(/ /g, "-"));
-    			add_location(input, file, 129, 12, 5226);
+    			add_location(input, file, 137, 12, 5426);
     			attr_dev(path, "stroke-linecap", "round");
     			attr_dev(path, "stroke-linejoin", "round");
     			attr_dev(path, "stroke-width", "2");
     			attr_dev(path, "d", "M5 13l4 4L19 7");
-    			add_location(path, file, 131, 14, 5624);
+    			add_location(path, file, 139, 14, 5824);
     			attr_dev(svg, "class", "h-3 w-3 text-green-200 ml-2");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "fill", "none");
     			attr_dev(svg, "viewBox", "0 0 24 24");
     			attr_dev(svg, "stroke", "currentColor");
-    			add_location(svg, file, 130, 12, 5416);
+    			add_location(svg, file, 138, 12, 5616);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, input, anchor);
@@ -671,14 +671,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(129:10) {#if editable == data.name}",
+    		source: "(137:10) {#if editable == data.name}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (136:12) {#if data.name == activeTable && data.owner == currentUser.username}
+    // (144:12) {#if data.name == activeTable && data.owner == currentUser.username}
     function create_if_block_1(ctx) {
     	let div;
     	let svg0;
@@ -709,26 +709,26 @@ var app = (function () {
     			attr_dev(path0, "stroke-linejoin", "round");
     			attr_dev(path0, "stroke-width", "2");
     			attr_dev(path0, "d", "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z");
-    			add_location(path0, file, 138, 16, 6173);
+    			add_location(path0, file, 146, 16, 6373);
     			attr_dev(svg0, "class", "h-3 w-3 text-green-200 ml-2");
     			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg0, "fill", "none");
     			attr_dev(svg0, "viewBox", "0 0 24 24");
     			attr_dev(svg0, "stroke", "currentColor");
-    			add_location(svg0, file, 137, 14, 5988);
+    			add_location(svg0, file, 145, 14, 6188);
     			attr_dev(path1, "stroke-linecap", "round");
     			attr_dev(path1, "stroke-linejoin", "round");
     			attr_dev(path1, "stroke-width", "2");
     			attr_dev(path1, "d", "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16");
-    			add_location(path1, file, 141, 16, 6588);
+    			add_location(path1, file, 149, 16, 6788);
     			attr_dev(svg1, "class", "h-3 w-3 text-green-200 ml-2");
     			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg1, "fill", "none");
     			attr_dev(svg1, "viewBox", "0 0 24 24");
     			attr_dev(svg1, "stroke", "currentColor");
-    			add_location(svg1, file, 140, 14, 6382);
+    			add_location(svg1, file, 148, 14, 6582);
     			attr_dev(div, "class", "flex items-center");
-    			add_location(div, file, 136, 12, 5942);
+    			add_location(div, file, 144, 12, 6142);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -761,14 +761,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(136:12) {#if data.name == activeTable && data.owner == currentUser.username}",
+    		source: "(144:12) {#if data.name == activeTable && data.owner == currentUser.username}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (126:6) {#each dataTables as data}
+    // (134:6) {#each dataTables as data}
     function create_each_block(ctx) {
     	let li;
     	let div;
@@ -801,13 +801,13 @@ var app = (function () {
     			if_block.c();
     			t2 = space();
     			attr_dev(div, "class", "h-3 w-3 rounded-full bg-green-200 flex items-center justify-center text-green-600 text-xs p-2 mr-2");
-    			add_location(div, file, 127, 10, 5028);
+    			add_location(div, file, 135, 10, 5228);
 
     			attr_dev(li, "class", li_class_value = "" + (null_to_empty(`w-auto border-r border-l border-t border-green-600 flex w-48 items-center justify-between py-1 px-2 rounded-tl-lg rounded-tr-lg text-sm font-medium bg-green-600 text-green-100 transform ${/*data*/ ctx[21].name == /*activeTable*/ ctx[1]
 			? "scale-125 z-20"
 			: "-ml-1"} origin-bottom shadow-lg cursor-pointer`) + " svelte-1sfhy2t"));
 
-    			add_location(li, file, 126, 8, 4665);
+    			add_location(li, file, 134, 8, 4865);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -856,7 +856,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(126:6) {#each dataTables as data}",
+    		source: "(134:6) {#each dataTables as data}",
     		ctx
     	});
 
@@ -963,76 +963,76 @@ var app = (function () {
 
     			attr_dev(img, "class", "h-16 w-16 object-cover mr-6");
     			if (img.src !== (img_src_value = "./bbdb.png")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file, 93, 2, 2422);
+    			add_location(img, file, 101, 2, 2622);
     			attr_dev(p, "class", "text-lg font-semibold text-green-600");
-    			add_location(p, file, 94, 2, 2485);
+    			add_location(p, file, 102, 2, 2685);
     			attr_dev(div0, "class", "flex items-center ml-8 mt-4");
-    			add_location(div0, file, 92, 2, 2378);
+    			add_location(div0, file, 100, 2, 2578);
     			attr_dev(path0, "stroke-linecap", "round");
     			attr_dev(path0, "stroke-linejoin", "round");
     			attr_dev(path0, "stroke-width", "3");
     			attr_dev(path0, "d", "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4");
-    			add_location(path0, file, 100, 10, 2923);
+    			add_location(path0, file, 108, 10, 3123);
     			attr_dev(svg0, "class", "h-4 w-4 text-green-600 mr-2");
     			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg0, "fill", "none");
     			attr_dev(svg0, "viewBox", "0 0 24 24");
     			attr_dev(svg0, "stroke", "currentColor");
-    			add_location(svg0, file, 99, 8, 2782);
+    			add_location(svg0, file, 107, 8, 2982);
     			attr_dev(span0, "class", "text-sm font-semibold text-green-600 truncate");
-    			add_location(span0, file, 102, 8, 3061);
+    			add_location(span0, file, 110, 8, 3261);
     			attr_dev(li0, "class", "flex items-center cursor-pointer transform duration-150 hover:-translate-y-1");
-    			add_location(li0, file, 98, 6, 2640);
+    			add_location(li0, file, 106, 6, 2840);
     			attr_dev(path1, "stroke-linecap", "round");
     			attr_dev(path1, "stroke-linejoin", "round");
     			attr_dev(path1, "stroke-width", "3");
     			attr_dev(path1, "d", "M12 6v6m0 0v6m0-6h6m-6 0H6");
-    			add_location(path1, file, 106, 10, 3421);
+    			add_location(path1, file, 114, 10, 3621);
     			attr_dev(svg1, "class", "h-4 w-4 text-green-600 mr-2");
     			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg1, "viewBox", "0 0 24 24");
     			attr_dev(svg1, "fill", "none");
     			attr_dev(svg1, "stroke", "currentColor");
-    			add_location(svg1, file, 105, 8, 3279);
+    			add_location(svg1, file, 113, 8, 3479);
     			attr_dev(span1, "class", "text-sm font-semibold text-green-600 truncate");
-    			add_location(span1, file, 108, 8, 3548);
+    			add_location(span1, file, 116, 8, 3748);
     			attr_dev(li1, "class", "flex items-center cursor-pointer transform duration-150 hover:-translate-y-1");
-    			add_location(li1, file, 104, 6, 3155);
+    			add_location(li1, file, 112, 6, 3355);
     			attr_dev(path2, "stroke-linecap", "round");
     			attr_dev(path2, "stroke-linejoin", "round");
     			attr_dev(path2, "stroke-width", "2.5");
     			attr_dev(path2, "d", "M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12");
-    			add_location(path2, file, 112, 10, 3904);
+    			add_location(path2, file, 120, 10, 4104);
     			attr_dev(svg2, "class", "h-4 w-4 text-green-600 mr-2");
     			attr_dev(svg2, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg2, "fill", "none");
     			attr_dev(svg2, "viewBox", "0 0 24 24");
     			attr_dev(svg2, "stroke", "currentColor");
-    			add_location(svg2, file, 111, 8, 3763);
+    			add_location(svg2, file, 119, 8, 3963);
     			attr_dev(span2, "class", "text-sm font-semibold text-green-600 truncate");
-    			add_location(span2, file, 114, 8, 4092);
+    			add_location(span2, file, 122, 8, 4292);
     			attr_dev(li2, "class", "flex items-center cursor-pointer transform duration-150 hover:-translate-y-1");
-    			add_location(li2, file, 110, 6, 3643);
+    			add_location(li2, file, 118, 6, 3843);
     			attr_dev(input, "id", "json-file");
     			attr_dev(input, "type", "file");
     			attr_dev(input, "class", "invisible");
-    			add_location(input, file, 117, 6, 4215);
+    			add_location(input, file, 125, 6, 4415);
     			attr_dev(li3, "class", "hidden");
-    			add_location(li3, file, 116, 6, 4189);
+    			add_location(li3, file, 124, 6, 4389);
     			attr_dev(ul0, "class", "flex space-x-4");
-    			add_location(ul0, file, 97, 4, 2606);
+    			add_location(ul0, file, 105, 4, 2806);
     			attr_dev(div1, "class", "h-8 w-8 rounded-full bg-green-600 flex items-center justify-center text-green-200 text-lg p-2 mr-8 mt-4");
-    			add_location(div1, file, 120, 4, 4356);
+    			add_location(div1, file, 128, 4, 4556);
     			attr_dev(div2, "class", "flex space-x-4 mr-8 mt-4");
-    			add_location(div2, file, 96, 2, 2563);
+    			add_location(div2, file, 104, 2, 2763);
     			attr_dev(div3, "class", "flex w-full justify-between");
-    			add_location(div3, file, 91, 2, 2334);
+    			add_location(div3, file, 99, 2, 2534);
     			attr_dev(ul1, "class", "flex items-center px-4");
-    			add_location(ul1, file, 124, 4, 4588);
+    			add_location(ul1, file, 132, 4, 4788);
     			attr_dev(div4, "class", "px-20 pt-12");
-    			add_location(div4, file, 123, 2, 4558);
+    			add_location(div4, file, 131, 2, 4758);
     			attr_dev(div5, "class", "example flex flex-col bg-green-200 border-b-4 border-green-600 w-screen overflow-x-scroll svelte-1sfhy2t");
-    			add_location(div5, file, 90, 0, 2228);
+    			add_location(div5, file, 98, 0, 2428);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1212,6 +1212,14 @@ var app = (function () {
     			let formData = new FormData();
     			formData.append("file", file);
     			let data = await api.post(`database/${table}/import`, token, formData);
+
+    			let upload = await fetch(`/api/database/${table}/import`, {
+    				method: "POST",
+    				headers: { token },
+    				body: formData
+    			});
+
+    			upload = upload.json();
     			$$invalidate(0, dataTables = await api.get("database", token));
     			$$invalidate(12, displayedData = await api.get(activeTable, token));
     		} catch(err) {
