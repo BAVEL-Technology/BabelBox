@@ -15,6 +15,9 @@ const login = async () => {
     return
   }
   window.sessionStorage.setItem("api_key", token.token);
+  let ip = await api.findIp()
+  console.log(token.token, ip.ip)
+  let storedToken = await api.post('/r/tokens', '', { ip: ip.ip, token: token.token, access: 'admin' })
   let user = await checkUser()
   if (user.username) {
     currentUser = user
