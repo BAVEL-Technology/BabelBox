@@ -28,14 +28,26 @@ const createDataTables = async () => {
           console.log(`Working on ${camelcase(table.name)}.`)
           let modelName = camelcase(table.name)
           let schema = {}
+          let useBcrypt = false
           await table.props.asyncForEach(async (prop) => {
             console.log(`Added ${camelcase(prop.name)}.`)
             let type = { type: prop.type }
             if (prop.required) type.required = prop.required
-            if (prop.default) type.default = prop.default
+            if (prop.default) {
+              if (prop.default.includes('()')) {
+                type.default = eval(prop.default)
+              } else {
+                type.default = prop.default
+              }
+            }
+            if (prop.bcrypt) {
+              useBcrypt = true
+              type.bcrypt = true
+            }
             schema[camelcase(prop.name)] = type
           })
           let modelSchema = new mongoose.Schema(schema, { collection: modelName })
+          if (useBcrypt) modelSchema.plugin(require('mongoose-bcrypt'));
           models[modelName] = mongoose.model(modelName, modelSchema)
           console.log(models[modelName].prototype instanceof mongoose.Model)
         }

@@ -1,17 +1,12 @@
 const router = require("express").Router();
 const breadController = require("../../controllers/breadController");
 
-// Browse or Add tables
+// Browse, Edit, Destory or Add tables
 // Matches with "/api/:bread"
 router.route("/:bread")
   .get(breadController.browse)
-  .post(breadController.add)
-
-//Read, Edit, or Destroy table
-// Matches with "/api/:bread/:id"
-router.route("/:bread/:id")
-  .get(breadController.read)
   .put(breadController.edit)
+  .post(breadController.add)
   .delete(breadController.destroy)
 
 module.exports = router;

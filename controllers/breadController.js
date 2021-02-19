@@ -1,28 +1,19 @@
 const mongoose = require("mongoose");
 const mongoCreate = require('../utils/mongoCreate.js')
 const camelcase = require('camelcase')
-
 module.exports = {
   browse: async (req, res) => {
     try {
-      console.log(camelcase(req.params.bread))
       let Model = mongoCreate.mongoModels[camelcase(req.params.bread)]
-      console.log(camelcase(req.params.bread)[0].toUpperCase() + req.params.bread.substring(1))
       if (!Model) Model = mongoose.connection.models[camelcase(req.params.bread)[0].toUpperCase() + req.params.bread.substring(1)]
       console.log(Model)
-      const data = await Model.find({})
+      console.log(req.query)
+      const data = await Model.find(req.query)
+      console.log(data)
       res.status(200).json(data)
     } catch (err) {
       console.log(err)
       res.status(400).json(err)
-    }
-  },
-
-  read: async (req, res) => {
-    try {
-
-    } catch (err) {
-
     }
   },
 
@@ -32,8 +23,12 @@ module.exports = {
       console.log(camelcase(req.params.bread)[0].toUpperCase() + req.params.bread.substring(1))
       if (!Model) Model = mongoose.connection.models[camelcase(req.params.bread)[0].toUpperCase() + req.params.bread.substring(1)]
       console.log(Model)
-      const data = await Model.findOneAndUpdate({_id: req.params.id}, req.body)
+      const data = await Model.updateMany(req.body.filters, req.body.updates)
+      console.log(req.body.filters)
+      console.log(req.body.updates)
       console.log(data)
+      const io = req.app.get('socketio');
+      io.emit('breadUpdate', data);
       res.status(200).json(data)
     } catch (err) {
       console.log(err)
@@ -55,9 +50,16 @@ module.exports = {
 
   destroy: async (req, res) => {
     try {
-
+      let Model = mongoCreate.mongoModels[camelcase(req.params.bread)]
+      console.log(camelcase(req.params.bread)[0].toUpperCase() + req.params.bread.substring(1))
+      if (!Model) Model = mongoose.connection.models[camelcase(req.params.bread)[0].toUpperCase() + req.params.bread.substring(1)]
+      console.log(Model)
+      const data = await Model.deleteOne({_id: req.query.id})
+      console.log(data)
+      res.status(200).json(data)
     } catch (err) {
-
+      console.log(err)
+      res.status(400).json(err)
     }
   }
 }

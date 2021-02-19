@@ -1,5 +1,7 @@
 <script>
 import TypeIcon from './TypeIcon.svelte';
+import api from "./utils/api.js";
+import { getHeaders } from "./utils/dataCleaner.js";
 export let headers
 export let activeTable
 export let hoverNewField
@@ -7,18 +9,11 @@ export let dataTables
 export let fetchData
 export let displayedData
 export let currentUser
+export let token
+export let settingDefault
 
 let editFieldName
-let fieldEdit
-let settingDefault
-
-const editField = (field) => {
-  if (fieldEdit == field) {
-    fieldEdit = ''
-  } else {
-    fieldEdit = field
-  }
-}
+export let fieldEdit
 
 const editThisFieldName = (field) => {
   editFieldName = field
@@ -29,126 +24,86 @@ const editThisFieldName = (field) => {
 }
 
 const changeFieldName = async (field, id) => {
-  let domId = field.replace(/ /g, "-")
-  let name = document.querySelector(`#${domId}`).value
-  await fetch(`/api/database/${activeTable.replace(/ /g, "-")}/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ name })
-  })
-  editFieldName = ''
-  const dataResponse = await fetch(`api/database`)
-  let data = await dataResponse.json();
-  dataTables = data
-  let tableHeaders = dataTables.filter((dt) => dt.name == activeTable)[0]
-  if (tableHeaders) {
-    headers = tableHeaders.props
-    headers = headers.map((h) => {
-			h.owner = tableHeaders.owner
-			return h
-		})
-  } else {
-    headers = []
+  try {
+    let domId = field.replace(/ /g, "-")
+    let name = document.querySelector(`#${domId}`).value
+    let update = await api.put(
+      `database/${activeTable.replace(/ /g, "-")}/${id}`,
+      token,
+      { name }
+    )
+    editFieldName = ''
+    displayedData = await api.get(activeTable.replace(/ /g, "-"), token)
+    dataTables = await api.get('database', token)
+    headers = getHeaders(dataTables, activeTable)
+  } catch (err) {
+    console.log(err)
   }
-  const tableDataResposne = await fetchData(activeTable)
-  data = await tableDataResposne.json()
-  displayedData = data
-}
-
-const changeDefault = async (field, id) => {
-  let domId = field.replace(/ /g, "-")
-  let defaultValue = document.querySelector(`#default-${domId}`).value
-  await fetch(`/api/database/${activeTable.replace(/ /g, "-")}/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ default: defaultValue })
-  })
-  settingDefault = ''
-  fieldEdit = ''
-  const dataResponse = await fetch(`api/database`)
-  let data = await dataResponse.json();
-  dataTables = data
-  let tableHeaders = dataTables.filter((dt) => dt.name == activeTable)[0]
-  if (tableHeaders) {
-    headers = tableHeaders.props
-    headers = headers.map((h) => {
-			h.owner = tableHeaders.owner
-			return h
-		})
-  } else {
-    headers = []
-  }
-  const tableDataResposne = await fetchData(activeTable)
-  data = await tableDataResposne.json()
-  displayedData = data
 }
 
 const changeType = async (field, id, type) => {
-  await fetch(`/api/database/${activeTable.replace(/ /g, "-")}/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ type })
-  })
-  fieldEdit = ''
-  const dataResponse = await fetch(`api/database`)
-  let data = await dataResponse.json();
-  dataTables = data
-  let tableHeaders = dataTables.filter((dt) => dt.name == activeTable)[0]
-  if (tableHeaders) {
-    headers = tableHeaders.props
-    headers = headers.map((h) => {
-			h.owner = tableHeaders.owner
-			return h
-		})
-  } else {
-    headers = []
+  try {
+    let update = await api.put(
+      `database/${activeTable.replace(/ /g, "-")}/${id}`,
+      token,
+      { type }
+    )
+    fieldEdit = ''
+    displayedData = await api.get(activeTable.replace(/ /g, "-"), token)
+    dataTables = await api.get('database', token)
+    headers = getHeaders(dataTables, activeTable)
+  } catch (err) {
+    console.log(err)
   }
-  const tableDataResposne = await fetchData(activeTable)
-  data = await tableDataResposne.json()
-  displayedData = data
+}
+
+const changeBcrypt = async (field, id, bcrypt) => {
+  try {
+    let update = await api.put(
+      `database/${activeTable.replace(/ /g, "-")}/${id}`,
+      token,
+      { bcrypt }
+    )
+    fieldEdit = ''
+    displayedData = await api.get(activeTable.replace(/ /g, "-"), token)
+    dataTables = await api.get('database', token)
+    headers = getHeaders(dataTables, activeTable)
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 const newColHeader = async (table) => {
-  const id = 'column' + Math.floor(Math.random() * Math.floor(100));
-  await fetch(`/api/database/${table}`, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ props: {
+  try {
+    const id = 'column' + Math.floor(Math.random() * Math.floor(100));
+    let col = await api.put(
+      `database/${table}`,
+      token,
+      { props: {
           name: id,
           type: "String"
         }
-      })
-  })
-  const dataResponse = await fetch(`api/database`)
-  let data = await dataResponse.json();
-  dataTables = data
-  let tableHeaders = dataTables.filter((dt) => dt.name == table)[0]
-  if (tableHeaders) {
-    headers = tableHeaders.props
-    headers = headers.map((h) => {
-			h.owner = tableHeaders.owner
-			return h
-		})
-  } else {
-    headers = []
+      }
+    )
+    displayedData = await api.get(activeTable.replace(/ /g, "-"), token)
+    dataTables = await api.get('database', token)
+    headers = getHeaders(dataTables, activeTable)
+  } catch (err) {
+    console.log(err)
   }
+}
+
+const setDefault = (name, def, _id) => {
+  console.log('settingDefault')
+  console.log(def)
+  settingDefault = {name, def, _id }
 }
 </script>
 
 <thead class="justify-between sticky top-0 border-b-4 border-gray-300">
   <tr class="">
+    <th class="p-2 bg-gray-200 border-l border-r border-gray-400 text-left bg-gray-200">
+    </th>
     <th class="p-2 bg-gray-200 border-l border-r border-gray-400 text-left bg-gray-200">
       <span class="text-gray-900 text-base font-medium">id</span>
     </th>
@@ -164,13 +119,13 @@ const newColHeader = async (table) => {
             {:else}
               <span class="text-gray-900 text-base font-medium flex-grow">{header.name}</span>
               {#if header.owner == currentUser.username}
-                <svg on:click={() => editField(header.name)} class="cursor-pointer h-3 w-3 text-gray-900 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg on:click={() => fieldEdit == header.name ? fieldEdit = '' : fieldEdit = header.name} class="cursor-pointer h-3 w-3 text-gray-900 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                 </svg>
               {/if}
             {/if}
           </div>
-          <div class={`flex flex-col absolute z-10 mt-4 p-2 bg-gray-700 rounded-md ${fieldEdit == header.name ? '' : 'hidden'}`}>
+          <div class={`flex flex-col absolute z-10 mt-4 w-48 p-2 bg-gray-700 rounded-md ${fieldEdit == header.name ? '' : 'hidden'}`}>
             <ul>
               <li on:click={() => editThisFieldName(header.name)} class="rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center text-white text-sm font-medium">
               <svg class="text-white h-4 w-4 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -178,19 +133,12 @@ const newColHeader = async (table) => {
               </svg>
                 Edit Field Name
               </li>
-              <li on:click={() => settingDefault = header.name} class={`rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${header.default ? 'text-white' : 'text-gray-400'} text-sm font-medium`}>
-              <svg class="h-4 w-4 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <li on:click={() => setDefault(header.name.replace(/ /g, "-"), header.default, header._id)} class={`rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${header.default ? 'text-white' : 'text-gray-400'} text-sm font-medium`}>
+              <svg class="flex-shrink-0 h-4 w-4 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
-                {#if settingDefault}
-                  <input id={`default-${header.name.replace(/ /g, "-")}`} class="focus:outline-none apperance-none bg-white rounded-sm flex-grow" value={header.default} />
-                  <svg on:click={() => changeDefault(header.name, header._id)} class="cursor-pointer h-3 w-3 text-gray-900 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                {:else}
-                  <span>{header.default || 'Set Default'}</span>
-                {/if}
+                <span class="truncate">{header.default || 'Set Default'}</span>
               </li>
               <li on:click={() => changeType(header.name, header._id, 'String')} class={`rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${header.type == 'String' ? 'text-white' : 'text-gray-400'} text-sm font-medium`}>
                 <TypeIcon type="String" color={header.type == 'String' ? 'text-white' : 'text-gray-400'}/>
@@ -211,6 +159,10 @@ const newColHeader = async (table) => {
               <li on:click={() => changeType(header.name, header._id, 'Mixed')} class={`rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${header.type == 'Mixed' ? 'text-white' : 'text-gray-400'} text-sm font-medium`}>
                 <TypeIcon type="Mixed" color={header.type == 'Mixed' ? 'text-white' : 'text-gray-400'}/>
                 Mixed
+              </li>
+              <li on:click={() => changeBcrypt(header.name, header._id, !header.bcrypt)} class={`rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${header.bcrypt ? 'text-white' : 'text-gray-400'} text-sm font-medium`}>
+                <TypeIcon type={{name: 'bcrypt', value: header.bcrypt}} color={header.bcrypt ? 'text-white' : 'text-gray-400'}/>
+                bcrypt
               </li>
             </ul>
           </div>
