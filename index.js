@@ -7,7 +7,6 @@ const session = require('express-session');
 const routes = require('./routes');
 const app = express();
 app.use(cors());
-app.options('*', cors())
 const socket = require('socket.io');
 const mongoCreate = require('./utils/mongoCreate.js')
 //hello

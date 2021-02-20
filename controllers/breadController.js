@@ -7,30 +7,7 @@ module.exports = {
       let Model = mongoCreate.mongoModels[camelcase(req.params.bread)]
       if (!Model) Model = mongoose.connection.models[camelcase(req.params.bread)[0].toUpperCase() + req.params.bread.substring(1)]
       console.log(Model)
-      console.log(req.query)
-      let query = req.query
-      let limit = ''
-      if (query.limit) {
-          limit = parseInt(req.query.limit)
-        delete query['limit']
-      }
-      let sort = '-createdAt'
-      if (query.sort) {
-        if (query.direction) {
-          sort = req.query.direction + req.query.sort
-          delete query['direction'];
-        } else {
-          sort = req.query.sort
-        }
-        delete query['sort'];
-      }
-      let skip = 0
-      if (query.skip) {
-        skip = req.query.skip
-        delete query['skip'];
-      }
-      console.log(limit)
-      const data = await Model.find(req.query).sort(sort).skip(skip).limit(limit)
+      const data = await Model.find(req.query)
       console.log(data)
       res.status(200).json(data)
     } catch (err) {
