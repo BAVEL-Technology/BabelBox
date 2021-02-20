@@ -14,6 +14,7 @@ module.exports = {
       }
       if (Date.now() > t.exp) {
         res.status(200).json({message: 'Token has expired!'})
+        return
       }
 
       res.status(200).json(t)
