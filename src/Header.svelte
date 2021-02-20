@@ -99,7 +99,7 @@ const importJSON = async (table) => {
 <div class="example flex flex-col bg-green-200 border-b-4 border-green-600 w-screen overflow-x-scroll">
   <div class="flex w-full justify-between">
   <div class="flex items-center ml-8 mt-4">
-  <img class="h-16 w-16 object-cover mr-6" src="./bbdb.png" />
+  <img class="h-8 w-8 object-cover mr-2" src="./bbdb.png" />
   <p class="text-lg font-semibold text-green-600">Babel Database</p>
   </div>
   <div class="flex space-x-4 mr-8 mt-4">

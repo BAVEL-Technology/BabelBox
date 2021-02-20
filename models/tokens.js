@@ -8,6 +8,7 @@ const tokensSchema = new Schema({
   access: { type: 'String' },
 });
 
+
 const Tokens = mongoose.model("Tokens", tokensSchema);
 
 module.exports = Tokens;

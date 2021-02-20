@@ -8,6 +8,7 @@ import camelcase from "camelcase";
 import LoggedIn from "./LoggedIn.svelte"
 import ApiDocs from "./ApiDocs.svelte"
 import Table from "./Table.svelte"
+import JSONTree from 'svelte-json-tree'
 	let dataTables = []
 	let displayedData = []
 	let headers = []
@@ -18,6 +19,8 @@ import Table from "./Table.svelte"
 	let token
 	let settingDefault = ''
 	let fieldEdit
+	let viewGrid = true
+	let treeView = ''
 
 	const checkUser = async () => {
 		token = window.sessionStorage.getItem('api_key')
@@ -120,7 +123,13 @@ import Table from "./Table.svelte"
 		<Header token={token} bind:showAPIDocs={showAPIDocs} currentUser={currentUser} dataTables={dataTables} bind:activeTable={activeTable} bind:headers={headers} bind:displayedData={displayedData}/>
 		<div class="pb-6 w-screen h-full flex justify-center overflow-x-scroll">
 		{#if headers.length > 0}
-			<Table bind:fieldEdit={fieldEdit} bind:settingDefault={settingDefault} bind:dataTables={dataTables} newColHeader={newColHeader} bind:displayedData={displayedData} token={token} bind:headers={headers} activeTable={activeTable} currentUser={currentUser}/>
+			{#if viewGrid}
+				<Table bind:treeView={treeView} bind:fieldEdit={fieldEdit} bind:settingDefault={settingDefault} bind:dataTables={dataTables} newColHeader={newColHeader} bind:displayedData={displayedData} token={token} bind:headers={headers} activeTable={activeTable} currentUser={currentUser}/>
+			{:else}
+			<div class="w-full self-start py-4 px-12" style='--json-tree-font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";'>
+				<JSONTree value={displayedData} />
+			</div>
+			{/if}
 		{:else}
 			<div class="w-3/4 h-full flex items-center -mt-24 justify-center">
 				<div class="flex flex-col absolute -ml-48">
@@ -130,6 +139,14 @@ import Table from "./Table.svelte"
 				<img class="h-3/4 object-scale" src="./empty.png" />
 			</div>
 		{/if}
+		</div>
+		<div class={`fixed bottom-0 w-screen h-96 rounded-lg bg-white p-6 transform duration-300 ${treeView ? 'translate-y-0' : 'translate-y-full'} flex flex-col justify-start space-y-4 border-green-600 border-2 overflow-y-scroll`}>
+			<div class="w-full flex justify-end">
+				<svg class="h-6 w-6" on:click={() => treeView = ''} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+				</svg>
+			</div>
+			<JSONTree value={treeView} />
 		</div>
 </body>
 
