@@ -9,9 +9,9 @@ const app = express();
 const socket = require('socket.io');
 const mongoCreate = require('./utils/mongoCreate.js')
 //hello
-app.use(cors());
 app.use(express.json());
 app.use(routes);
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
