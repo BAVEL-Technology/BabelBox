@@ -14,6 +14,7 @@ module.exports = {
       }
       if (Date.now() > t.exp) {
         res.status(200).json({message: 'Token has expired!'})
+        return
       }
 
       res.status(200).json(t)
@@ -27,12 +28,8 @@ module.exports = {
     try {
       let t = await db.Tokens.find({ip: req.body.ip})
       console.log(t)
-      for (let i = 0; i < t.length; i++) {
-        if (t[i].ip != req.body.ip) {
-          let deleted = await db.Tokens.deleteMany({_id: t[i]._id})
-          console.log(deleted)
-        }
-      }
+      let deleted = await db.Tokens.deleteMany({ip: t.ip})
+      console.log(deleted)
       let newT = await db.Tokens.create({
         ip: req.body.ip,
         token: req.body.token,

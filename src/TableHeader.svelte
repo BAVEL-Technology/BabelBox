@@ -105,6 +105,9 @@ const setDefault = (name, def, _id) => {
     <th class="p-2 bg-gray-200 border-l border-r border-gray-400 text-left bg-gray-200">
     </th>
     <th class="p-2 bg-gray-200 border-l border-r border-gray-400 text-left bg-gray-200">
+      <span class="text-gray-900 text-base font-medium"></span>
+    </th>
+    <th class="p-2 bg-gray-200 border-l border-r border-gray-400 text-left bg-gray-200">
       <span class="text-gray-900 text-base font-medium">id</span>
     </th>
       {#each headers as header}
@@ -117,7 +120,7 @@ const setDefault = (name, def, _id) => {
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
               </svg>
             {:else}
-              <span class="text-gray-900 text-base font-medium flex-grow">{header.name}</span>
+              <span class="text-gray-900 text-base font-medium flex-grow whitespace-nowrap">{header.name}</span>
               {#if header.owner == currentUser.username}
                 <svg on:click={() => fieldEdit == header.name ? fieldEdit = '' : fieldEdit = header.name} class="cursor-pointer h-3 w-3 text-gray-900 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
@@ -160,6 +163,10 @@ const setDefault = (name, def, _id) => {
                 <TypeIcon type="Mixed" color={header.type == 'Mixed' ? 'text-white' : 'text-gray-400'}/>
                 Mixed
               </li>
+              <!-- <li on:click={() => changeType(header.name, header._id, 'Socket')} class={`rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${header.type == 'Socket' ? 'text-white' : 'text-gray-400'} text-sm font-medium`}>
+                <TypeIcon type="Socket" color={header.type == 'Socket' ? 'text-white' : 'text-gray-400'}/>
+                Socket Room
+              </li> -->
               <li on:click={() => changeBcrypt(header.name, header._id, !header.bcrypt)} class={`rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${header.bcrypt ? 'text-white' : 'text-gray-400'} text-sm font-medium`}>
                 <TypeIcon type={{name: 'bcrypt', value: header.bcrypt}} color={header.bcrypt ? 'text-white' : 'text-gray-400'}/>
                 bcrypt

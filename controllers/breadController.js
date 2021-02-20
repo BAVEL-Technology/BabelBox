@@ -8,7 +8,29 @@ module.exports = {
       if (!Model) Model = mongoose.connection.models[camelcase(req.params.bread)[0].toUpperCase() + req.params.bread.substring(1)]
       console.log(Model)
       console.log(req.query)
-      const data = await Model.find(req.query)
+      let query = req.query
+      let limit = ''
+      if (query.limit) {
+          limit = parseInt(req.query.limit)
+        delete query['limit']
+      }
+      let sort = '-createdAt'
+      if (query.sort) {
+        if (query.direction) {
+          sort = req.query.direction + req.query.sort
+          delete query['direction'];
+        } else {
+          sort = req.query.sort
+        }
+        delete query['sort'];
+      }
+      let skip = 0
+      if (query.skip) {
+        skip = req.query.skip
+        delete query['skip'];
+      }
+      console.log(limit)
+      const data = await Model.find(req.query).sort(sort).skip(skip).limit(limit)
       console.log(data)
       res.status(200).json(data)
     } catch (err) {
@@ -29,7 +51,8 @@ module.exports = {
       console.log(data)
       const io = req.app.get('socketio');
       io.emit('breadUpdate', data);
-      res.status(200).json(data)
+      const respond = await Model.find(req.body.filters)
+      res.status(200).json(respond)
     } catch (err) {
       console.log(err)
       res.status(400).json(err)
@@ -41,6 +64,8 @@ module.exports = {
       const Model = mongoCreate.mongoModels[camelcase(req.params.bread)]
       console.log(camelcase(req.params.bread))
       let data = await Model.create(req.body)
+      const io = req.app.get('socketio');
+      io.emit('breadUpdate', data);
       res.status(200).json(data)
     } catch (err) {
       console.log(err)

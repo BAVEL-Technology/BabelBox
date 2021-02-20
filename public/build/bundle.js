@@ -74,6 +74,12 @@ var app = (function () {
     function children(element) {
         return Array.from(element.childNodes);
     }
+    function set_style(node, key, value, important) {
+        node.style.setProperty(key, value, important ? 'important' : '');
+    }
+    function toggle_class(element, name, toggle) {
+        element.classList[toggle ? 'add' : 'remove'](name);
+    }
     function custom_event(type, detail) {
         const e = document.createEvent('CustomEvent');
         e.initCustomEvent(type, false, false, detail);
@@ -91,6 +97,21 @@ var app = (function () {
     }
     function onMount(fn) {
         get_current_component().$$.on_mount.push(fn);
+    }
+    function setContext(key, context) {
+        get_current_component().$$.context.set(key, context);
+    }
+    function getContext(key) {
+        return get_current_component().$$.context.get(key);
+    }
+    // TODO figure out if we still want to support
+    // shorthand events, or if we want to implement
+    // a real bubbling mechanism
+    function bubble(component, event) {
+        const callbacks = component.$$.callbacks[event.type];
+        if (callbacks) {
+            callbacks.slice().forEach(fn => fn(event));
+        }
     }
 
     const dirty_components = [];
@@ -538,7 +559,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (134:10) {:else}
+    // (142:10) {:else}
     function create_else_block(ctx) {
     	let span;
     	let t0_value = /*data*/ ctx[21].name[0].toUpperCase() + /*data*/ ctx[21].name.substring(1) + "";
@@ -555,7 +576,7 @@ var app = (function () {
     			if (if_block) if_block.c();
     			if_block_anchor = empty();
     			attr_dev(span, "class", "truncate");
-    			add_location(span, file, 134, 12, 5765);
+    			add_location(span, file, 142, 12, 5963);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -592,14 +613,14 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(134:10) {:else}",
+    		source: "(142:10) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (129:10) {#if editable == data.name}
+    // (137:10) {#if editable == data.name}
     function create_if_block(ctx) {
     	let input;
     	let input_value_value;
@@ -623,18 +644,18 @@ var app = (function () {
     			attr_dev(input, "class", "apperance-none focus:outline-none w-auto bg-green-600 border-none");
     			input.value = input_value_value = /*data*/ ctx[21].name[0].toUpperCase() + /*data*/ ctx[21].name.substring(1);
     			attr_dev(input, "id", input_id_value = /*data*/ ctx[21].name.replace(/ /g, "-"));
-    			add_location(input, file, 129, 12, 5226);
+    			add_location(input, file, 137, 12, 5424);
     			attr_dev(path, "stroke-linecap", "round");
     			attr_dev(path, "stroke-linejoin", "round");
     			attr_dev(path, "stroke-width", "2");
     			attr_dev(path, "d", "M5 13l4 4L19 7");
-    			add_location(path, file, 131, 14, 5624);
+    			add_location(path, file, 139, 14, 5822);
     			attr_dev(svg, "class", "h-3 w-3 text-green-200 ml-2");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "fill", "none");
     			attr_dev(svg, "viewBox", "0 0 24 24");
     			attr_dev(svg, "stroke", "currentColor");
-    			add_location(svg, file, 130, 12, 5416);
+    			add_location(svg, file, 138, 12, 5614);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, input, anchor);
@@ -671,14 +692,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(129:10) {#if editable == data.name}",
+    		source: "(137:10) {#if editable == data.name}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (136:12) {#if data.name == activeTable && data.owner == currentUser.username}
+    // (144:12) {#if data.name == activeTable && data.owner == currentUser.username}
     function create_if_block_1(ctx) {
     	let div;
     	let svg0;
@@ -709,26 +730,26 @@ var app = (function () {
     			attr_dev(path0, "stroke-linejoin", "round");
     			attr_dev(path0, "stroke-width", "2");
     			attr_dev(path0, "d", "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z");
-    			add_location(path0, file, 138, 16, 6173);
+    			add_location(path0, file, 146, 16, 6371);
     			attr_dev(svg0, "class", "h-3 w-3 text-green-200 ml-2");
     			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg0, "fill", "none");
     			attr_dev(svg0, "viewBox", "0 0 24 24");
     			attr_dev(svg0, "stroke", "currentColor");
-    			add_location(svg0, file, 137, 14, 5988);
+    			add_location(svg0, file, 145, 14, 6186);
     			attr_dev(path1, "stroke-linecap", "round");
     			attr_dev(path1, "stroke-linejoin", "round");
     			attr_dev(path1, "stroke-width", "2");
     			attr_dev(path1, "d", "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16");
-    			add_location(path1, file, 141, 16, 6588);
+    			add_location(path1, file, 149, 16, 6786);
     			attr_dev(svg1, "class", "h-3 w-3 text-green-200 ml-2");
     			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg1, "fill", "none");
     			attr_dev(svg1, "viewBox", "0 0 24 24");
     			attr_dev(svg1, "stroke", "currentColor");
-    			add_location(svg1, file, 140, 14, 6382);
+    			add_location(svg1, file, 148, 14, 6580);
     			attr_dev(div, "class", "flex items-center");
-    			add_location(div, file, 136, 12, 5942);
+    			add_location(div, file, 144, 12, 6140);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -761,14 +782,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(136:12) {#if data.name == activeTable && data.owner == currentUser.username}",
+    		source: "(144:12) {#if data.name == activeTable && data.owner == currentUser.username}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (126:6) {#each dataTables as data}
+    // (134:6) {#each dataTables as data}
     function create_each_block(ctx) {
     	let li;
     	let div;
@@ -801,13 +822,13 @@ var app = (function () {
     			if_block.c();
     			t2 = space();
     			attr_dev(div, "class", "h-3 w-3 rounded-full bg-green-200 flex items-center justify-center text-green-600 text-xs p-2 mr-2");
-    			add_location(div, file, 127, 10, 5028);
+    			add_location(div, file, 135, 10, 5226);
 
     			attr_dev(li, "class", li_class_value = "" + (null_to_empty(`w-auto border-r border-l border-t border-green-600 flex w-48 items-center justify-between py-1 px-2 rounded-tl-lg rounded-tr-lg text-sm font-medium bg-green-600 text-green-100 transform ${/*data*/ ctx[21].name == /*activeTable*/ ctx[1]
 			? "scale-125 z-20"
 			: "-ml-1"} origin-bottom shadow-lg cursor-pointer`) + " svelte-1sfhy2t"));
 
-    			add_location(li, file, 126, 8, 4665);
+    			add_location(li, file, 134, 8, 4863);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -856,7 +877,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(126:6) {#each dataTables as data}",
+    		source: "(134:6) {#each dataTables as data}",
     		ctx
     	});
 
@@ -961,78 +982,78 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(img, "class", "h-16 w-16 object-cover mr-6");
+    			attr_dev(img, "class", "h-8 w-8 object-cover mr-2");
     			if (img.src !== (img_src_value = "./bbdb.png")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file, 93, 2, 2422);
+    			add_location(img, file, 101, 2, 2622);
     			attr_dev(p, "class", "text-lg font-semibold text-green-600");
-    			add_location(p, file, 94, 2, 2485);
+    			add_location(p, file, 102, 2, 2683);
     			attr_dev(div0, "class", "flex items-center ml-8 mt-4");
-    			add_location(div0, file, 92, 2, 2378);
+    			add_location(div0, file, 100, 2, 2578);
     			attr_dev(path0, "stroke-linecap", "round");
     			attr_dev(path0, "stroke-linejoin", "round");
     			attr_dev(path0, "stroke-width", "3");
     			attr_dev(path0, "d", "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4");
-    			add_location(path0, file, 100, 10, 2923);
+    			add_location(path0, file, 108, 10, 3121);
     			attr_dev(svg0, "class", "h-4 w-4 text-green-600 mr-2");
     			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg0, "fill", "none");
     			attr_dev(svg0, "viewBox", "0 0 24 24");
     			attr_dev(svg0, "stroke", "currentColor");
-    			add_location(svg0, file, 99, 8, 2782);
+    			add_location(svg0, file, 107, 8, 2980);
     			attr_dev(span0, "class", "text-sm font-semibold text-green-600 truncate");
-    			add_location(span0, file, 102, 8, 3061);
+    			add_location(span0, file, 110, 8, 3259);
     			attr_dev(li0, "class", "flex items-center cursor-pointer transform duration-150 hover:-translate-y-1");
-    			add_location(li0, file, 98, 6, 2640);
+    			add_location(li0, file, 106, 6, 2838);
     			attr_dev(path1, "stroke-linecap", "round");
     			attr_dev(path1, "stroke-linejoin", "round");
     			attr_dev(path1, "stroke-width", "3");
     			attr_dev(path1, "d", "M12 6v6m0 0v6m0-6h6m-6 0H6");
-    			add_location(path1, file, 106, 10, 3421);
+    			add_location(path1, file, 114, 10, 3619);
     			attr_dev(svg1, "class", "h-4 w-4 text-green-600 mr-2");
     			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg1, "viewBox", "0 0 24 24");
     			attr_dev(svg1, "fill", "none");
     			attr_dev(svg1, "stroke", "currentColor");
-    			add_location(svg1, file, 105, 8, 3279);
+    			add_location(svg1, file, 113, 8, 3477);
     			attr_dev(span1, "class", "text-sm font-semibold text-green-600 truncate");
-    			add_location(span1, file, 108, 8, 3548);
+    			add_location(span1, file, 116, 8, 3746);
     			attr_dev(li1, "class", "flex items-center cursor-pointer transform duration-150 hover:-translate-y-1");
-    			add_location(li1, file, 104, 6, 3155);
+    			add_location(li1, file, 112, 6, 3353);
     			attr_dev(path2, "stroke-linecap", "round");
     			attr_dev(path2, "stroke-linejoin", "round");
     			attr_dev(path2, "stroke-width", "2.5");
     			attr_dev(path2, "d", "M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12");
-    			add_location(path2, file, 112, 10, 3904);
+    			add_location(path2, file, 120, 10, 4102);
     			attr_dev(svg2, "class", "h-4 w-4 text-green-600 mr-2");
     			attr_dev(svg2, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg2, "fill", "none");
     			attr_dev(svg2, "viewBox", "0 0 24 24");
     			attr_dev(svg2, "stroke", "currentColor");
-    			add_location(svg2, file, 111, 8, 3763);
+    			add_location(svg2, file, 119, 8, 3961);
     			attr_dev(span2, "class", "text-sm font-semibold text-green-600 truncate");
-    			add_location(span2, file, 114, 8, 4092);
+    			add_location(span2, file, 122, 8, 4290);
     			attr_dev(li2, "class", "flex items-center cursor-pointer transform duration-150 hover:-translate-y-1");
-    			add_location(li2, file, 110, 6, 3643);
+    			add_location(li2, file, 118, 6, 3841);
     			attr_dev(input, "id", "json-file");
     			attr_dev(input, "type", "file");
     			attr_dev(input, "class", "invisible");
-    			add_location(input, file, 117, 6, 4215);
+    			add_location(input, file, 125, 6, 4413);
     			attr_dev(li3, "class", "hidden");
-    			add_location(li3, file, 116, 6, 4189);
+    			add_location(li3, file, 124, 6, 4387);
     			attr_dev(ul0, "class", "flex space-x-4");
-    			add_location(ul0, file, 97, 4, 2606);
+    			add_location(ul0, file, 105, 4, 2804);
     			attr_dev(div1, "class", "h-8 w-8 rounded-full bg-green-600 flex items-center justify-center text-green-200 text-lg p-2 mr-8 mt-4");
-    			add_location(div1, file, 120, 4, 4356);
+    			add_location(div1, file, 128, 4, 4554);
     			attr_dev(div2, "class", "flex space-x-4 mr-8 mt-4");
-    			add_location(div2, file, 96, 2, 2563);
+    			add_location(div2, file, 104, 2, 2761);
     			attr_dev(div3, "class", "flex w-full justify-between");
-    			add_location(div3, file, 91, 2, 2334);
+    			add_location(div3, file, 99, 2, 2534);
     			attr_dev(ul1, "class", "flex items-center px-4");
-    			add_location(ul1, file, 124, 4, 4588);
+    			add_location(ul1, file, 132, 4, 4786);
     			attr_dev(div4, "class", "px-20 pt-12");
-    			add_location(div4, file, 123, 2, 4558);
+    			add_location(div4, file, 131, 2, 4756);
     			attr_dev(div5, "class", "example flex flex-col bg-green-200 border-b-4 border-green-600 w-screen overflow-x-scroll svelte-1sfhy2t");
-    			add_location(div5, file, 90, 0, 2228);
+    			add_location(div5, file, 98, 0, 2428);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1212,6 +1233,14 @@ var app = (function () {
     			let formData = new FormData();
     			formData.append("file", file);
     			let data = await api.post(`database/${table}/import`, token, formData);
+
+    			let upload = await fetch(`/api/database/${table}/import`, {
+    				method: "POST",
+    				headers: { token },
+    				body: formData
+    			});
+
+    			upload = upload.json();
     			$$invalidate(0, dataTables = await api.get("database", token));
     			$$invalidate(12, displayedData = await api.get(activeTable, token));
     		} catch(err) {
@@ -1440,7 +1469,7 @@ var app = (function () {
 
     const file$1 = "src/TypeIcon.svelte";
 
-    // (29:0) {:else}
+    // (33:0) {:else}
     function create_else_block_1(ctx) {
     	let t_value = /*type*/ ctx[0][0] + "";
     	let t;
@@ -1464,7 +1493,54 @@ var app = (function () {
     		block,
     		id: create_else_block_1.name,
     		type: "else",
-    		source: "(29:0) {:else}",
+    		source: "(33:0) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (29:27) 
+    function create_if_block_7(ctx) {
+    	let svg;
+    	let path;
+    	let svg_class_value;
+
+    	const block = {
+    		c: function create() {
+    			svg = svg_element("svg");
+    			path = svg_element("path");
+    			attr_dev(path, "stroke-linecap", "round");
+    			attr_dev(path, "stroke-linejoin", "round");
+    			attr_dev(path, "stroke-width", "2");
+    			attr_dev(path, "d", "M13 10V3L4 14h7v7l9-11h-7z");
+    			add_location(path, file$1, 30, 4, 4985);
+    			attr_dev(svg, "class", svg_class_value = `h-4 w-4 ${/*color*/ ctx[1] || "text-gray-500"}`);
+    			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
+    			attr_dev(svg, "fill", "none");
+    			attr_dev(svg, "viewBox", "0 0 24 24");
+    			attr_dev(svg, "stroke", "currentColor");
+    			add_location(svg, file$1, 29, 2, 4840);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, svg, anchor);
+    			append_dev(svg, path);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*color*/ 2 && svg_class_value !== (svg_class_value = `h-4 w-4 ${/*color*/ ctx[1] || "text-gray-500"}`)) {
+    				attr_dev(svg, "class", svg_class_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(svg);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_7.name,
+    		type: "if",
+    		source: "(29:27) ",
     		ctx
     	});
 
@@ -1845,6 +1921,7 @@ var app = (function () {
     		if (/*type*/ ctx[0] == "Date") return create_if_block_3;
     		if (/*type*/ ctx[0] == "Mixed") return create_if_block_4;
     		if (/*type*/ ctx[0].name == "bcrypt") return create_if_block_5;
+    		if (/*type*/ ctx[0] == "Socket") return create_if_block_7;
     		return create_else_block_1;
     	}
 
@@ -1979,7 +2056,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (119:12) {:else}
+    // (122:12) {:else}
     function create_else_block$2(ctx) {
     	let span;
     	let t0_value = /*header*/ ctx[30].name + "";
@@ -1995,8 +2072,8 @@ var app = (function () {
     			t1 = space();
     			if (if_block) if_block.c();
     			if_block_anchor = empty();
-    			attr_dev(span, "class", "text-gray-900 text-base font-medium flex-grow");
-    			add_location(span, file$2, 119, 14, 3674);
+    			attr_dev(span, "class", "text-gray-900 text-base font-medium flex-grow whitespace-nowrap");
+    			add_location(span, file$2, 122, 14, 3837);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, span, anchor);
@@ -2033,14 +2110,14 @@ var app = (function () {
     		block,
     		id: create_else_block$2.name,
     		type: "else",
-    		source: "(119:12) {:else}",
+    		source: "(122:12) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (114:12) {#if editFieldName == header.name}
+    // (117:12) {#if editFieldName == header.name}
     function create_if_block$2(ctx) {
     	let input;
     	let input_id_value;
@@ -2064,18 +2141,18 @@ var app = (function () {
     			attr_dev(input, "id", input_id_value = /*header*/ ctx[30].name.replace(/ /g, "-"));
     			attr_dev(input, "class", "focus:outline-none apperance-none bg-gray-200 flex-grow");
     			input.value = input_value_value = /*header*/ ctx[30].name;
-    			add_location(input, file$2, 114, 14, 3164);
+    			add_location(input, file$2, 117, 14, 3327);
     			attr_dev(path, "stroke-linecap", "round");
     			attr_dev(path, "stroke-linejoin", "round");
     			attr_dev(path, "stroke-width", "2");
     			attr_dev(path, "d", "M5 13l4 4L19 7");
-    			add_location(path, file$2, 116, 16, 3527);
+    			add_location(path, file$2, 119, 16, 3690);
     			attr_dev(svg, "class", "cursor-pointer h-3 w-3 text-gray-900 ml-2");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "fill", "none");
     			attr_dev(svg, "viewBox", "0 0 24 24");
     			attr_dev(svg, "stroke", "currentColor");
-    			add_location(svg, file$2, 115, 14, 3308);
+    			add_location(svg, file$2, 118, 14, 3471);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, input, anchor);
@@ -2112,14 +2189,14 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(114:12) {#if editFieldName == header.name}",
+    		source: "(117:12) {#if editFieldName == header.name}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (121:14) {#if header.owner == currentUser.username}
+    // (124:14) {#if header.owner == currentUser.username}
     function create_if_block_1$2(ctx) {
     	let svg;
     	let path;
@@ -2138,13 +2215,13 @@ var app = (function () {
     			attr_dev(path, "stroke-linejoin", "round");
     			attr_dev(path, "stroke-width", "2");
     			attr_dev(path, "d", "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z");
-    			add_location(path, file$2, 122, 18, 4076);
+    			add_location(path, file$2, 125, 18, 4257);
     			attr_dev(svg, "class", "cursor-pointer h-3 w-3 text-gray-900 ml-2");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "fill", "none");
     			attr_dev(svg, "viewBox", "0 0 24 24");
     			attr_dev(svg, "stroke", "currentColor");
-    			add_location(svg, file$2, 121, 16, 3828);
+    			add_location(svg, file$2, 124, 16, 4009);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, svg, anchor);
@@ -2169,14 +2246,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$2.name,
     		type: "if",
-    		source: "(121:14) {#if header.owner == currentUser.username}",
+    		source: "(124:14) {#if header.owner == currentUser.username}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (110:6) {#each headers as header}
+    // (113:6) {#each headers as header}
     function create_each_block$1(ctx) {
     	let th;
     	let div0;
@@ -2389,89 +2466,89 @@ var app = (function () {
     			create_component(typeicon6.$$.fragment);
     			t17 = text("\n                bcrypt");
     			attr_dev(div0, "class", "flex items-center");
-    			add_location(div0, file$2, 111, 10, 3028);
+    			add_location(div0, file$2, 114, 10, 3191);
     			attr_dev(path0, "stroke-linecap", "round");
     			attr_dev(path0, "stroke-linejoin", "round");
     			attr_dev(path0, "stroke-width", "2");
     			attr_dev(path0, "d", "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z");
-    			add_location(path0, file$2, 131, 16, 4809);
+    			add_location(path0, file$2, 134, 16, 4990);
     			attr_dev(svg0, "class", "text-white h-4 w-4 mr-3");
     			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg0, "fill", "none");
     			attr_dev(svg0, "viewBox", "0 0 24 24");
     			attr_dev(svg0, "stroke", "currentColor");
-    			add_location(svg0, file$2, 130, 14, 4666);
+    			add_location(svg0, file$2, 133, 14, 4847);
     			attr_dev(li0, "class", "rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center text-white text-sm font-medium");
-    			add_location(li0, file$2, 129, 14, 4494);
+    			add_location(li0, file$2, 132, 14, 4675);
     			attr_dev(path1, "stroke-linecap", "round");
     			attr_dev(path1, "stroke-linejoin", "round");
     			attr_dev(path1, "stroke-width", "2");
     			attr_dev(path1, "d", "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z");
-    			add_location(path1, file$2, 137, 16, 5470);
+    			add_location(path1, file$2, 140, 16, 5651);
     			attr_dev(path2, "stroke-linecap", "round");
     			attr_dev(path2, "stroke-linejoin", "round");
     			attr_dev(path2, "stroke-width", "2");
     			attr_dev(path2, "d", "M15 12a3 3 0 11-6 0 3 3 0 016 0z");
-    			add_location(path2, file$2, 138, 16, 6047);
+    			add_location(path2, file$2, 141, 16, 6228);
     			attr_dev(svg1, "class", "flex-shrink-0 h-4 w-4 mr-3");
     			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg1, "fill", "none");
     			attr_dev(svg1, "viewBox", "0 0 24 24");
     			attr_dev(svg1, "stroke", "currentColor");
-    			add_location(svg1, file$2, 136, 14, 5324);
+    			add_location(svg1, file$2, 139, 14, 5505);
     			attr_dev(span, "class", "truncate");
-    			add_location(span, file$2, 140, 16, 6194);
+    			add_location(span, file$2, 143, 16, 6375);
 
     			attr_dev(li1, "class", li1_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[30].default
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`);
 
-    			add_location(li1, file$2, 135, 14, 5070);
+    			add_location(li1, file$2, 138, 14, 5251);
 
     			attr_dev(li2, "class", li2_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[30].type == "String"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`);
 
-    			add_location(li2, file$2, 142, 14, 6292);
+    			add_location(li2, file$2, 145, 14, 6473);
 
     			attr_dev(li3, "class", li3_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[30].type == "Number"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`);
 
-    			add_location(li3, file$2, 146, 14, 6680);
+    			add_location(li3, file$2, 149, 14, 6861);
 
     			attr_dev(li4, "class", li4_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[30].type == "Boolean"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`);
 
-    			add_location(li4, file$2, 150, 14, 7068);
+    			add_location(li4, file$2, 153, 14, 7249);
 
     			attr_dev(li5, "class", li5_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[30].type == "Date"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`);
 
-    			add_location(li5, file$2, 154, 14, 7461);
+    			add_location(li5, file$2, 157, 14, 7642);
 
     			attr_dev(li6, "class", li6_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[30].type == "Mixed"
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`);
 
-    			add_location(li6, file$2, 158, 14, 7839);
+    			add_location(li6, file$2, 161, 14, 8020);
 
     			attr_dev(li7, "class", li7_class_value = `rounded-sm p-2 cursor-pointer hover:bg-gray-500 flex items-center ${/*header*/ ctx[30].bcrypt
 			? "text-white"
 			: "text-gray-400"} text-sm font-medium`);
 
-    			add_location(li7, file$2, 162, 14, 8222);
-    			add_location(ul, file$2, 128, 12, 4475);
+    			add_location(li7, file$2, 169, 14, 8805);
+    			add_location(ul, file$2, 131, 12, 4656);
 
     			attr_dev(div1, "class", div1_class_value = `flex flex-col absolute z-10 mt-4 w-48 p-2 bg-gray-700 rounded-md ${/*fieldEdit*/ ctx[2] == /*header*/ ctx[30].name
 			? ""
 			: "hidden"}`);
 
-    			add_location(div1, file$2, 127, 10, 4338);
+    			add_location(div1, file$2, 130, 10, 4519);
     			attr_dev(th, "class", "p-2 bg-gray-200 border-l border-r border-gray-400 text-left");
-    			add_location(th, file$2, 110, 8, 2945);
+    			add_location(th, file$2, 113, 8, 3108);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, th, anchor);
@@ -2696,7 +2773,7 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(110:6) {#each headers as header}",
+    		source: "(113:6) {#each headers as header}",
     		ctx
     	});
 
@@ -2710,11 +2787,14 @@ var app = (function () {
     	let t0;
     	let th1;
     	let span0;
-    	let t2;
-    	let t3;
+    	let t1;
     	let th2;
     	let span1;
-    	let th2_class_value;
+    	let t3;
+    	let t4;
+    	let th3;
+    	let span2;
+    	let th3_class_value;
     	let current;
     	let mounted;
     	let dispose;
@@ -2738,31 +2818,38 @@ var app = (function () {
     			t0 = space();
     			th1 = element("th");
     			span0 = element("span");
-    			span0.textContent = "id";
-    			t2 = space();
+    			t1 = space();
+    			th2 = element("th");
+    			span1 = element("span");
+    			span1.textContent = "id";
+    			t3 = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			t3 = space();
-    			th2 = element("th");
-    			span1 = element("span");
-    			span1.textContent = "+";
+    			t4 = space();
+    			th3 = element("th");
+    			span2 = element("span");
+    			span2.textContent = "+";
     			attr_dev(th0, "class", "p-2 bg-gray-200 border-l border-r border-gray-400 text-left bg-gray-200");
     			add_location(th0, file$2, 104, 4, 2645);
     			attr_dev(span0, "class", "text-gray-900 text-base font-medium");
     			add_location(span0, file$2, 107, 6, 2835);
     			attr_dev(th1, "class", "p-2 bg-gray-200 border-l border-r border-gray-400 text-left bg-gray-200");
     			add_location(th1, file$2, 106, 4, 2744);
-    			attr_dev(span1, "class", "text-gray-900 text-base font-medium px-4");
-    			add_location(span1, file$2, 171, 8, 8972);
+    			attr_dev(span1, "class", "text-gray-900 text-base font-medium");
+    			add_location(span1, file$2, 110, 6, 2998);
+    			attr_dev(th2, "class", "p-2 bg-gray-200 border-l border-r border-gray-400 text-left bg-gray-200");
+    			add_location(th2, file$2, 109, 4, 2907);
+    			attr_dev(span2, "class", "text-gray-900 text-base font-medium px-4");
+    			add_location(span2, file$2, 178, 8, 9555);
 
-    			attr_dev(th2, "class", th2_class_value = `${/*headers*/ ctx[0][0].owner == /*currentUser*/ ctx[4].username
+    			attr_dev(th3, "class", th3_class_value = `${/*headers*/ ctx[0][0].owner == /*currentUser*/ ctx[4].username
 			? ""
 			: "hidden"} p-2 bg-gray-200 border-l border-r border-gray-400 text-center cursor-pointer`);
 
-    			add_location(th2, file$2, 170, 6, 8685);
+    			add_location(th3, file$2, 177, 6, 9268);
     			attr_dev(tr, "class", "");
     			add_location(tr, file$2, 103, 2, 2627);
     			attr_dev(thead, "class", "justify-between sticky top-0 border-b-4 border-gray-300");
@@ -2778,22 +2865,25 @@ var app = (function () {
     			append_dev(tr, t0);
     			append_dev(tr, th1);
     			append_dev(th1, span0);
-    			append_dev(tr, t2);
+    			append_dev(tr, t1);
+    			append_dev(tr, th2);
+    			append_dev(th2, span1);
+    			append_dev(tr, t3);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(tr, null);
     			}
 
-    			append_dev(tr, t3);
-    			append_dev(tr, th2);
-    			append_dev(th2, span1);
+    			append_dev(tr, t4);
+    			append_dev(tr, th3);
+    			append_dev(th3, span2);
     			current = true;
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(th2, "mouseover", /*mouseover_handler*/ ctx[27], false, false, false),
-    					listen_dev(th2, "mouseout", /*mouseout_handler*/ ctx[28], false, false, false),
-    					listen_dev(th2, "click", /*click_handler_10*/ ctx[29], false, false, false)
+    					listen_dev(th3, "mouseover", /*mouseover_handler*/ ctx[27], false, false, false),
+    					listen_dev(th3, "mouseout", /*mouseout_handler*/ ctx[28], false, false, false),
+    					listen_dev(th3, "click", /*click_handler_10*/ ctx[29], false, false, false)
     				];
 
     				mounted = true;
@@ -2815,7 +2905,7 @@ var app = (function () {
     						each_blocks[i] = create_each_block$1(child_ctx);
     						each_blocks[i].c();
     						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(tr, t3);
+    						each_blocks[i].m(tr, t4);
     					}
     				}
 
@@ -2828,10 +2918,10 @@ var app = (function () {
     				check_outros();
     			}
 
-    			if (!current || dirty[0] & /*headers, currentUser*/ 17 && th2_class_value !== (th2_class_value = `${/*headers*/ ctx[0][0].owner == /*currentUser*/ ctx[4].username
+    			if (!current || dirty[0] & /*headers, currentUser*/ 17 && th3_class_value !== (th3_class_value = `${/*headers*/ ctx[0][0].owner == /*currentUser*/ ctx[4].username
 			? ""
 			: "hidden"} p-2 bg-gray-200 border-l border-r border-gray-400 text-center cursor-pointer`)) {
-    				attr_dev(th2, "class", th2_class_value);
+    				attr_dev(th3, "class", th3_class_value);
     			}
     		},
     		i: function intro(local) {
@@ -3561,20 +3651,335 @@ var app = (function () {
 
     function get_each_context$2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[3] = list[i];
-    	child_ctx[5] = i;
+    	child_ctx[4] = list[i];
+    	child_ctx[6] = i;
     	return child_ctx;
     }
 
     function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[3] = list[i];
-    	child_ctx[5] = i;
+    	child_ctx[4] = list[i];
+    	child_ctx[6] = i;
     	return child_ctx;
     }
 
-    // (19:62) {#if i != (headers.length - 1)}
+    // (13:4) {#if type == 'curl'}
     function create_if_block_1$3(ctx) {
+    	let p;
+    	let t1;
+    	let ul;
+    	let li0;
+    	let t3;
+    	let li1;
+    	let t4;
+
+    	let t5_value = (/*activeTable*/ ctx[1]
+    	? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    	: "") + "";
+
+    	let t5;
+    	let t6;
+    	let li2;
+    	let t7;
+
+    	let t8_value = (/*activeTable*/ ctx[1]
+    	? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    	: "") + "";
+
+    	let t8;
+    	let t9;
+    	let t10;
+    	let li3;
+    	let t11;
+
+    	let t12_value = (/*activeTable*/ ctx[1]
+    	? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    	: "") + "";
+
+    	let t12;
+    	let t13;
+    	let t14;
+    	let li4;
+    	let t15;
+    	let br0;
+    	let t16;
+    	let t17;
+    	let br1;
+    	let t18;
+    	let t19;
+    	let li5;
+    	let t20;
+
+    	let t21_value = (/*activeTable*/ ctx[1]
+    	? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    	: "") + "";
+
+    	let t21;
+    	let t22;
+    	let t23;
+    	let li6;
+    	let t24;
+    	let br2;
+    	let t25;
+    	let t26;
+    	let br3;
+    	let t27;
+    	let t28;
+    	let li7;
+    	let t29;
+
+    	let t30_value = (/*activeTable*/ ctx[1]
+    	? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    	: "") + "";
+
+    	let t30;
+    	let t31;
+    	let each_value_1 = /*headers*/ ctx[2];
+    	validate_each_argument(each_value_1);
+    	let each_blocks_1 = [];
+
+    	for (let i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks_1[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
+    	}
+
+    	let each_value = /*headers*/ ctx[2];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$2(get_each_context$2(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			p = element("p");
+    			p.textContent = "🍞 BREAD Based API Routes";
+    			t1 = space();
+    			ul = element("ul");
+    			li0 = element("li");
+    			li0.textContent = "API_URL: https://babelboxdb.herokuapp.com/api";
+    			t3 = space();
+    			li1 = element("li");
+    			t4 = text("Browse: GET {API_URL}/");
+    			t5 = text(t5_value);
+    			t6 = space();
+    			li2 = element("li");
+    			t7 = text("Read: GET {API_URL}/");
+    			t8 = text(t8_value);
+    			t9 = text("/{:id}");
+    			t10 = space();
+    			li3 = element("li");
+    			t11 = text("Edit: PUT {API_URL}/");
+    			t12 = text(t12_value);
+    			t13 = text("/{:id}");
+    			t14 = space();
+    			li4 = element("li");
+    			t15 = text("Body: { ");
+    			br0 = element("br");
+    			t16 = space();
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].c();
+    			}
+
+    			t17 = space();
+    			br1 = element("br");
+    			t18 = text("\n          }");
+    			t19 = space();
+    			li5 = element("li");
+    			t20 = text("Add: POST {API_URL}/");
+    			t21 = text(t21_value);
+    			t22 = text("/{:id}");
+    			t23 = space();
+    			li6 = element("li");
+    			t24 = text("Body: { ");
+    			br2 = element("br");
+    			t25 = space();
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			t26 = space();
+    			br3 = element("br");
+    			t27 = text("\n          }");
+    			t28 = space();
+    			li7 = element("li");
+    			t29 = text("Delete: DELETE {API_URL}/");
+    			t30 = text(t30_value);
+    			t31 = text("/{:id}");
+    			attr_dev(p, "class", "text-lg font-semibold text-green-200 px-4 pb-4");
+    			add_location(p, file$4, 13, 4, 542);
+    			attr_dev(li0, "class", "break-words");
+    			add_location(li0, file$4, 15, 6, 715);
+    			attr_dev(li1, "class", "break-words");
+    			add_location(li1, file$4, 16, 6, 796);
+    			attr_dev(li2, "class", "break-words");
+    			add_location(li2, file$4, 17, 6, 929);
+    			attr_dev(li3, "class", "break-words");
+    			add_location(li3, file$4, 18, 6, 1076);
+    			add_location(br0, file$4, 20, 21, 1269);
+    			add_location(br1, file$4, 24, 8, 1441);
+    			attr_dev(li4, "class", "break-words");
+    			add_location(li4, file$4, 19, 6, 1223);
+    			attr_dev(li5, "class", "break-words");
+    			add_location(li5, file$4, 27, 6, 1486);
+    			add_location(br2, file$4, 29, 21, 1679);
+    			add_location(br3, file$4, 33, 8, 1851);
+    			attr_dev(li6, "class", "break-words");
+    			add_location(li6, file$4, 28, 6, 1633);
+    			attr_dev(li7, "class", "break-words");
+    			add_location(li7, file$4, 36, 6, 1896);
+    			attr_dev(ul, "class", "flex flex-col space-y-3 px-4 font-mono text-green-200 text-xs");
+    			add_location(ul, file$4, 14, 4, 634);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, p, anchor);
+    			insert_dev(target, t1, anchor);
+    			insert_dev(target, ul, anchor);
+    			append_dev(ul, li0);
+    			append_dev(ul, t3);
+    			append_dev(ul, li1);
+    			append_dev(li1, t4);
+    			append_dev(li1, t5);
+    			append_dev(ul, t6);
+    			append_dev(ul, li2);
+    			append_dev(li2, t7);
+    			append_dev(li2, t8);
+    			append_dev(li2, t9);
+    			append_dev(ul, t10);
+    			append_dev(ul, li3);
+    			append_dev(li3, t11);
+    			append_dev(li3, t12);
+    			append_dev(li3, t13);
+    			append_dev(ul, t14);
+    			append_dev(ul, li4);
+    			append_dev(li4, t15);
+    			append_dev(li4, br0);
+    			append_dev(li4, t16);
+
+    			for (let i = 0; i < each_blocks_1.length; i += 1) {
+    				each_blocks_1[i].m(li4, null);
+    			}
+
+    			append_dev(li4, t17);
+    			append_dev(li4, br1);
+    			append_dev(li4, t18);
+    			append_dev(ul, t19);
+    			append_dev(ul, li5);
+    			append_dev(li5, t20);
+    			append_dev(li5, t21);
+    			append_dev(li5, t22);
+    			append_dev(ul, t23);
+    			append_dev(ul, li6);
+    			append_dev(li6, t24);
+    			append_dev(li6, br2);
+    			append_dev(li6, t25);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(li6, null);
+    			}
+
+    			append_dev(li6, t26);
+    			append_dev(li6, br3);
+    			append_dev(li6, t27);
+    			append_dev(ul, t28);
+    			append_dev(ul, li7);
+    			append_dev(li7, t29);
+    			append_dev(li7, t30);
+    			append_dev(li7, t31);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*activeTable*/ 2 && t5_value !== (t5_value = (/*activeTable*/ ctx[1]
+    			? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    			: "") + "")) set_data_dev(t5, t5_value);
+
+    			if (dirty & /*activeTable*/ 2 && t8_value !== (t8_value = (/*activeTable*/ ctx[1]
+    			? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    			: "") + "")) set_data_dev(t8, t8_value);
+
+    			if (dirty & /*activeTable*/ 2 && t12_value !== (t12_value = (/*activeTable*/ ctx[1]
+    			? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    			: "") + "")) set_data_dev(t12, t12_value);
+
+    			if (dirty & /*headers, camelcase*/ 4) {
+    				each_value_1 = /*headers*/ ctx[2];
+    				validate_each_argument(each_value_1);
+    				let i;
+
+    				for (i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1(ctx, each_value_1, i);
+
+    					if (each_blocks_1[i]) {
+    						each_blocks_1[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks_1[i] = create_each_block_1(child_ctx);
+    						each_blocks_1[i].c();
+    						each_blocks_1[i].m(li4, t17);
+    					}
+    				}
+
+    				for (; i < each_blocks_1.length; i += 1) {
+    					each_blocks_1[i].d(1);
+    				}
+
+    				each_blocks_1.length = each_value_1.length;
+    			}
+
+    			if (dirty & /*activeTable*/ 2 && t21_value !== (t21_value = (/*activeTable*/ ctx[1]
+    			? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    			: "") + "")) set_data_dev(t21, t21_value);
+
+    			if (dirty & /*headers, camelcase*/ 4) {
+    				each_value = /*headers*/ ctx[2];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$2(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$2(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(li6, t26);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+
+    			if (dirty & /*activeTable*/ 2 && t30_value !== (t30_value = (/*activeTable*/ ctx[1]
+    			? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    			: "") + "")) set_data_dev(t30, t30_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(p);
+    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(ul);
+    			destroy_each(each_blocks_1, detaching);
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1$3.name,
+    		type: "if",
+    		source: "(13:4) {#if type == 'curl'}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (23:64) {#if i != (headers.length - 1)}
+    function create_if_block_3$1(ctx) {
     	let t;
     	let br;
 
@@ -3582,7 +3987,7 @@ var app = (function () {
     		c: function create() {
     			t = text(",");
     			br = element("br");
-    			add_location(br, file$4, 18, 94, 1262);
+    			add_location(br, file$4, 22, 96, 1407);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t, anchor);
@@ -3596,26 +4001,26 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_1$3.name,
+    		id: create_if_block_3$1.name,
     		type: "if",
-    		source: "(19:62) {#if i != (headers.length - 1)}",
+    		source: "(23:64) {#if i != (headers.length - 1)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (18:6) {#each headers as header, i}
+    // (22:8) {#each headers as header, i}
     function create_each_block_1(ctx) {
     	let t0;
-    	let t1_value = camelcase(/*header*/ ctx[3].name) + "";
+    	let t1_value = camelcase(/*header*/ ctx[4].name) + "";
     	let t1;
     	let t2;
-    	let t3_value = /*header*/ ctx[3].type + "";
+    	let t3_value = /*header*/ ctx[4].type + "";
     	let t3;
     	let t4;
     	let if_block_anchor;
-    	let if_block = /*i*/ ctx[5] != /*headers*/ ctx[2].length - 1 && create_if_block_1$3(ctx);
+    	let if_block = /*i*/ ctx[6] != /*headers*/ ctx[2].length - 1 && create_if_block_3$1(ctx);
 
     	const block = {
     		c: function create() {
@@ -3637,12 +4042,12 @@ var app = (function () {
     			insert_dev(target, if_block_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*headers*/ 4 && t1_value !== (t1_value = camelcase(/*header*/ ctx[3].name) + "")) set_data_dev(t1, t1_value);
-    			if (dirty & /*headers*/ 4 && t3_value !== (t3_value = /*header*/ ctx[3].type + "")) set_data_dev(t3, t3_value);
+    			if (dirty & /*headers*/ 4 && t1_value !== (t1_value = camelcase(/*header*/ ctx[4].name) + "")) set_data_dev(t1, t1_value);
+    			if (dirty & /*headers*/ 4 && t3_value !== (t3_value = /*header*/ ctx[4].type + "")) set_data_dev(t3, t3_value);
 
-    			if (/*i*/ ctx[5] != /*headers*/ ctx[2].length - 1) {
+    			if (/*i*/ ctx[6] != /*headers*/ ctx[2].length - 1) {
     				if (if_block) ; else {
-    					if_block = create_if_block_1$3(ctx);
+    					if_block = create_if_block_3$1(ctx);
     					if_block.c();
     					if_block.m(if_block_anchor.parentNode, if_block_anchor);
     				}
@@ -3666,15 +4071,15 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(18:6) {#each headers as header, i}",
+    		source: "(22:8) {#each headers as header, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (28:62) {#if i != (headers.length - 1)}
-    function create_if_block$3(ctx) {
+    // (32:64) {#if i != (headers.length - 1)}
+    function create_if_block_2$1(ctx) {
     	let t;
     	let br;
 
@@ -3682,7 +4087,7 @@ var app = (function () {
     		c: function create() {
     			t = text(",");
     			br = element("br");
-    			add_location(br, file$4, 27, 94, 1654);
+    			add_location(br, file$4, 31, 96, 1817);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t, anchor);
@@ -3696,26 +4101,26 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$3.name,
+    		id: create_if_block_2$1.name,
     		type: "if",
-    		source: "(28:62) {#if i != (headers.length - 1)}",
+    		source: "(32:64) {#if i != (headers.length - 1)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (27:6) {#each headers as header, i}
+    // (31:8) {#each headers as header, i}
     function create_each_block$2(ctx) {
     	let t0;
-    	let t1_value = camelcase(/*header*/ ctx[3].name) + "";
+    	let t1_value = camelcase(/*header*/ ctx[4].name) + "";
     	let t1;
     	let t2;
-    	let t3_value = /*header*/ ctx[3].type + "";
+    	let t3_value = /*header*/ ctx[4].type + "";
     	let t3;
     	let t4;
     	let if_block_anchor;
-    	let if_block = /*i*/ ctx[5] != /*headers*/ ctx[2].length - 1 && create_if_block$3(ctx);
+    	let if_block = /*i*/ ctx[6] != /*headers*/ ctx[2].length - 1 && create_if_block_2$1(ctx);
 
     	const block = {
     		c: function create() {
@@ -3737,12 +4142,12 @@ var app = (function () {
     			insert_dev(target, if_block_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*headers*/ 4 && t1_value !== (t1_value = camelcase(/*header*/ ctx[3].name) + "")) set_data_dev(t1, t1_value);
-    			if (dirty & /*headers*/ 4 && t3_value !== (t3_value = /*header*/ ctx[3].type + "")) set_data_dev(t3, t3_value);
+    			if (dirty & /*headers*/ 4 && t1_value !== (t1_value = camelcase(/*header*/ ctx[4].name) + "")) set_data_dev(t1, t1_value);
+    			if (dirty & /*headers*/ 4 && t3_value !== (t3_value = /*header*/ ctx[4].type + "")) set_data_dev(t3, t3_value);
 
-    			if (/*i*/ ctx[5] != /*headers*/ ctx[2].length - 1) {
+    			if (/*i*/ ctx[6] != /*headers*/ ctx[2].length - 1) {
     				if (if_block) ; else {
-    					if_block = create_if_block$3(ctx);
+    					if_block = create_if_block_2$1(ctx);
     					if_block.c();
     					if_block.m(if_block_anchor.parentNode, if_block_anchor);
     				}
@@ -3766,7 +4171,504 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(27:6) {#each headers as header, i}",
+    		source: "(31:8) {#each headers as header, i}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (40:4) {#if type == 'javascript'}
+    function create_if_block$3(ctx) {
+    	let p0;
+    	let t1;
+    	let p1;
+    	let t3;
+    	let ul;
+    	let li0;
+    	let t5;
+    	let li1;
+    	let t6;
+
+    	let t7_value = (/*activeTable*/ ctx[1]
+    	? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    	: "") + "";
+
+    	let t7;
+    	let t8;
+    	let t9;
+    	let li2;
+    	let t11;
+    	let li3;
+    	let t13;
+    	let li4;
+    	let t15;
+    	let li5;
+    	let t16;
+
+    	let t17_value = (/*activeTable*/ ctx[1]
+    	? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    	: "") + "";
+
+    	let t17;
+    	let t18;
+    	let t19;
+    	let li6;
+    	let t21;
+    	let li7;
+    	let t23;
+    	let li8;
+    	let t24;
+
+    	let t25_value = (/*activeTable*/ ctx[1]
+    	? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    	: "") + "";
+
+    	let t25;
+    	let t26;
+    	let br0;
+    	let t27;
+    	let t28;
+    	let li9;
+    	let t30;
+    	let li10;
+    	let t32;
+    	let li11;
+    	let t33;
+
+    	let t34_value = (/*activeTable*/ ctx[1]
+    	? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    	: "") + "";
+
+    	let t34;
+    	let t35;
+    	let br1;
+    	let t36;
+    	let t37;
+    	let li12;
+    	let t39;
+    	let li13;
+    	let t41;
+    	let li14;
+    	let t42;
+
+    	let t43_value = (/*activeTable*/ ctx[1]
+    	? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    	: "") + "";
+
+    	let t43;
+    	let t44;
+    	let br2;
+    	let t45;
+    	let t46;
+    	let li15;
+    	let t48;
+    	let li16;
+    	let t50;
+    	let li17;
+    	let t51;
+
+    	let t52_value = (/*activeTable*/ ctx[1]
+    	? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    	: "") + "";
+
+    	let t52;
+    	let t53;
+    	let br3;
+    	let t54;
+    	let t55;
+    	let li18;
+    	let t57;
+    	let li19;
+    	let t59;
+    	let li20;
+    	let t60;
+
+    	let t61_value = (/*activeTable*/ ctx[1]
+    	? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    	: "") + "";
+
+    	let t61;
+    	let t62;
+    	let br4;
+    	let t63;
+    	let t64;
+    	let li21;
+    	let t66;
+    	let li22;
+    	let t68;
+    	let li23;
+    	let t70;
+    	let li24;
+    	let t72;
+    	let li25;
+    	let t73;
+    	let br5;
+    	let t74;
+    	let t75;
+    	let li26;
+    	let t77;
+    	let li27;
+    	let t79;
+    	let li28;
+    	let t80;
+
+    	let t81_value = (/*activeTable*/ ctx[1]
+    	? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    	: "") + "";
+
+    	let t81;
+    	let t82;
+    	let br6;
+    	let t83;
+
+    	const block = {
+    		c: function create() {
+    			p0 = element("p");
+    			p0.textContent = "🚀 BabelBread Docs";
+    			t1 = space();
+    			p1 = element("p");
+    			p1.textContent = "import bb from \"./utils/babelBrea\";";
+    			t3 = space();
+    			ul = element("ul");
+    			li0 = element("li");
+    			li0.textContent = "# Browse";
+    			t5 = space();
+    			li1 = element("li");
+    			t6 = text("bb().browse('");
+    			t7 = text(t7_value);
+    			t8 = text("')");
+    			t9 = space();
+    			li2 = element("li");
+    			li2.textContent = "Optional:";
+    			t11 = space();
+    			li3 = element("li");
+    			li3.textContent = "limit:";
+    			t13 = space();
+    			li4 = element("li");
+    			li4.textContent = "The second parameter of browse is the limit.";
+    			t15 = space();
+    			li5 = element("li");
+    			t16 = text("bb().browse('");
+    			t17 = text(t17_value);
+    			t18 = text("', 10)");
+    			t19 = space();
+    			li6 = element("li");
+    			li6.textContent = "skip:";
+    			t21 = space();
+    			li7 = element("li");
+    			li7.textContent = "The third parameter of browse is the skip. This spcifies where to begin the response.";
+    			t23 = space();
+    			li8 = element("li");
+    			t24 = text("bb().browse('");
+    			t25 = text(t25_value);
+    			t26 = text("', 10, 10) ");
+    			br0 = element("br");
+    			t27 = text("\n    //Records 10 - 20 will be returned");
+    			t28 = space();
+    			li9 = element("li");
+    			li9.textContent = "sort:";
+    			t30 = space();
+    			li10 = element("li");
+    			li10.textContent = "The forth parameter of browse is the sort method and parameter. This is defaulted to '-createdAt', so the most\n    recently created records will be displayed first. Notice the '-' specifys a descending order sort.";
+    			t32 = space();
+    			li11 = element("li");
+    			t33 = text("bb().browse('");
+    			t34 = text(t34_value);
+    			t35 = text("', 10, 10, 'createdAt') ");
+    			br1 = element("br");
+    			t36 = text("\n    //Records 10 - 20 will be returned starting from the oldest record");
+    			t37 = space();
+    			li12 = element("li");
+    			li12.textContent = "# Read";
+    			t39 = space();
+    			li13 = element("li");
+    			li13.textContent = "With read you are returned one record that matches the given parameter. You can supply multiple parameters,\n    but you will only be returned one record.";
+    			t41 = space();
+    			li14 = element("li");
+    			t42 = text("bb().read('");
+    			t43 = text(t43_value);
+    			t44 = text("', {_id: '602f456jhd93m'}) ");
+    			br2 = element("br");
+    			t45 = text("\n    //Will return the one record that matches the given _id");
+    			t46 = space();
+    			li15 = element("li");
+    			li15.textContent = "# Edit";
+    			t48 = space();
+    			li16 = element("li");
+    			li16.textContent = "Edit accepts a table, as many key: value paired filters as you wish, and an object of parameters to update. This\n    will update any many records as can be found.";
+    			t50 = space();
+    			li17 = element("li");
+    			t51 = text("bb().edit('");
+    			t52 = text(t52_value);
+    			t53 = text("', {_id: '602f456jhd93m'}, {name: 'Steve'}) ");
+    			br3 = element("br");
+    			t54 = text("\n    //Will return all the records that match the given \"_id\" after the parameter \"name\" has been replaced with \"Steve\" on all of them");
+    			t55 = space();
+    			li18 = element("li");
+    			li18.textContent = "# Add";
+    			t57 = space();
+    			li19 = element("li");
+    			li19.textContent = "Add accepts a table and an object of parameters for the new record";
+    			t59 = space();
+    			li20 = element("li");
+    			t60 = text("bb().add('");
+    			t61 = text(t61_value);
+    			t62 = text("', {name: 'Steve'}) ");
+    			br4 = element("br");
+    			t63 = text("\n    //Will return the new record created");
+    			t64 = space();
+    			li21 = element("li");
+    			li21.textContent = "# Join";
+    			t66 = space();
+    			li22 = element("li");
+    			li22.textContent = "Join allows you to replace a simple data type (String, Number, Boolean) with a record from another table.\n    Join accepts as many objects as you'd like in the following fasion:";
+    			t68 = space();
+    			li23 = element("li");
+    			li23.textContent = "{|col header of joining table|: '|joining table name|, col: |parameter to look for in joing table|'}";
+    			t70 = space();
+    			li24 = element("li");
+    			li24.textContent = "You can then join, in this example, a \"player\" with a column named \"userId\" with the record(s) from the users table\n    that coorispond to that \"userId\".";
+    			t72 = space();
+    			li25 = element("li");
+    			t73 = text("bb().read('players', {_id: '602f456jhd93m'}).join({_id: 'users'}, col: 'userId') ");
+    			br5 = element("br");
+    			t74 = text("\n    //Will return the one record that matches the given _id");
+    			t75 = space();
+    			li26 = element("li");
+    			li26.textContent = "# Array Helpers";
+    			t77 = space();
+    			li27 = element("li");
+    			li27.textContent = "These helpers can help filter through data that has already been returned from the database.\n    Using the extra parameters of browse, edit and destroy can be beneficial when working with larger sets of data.";
+    			t79 = space();
+    			li28 = element("li");
+    			t80 = text("bb().read('");
+    			t81 = text(t81_value);
+    			t82 = text("', {_id: '602f456jhd93m'}) ");
+    			br6 = element("br");
+    			t83 = text("\n    //Will return the one record that matches the given _id");
+    			attr_dev(p0, "class", "text-2xl font-semibold text-green-200 p-4");
+    			add_location(p0, file$4, 40, 4, 2097);
+    			attr_dev(p1, "class", "font-mono m-4 text-green-200 text-md p-2 bg-gray-600 rounded-md");
+    			add_location(p1, file$4, 41, 4, 2177);
+    			attr_dev(li0, "class", "text-lg font-semibold font-sans");
+    			add_location(li0, file$4, 43, 4, 2375);
+    			attr_dev(li1, "class", "p-2 bg-gray-600 rounded-md");
+    			add_location(li1, file$4, 44, 4, 2437);
+    			attr_dev(li2, "class", "text-lg font-semibold font-sans");
+    			add_location(li2, file$4, 45, 4, 2566);
+    			attr_dev(li3, "class", "text-lg font-semibold font-sans");
+    			add_location(li3, file$4, 46, 4, 2629);
+    			attr_dev(li4, "class", "text-lg font-sans");
+    			add_location(li4, file$4, 47, 4, 2689);
+    			attr_dev(li5, "class", "p-2 bg-gray-600 rounded-md");
+    			add_location(li5, file$4, 48, 4, 2773);
+    			attr_dev(li6, "class", "text-lg font-semibold font-sans");
+    			add_location(li6, file$4, 49, 4, 2906);
+    			attr_dev(li7, "class", "text-lg font-sans");
+    			add_location(li7, file$4, 50, 4, 2965);
+    			add_location(br0, file$4, 51, 132, 3219);
+    			attr_dev(li8, "class", "p-2 bg-gray-600 rounded-md");
+    			add_location(li8, file$4, 51, 4, 3091);
+    			attr_dev(li9, "class", "text-lg font-semibold font-sans");
+    			add_location(li9, file$4, 53, 4, 3272);
+    			attr_dev(li10, "class", "text-lg font-sans");
+    			add_location(li10, file$4, 54, 4, 3331);
+    			add_location(br1, file$4, 56, 145, 3726);
+    			attr_dev(li11, "class", "p-2 bg-gray-600 rounded-md");
+    			add_location(li11, file$4, 56, 4, 3585);
+    			attr_dev(li12, "class", "text-lg font-semibold font-sans");
+    			add_location(li12, file$4, 58, 4, 3811);
+    			attr_dev(li13, "class", "text-lg font-semibold font-sans");
+    			add_location(li13, file$4, 59, 4, 3871);
+    			add_location(br2, file$4, 61, 156, 4230);
+    			attr_dev(li14, "class", "p-2 bg-gray-600 rounded-md");
+    			add_location(li14, file$4, 61, 4, 4078);
+    			attr_dev(li15, "class", "text-lg font-semibold font-sans");
+    			add_location(li15, file$4, 63, 4, 4304);
+    			attr_dev(li16, "class", "text-lg font-semibold font-sans");
+    			add_location(li16, file$4, 64, 4, 4364);
+    			add_location(br3, file$4, 66, 183, 4759);
+    			attr_dev(li17, "class", "p-2 bg-gray-600 rounded-md");
+    			add_location(li17, file$4, 66, 4, 4580);
+    			attr_dev(li18, "class", "text-lg font-semibold font-sans");
+    			add_location(li18, file$4, 68, 4, 4907);
+    			attr_dev(li19, "class", "text-lg font-semibold font-sans");
+    			add_location(li19, file$4, 69, 4, 4966);
+    			add_location(br4, file$4, 70, 148, 5230);
+    			attr_dev(li20, "class", "p-2 bg-gray-600 rounded-md");
+    			add_location(li20, file$4, 70, 4, 5086);
+    			attr_dev(li21, "class", "text-lg font-semibold font-sans");
+    			add_location(li21, file$4, 72, 4, 5285);
+    			attr_dev(li22, "class", "text-lg font-semibold font-sans");
+    			add_location(li22, file$4, 73, 4, 5345);
+    			attr_dev(li23, "class", "p-2 bg-gray-600 rounded-md");
+    			add_location(li23, file$4, 75, 4, 5576);
+    			attr_dev(li24, "class", "text-lg font-semibold font-sans");
+    			add_location(li24, file$4, 76, 4, 5735);
+    			add_location(br5, file$4, 78, 144, 6082);
+    			attr_dev(li25, "class", "p-2 bg-gray-600 rounded-md");
+    			add_location(li25, file$4, 78, 4, 5942);
+    			attr_dev(li26, "class", "text-lg font-semibold font-sans");
+    			add_location(li26, file$4, 80, 4, 6156);
+    			attr_dev(li27, "class", "text-lg font-semibold font-sans");
+    			add_location(li27, file$4, 81, 4, 6225);
+    			add_location(br6, file$4, 83, 156, 6639);
+    			attr_dev(li28, "class", "p-2 bg-gray-600 rounded-md");
+    			add_location(li28, file$4, 83, 4, 6487);
+    			attr_dev(ul, "class", "flex flex-col space-y-3 px-4 text-green-200 font-mono text-sm");
+    			add_location(ul, file$4, 42, 4, 2296);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, p0, anchor);
+    			insert_dev(target, t1, anchor);
+    			insert_dev(target, p1, anchor);
+    			insert_dev(target, t3, anchor);
+    			insert_dev(target, ul, anchor);
+    			append_dev(ul, li0);
+    			append_dev(ul, t5);
+    			append_dev(ul, li1);
+    			append_dev(li1, t6);
+    			append_dev(li1, t7);
+    			append_dev(li1, t8);
+    			append_dev(ul, t9);
+    			append_dev(ul, li2);
+    			append_dev(ul, t11);
+    			append_dev(ul, li3);
+    			append_dev(ul, t13);
+    			append_dev(ul, li4);
+    			append_dev(ul, t15);
+    			append_dev(ul, li5);
+    			append_dev(li5, t16);
+    			append_dev(li5, t17);
+    			append_dev(li5, t18);
+    			append_dev(ul, t19);
+    			append_dev(ul, li6);
+    			append_dev(ul, t21);
+    			append_dev(ul, li7);
+    			append_dev(ul, t23);
+    			append_dev(ul, li8);
+    			append_dev(li8, t24);
+    			append_dev(li8, t25);
+    			append_dev(li8, t26);
+    			append_dev(li8, br0);
+    			append_dev(li8, t27);
+    			append_dev(ul, t28);
+    			append_dev(ul, li9);
+    			append_dev(ul, t30);
+    			append_dev(ul, li10);
+    			append_dev(ul, t32);
+    			append_dev(ul, li11);
+    			append_dev(li11, t33);
+    			append_dev(li11, t34);
+    			append_dev(li11, t35);
+    			append_dev(li11, br1);
+    			append_dev(li11, t36);
+    			append_dev(ul, t37);
+    			append_dev(ul, li12);
+    			append_dev(ul, t39);
+    			append_dev(ul, li13);
+    			append_dev(ul, t41);
+    			append_dev(ul, li14);
+    			append_dev(li14, t42);
+    			append_dev(li14, t43);
+    			append_dev(li14, t44);
+    			append_dev(li14, br2);
+    			append_dev(li14, t45);
+    			append_dev(ul, t46);
+    			append_dev(ul, li15);
+    			append_dev(ul, t48);
+    			append_dev(ul, li16);
+    			append_dev(ul, t50);
+    			append_dev(ul, li17);
+    			append_dev(li17, t51);
+    			append_dev(li17, t52);
+    			append_dev(li17, t53);
+    			append_dev(li17, br3);
+    			append_dev(li17, t54);
+    			append_dev(ul, t55);
+    			append_dev(ul, li18);
+    			append_dev(ul, t57);
+    			append_dev(ul, li19);
+    			append_dev(ul, t59);
+    			append_dev(ul, li20);
+    			append_dev(li20, t60);
+    			append_dev(li20, t61);
+    			append_dev(li20, t62);
+    			append_dev(li20, br4);
+    			append_dev(li20, t63);
+    			append_dev(ul, t64);
+    			append_dev(ul, li21);
+    			append_dev(ul, t66);
+    			append_dev(ul, li22);
+    			append_dev(ul, t68);
+    			append_dev(ul, li23);
+    			append_dev(ul, t70);
+    			append_dev(ul, li24);
+    			append_dev(ul, t72);
+    			append_dev(ul, li25);
+    			append_dev(li25, t73);
+    			append_dev(li25, br5);
+    			append_dev(li25, t74);
+    			append_dev(ul, t75);
+    			append_dev(ul, li26);
+    			append_dev(ul, t77);
+    			append_dev(ul, li27);
+    			append_dev(ul, t79);
+    			append_dev(ul, li28);
+    			append_dev(li28, t80);
+    			append_dev(li28, t81);
+    			append_dev(li28, t82);
+    			append_dev(li28, br6);
+    			append_dev(li28, t83);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*activeTable*/ 2 && t7_value !== (t7_value = (/*activeTable*/ ctx[1]
+    			? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    			: "") + "")) set_data_dev(t7, t7_value);
+
+    			if (dirty & /*activeTable*/ 2 && t17_value !== (t17_value = (/*activeTable*/ ctx[1]
+    			? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    			: "") + "")) set_data_dev(t17, t17_value);
+
+    			if (dirty & /*activeTable*/ 2 && t25_value !== (t25_value = (/*activeTable*/ ctx[1]
+    			? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    			: "") + "")) set_data_dev(t25, t25_value);
+
+    			if (dirty & /*activeTable*/ 2 && t34_value !== (t34_value = (/*activeTable*/ ctx[1]
+    			? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    			: "") + "")) set_data_dev(t34, t34_value);
+
+    			if (dirty & /*activeTable*/ 2 && t43_value !== (t43_value = (/*activeTable*/ ctx[1]
+    			? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    			: "") + "")) set_data_dev(t43, t43_value);
+
+    			if (dirty & /*activeTable*/ 2 && t52_value !== (t52_value = (/*activeTable*/ ctx[1]
+    			? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    			: "") + "")) set_data_dev(t52, t52_value);
+
+    			if (dirty & /*activeTable*/ 2 && t61_value !== (t61_value = (/*activeTable*/ ctx[1]
+    			? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    			: "") + "")) set_data_dev(t61, t61_value);
+
+    			if (dirty & /*activeTable*/ 2 && t81_value !== (t81_value = (/*activeTable*/ ctx[1]
+    			? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
+    			: "") + "")) set_data_dev(t81, t81_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(p0);
+    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(p1);
+    			if (detaching) detach_dev(t3);
+    			if (detaching) detach_dev(ul);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$3.name,
+    		type: "if",
+    		source: "(40:4) {#if type == 'javascript'}",
     		ctx
     	});
 
@@ -3774,8 +4676,9 @@ var app = (function () {
     }
 
     function create_fragment$4(ctx) {
-    	let div;
-    	let p0;
+    	let div1;
+    	let div0;
+    	let p;
     	let t0;
 
     	let t1_value = (/*activeTable*/ ctx[1]
@@ -3784,355 +4687,67 @@ var app = (function () {
 
     	let t1;
     	let t2;
-    	let p1;
-    	let t4;
-    	let ul;
-    	let li0;
-    	let t6;
-    	let li1;
-    	let t7;
-
-    	let t8_value = (/*activeTable*/ ctx[1]
-    	? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
-    	: "") + "";
-
-    	let t8;
-    	let t9;
-    	let li2;
-    	let t10;
-
-    	let t11_value = (/*activeTable*/ ctx[1]
-    	? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
-    	: "") + "";
-
-    	let t11;
-    	let t12;
-    	let t13;
-    	let li3;
-    	let t14;
-
-    	let t15_value = (/*activeTable*/ ctx[1]
-    	? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
-    	: "") + "";
-
-    	let t15;
-    	let t16;
-    	let t17;
-    	let li4;
-    	let t18;
-    	let br0;
-    	let t19;
-    	let t20;
-    	let br1;
-    	let t21;
-    	let t22;
-    	let li5;
-    	let t23;
-
-    	let t24_value = (/*activeTable*/ ctx[1]
-    	? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
-    	: "") + "";
-
-    	let t24;
-    	let t25;
-    	let t26;
-    	let li6;
-    	let t27;
-    	let br2;
-    	let t28;
-    	let t29;
-    	let br3;
-    	let t30;
-    	let t31;
-    	let li7;
-    	let t32;
-
-    	let t33_value = (/*activeTable*/ ctx[1]
-    	? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
-    	: "") + "";
-
-    	let t33;
-    	let t34;
-    	let t35;
-    	let p2;
-    	let t37;
-    	let p3;
-    	let div_class_value;
-    	let each_value_1 = /*headers*/ ctx[2];
-    	validate_each_argument(each_value_1);
-    	let each_blocks_1 = [];
-
-    	for (let i = 0; i < each_value_1.length; i += 1) {
-    		each_blocks_1[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
-    	}
-
-    	let each_value = /*headers*/ ctx[2];
-    	validate_each_argument(each_value);
-    	let each_blocks = [];
-
-    	for (let i = 0; i < each_value.length; i += 1) {
-    		each_blocks[i] = create_each_block$2(get_each_context$2(ctx, each_value, i));
-    	}
+    	let t3;
+    	let div1_class_value;
+    	let if_block0 = /*type*/ ctx[3] == "curl" && create_if_block_1$3(ctx);
+    	let if_block1 = /*type*/ ctx[3] == "javascript" && create_if_block$3(ctx);
 
     	const block = {
     		c: function create() {
-    			div = element("div");
-    			p0 = element("p");
+    			div1 = element("div");
+    			div0 = element("div");
+    			p = element("p");
     			t0 = text("API Docs for ");
     			t1 = text(t1_value);
     			t2 = space();
-    			p1 = element("p");
-    			p1.textContent = "🍞 BREAD Based API Routes";
-    			t4 = space();
-    			ul = element("ul");
-    			li0 = element("li");
-    			li0.textContent = "API_URL: https://babelboxdb.herokuapp.com/api";
-    			t6 = space();
-    			li1 = element("li");
-    			t7 = text("Browse: GET {API_URL}/");
-    			t8 = text(t8_value);
-    			t9 = space();
-    			li2 = element("li");
-    			t10 = text("Read: GET {API_URL}/");
-    			t11 = text(t11_value);
-    			t12 = text("/{:id}");
-    			t13 = space();
-    			li3 = element("li");
-    			t14 = text("Edit: PUT {API_URL}/");
-    			t15 = text(t15_value);
-    			t16 = text("/{:id}");
-    			t17 = space();
-    			li4 = element("li");
-    			t18 = text("Body: { ");
-    			br0 = element("br");
-    			t19 = space();
+    			if (if_block0) if_block0.c();
+    			t3 = space();
+    			if (if_block1) if_block1.c();
+    			attr_dev(p, "class", "text-xl font-semibold text-green-200 p-4");
+    			add_location(p, file$4, 11, 4, 367);
+    			attr_dev(div0, "class", "flex flex-col justify-start h-full");
+    			add_location(div0, file$4, 10, 2, 314);
 
-    			for (let i = 0; i < each_blocks_1.length; i += 1) {
-    				each_blocks_1[i].c();
-    			}
-
-    			t20 = space();
-    			br1 = element("br");
-    			t21 = text("\n        }");
-    			t22 = space();
-    			li5 = element("li");
-    			t23 = text("Add: POST {API_URL}/");
-    			t24 = text(t24_value);
-    			t25 = text("/{:id}");
-    			t26 = space();
-    			li6 = element("li");
-    			t27 = text("Body: { ");
-    			br2 = element("br");
-    			t28 = space();
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].c();
-    			}
-
-    			t29 = space();
-    			br3 = element("br");
-    			t30 = text("\n        }");
-    			t31 = space();
-    			li7 = element("li");
-    			t32 = text("Delete: DELETE {API_URL}/");
-    			t33 = text(t33_value);
-    			t34 = text("/{:id}");
-    			t35 = space();
-    			p2 = element("p");
-    			p2.textContent = "API Docs for Database";
-    			t37 = space();
-    			p3 = element("p");
-    			p3.textContent = "🚀";
-    			attr_dev(p0, "class", "text-xl font-semibold text-green-200 p-4");
-    			add_location(p0, file$4, 8, 2, 267);
-    			attr_dev(p1, "class", "text-lg font-semibold text-green-200 px-4 pb-4");
-    			add_location(p1, file$4, 9, 2, 415);
-    			attr_dev(li0, "class", "break-words");
-    			add_location(li0, file$4, 11, 4, 584);
-    			attr_dev(li1, "class", "break-words");
-    			add_location(li1, file$4, 12, 4, 663);
-    			attr_dev(li2, "class", "break-words");
-    			add_location(li2, file$4, 13, 4, 794);
-    			attr_dev(li3, "class", "break-words");
-    			add_location(li3, file$4, 14, 4, 939);
-    			add_location(br0, file$4, 16, 19, 1128);
-    			add_location(br1, file$4, 20, 6, 1292);
-    			attr_dev(li4, "class", "break-words");
-    			add_location(li4, file$4, 15, 4, 1084);
-    			attr_dev(li5, "class", "break-words");
-    			add_location(li5, file$4, 23, 4, 1331);
-    			add_location(br2, file$4, 25, 19, 1520);
-    			add_location(br3, file$4, 29, 6, 1684);
-    			attr_dev(li6, "class", "break-words");
-    			add_location(li6, file$4, 24, 4, 1476);
-    			attr_dev(li7, "class", "break-words");
-    			add_location(li7, file$4, 32, 4, 1723);
-    			attr_dev(ul, "class", "flex flex-col space-y-3 px-4 font-mono text-green-200 text-xs");
-    			add_location(ul, file$4, 10, 2, 505);
-    			attr_dev(p2, "class", "text-xl font-semibold text-green-200 p-4");
-    			add_location(p2, file$4, 34, 2, 1879);
-    			attr_dev(p3, "class", "text-lg font-semibold text-green-200 px-4 pb-4");
-    			add_location(p3, file$4, 35, 2, 1959);
-
-    			attr_dev(div, "class", div_class_value = `fixed z-50 h-screen w-1/2 transform duration-300 flex flex-col ${/*showAPIDocs*/ ctx[0]
+    			attr_dev(div1, "class", div1_class_value = `fixed z-50 overflow-y-scroll h-screen p-4 w-1/2 transform duration-300 flex flex-col ${/*showAPIDocs*/ ctx[0]
 			? "translate-x-0"
 			: "-translate-x-full"} bg-gray-800`);
 
-    			add_location(div, file$4, 7, 0, 119);
+    			add_location(div1, file$4, 9, 0, 144);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div, anchor);
-    			append_dev(div, p0);
-    			append_dev(p0, t0);
-    			append_dev(p0, t1);
-    			append_dev(div, t2);
-    			append_dev(div, p1);
-    			append_dev(div, t4);
-    			append_dev(div, ul);
-    			append_dev(ul, li0);
-    			append_dev(ul, t6);
-    			append_dev(ul, li1);
-    			append_dev(li1, t7);
-    			append_dev(li1, t8);
-    			append_dev(ul, t9);
-    			append_dev(ul, li2);
-    			append_dev(li2, t10);
-    			append_dev(li2, t11);
-    			append_dev(li2, t12);
-    			append_dev(ul, t13);
-    			append_dev(ul, li3);
-    			append_dev(li3, t14);
-    			append_dev(li3, t15);
-    			append_dev(li3, t16);
-    			append_dev(ul, t17);
-    			append_dev(ul, li4);
-    			append_dev(li4, t18);
-    			append_dev(li4, br0);
-    			append_dev(li4, t19);
-
-    			for (let i = 0; i < each_blocks_1.length; i += 1) {
-    				each_blocks_1[i].m(li4, null);
-    			}
-
-    			append_dev(li4, t20);
-    			append_dev(li4, br1);
-    			append_dev(li4, t21);
-    			append_dev(ul, t22);
-    			append_dev(ul, li5);
-    			append_dev(li5, t23);
-    			append_dev(li5, t24);
-    			append_dev(li5, t25);
-    			append_dev(ul, t26);
-    			append_dev(ul, li6);
-    			append_dev(li6, t27);
-    			append_dev(li6, br2);
-    			append_dev(li6, t28);
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(li6, null);
-    			}
-
-    			append_dev(li6, t29);
-    			append_dev(li6, br3);
-    			append_dev(li6, t30);
-    			append_dev(ul, t31);
-    			append_dev(ul, li7);
-    			append_dev(li7, t32);
-    			append_dev(li7, t33);
-    			append_dev(li7, t34);
-    			append_dev(div, t35);
-    			append_dev(div, p2);
-    			append_dev(div, t37);
-    			append_dev(div, p3);
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, div0);
+    			append_dev(div0, p);
+    			append_dev(p, t0);
+    			append_dev(p, t1);
+    			append_dev(div0, t2);
+    			if (if_block0) if_block0.m(div0, null);
+    			append_dev(div0, t3);
+    			if (if_block1) if_block1.m(div0, null);
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*activeTable*/ 2 && t1_value !== (t1_value = (/*activeTable*/ ctx[1]
     			? /*activeTable*/ ctx[1][0].toUpperCase() + /*activeTable*/ ctx[1].substring(1)
     			: "") + "")) set_data_dev(t1, t1_value);
 
-    			if (dirty & /*activeTable*/ 2 && t8_value !== (t8_value = (/*activeTable*/ ctx[1]
-    			? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
-    			: "") + "")) set_data_dev(t8, t8_value);
+    			if (/*type*/ ctx[3] == "curl") if_block0.p(ctx, dirty);
+    			if (/*type*/ ctx[3] == "javascript") if_block1.p(ctx, dirty);
 
-    			if (dirty & /*activeTable*/ 2 && t11_value !== (t11_value = (/*activeTable*/ ctx[1]
-    			? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
-    			: "") + "")) set_data_dev(t11, t11_value);
-
-    			if (dirty & /*activeTable*/ 2 && t15_value !== (t15_value = (/*activeTable*/ ctx[1]
-    			? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
-    			: "") + "")) set_data_dev(t15, t15_value);
-
-    			if (dirty & /*headers, camelcase*/ 4) {
-    				each_value_1 = /*headers*/ ctx[2];
-    				validate_each_argument(each_value_1);
-    				let i;
-
-    				for (i = 0; i < each_value_1.length; i += 1) {
-    					const child_ctx = get_each_context_1(ctx, each_value_1, i);
-
-    					if (each_blocks_1[i]) {
-    						each_blocks_1[i].p(child_ctx, dirty);
-    					} else {
-    						each_blocks_1[i] = create_each_block_1(child_ctx);
-    						each_blocks_1[i].c();
-    						each_blocks_1[i].m(li4, t20);
-    					}
-    				}
-
-    				for (; i < each_blocks_1.length; i += 1) {
-    					each_blocks_1[i].d(1);
-    				}
-
-    				each_blocks_1.length = each_value_1.length;
-    			}
-
-    			if (dirty & /*activeTable*/ 2 && t24_value !== (t24_value = (/*activeTable*/ ctx[1]
-    			? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
-    			: "") + "")) set_data_dev(t24, t24_value);
-
-    			if (dirty & /*headers, camelcase*/ 4) {
-    				each_value = /*headers*/ ctx[2];
-    				validate_each_argument(each_value);
-    				let i;
-
-    				for (i = 0; i < each_value.length; i += 1) {
-    					const child_ctx = get_each_context$2(ctx, each_value, i);
-
-    					if (each_blocks[i]) {
-    						each_blocks[i].p(child_ctx, dirty);
-    					} else {
-    						each_blocks[i] = create_each_block$2(child_ctx);
-    						each_blocks[i].c();
-    						each_blocks[i].m(li6, t29);
-    					}
-    				}
-
-    				for (; i < each_blocks.length; i += 1) {
-    					each_blocks[i].d(1);
-    				}
-
-    				each_blocks.length = each_value.length;
-    			}
-
-    			if (dirty & /*activeTable*/ 2 && t33_value !== (t33_value = (/*activeTable*/ ctx[1]
-    			? /*activeTable*/ ctx[1].toLowerCase().replace(/ /g, "-")
-    			: "") + "")) set_data_dev(t33, t33_value);
-
-    			if (dirty & /*showAPIDocs*/ 1 && div_class_value !== (div_class_value = `fixed z-50 h-screen w-1/2 transform duration-300 flex flex-col ${/*showAPIDocs*/ ctx[0]
+    			if (dirty & /*showAPIDocs*/ 1 && div1_class_value !== (div1_class_value = `fixed z-50 overflow-y-scroll h-screen p-4 w-1/2 transform duration-300 flex flex-col ${/*showAPIDocs*/ ctx[0]
 			? "translate-x-0"
 			: "-translate-x-full"} bg-gray-800`)) {
-    				attr_dev(div, "class", div_class_value);
+    				attr_dev(div1, "class", div1_class_value);
     			}
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div);
-    			destroy_each(each_blocks_1, detaching);
-    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(div1);
+    			if (if_block0) if_block0.d();
+    			if (if_block1) if_block1.d();
     		}
     	};
 
@@ -4153,6 +4768,7 @@ var app = (function () {
     	let { showAPIDocs } = $$props;
     	let { activeTable } = $$props;
     	let { headers } = $$props;
+    	let type = "javascript";
     	const writable_props = ["showAPIDocs", "activeTable", "headers"];
 
     	Object.keys($$props).forEach(key => {
@@ -4169,20 +4785,22 @@ var app = (function () {
     		camelcase,
     		showAPIDocs,
     		activeTable,
-    		headers
+    		headers,
+    		type
     	});
 
     	$$self.$inject_state = $$props => {
     		if ("showAPIDocs" in $$props) $$invalidate(0, showAPIDocs = $$props.showAPIDocs);
     		if ("activeTable" in $$props) $$invalidate(1, activeTable = $$props.activeTable);
     		if ("headers" in $$props) $$invalidate(2, headers = $$props.headers);
+    		if ("type" in $$props) $$invalidate(3, type = $$props.type);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [showAPIDocs, activeTable, headers];
+    	return [showAPIDocs, activeTable, headers, type];
     }
 
     class ApiDocs extends SvelteComponentDev {
@@ -10373,23 +10991,23 @@ var app = (function () {
 
     function get_each_context$3(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[24] = list[i];
+    	child_ctx[26] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_1$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[27] = list[i];
+    	child_ctx[29] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[24] = list[i];
+    	child_ctx[26] = list[i];
     	return child_ctx;
     }
 
-    // (90:14) {:else}
+    // (98:14) {:else}
     function create_else_block$3(ctx) {
     	let input;
     	let input_value_value;
@@ -10397,15 +11015,15 @@ var app = (function () {
     	let dispose;
 
     	function keyup_handler() {
-    		return /*keyup_handler*/ ctx[21](/*header*/ ctx[24], /*data*/ ctx[27]);
+    		return /*keyup_handler*/ ctx[23](/*header*/ ctx[26], /*data*/ ctx[29]);
     	}
 
     	const block = {
     		c: function create() {
     			input = element("input");
     			attr_dev(input, "class", "apperance-none focus:outline-none w-11/12");
-    			input.value = input_value_value = /*data*/ ctx[27][camelcase(/*header*/ ctx[24].name[0].toLowerCase() + /*header*/ ctx[24].name.substring(1))] || "";
-    			add_location(input, file$5, 90, 16, 3057);
+    			input.value = input_value_value = /*data*/ ctx[29][camelcase(/*header*/ ctx[26].name[0].toLowerCase() + /*header*/ ctx[26].name.substring(1))] || "";
+    			add_location(input, file$5, 98, 16, 4172);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, input, anchor);
@@ -10418,7 +11036,7 @@ var app = (function () {
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
 
-    			if (dirty[0] & /*displayedData, headers*/ 5 && input_value_value !== (input_value_value = /*data*/ ctx[27][camelcase(/*header*/ ctx[24].name[0].toLowerCase() + /*header*/ ctx[24].name.substring(1))] || "") && input.value !== input_value_value) {
+    			if (dirty[0] & /*displayedData, headers*/ 5 && input_value_value !== (input_value_value = /*data*/ ctx[29][camelcase(/*header*/ ctx[26].name[0].toLowerCase() + /*header*/ ctx[26].name.substring(1))] || "") && input.value !== input_value_value) {
     				prop_dev(input, "value", input_value_value);
     			}
     		},
@@ -10433,14 +11051,14 @@ var app = (function () {
     		block,
     		id: create_else_block$3.name,
     		type: "else",
-    		source: "(90:14) {:else}",
+    		source: "(98:14) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (88:14) {#if header.bcrypt}
+    // (96:14) {#if header.bcrypt}
     function create_if_block$4(ctx) {
     	let t;
 
@@ -10461,20 +11079,20 @@ var app = (function () {
     		block,
     		id: create_if_block$4.name,
     		type: "if",
-    		source: "(88:14) {#if header.bcrypt}",
+    		source: "(96:14) {#if header.bcrypt}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (85:8) {#each headers as header}
+    // (93:8) {#each headers as header}
     function create_each_block_2(ctx) {
     	let td;
     	let span;
 
     	function select_block_type(ctx, dirty) {
-    		if (/*header*/ ctx[24].bcrypt) return create_if_block$4;
+    		if (/*header*/ ctx[26].bcrypt) return create_if_block$4;
     		return create_else_block$3;
     	}
 
@@ -10487,9 +11105,9 @@ var app = (function () {
     			span = element("span");
     			if_block.c();
     			attr_dev(span, "class", "text-center ml-2 text-base");
-    			add_location(span, file$5, 86, 12, 2914);
+    			add_location(span, file$5, 94, 12, 4029);
     			attr_dev(td, "class", "border border-gray-300 text-left");
-    			add_location(td, file$5, 85, 10, 2856);
+    			add_location(td, file$5, 93, 10, 3971);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -10519,35 +11137,44 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(85:8) {#each headers as header}",
+    		source: "(93:8) {#each headers as header}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (71:4) {#each displayedData as data}
+    // (72:4) {#each displayedData as data}
     function create_each_block_1$1(ctx) {
     	let tr;
     	let td0;
     	let span0;
-    	let svg;
-    	let path;
+    	let svg0;
+    	let path0;
     	let t0;
     	let td1;
     	let span1;
-    	let t1_value = /*data*/ ctx[27]._id + "";
+    	let svg1;
+    	let path1;
     	let t1;
-    	let t2;
-    	let t3;
     	let td2;
     	let span2;
-    	let td2_class_value;
+    	let t2_value = /*data*/ ctx[29]._id + "";
+    	let t2;
+    	let t3;
+    	let t4;
+    	let td3;
+    	let span3;
+    	let td3_class_value;
     	let mounted;
     	let dispose;
 
     	function click_handler() {
-    		return /*click_handler*/ ctx[20](/*data*/ ctx[27]);
+    		return /*click_handler*/ ctx[21](/*data*/ ctx[29]);
+    	}
+
+    	function click_handler_1() {
+    		return /*click_handler_1*/ ctx[22](/*data*/ ctx[29]);
     	}
 
     	let each_value_2 = /*headers*/ ctx[0];
@@ -10563,77 +11190,103 @@ var app = (function () {
     			tr = element("tr");
     			td0 = element("td");
     			span0 = element("span");
-    			svg = svg_element("svg");
-    			path = svg_element("path");
+    			svg0 = svg_element("svg");
+    			path0 = svg_element("path");
     			t0 = space();
     			td1 = element("td");
     			span1 = element("span");
-    			t1 = text(t1_value);
-    			t2 = space();
+    			svg1 = svg_element("svg");
+    			path1 = svg_element("path");
+    			t1 = space();
+    			td2 = element("td");
+    			span2 = element("span");
+    			t2 = text(t2_value);
+    			t3 = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			t3 = space();
-    			td2 = element("td");
-    			span2 = element("span");
-    			attr_dev(path, "stroke-linecap", "round");
-    			attr_dev(path, "stroke-linejoin", "round");
-    			attr_dev(path, "stroke-width", "2");
-    			attr_dev(path, "d", "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16");
-    			add_location(path, file$5, 75, 14, 2389);
-    			attr_dev(svg, "class", "h-4 w-4 text-gray-700 hover:text-gray-900 cursor-pointer");
-    			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
-    			attr_dev(svg, "fill", "none");
-    			attr_dev(svg, "viewBox", "0 0 24 24");
-    			attr_dev(svg, "stroke", "currentColor");
-    			add_location(svg, file$5, 74, 12, 2215);
+    			t4 = space();
+    			td3 = element("td");
+    			span3 = element("span");
+    			attr_dev(path0, "d", "M384 144c0-44.2-35.8-80-80-80s-80 35.8-80 80c0 36.4 24.3 67.1 57.5 76.8c-.6 16.1-4.2 28.5-11 36.9c-15.4 19.2-49.3 22.4-85.2 25.7c-28.2 2.6-57.4 5.4-81.3 16.9v-144c32.5-10.2 56-40.5 56-76.3c0-44.2-35.8-80-80-80S0 35.8 0 80c0 35.8 23.5 66.1 56 76.3v199.3C23.5 365.9 0 396.2 0 432c0 44.2 35.8 80 80 80s80-35.8 80-80c0-34-21.2-63.1-51.2-74.6c3.1-5.2 7.8-9.8 14.9-13.4c16.2-8.2 40.4-10.4 66.1-12.8c42.2-3.9 90-8.4 118.2-43.4c14-17.4 21.1-39.8 21.6-67.9c31.6-10.8 54.4-40.7 54.4-75.9zM80 64c8.8 0 16 7.2 16 16s-7.2 16-16 16s-16-7.2-16-16s7.2-16 16-16zm0 384c-8.8 0-16-7.2-16-16s7.2-16 16-16s16 7.2 16 16s-7.2 16-16 16zm224-320c8.8 0 16 7.2 16 16s-7.2 16-16 16s-16-7.2-16-16s7.2-16 16-16z");
+    			add_location(path0, file$5, 76, 14, 2412);
+    			attr_dev(svg0, "class", "cursor-pointer text-gray-700 hover:text-gray-900 h-4 w-4");
+    			attr_dev(svg0, "fill", "currentColor");
+    			attr_dev(svg0, "stroke", "currentColor");
+    			attr_dev(svg0, "xmlns", "http://www.w3.org/2000/svg");
+    			attr_dev(svg0, "viewBox", "0 0 384 512");
+    			add_location(svg0, file$5, 75, 12, 2228);
     			attr_dev(span0, "class", "flex items-center justify-center");
-    			add_location(span0, file$5, 73, 10, 2115);
+    			add_location(span0, file$5, 74, 10, 2135);
     			attr_dev(td0, "class", "bg-white border border-gray-300 text-left");
-    			add_location(td0, file$5, 72, 8, 2050);
-    			attr_dev(span1, "class", "text-center ml-2 text-base");
-    			add_location(span1, file$5, 80, 10, 2715);
+    			add_location(td0, file$5, 73, 8, 2070);
+    			attr_dev(path1, "stroke-linecap", "round");
+    			attr_dev(path1, "stroke-linejoin", "round");
+    			attr_dev(path1, "stroke-width", "2");
+    			attr_dev(path1, "d", "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16");
+    			add_location(path1, file$5, 83, 14, 3504);
+    			attr_dev(svg1, "class", "h-4 w-4 text-gray-700 hover:text-gray-900 cursor-pointer");
+    			attr_dev(svg1, "xmlns", "http://www.w3.org/2000/svg");
+    			attr_dev(svg1, "fill", "none");
+    			attr_dev(svg1, "viewBox", "0 0 24 24");
+    			attr_dev(svg1, "stroke", "currentColor");
+    			add_location(svg1, file$5, 82, 12, 3330);
+    			attr_dev(span1, "class", "flex items-center justify-center");
+    			add_location(span1, file$5, 81, 10, 3230);
     			attr_dev(td1, "class", "bg-white border border-gray-300 text-left");
-    			add_location(td1, file$5, 79, 8, 2650);
+    			add_location(td1, file$5, 80, 8, 3165);
     			attr_dev(span2, "class", "text-center ml-2 text-base");
-    			add_location(span2, file$5, 96, 10, 3427);
-    			attr_dev(td2, "class", td2_class_value = `border border-gray-300 text-left ${/*hoverNewField*/ ctx[8] ? "" : "hidden"}`);
-    			add_location(td2, file$5, 95, 8, 3336);
+    			add_location(span2, file$5, 88, 10, 3830);
+    			attr_dev(td2, "class", "bg-white border border-gray-300 text-left");
+    			add_location(td2, file$5, 87, 8, 3765);
+    			attr_dev(span3, "class", "text-center ml-2 text-base");
+    			add_location(span3, file$5, 104, 10, 4542);
+    			attr_dev(td3, "class", td3_class_value = `border border-gray-300 text-left ${/*hoverNewField*/ ctx[9] ? "" : "hidden"}`);
+    			add_location(td3, file$5, 103, 8, 4451);
     			attr_dev(tr, "class", "bg-white");
-    			add_location(tr, file$5, 71, 6, 2020);
+    			add_location(tr, file$5, 72, 6, 2040);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
     			append_dev(tr, td0);
     			append_dev(td0, span0);
-    			append_dev(span0, svg);
-    			append_dev(svg, path);
+    			append_dev(span0, svg0);
+    			append_dev(svg0, path0);
     			append_dev(tr, t0);
     			append_dev(tr, td1);
     			append_dev(td1, span1);
-    			append_dev(span1, t1);
-    			append_dev(tr, t2);
+    			append_dev(span1, svg1);
+    			append_dev(svg1, path1);
+    			append_dev(tr, t1);
+    			append_dev(tr, td2);
+    			append_dev(td2, span2);
+    			append_dev(span2, t2);
+    			append_dev(tr, t3);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(tr, null);
     			}
 
-    			append_dev(tr, t3);
-    			append_dev(tr, td2);
-    			append_dev(td2, span2);
+    			append_dev(tr, t4);
+    			append_dev(tr, td3);
+    			append_dev(td3, span3);
 
     			if (!mounted) {
-    				dispose = listen_dev(span0, "click", click_handler, false, false, false);
+    				dispose = [
+    					listen_dev(span0, "click", click_handler, false, false, false),
+    					listen_dev(span1, "click", click_handler_1, false, false, false)
+    				];
+
     				mounted = true;
     			}
     		},
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
-    			if (dirty[0] & /*displayedData*/ 4 && t1_value !== (t1_value = /*data*/ ctx[27]._id + "")) set_data_dev(t1, t1_value);
+    			if (dirty[0] & /*displayedData*/ 4 && t2_value !== (t2_value = /*data*/ ctx[29]._id + "")) set_data_dev(t2, t2_value);
 
-    			if (dirty[0] & /*headers, displayedData, updateField*/ 517) {
+    			if (dirty[0] & /*headers, displayedData, updateField*/ 1029) {
     				each_value_2 = /*headers*/ ctx[0];
     				validate_each_argument(each_value_2);
     				let i;
@@ -10646,7 +11299,7 @@ var app = (function () {
     					} else {
     						each_blocks[i] = create_each_block_2(child_ctx);
     						each_blocks[i].c();
-    						each_blocks[i].m(tr, t3);
+    						each_blocks[i].m(tr, t4);
     					}
     				}
 
@@ -10657,15 +11310,15 @@ var app = (function () {
     				each_blocks.length = each_value_2.length;
     			}
 
-    			if (dirty[0] & /*hoverNewField*/ 256 && td2_class_value !== (td2_class_value = `border border-gray-300 text-left ${/*hoverNewField*/ ctx[8] ? "" : "hidden"}`)) {
-    				attr_dev(td2, "class", td2_class_value);
+    			if (dirty[0] & /*hoverNewField*/ 512 && td3_class_value !== (td3_class_value = `border border-gray-300 text-left ${/*hoverNewField*/ ctx[9] ? "" : "hidden"}`)) {
+    				attr_dev(td3, "class", td3_class_value);
     			}
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(tr);
     			destroy_each(each_blocks, detaching);
     			mounted = false;
-    			dispose();
+    			run_all(dispose);
     		}
     	};
 
@@ -10673,14 +11326,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1$1.name,
     		type: "each",
-    		source: "(71:4) {#each displayedData as data}",
+    		source: "(72:4) {#each displayedData as data}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (108:6) {#each headers as header}
+    // (116:6) {#each headers as header}
     function create_each_block$3(ctx) {
     	let td;
     	let span;
@@ -10690,9 +11343,9 @@ var app = (function () {
     			td = element("td");
     			span = element("span");
     			attr_dev(span, "class", "text-center ml-2 text-base");
-    			add_location(span, file$5, 109, 10, 3843);
+    			add_location(span, file$5, 117, 10, 4958);
     			attr_dev(td, "class", "border border-gray-300 text-left");
-    			add_location(td, file$5, 108, 8, 3787);
+    			add_location(td, file$5, 116, 8, 4902);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, td, anchor);
@@ -10707,7 +11360,7 @@ var app = (function () {
     		block,
     		id: create_each_block$3.name,
     		type: "each",
-    		source: "(108:6) {#each headers as header}",
+    		source: "(116:6) {#each headers as header}",
     		ctx
     	});
 
@@ -10737,42 +11390,45 @@ var app = (function () {
     	let t5;
     	let td2;
     	let span2;
-    	let td2_class_value;
+    	let t6;
+    	let td3;
+    	let span3;
+    	let td3_class_value;
     	let current;
     	let mounted;
     	let dispose;
 
     	function tableheader_fieldEdit_binding(value) {
-    		/*tableheader_fieldEdit_binding*/ ctx[13](value);
+    		/*tableheader_fieldEdit_binding*/ ctx[14](value);
     	}
 
     	function tableheader_settingDefault_binding(value) {
-    		/*tableheader_settingDefault_binding*/ ctx[14](value);
+    		/*tableheader_settingDefault_binding*/ ctx[15](value);
     	}
 
     	function tableheader_hoverNewField_binding(value) {
-    		/*tableheader_hoverNewField_binding*/ ctx[15](value);
+    		/*tableheader_hoverNewField_binding*/ ctx[16](value);
     	}
 
     	function tableheader_headers_binding(value) {
-    		/*tableheader_headers_binding*/ ctx[16](value);
+    		/*tableheader_headers_binding*/ ctx[17](value);
     	}
 
     	function tableheader_activeTable_binding(value) {
-    		/*tableheader_activeTable_binding*/ ctx[17](value);
+    		/*tableheader_activeTable_binding*/ ctx[18](value);
     	}
 
     	function tableheader_dataTables_binding(value) {
-    		/*tableheader_dataTables_binding*/ ctx[18](value);
+    		/*tableheader_dataTables_binding*/ ctx[19](value);
     	}
 
     	function tableheader_displayedData_binding(value) {
-    		/*tableheader_displayedData_binding*/ ctx[19](value);
+    		/*tableheader_displayedData_binding*/ ctx[20](value);
     	}
 
     	let tableheader_props = {
-    		token: /*token*/ ctx[6],
-    		currentUser: /*currentUser*/ ctx[7]
+    		token: /*token*/ ctx[7],
+    		currentUser: /*currentUser*/ ctx[8]
     	};
 
     	if (/*fieldEdit*/ ctx[5] !== void 0) {
@@ -10783,8 +11439,8 @@ var app = (function () {
     		tableheader_props.settingDefault = /*settingDefault*/ ctx[4];
     	}
 
-    	if (/*hoverNewField*/ ctx[8] !== void 0) {
-    		tableheader_props.hoverNewField = /*hoverNewField*/ ctx[8];
+    	if (/*hoverNewField*/ ctx[9] !== void 0) {
+    		tableheader_props.hoverNewField = /*hoverNewField*/ ctx[9];
     	}
 
     	if (/*headers*/ ctx[0] !== void 0) {
@@ -10855,24 +11511,31 @@ var app = (function () {
     			t5 = space();
     			td2 = element("td");
     			span2 = element("span");
+    			t6 = space();
+    			td3 = element("td");
+    			span3 = element("span");
     			attr_dev(span0, "class", "text-center ml-2 text-base");
-    			add_location(span0, file$5, 103, 8, 3665);
+    			add_location(span0, file$5, 111, 8, 4780);
     			attr_dev(td0, "class", "border border-gray-300 text-left");
-    			add_location(td0, file$5, 102, 6, 3611);
+    			add_location(td0, file$5, 110, 6, 4726);
     			attr_dev(span1, "class", "text-center ml-2 text-base");
-    			add_location(span1, file$5, 115, 8, 3992);
+    			add_location(span1, file$5, 123, 8, 5107);
     			attr_dev(td1, "class", "border border-gray-300 text-left");
-    			add_location(td1, file$5, 114, 6, 3938);
+    			add_location(td1, file$5, 122, 6, 5053);
     			attr_dev(span2, "class", "text-center ml-2 text-base");
-    			add_location(span2, file$5, 120, 8, 4158);
-    			attr_dev(td2, "class", td2_class_value = `border border-gray-300 text-left ${/*hoverNewField*/ ctx[8] ? "" : "hidden"}`);
-    			add_location(td2, file$5, 119, 6, 4069);
+    			add_location(span2, file$5, 128, 8, 5238);
+    			attr_dev(td2, "class", "border border-gray-300 text-left");
+    			add_location(td2, file$5, 127, 6, 5184);
+    			attr_dev(span3, "class", "text-center ml-2 text-base");
+    			add_location(span3, file$5, 133, 8, 5404);
+    			attr_dev(td3, "class", td3_class_value = `border border-gray-300 text-left ${/*hoverNewField*/ ctx[9] ? "" : "hidden"}`);
+    			add_location(td3, file$5, 132, 6, 5315);
     			attr_dev(tr, "class", "bg-white hover:bg-gray-100 cursor-pointer");
-    			add_location(tr, file$5, 101, 4, 3529);
+    			add_location(tr, file$5, 109, 4, 4644);
     			attr_dev(tbody, "class", "bg-gray-200");
-    			add_location(tbody, file$5, 69, 2, 1952);
+    			add_location(tbody, file$5, 70, 2, 1972);
     			attr_dev(table, "class", "min-w-full");
-    			add_location(table, file$5, 67, 0, 1649);
+    			add_location(table, file$5, 68, 0, 1669);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -10903,17 +11566,20 @@ var app = (function () {
     			append_dev(tr, t5);
     			append_dev(tr, td2);
     			append_dev(td2, span2);
+    			append_dev(tr, t6);
+    			append_dev(tr, td3);
+    			append_dev(td3, span3);
     			current = true;
 
     			if (!mounted) {
-    				dispose = listen_dev(tr, "click", /*newRecord*/ ctx[11], false, false, false);
+    				dispose = listen_dev(tr, "click", /*newRecord*/ ctx[12], false, false, false);
     				mounted = true;
     			}
     		},
     		p: function update(ctx, dirty) {
     			const tableheader_changes = {};
-    			if (dirty[0] & /*token*/ 64) tableheader_changes.token = /*token*/ ctx[6];
-    			if (dirty[0] & /*currentUser*/ 128) tableheader_changes.currentUser = /*currentUser*/ ctx[7];
+    			if (dirty[0] & /*token*/ 128) tableheader_changes.token = /*token*/ ctx[7];
+    			if (dirty[0] & /*currentUser*/ 256) tableheader_changes.currentUser = /*currentUser*/ ctx[8];
 
     			if (!updating_fieldEdit && dirty[0] & /*fieldEdit*/ 32) {
     				updating_fieldEdit = true;
@@ -10927,9 +11593,9 @@ var app = (function () {
     				add_flush_callback(() => updating_settingDefault = false);
     			}
 
-    			if (!updating_hoverNewField && dirty[0] & /*hoverNewField*/ 256) {
+    			if (!updating_hoverNewField && dirty[0] & /*hoverNewField*/ 512) {
     				updating_hoverNewField = true;
-    				tableheader_changes.hoverNewField = /*hoverNewField*/ ctx[8];
+    				tableheader_changes.hoverNewField = /*hoverNewField*/ ctx[9];
     				add_flush_callback(() => updating_hoverNewField = false);
     			}
 
@@ -10959,7 +11625,7 @@ var app = (function () {
 
     			tableheader.$set(tableheader_changes);
 
-    			if (dirty[0] & /*hoverNewField, headers, displayedData, updateField, deleteRecord*/ 1797) {
+    			if (dirty[0] & /*hoverNewField, headers, displayedData, updateField, deleteRecord, treeView*/ 3653) {
     				each_value_1 = /*displayedData*/ ctx[2];
     				validate_each_argument(each_value_1);
     				let i;
@@ -11006,8 +11672,8 @@ var app = (function () {
     				each_blocks.length = each_value.length;
     			}
 
-    			if (!current || dirty[0] & /*hoverNewField*/ 256 && td2_class_value !== (td2_class_value = `border border-gray-300 text-left ${/*hoverNewField*/ ctx[8] ? "" : "hidden"}`)) {
-    				attr_dev(td2, "class", td2_class_value);
+    			if (!current || dirty[0] & /*hoverNewField*/ 512 && td3_class_value !== (td3_class_value = `border border-gray-300 text-left ${/*hoverNewField*/ ctx[9] ? "" : "hidden"}`)) {
+    				attr_dev(td3, "class", td3_class_value);
     			}
     		},
     		i: function intro(local) {
@@ -11052,6 +11718,7 @@ var app = (function () {
     	let { dataTables } = $$props;
     	let { settingDefault } = $$props;
     	let { fieldEdit } = $$props;
+    	let { treeView } = $$props;
 
     	const reload = async () => {
     		try {
@@ -11107,7 +11774,8 @@ var app = (function () {
     		"newColHeader",
     		"dataTables",
     		"settingDefault",
-    		"fieldEdit"
+    		"fieldEdit",
+    		"treeView"
     	];
 
     	Object.keys($$props).forEach(key => {
@@ -11126,7 +11794,7 @@ var app = (function () {
 
     	function tableheader_hoverNewField_binding(value) {
     		hoverNewField = value;
-    		$$invalidate(8, hoverNewField);
+    		$$invalidate(9, hoverNewField);
     	}
 
     	function tableheader_headers_binding(value) {
@@ -11149,19 +11817,21 @@ var app = (function () {
     		$$invalidate(2, displayedData);
     	}
 
-    	const click_handler = data => deleteRecord(data._id);
+    	const click_handler = data => $$invalidate(6, treeView = data);
+    	const click_handler_1 = data => deleteRecord(data._id);
     	const keyup_handler = (header, data) => updateField(header.name, data._id);
 
     	$$self.$$set = $$props => {
-    		if ("token" in $$props) $$invalidate(6, token = $$props.token);
-    		if ("currentUser" in $$props) $$invalidate(7, currentUser = $$props.currentUser);
+    		if ("token" in $$props) $$invalidate(7, token = $$props.token);
+    		if ("currentUser" in $$props) $$invalidate(8, currentUser = $$props.currentUser);
     		if ("headers" in $$props) $$invalidate(0, headers = $$props.headers);
     		if ("activeTable" in $$props) $$invalidate(1, activeTable = $$props.activeTable);
     		if ("displayedData" in $$props) $$invalidate(2, displayedData = $$props.displayedData);
-    		if ("newColHeader" in $$props) $$invalidate(12, newColHeader = $$props.newColHeader);
+    		if ("newColHeader" in $$props) $$invalidate(13, newColHeader = $$props.newColHeader);
     		if ("dataTables" in $$props) $$invalidate(3, dataTables = $$props.dataTables);
     		if ("settingDefault" in $$props) $$invalidate(4, settingDefault = $$props.settingDefault);
     		if ("fieldEdit" in $$props) $$invalidate(5, fieldEdit = $$props.fieldEdit);
+    		if ("treeView" in $$props) $$invalidate(6, treeView = $$props.treeView);
     	};
 
     	$$self.$capture_state = () => ({
@@ -11179,6 +11849,7 @@ var app = (function () {
     		settingDefault,
     		fieldEdit,
     		io,
+    		treeView,
     		reload,
     		socket,
     		hoverNewField,
@@ -11188,16 +11859,17 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("token" in $$props) $$invalidate(6, token = $$props.token);
-    		if ("currentUser" in $$props) $$invalidate(7, currentUser = $$props.currentUser);
+    		if ("token" in $$props) $$invalidate(7, token = $$props.token);
+    		if ("currentUser" in $$props) $$invalidate(8, currentUser = $$props.currentUser);
     		if ("headers" in $$props) $$invalidate(0, headers = $$props.headers);
     		if ("activeTable" in $$props) $$invalidate(1, activeTable = $$props.activeTable);
     		if ("displayedData" in $$props) $$invalidate(2, displayedData = $$props.displayedData);
-    		if ("newColHeader" in $$props) $$invalidate(12, newColHeader = $$props.newColHeader);
+    		if ("newColHeader" in $$props) $$invalidate(13, newColHeader = $$props.newColHeader);
     		if ("dataTables" in $$props) $$invalidate(3, dataTables = $$props.dataTables);
     		if ("settingDefault" in $$props) $$invalidate(4, settingDefault = $$props.settingDefault);
     		if ("fieldEdit" in $$props) $$invalidate(5, fieldEdit = $$props.fieldEdit);
-    		if ("hoverNewField" in $$props) $$invalidate(8, hoverNewField = $$props.hoverNewField);
+    		if ("treeView" in $$props) $$invalidate(6, treeView = $$props.treeView);
+    		if ("hoverNewField" in $$props) $$invalidate(9, hoverNewField = $$props.hoverNewField);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -11211,6 +11883,7 @@ var app = (function () {
     		dataTables,
     		settingDefault,
     		fieldEdit,
+    		treeView,
     		token,
     		currentUser,
     		hoverNewField,
@@ -11226,6 +11899,7 @@ var app = (function () {
     		tableheader_dataTables_binding,
     		tableheader_displayedData_binding,
     		click_handler,
+    		click_handler_1,
     		keyup_handler
     	];
     }
@@ -11241,15 +11915,16 @@ var app = (function () {
     			create_fragment$5,
     			safe_not_equal,
     			{
-    				token: 6,
-    				currentUser: 7,
+    				token: 7,
+    				currentUser: 8,
     				headers: 0,
     				activeTable: 1,
     				displayedData: 2,
-    				newColHeader: 12,
+    				newColHeader: 13,
     				dataTables: 3,
     				settingDefault: 4,
-    				fieldEdit: 5
+    				fieldEdit: 5,
+    				treeView: 6
     			},
     			[-1, -1]
     		);
@@ -11264,11 +11939,11 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*token*/ ctx[6] === undefined && !("token" in props)) {
+    		if (/*token*/ ctx[7] === undefined && !("token" in props)) {
     			console_1$3.warn("<Table> was created without expected prop 'token'");
     		}
 
-    		if (/*currentUser*/ ctx[7] === undefined && !("currentUser" in props)) {
+    		if (/*currentUser*/ ctx[8] === undefined && !("currentUser" in props)) {
     			console_1$3.warn("<Table> was created without expected prop 'currentUser'");
     		}
 
@@ -11284,7 +11959,7 @@ var app = (function () {
     			console_1$3.warn("<Table> was created without expected prop 'displayedData'");
     		}
 
-    		if (/*newColHeader*/ ctx[12] === undefined && !("newColHeader" in props)) {
+    		if (/*newColHeader*/ ctx[13] === undefined && !("newColHeader" in props)) {
     			console_1$3.warn("<Table> was created without expected prop 'newColHeader'");
     		}
 
@@ -11298,6 +11973,10 @@ var app = (function () {
 
     		if (/*fieldEdit*/ ctx[5] === undefined && !("fieldEdit" in props)) {
     			console_1$3.warn("<Table> was created without expected prop 'fieldEdit'");
+    		}
+
+    		if (/*treeView*/ ctx[6] === undefined && !("treeView" in props)) {
+    			console_1$3.warn("<Table> was created without expected prop 'treeView'");
     		}
     	}
 
@@ -11372,15 +12051,3740 @@ var app = (function () {
     	set fieldEdit(value) {
     		throw new Error("<Table>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
+
+    	get treeView() {
+    		throw new Error("<Table>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set treeView(value) {
+    		throw new Error("<Table>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    var contextKey = {};
+
+    /* node_modules/svelte-json-tree/src/JSONArrow.svelte generated by Svelte v3.32.3 */
+
+    const file$6 = "node_modules/svelte-json-tree/src/JSONArrow.svelte";
+
+    function create_fragment$6(ctx) {
+    	let div1;
+    	let div0;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			div1 = element("div");
+    			div0 = element("div");
+    			div0.textContent = `${"▶"}`;
+    			attr_dev(div0, "class", "arrow svelte-1kgqahl");
+    			toggle_class(div0, "expanded", /*expanded*/ ctx[0]);
+    			add_location(div0, file$6, 33, 2, 674);
+    			attr_dev(div1, "class", "container svelte-1kgqahl");
+    			add_location(div1, file$6, 32, 0, 639);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, div0);
+
+    			if (!mounted) {
+    				dispose = listen_dev(div1, "click", /*click_handler*/ ctx[1], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*expanded*/ 1) {
+    				toggle_class(div0, "expanded", /*expanded*/ ctx[0]);
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div1);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$6.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$6($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("JSONArrow", slots, []);
+    	let { expanded } = $$props;
+    	const writable_props = ["expanded"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<JSONArrow> was created with unknown prop '${key}'`);
+    	});
+
+    	function click_handler(event) {
+    		bubble($$self, event);
+    	}
+
+    	$$self.$$set = $$props => {
+    		if ("expanded" in $$props) $$invalidate(0, expanded = $$props.expanded);
+    	};
+
+    	$$self.$capture_state = () => ({ expanded });
+
+    	$$self.$inject_state = $$props => {
+    		if ("expanded" in $$props) $$invalidate(0, expanded = $$props.expanded);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [expanded, click_handler];
+    }
+
+    class JSONArrow extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$6, create_fragment$6, safe_not_equal, { expanded: 0 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "JSONArrow",
+    			options,
+    			id: create_fragment$6.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*expanded*/ ctx[0] === undefined && !("expanded" in props)) {
+    			console.warn("<JSONArrow> was created without expected prop 'expanded'");
+    		}
+    	}
+
+    	get expanded() {
+    		throw new Error("<JSONArrow>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set expanded(value) {
+    		throw new Error("<JSONArrow>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* node_modules/svelte-json-tree/src/JSONKey.svelte generated by Svelte v3.32.3 */
+
+    const file$7 = "node_modules/svelte-json-tree/src/JSONKey.svelte";
+
+    // (16:0) {#if showKey && key}
+    function create_if_block$5(ctx) {
+    	let label;
+    	let span;
+    	let t0;
+    	let t1;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			label = element("label");
+    			span = element("span");
+    			t0 = text(/*key*/ ctx[0]);
+    			t1 = text(/*colon*/ ctx[2]);
+    			add_location(span, file$7, 17, 4, 383);
+    			attr_dev(label, "class", "svelte-115gnv0");
+    			toggle_class(label, "spaced", /*isParentExpanded*/ ctx[1]);
+    			add_location(label, file$7, 16, 2, 330);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, label, anchor);
+    			append_dev(label, span);
+    			append_dev(span, t0);
+    			append_dev(span, t1);
+
+    			if (!mounted) {
+    				dispose = listen_dev(label, "click", /*click_handler*/ ctx[5], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*key*/ 1) set_data_dev(t0, /*key*/ ctx[0]);
+    			if (dirty & /*colon*/ 4) set_data_dev(t1, /*colon*/ ctx[2]);
+
+    			if (dirty & /*isParentExpanded*/ 2) {
+    				toggle_class(label, "spaced", /*isParentExpanded*/ ctx[1]);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(label);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$5.name,
+    		type: "if",
+    		source: "(16:0) {#if showKey && key}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$7(ctx) {
+    	let if_block_anchor;
+    	let if_block = /*showKey*/ ctx[3] && /*key*/ ctx[0] && create_if_block$5(ctx);
+
+    	const block = {
+    		c: function create() {
+    			if (if_block) if_block.c();
+    			if_block_anchor = empty();
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			if (if_block) if_block.m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*showKey*/ ctx[3] && /*key*/ ctx[0]) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$5(ctx);
+    					if_block.c();
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (if_block) if_block.d(detaching);
+    			if (detaching) detach_dev(if_block_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$7.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$7($$self, $$props, $$invalidate) {
+    	let showKey;
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("JSONKey", slots, []);
+
+    	let { key } = $$props,
+    		{ isParentExpanded } = $$props,
+    		{ isParentArray = false } = $$props,
+    		{ colon = ":" } = $$props;
+
+    	const writable_props = ["key", "isParentExpanded", "isParentArray", "colon"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<JSONKey> was created with unknown prop '${key}'`);
+    	});
+
+    	function click_handler(event) {
+    		bubble($$self, event);
+    	}
+
+    	$$self.$$set = $$props => {
+    		if ("key" in $$props) $$invalidate(0, key = $$props.key);
+    		if ("isParentExpanded" in $$props) $$invalidate(1, isParentExpanded = $$props.isParentExpanded);
+    		if ("isParentArray" in $$props) $$invalidate(4, isParentArray = $$props.isParentArray);
+    		if ("colon" in $$props) $$invalidate(2, colon = $$props.colon);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		key,
+    		isParentExpanded,
+    		isParentArray,
+    		colon,
+    		showKey
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("key" in $$props) $$invalidate(0, key = $$props.key);
+    		if ("isParentExpanded" in $$props) $$invalidate(1, isParentExpanded = $$props.isParentExpanded);
+    		if ("isParentArray" in $$props) $$invalidate(4, isParentArray = $$props.isParentArray);
+    		if ("colon" in $$props) $$invalidate(2, colon = $$props.colon);
+    		if ("showKey" in $$props) $$invalidate(3, showKey = $$props.showKey);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*isParentExpanded, isParentArray, key*/ 19) {
+    			$$invalidate(3, showKey = isParentExpanded || !isParentArray || key != +key);
+    		}
+    	};
+
+    	return [key, isParentExpanded, colon, showKey, isParentArray, click_handler];
+    }
+
+    class JSONKey extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+
+    		init(this, options, instance$7, create_fragment$7, safe_not_equal, {
+    			key: 0,
+    			isParentExpanded: 1,
+    			isParentArray: 4,
+    			colon: 2
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "JSONKey",
+    			options,
+    			id: create_fragment$7.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*key*/ ctx[0] === undefined && !("key" in props)) {
+    			console.warn("<JSONKey> was created without expected prop 'key'");
+    		}
+
+    		if (/*isParentExpanded*/ ctx[1] === undefined && !("isParentExpanded" in props)) {
+    			console.warn("<JSONKey> was created without expected prop 'isParentExpanded'");
+    		}
+    	}
+
+    	get key() {
+    		throw new Error("<JSONKey>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set key(value) {
+    		throw new Error("<JSONKey>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isParentExpanded() {
+    		throw new Error("<JSONKey>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isParentExpanded(value) {
+    		throw new Error("<JSONKey>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isParentArray() {
+    		throw new Error("<JSONKey>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isParentArray(value) {
+    		throw new Error("<JSONKey>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get colon() {
+    		throw new Error("<JSONKey>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set colon(value) {
+    		throw new Error("<JSONKey>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* node_modules/svelte-json-tree/src/JSONNested.svelte generated by Svelte v3.32.3 */
+    const file$8 = "node_modules/svelte-json-tree/src/JSONNested.svelte";
+
+    function get_each_context$4(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[12] = list[i];
+    	child_ctx[20] = i;
+    	return child_ctx;
+    }
+
+    // (59:4) {#if expandable && isParentExpanded}
+    function create_if_block_3$2(ctx) {
+    	let jsonarrow;
+    	let current;
+
+    	jsonarrow = new JSONArrow({
+    			props: { expanded: /*expanded*/ ctx[0] },
+    			$$inline: true
+    		});
+
+    	jsonarrow.$on("click", /*toggleExpand*/ ctx[15]);
+
+    	const block = {
+    		c: function create() {
+    			create_component(jsonarrow.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(jsonarrow, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const jsonarrow_changes = {};
+    			if (dirty & /*expanded*/ 1) jsonarrow_changes.expanded = /*expanded*/ ctx[0];
+    			jsonarrow.$set(jsonarrow_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(jsonarrow.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(jsonarrow.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(jsonarrow, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_3$2.name,
+    		type: "if",
+    		source: "(59:4) {#if expandable && isParentExpanded}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (77:4) {:else}
+    function create_else_block$4(ctx) {
+    	let span;
+
+    	const block = {
+    		c: function create() {
+    			span = element("span");
+    			span.textContent = "…";
+    			add_location(span, file$8, 77, 6, 2049);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, span, anchor);
+    		},
+    		p: noop,
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(span);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block$4.name,
+    		type: "else",
+    		source: "(77:4) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (65:4) {#if isParentExpanded}
+    function create_if_block$6(ctx) {
+    	let ul;
+    	let t;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	let each_value = /*slicedKeys*/ ctx[13];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$4(get_each_context$4(ctx, each_value, i));
+    	}
+
+    	const out = i => transition_out(each_blocks[i], 1, 1, () => {
+    		each_blocks[i] = null;
+    	});
+
+    	let if_block = /*slicedKeys*/ ctx[13].length < /*previewKeys*/ ctx[7].length && create_if_block_1$4(ctx);
+
+    	const block = {
+    		c: function create() {
+    			ul = element("ul");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			t = space();
+    			if (if_block) if_block.c();
+    			attr_dev(ul, "class", "svelte-cgl86x");
+    			toggle_class(ul, "collapse", !/*expanded*/ ctx[0]);
+    			add_location(ul, file$8, 65, 6, 1553);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, ul, anchor);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(ul, null);
+    			}
+
+    			append_dev(ul, t);
+    			if (if_block) if_block.m(ul, null);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(ul, "click", /*expand*/ ctx[16], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*expanded, previewKeys, getKey, slicedKeys, isArray, getValue, getPreviewValue*/ 10129) {
+    				each_value = /*slicedKeys*/ ctx[13];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$4(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    						transition_in(each_blocks[i], 1);
+    					} else {
+    						each_blocks[i] = create_each_block$4(child_ctx);
+    						each_blocks[i].c();
+    						transition_in(each_blocks[i], 1);
+    						each_blocks[i].m(ul, t);
+    					}
+    				}
+
+    				group_outros();
+
+    				for (i = each_value.length; i < each_blocks.length; i += 1) {
+    					out(i);
+    				}
+
+    				check_outros();
+    			}
+
+    			if (/*slicedKeys*/ ctx[13].length < /*previewKeys*/ ctx[7].length) {
+    				if (if_block) ; else {
+    					if_block = create_if_block_1$4(ctx);
+    					if_block.c();
+    					if_block.m(ul, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
+    			if (dirty & /*expanded*/ 1) {
+    				toggle_class(ul, "collapse", !/*expanded*/ ctx[0]);
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+
+    			for (let i = 0; i < each_value.length; i += 1) {
+    				transition_in(each_blocks[i]);
+    			}
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			each_blocks = each_blocks.filter(Boolean);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				transition_out(each_blocks[i]);
+    			}
+
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(ul);
+    			destroy_each(each_blocks, detaching);
+    			if (if_block) if_block.d();
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$6.name,
+    		type: "if",
+    		source: "(65:4) {#if isParentExpanded}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (69:10) {#if !expanded && index < previewKeys.length - 1}
+    function create_if_block_2$2(ctx) {
+    	let span;
+
+    	const block = {
+    		c: function create() {
+    			span = element("span");
+    			span.textContent = ",";
+    			attr_dev(span, "class", "comma svelte-cgl86x");
+    			add_location(span, file$8, 69, 12, 1865);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, span, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(span);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_2$2.name,
+    		type: "if",
+    		source: "(69:10) {#if !expanded && index < previewKeys.length - 1}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (67:8) {#each slicedKeys as key, index}
+    function create_each_block$4(ctx) {
+    	let jsonnode;
+    	let t;
+    	let if_block_anchor;
+    	let current;
+
+    	jsonnode = new JSONNode({
+    			props: {
+    				key: /*getKey*/ ctx[8](/*key*/ ctx[12]),
+    				isParentExpanded: /*expanded*/ ctx[0],
+    				isParentArray: /*isArray*/ ctx[4],
+    				value: /*expanded*/ ctx[0]
+    				? /*getValue*/ ctx[9](/*key*/ ctx[12])
+    				: /*getPreviewValue*/ ctx[10](/*key*/ ctx[12])
+    			},
+    			$$inline: true
+    		});
+
+    	let if_block = !/*expanded*/ ctx[0] && /*index*/ ctx[20] < /*previewKeys*/ ctx[7].length - 1 && create_if_block_2$2(ctx);
+
+    	const block = {
+    		c: function create() {
+    			create_component(jsonnode.$$.fragment);
+    			t = space();
+    			if (if_block) if_block.c();
+    			if_block_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(jsonnode, target, anchor);
+    			insert_dev(target, t, anchor);
+    			if (if_block) if_block.m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const jsonnode_changes = {};
+    			if (dirty & /*getKey, slicedKeys*/ 8448) jsonnode_changes.key = /*getKey*/ ctx[8](/*key*/ ctx[12]);
+    			if (dirty & /*expanded*/ 1) jsonnode_changes.isParentExpanded = /*expanded*/ ctx[0];
+    			if (dirty & /*isArray*/ 16) jsonnode_changes.isParentArray = /*isArray*/ ctx[4];
+
+    			if (dirty & /*expanded, getValue, slicedKeys, getPreviewValue*/ 9729) jsonnode_changes.value = /*expanded*/ ctx[0]
+    			? /*getValue*/ ctx[9](/*key*/ ctx[12])
+    			: /*getPreviewValue*/ ctx[10](/*key*/ ctx[12]);
+
+    			jsonnode.$set(jsonnode_changes);
+
+    			if (!/*expanded*/ ctx[0] && /*index*/ ctx[20] < /*previewKeys*/ ctx[7].length - 1) {
+    				if (if_block) ; else {
+    					if_block = create_if_block_2$2(ctx);
+    					if_block.c();
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(jsonnode.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(jsonnode.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(jsonnode, detaching);
+    			if (detaching) detach_dev(t);
+    			if (if_block) if_block.d(detaching);
+    			if (detaching) detach_dev(if_block_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$4.name,
+    		type: "each",
+    		source: "(67:8) {#each slicedKeys as key, index}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (73:8) {#if slicedKeys.length < previewKeys.length }
+    function create_if_block_1$4(ctx) {
+    	let span;
+
+    	const block = {
+    		c: function create() {
+    			span = element("span");
+    			span.textContent = "…";
+    			add_location(span, file$8, 73, 10, 1990);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, span, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(span);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1$4.name,
+    		type: "if",
+    		source: "(73:8) {#if slicedKeys.length < previewKeys.length }",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$8(ctx) {
+    	let li;
+    	let label_1;
+    	let t0;
+    	let jsonkey;
+    	let t1;
+    	let span1;
+    	let span0;
+    	let t2;
+    	let t3;
+    	let t4;
+    	let current_block_type_index;
+    	let if_block1;
+    	let t5;
+    	let span2;
+    	let t6;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	let if_block0 = /*expandable*/ ctx[11] && /*isParentExpanded*/ ctx[2] && create_if_block_3$2(ctx);
+
+    	jsonkey = new JSONKey({
+    			props: {
+    				key: /*key*/ ctx[12],
+    				colon: /*context*/ ctx[14].colon,
+    				isParentExpanded: /*isParentExpanded*/ ctx[2],
+    				isParentArray: /*isParentArray*/ ctx[3]
+    			},
+    			$$inline: true
+    		});
+
+    	jsonkey.$on("click", /*toggleExpand*/ ctx[15]);
+    	const if_block_creators = [create_if_block$6, create_else_block$4];
+    	const if_blocks = [];
+
+    	function select_block_type(ctx, dirty) {
+    		if (/*isParentExpanded*/ ctx[2]) return 0;
+    		return 1;
+    	}
+
+    	current_block_type_index = select_block_type(ctx);
+    	if_block1 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+
+    	const block = {
+    		c: function create() {
+    			li = element("li");
+    			label_1 = element("label");
+    			if (if_block0) if_block0.c();
+    			t0 = space();
+    			create_component(jsonkey.$$.fragment);
+    			t1 = space();
+    			span1 = element("span");
+    			span0 = element("span");
+    			t2 = text(/*label*/ ctx[1]);
+    			t3 = text(/*bracketOpen*/ ctx[5]);
+    			t4 = space();
+    			if_block1.c();
+    			t5 = space();
+    			span2 = element("span");
+    			t6 = text(/*bracketClose*/ ctx[6]);
+    			add_location(span0, file$8, 62, 34, 1468);
+    			add_location(span1, file$8, 62, 4, 1438);
+    			attr_dev(label_1, "class", "svelte-cgl86x");
+    			add_location(label_1, file$8, 57, 2, 1217);
+    			add_location(span2, file$8, 79, 2, 2076);
+    			attr_dev(li, "class", "svelte-cgl86x");
+    			toggle_class(li, "indent", /*isParentExpanded*/ ctx[2]);
+    			add_location(li, file$8, 56, 0, 1178);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, li, anchor);
+    			append_dev(li, label_1);
+    			if (if_block0) if_block0.m(label_1, null);
+    			append_dev(label_1, t0);
+    			mount_component(jsonkey, label_1, null);
+    			append_dev(label_1, t1);
+    			append_dev(label_1, span1);
+    			append_dev(span1, span0);
+    			append_dev(span0, t2);
+    			append_dev(span1, t3);
+    			append_dev(li, t4);
+    			if_blocks[current_block_type_index].m(li, null);
+    			append_dev(li, t5);
+    			append_dev(li, span2);
+    			append_dev(span2, t6);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(span1, "click", /*toggleExpand*/ ctx[15], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*expandable*/ ctx[11] && /*isParentExpanded*/ ctx[2]) {
+    				if (if_block0) {
+    					if_block0.p(ctx, dirty);
+
+    					if (dirty & /*expandable, isParentExpanded*/ 2052) {
+    						transition_in(if_block0, 1);
+    					}
+    				} else {
+    					if_block0 = create_if_block_3$2(ctx);
+    					if_block0.c();
+    					transition_in(if_block0, 1);
+    					if_block0.m(label_1, t0);
+    				}
+    			} else if (if_block0) {
+    				group_outros();
+
+    				transition_out(if_block0, 1, 1, () => {
+    					if_block0 = null;
+    				});
+
+    				check_outros();
+    			}
+
+    			const jsonkey_changes = {};
+    			if (dirty & /*key*/ 4096) jsonkey_changes.key = /*key*/ ctx[12];
+    			if (dirty & /*isParentExpanded*/ 4) jsonkey_changes.isParentExpanded = /*isParentExpanded*/ ctx[2];
+    			if (dirty & /*isParentArray*/ 8) jsonkey_changes.isParentArray = /*isParentArray*/ ctx[3];
+    			jsonkey.$set(jsonkey_changes);
+    			if (!current || dirty & /*label*/ 2) set_data_dev(t2, /*label*/ ctx[1]);
+    			if (!current || dirty & /*bracketOpen*/ 32) set_data_dev(t3, /*bracketOpen*/ ctx[5]);
+    			let previous_block_index = current_block_type_index;
+    			current_block_type_index = select_block_type(ctx);
+
+    			if (current_block_type_index === previous_block_index) {
+    				if_blocks[current_block_type_index].p(ctx, dirty);
+    			} else {
+    				group_outros();
+
+    				transition_out(if_blocks[previous_block_index], 1, 1, () => {
+    					if_blocks[previous_block_index] = null;
+    				});
+
+    				check_outros();
+    				if_block1 = if_blocks[current_block_type_index];
+
+    				if (!if_block1) {
+    					if_block1 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    					if_block1.c();
+    				} else {
+    					if_block1.p(ctx, dirty);
+    				}
+
+    				transition_in(if_block1, 1);
+    				if_block1.m(li, t5);
+    			}
+
+    			if (!current || dirty & /*bracketClose*/ 64) set_data_dev(t6, /*bracketClose*/ ctx[6]);
+
+    			if (dirty & /*isParentExpanded*/ 4) {
+    				toggle_class(li, "indent", /*isParentExpanded*/ ctx[2]);
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block0);
+    			transition_in(jsonkey.$$.fragment, local);
+    			transition_in(if_block1);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block0);
+    			transition_out(jsonkey.$$.fragment, local);
+    			transition_out(if_block1);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(li);
+    			if (if_block0) if_block0.d();
+    			destroy_component(jsonkey);
+    			if_blocks[current_block_type_index].d();
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$8.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$8($$self, $$props, $$invalidate) {
+    	let slicedKeys;
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("JSONNested", slots, []);
+
+    	let { key } = $$props,
+    		{ keys } = $$props,
+    		{ colon = ":" } = $$props,
+    		{ label = "" } = $$props,
+    		{ isParentExpanded } = $$props,
+    		{ isParentArray } = $$props,
+    		{ isArray = false } = $$props,
+    		{ bracketOpen } = $$props,
+    		{ bracketClose } = $$props;
+
+    	let { previewKeys = keys } = $$props;
+    	let { getKey = key => key } = $$props;
+    	let { getValue = key => key } = $$props;
+    	let { getPreviewValue = getValue } = $$props;
+    	let { expanded = false } = $$props, { expandable = true } = $$props;
+    	const context = getContext(contextKey);
+    	setContext(contextKey, { ...context, colon });
+
+    	function toggleExpand() {
+    		$$invalidate(0, expanded = !expanded);
+    	}
+
+    	function expand() {
+    		$$invalidate(0, expanded = true);
+    	}
+
+    	const writable_props = [
+    		"key",
+    		"keys",
+    		"colon",
+    		"label",
+    		"isParentExpanded",
+    		"isParentArray",
+    		"isArray",
+    		"bracketOpen",
+    		"bracketClose",
+    		"previewKeys",
+    		"getKey",
+    		"getValue",
+    		"getPreviewValue",
+    		"expanded",
+    		"expandable"
+    	];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<JSONNested> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("key" in $$props) $$invalidate(12, key = $$props.key);
+    		if ("keys" in $$props) $$invalidate(17, keys = $$props.keys);
+    		if ("colon" in $$props) $$invalidate(18, colon = $$props.colon);
+    		if ("label" in $$props) $$invalidate(1, label = $$props.label);
+    		if ("isParentExpanded" in $$props) $$invalidate(2, isParentExpanded = $$props.isParentExpanded);
+    		if ("isParentArray" in $$props) $$invalidate(3, isParentArray = $$props.isParentArray);
+    		if ("isArray" in $$props) $$invalidate(4, isArray = $$props.isArray);
+    		if ("bracketOpen" in $$props) $$invalidate(5, bracketOpen = $$props.bracketOpen);
+    		if ("bracketClose" in $$props) $$invalidate(6, bracketClose = $$props.bracketClose);
+    		if ("previewKeys" in $$props) $$invalidate(7, previewKeys = $$props.previewKeys);
+    		if ("getKey" in $$props) $$invalidate(8, getKey = $$props.getKey);
+    		if ("getValue" in $$props) $$invalidate(9, getValue = $$props.getValue);
+    		if ("getPreviewValue" in $$props) $$invalidate(10, getPreviewValue = $$props.getPreviewValue);
+    		if ("expanded" in $$props) $$invalidate(0, expanded = $$props.expanded);
+    		if ("expandable" in $$props) $$invalidate(11, expandable = $$props.expandable);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		getContext,
+    		setContext,
+    		contextKey,
+    		JSONArrow,
+    		JSONNode,
+    		JSONKey,
+    		key,
+    		keys,
+    		colon,
+    		label,
+    		isParentExpanded,
+    		isParentArray,
+    		isArray,
+    		bracketOpen,
+    		bracketClose,
+    		previewKeys,
+    		getKey,
+    		getValue,
+    		getPreviewValue,
+    		expanded,
+    		expandable,
+    		context,
+    		toggleExpand,
+    		expand,
+    		slicedKeys
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("key" in $$props) $$invalidate(12, key = $$props.key);
+    		if ("keys" in $$props) $$invalidate(17, keys = $$props.keys);
+    		if ("colon" in $$props) $$invalidate(18, colon = $$props.colon);
+    		if ("label" in $$props) $$invalidate(1, label = $$props.label);
+    		if ("isParentExpanded" in $$props) $$invalidate(2, isParentExpanded = $$props.isParentExpanded);
+    		if ("isParentArray" in $$props) $$invalidate(3, isParentArray = $$props.isParentArray);
+    		if ("isArray" in $$props) $$invalidate(4, isArray = $$props.isArray);
+    		if ("bracketOpen" in $$props) $$invalidate(5, bracketOpen = $$props.bracketOpen);
+    		if ("bracketClose" in $$props) $$invalidate(6, bracketClose = $$props.bracketClose);
+    		if ("previewKeys" in $$props) $$invalidate(7, previewKeys = $$props.previewKeys);
+    		if ("getKey" in $$props) $$invalidate(8, getKey = $$props.getKey);
+    		if ("getValue" in $$props) $$invalidate(9, getValue = $$props.getValue);
+    		if ("getPreviewValue" in $$props) $$invalidate(10, getPreviewValue = $$props.getPreviewValue);
+    		if ("expanded" in $$props) $$invalidate(0, expanded = $$props.expanded);
+    		if ("expandable" in $$props) $$invalidate(11, expandable = $$props.expandable);
+    		if ("slicedKeys" in $$props) $$invalidate(13, slicedKeys = $$props.slicedKeys);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*isParentExpanded*/ 4) {
+    			if (!isParentExpanded) {
+    				$$invalidate(0, expanded = false);
+    			}
+    		}
+
+    		if ($$self.$$.dirty & /*expanded, keys, previewKeys*/ 131201) {
+    			$$invalidate(13, slicedKeys = expanded ? keys : previewKeys.slice(0, 5));
+    		}
+    	};
+
+    	return [
+    		expanded,
+    		label,
+    		isParentExpanded,
+    		isParentArray,
+    		isArray,
+    		bracketOpen,
+    		bracketClose,
+    		previewKeys,
+    		getKey,
+    		getValue,
+    		getPreviewValue,
+    		expandable,
+    		key,
+    		slicedKeys,
+    		context,
+    		toggleExpand,
+    		expand,
+    		keys,
+    		colon
+    	];
+    }
+
+    class JSONNested extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+
+    		init(this, options, instance$8, create_fragment$8, safe_not_equal, {
+    			key: 12,
+    			keys: 17,
+    			colon: 18,
+    			label: 1,
+    			isParentExpanded: 2,
+    			isParentArray: 3,
+    			isArray: 4,
+    			bracketOpen: 5,
+    			bracketClose: 6,
+    			previewKeys: 7,
+    			getKey: 8,
+    			getValue: 9,
+    			getPreviewValue: 10,
+    			expanded: 0,
+    			expandable: 11
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "JSONNested",
+    			options,
+    			id: create_fragment$8.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*key*/ ctx[12] === undefined && !("key" in props)) {
+    			console.warn("<JSONNested> was created without expected prop 'key'");
+    		}
+
+    		if (/*keys*/ ctx[17] === undefined && !("keys" in props)) {
+    			console.warn("<JSONNested> was created without expected prop 'keys'");
+    		}
+
+    		if (/*isParentExpanded*/ ctx[2] === undefined && !("isParentExpanded" in props)) {
+    			console.warn("<JSONNested> was created without expected prop 'isParentExpanded'");
+    		}
+
+    		if (/*isParentArray*/ ctx[3] === undefined && !("isParentArray" in props)) {
+    			console.warn("<JSONNested> was created without expected prop 'isParentArray'");
+    		}
+
+    		if (/*bracketOpen*/ ctx[5] === undefined && !("bracketOpen" in props)) {
+    			console.warn("<JSONNested> was created without expected prop 'bracketOpen'");
+    		}
+
+    		if (/*bracketClose*/ ctx[6] === undefined && !("bracketClose" in props)) {
+    			console.warn("<JSONNested> was created without expected prop 'bracketClose'");
+    		}
+    	}
+
+    	get key() {
+    		throw new Error("<JSONNested>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set key(value) {
+    		throw new Error("<JSONNested>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get keys() {
+    		throw new Error("<JSONNested>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set keys(value) {
+    		throw new Error("<JSONNested>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get colon() {
+    		throw new Error("<JSONNested>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set colon(value) {
+    		throw new Error("<JSONNested>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get label() {
+    		throw new Error("<JSONNested>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set label(value) {
+    		throw new Error("<JSONNested>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isParentExpanded() {
+    		throw new Error("<JSONNested>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isParentExpanded(value) {
+    		throw new Error("<JSONNested>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isParentArray() {
+    		throw new Error("<JSONNested>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isParentArray(value) {
+    		throw new Error("<JSONNested>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isArray() {
+    		throw new Error("<JSONNested>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isArray(value) {
+    		throw new Error("<JSONNested>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get bracketOpen() {
+    		throw new Error("<JSONNested>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set bracketOpen(value) {
+    		throw new Error("<JSONNested>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get bracketClose() {
+    		throw new Error("<JSONNested>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set bracketClose(value) {
+    		throw new Error("<JSONNested>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get previewKeys() {
+    		throw new Error("<JSONNested>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set previewKeys(value) {
+    		throw new Error("<JSONNested>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get getKey() {
+    		throw new Error("<JSONNested>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set getKey(value) {
+    		throw new Error("<JSONNested>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get getValue() {
+    		throw new Error("<JSONNested>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set getValue(value) {
+    		throw new Error("<JSONNested>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get getPreviewValue() {
+    		throw new Error("<JSONNested>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set getPreviewValue(value) {
+    		throw new Error("<JSONNested>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get expanded() {
+    		throw new Error("<JSONNested>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set expanded(value) {
+    		throw new Error("<JSONNested>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get expandable() {
+    		throw new Error("<JSONNested>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set expandable(value) {
+    		throw new Error("<JSONNested>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* node_modules/svelte-json-tree/src/JSONObjectNode.svelte generated by Svelte v3.32.3 */
+
+    const { Object: Object_1 } = globals;
+
+    function create_fragment$9(ctx) {
+    	let jsonnested;
+    	let current;
+
+    	jsonnested = new JSONNested({
+    			props: {
+    				key: /*key*/ ctx[0],
+    				expanded: /*expanded*/ ctx[4],
+    				isParentExpanded: /*isParentExpanded*/ ctx[1],
+    				isParentArray: /*isParentArray*/ ctx[2],
+    				keys: /*keys*/ ctx[5],
+    				previewKeys: /*keys*/ ctx[5],
+    				getValue: /*getValue*/ ctx[6],
+    				label: "" + (/*nodeType*/ ctx[3] + " "),
+    				bracketOpen: "{",
+    				bracketClose: "}"
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(jsonnested.$$.fragment);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(jsonnested, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			const jsonnested_changes = {};
+    			if (dirty & /*key*/ 1) jsonnested_changes.key = /*key*/ ctx[0];
+    			if (dirty & /*expanded*/ 16) jsonnested_changes.expanded = /*expanded*/ ctx[4];
+    			if (dirty & /*isParentExpanded*/ 2) jsonnested_changes.isParentExpanded = /*isParentExpanded*/ ctx[1];
+    			if (dirty & /*isParentArray*/ 4) jsonnested_changes.isParentArray = /*isParentArray*/ ctx[2];
+    			if (dirty & /*keys*/ 32) jsonnested_changes.keys = /*keys*/ ctx[5];
+    			if (dirty & /*keys*/ 32) jsonnested_changes.previewKeys = /*keys*/ ctx[5];
+    			if (dirty & /*nodeType*/ 8) jsonnested_changes.label = "" + (/*nodeType*/ ctx[3] + " ");
+    			jsonnested.$set(jsonnested_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(jsonnested.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(jsonnested.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(jsonnested, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$9.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$9($$self, $$props, $$invalidate) {
+    	let keys;
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("JSONObjectNode", slots, []);
+
+    	let { key } = $$props,
+    		{ value } = $$props,
+    		{ isParentExpanded } = $$props,
+    		{ isParentArray } = $$props,
+    		{ nodeType } = $$props;
+
+    	let { expanded = false } = $$props;
+
+    	function getValue(key) {
+    		return value[key];
+    	}
+
+    	const writable_props = ["key", "value", "isParentExpanded", "isParentArray", "nodeType", "expanded"];
+
+    	Object_1.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<JSONObjectNode> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("key" in $$props) $$invalidate(0, key = $$props.key);
+    		if ("value" in $$props) $$invalidate(7, value = $$props.value);
+    		if ("isParentExpanded" in $$props) $$invalidate(1, isParentExpanded = $$props.isParentExpanded);
+    		if ("isParentArray" in $$props) $$invalidate(2, isParentArray = $$props.isParentArray);
+    		if ("nodeType" in $$props) $$invalidate(3, nodeType = $$props.nodeType);
+    		if ("expanded" in $$props) $$invalidate(4, expanded = $$props.expanded);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		JSONNested,
+    		key,
+    		value,
+    		isParentExpanded,
+    		isParentArray,
+    		nodeType,
+    		expanded,
+    		getValue,
+    		keys
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("key" in $$props) $$invalidate(0, key = $$props.key);
+    		if ("value" in $$props) $$invalidate(7, value = $$props.value);
+    		if ("isParentExpanded" in $$props) $$invalidate(1, isParentExpanded = $$props.isParentExpanded);
+    		if ("isParentArray" in $$props) $$invalidate(2, isParentArray = $$props.isParentArray);
+    		if ("nodeType" in $$props) $$invalidate(3, nodeType = $$props.nodeType);
+    		if ("expanded" in $$props) $$invalidate(4, expanded = $$props.expanded);
+    		if ("keys" in $$props) $$invalidate(5, keys = $$props.keys);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*value*/ 128) {
+    			$$invalidate(5, keys = Object.getOwnPropertyNames(value));
+    		}
+    	};
+
+    	return [
+    		key,
+    		isParentExpanded,
+    		isParentArray,
+    		nodeType,
+    		expanded,
+    		keys,
+    		getValue,
+    		value
+    	];
+    }
+
+    class JSONObjectNode extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+
+    		init(this, options, instance$9, create_fragment$9, safe_not_equal, {
+    			key: 0,
+    			value: 7,
+    			isParentExpanded: 1,
+    			isParentArray: 2,
+    			nodeType: 3,
+    			expanded: 4
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "JSONObjectNode",
+    			options,
+    			id: create_fragment$9.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*key*/ ctx[0] === undefined && !("key" in props)) {
+    			console.warn("<JSONObjectNode> was created without expected prop 'key'");
+    		}
+
+    		if (/*value*/ ctx[7] === undefined && !("value" in props)) {
+    			console.warn("<JSONObjectNode> was created without expected prop 'value'");
+    		}
+
+    		if (/*isParentExpanded*/ ctx[1] === undefined && !("isParentExpanded" in props)) {
+    			console.warn("<JSONObjectNode> was created without expected prop 'isParentExpanded'");
+    		}
+
+    		if (/*isParentArray*/ ctx[2] === undefined && !("isParentArray" in props)) {
+    			console.warn("<JSONObjectNode> was created without expected prop 'isParentArray'");
+    		}
+
+    		if (/*nodeType*/ ctx[3] === undefined && !("nodeType" in props)) {
+    			console.warn("<JSONObjectNode> was created without expected prop 'nodeType'");
+    		}
+    	}
+
+    	get key() {
+    		throw new Error("<JSONObjectNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set key(value) {
+    		throw new Error("<JSONObjectNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get value() {
+    		throw new Error("<JSONObjectNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set value(value) {
+    		throw new Error("<JSONObjectNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isParentExpanded() {
+    		throw new Error("<JSONObjectNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isParentExpanded(value) {
+    		throw new Error("<JSONObjectNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isParentArray() {
+    		throw new Error("<JSONObjectNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isParentArray(value) {
+    		throw new Error("<JSONObjectNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get nodeType() {
+    		throw new Error("<JSONObjectNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set nodeType(value) {
+    		throw new Error("<JSONObjectNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get expanded() {
+    		throw new Error("<JSONObjectNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set expanded(value) {
+    		throw new Error("<JSONObjectNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* node_modules/svelte-json-tree/src/JSONArrayNode.svelte generated by Svelte v3.32.3 */
+
+    const { Object: Object_1$1 } = globals;
+
+    function create_fragment$a(ctx) {
+    	let jsonnested;
+    	let current;
+
+    	jsonnested = new JSONNested({
+    			props: {
+    				key: /*key*/ ctx[0],
+    				expanded: /*expanded*/ ctx[4],
+    				isParentExpanded: /*isParentExpanded*/ ctx[2],
+    				isParentArray: /*isParentArray*/ ctx[3],
+    				isArray: true,
+    				keys: /*keys*/ ctx[5],
+    				previewKeys: /*previewKeys*/ ctx[6],
+    				getValue: /*getValue*/ ctx[7],
+    				label: "Array(" + /*value*/ ctx[1].length + ")",
+    				bracketOpen: "[",
+    				bracketClose: "]"
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(jsonnested.$$.fragment);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(jsonnested, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			const jsonnested_changes = {};
+    			if (dirty & /*key*/ 1) jsonnested_changes.key = /*key*/ ctx[0];
+    			if (dirty & /*expanded*/ 16) jsonnested_changes.expanded = /*expanded*/ ctx[4];
+    			if (dirty & /*isParentExpanded*/ 4) jsonnested_changes.isParentExpanded = /*isParentExpanded*/ ctx[2];
+    			if (dirty & /*isParentArray*/ 8) jsonnested_changes.isParentArray = /*isParentArray*/ ctx[3];
+    			if (dirty & /*keys*/ 32) jsonnested_changes.keys = /*keys*/ ctx[5];
+    			if (dirty & /*previewKeys*/ 64) jsonnested_changes.previewKeys = /*previewKeys*/ ctx[6];
+    			if (dirty & /*value*/ 2) jsonnested_changes.label = "Array(" + /*value*/ ctx[1].length + ")";
+    			jsonnested.$set(jsonnested_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(jsonnested.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(jsonnested.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(jsonnested, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$a.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$a($$self, $$props, $$invalidate) {
+    	let keys;
+    	let previewKeys;
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("JSONArrayNode", slots, []);
+
+    	let { key } = $$props,
+    		{ value } = $$props,
+    		{ isParentExpanded } = $$props,
+    		{ isParentArray } = $$props;
+
+    	let { expanded = false } = $$props;
+    	const filteredKey = new Set(["length"]);
+
+    	function getValue(key) {
+    		return value[key];
+    	}
+
+    	const writable_props = ["key", "value", "isParentExpanded", "isParentArray", "expanded"];
+
+    	Object_1$1.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<JSONArrayNode> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("key" in $$props) $$invalidate(0, key = $$props.key);
+    		if ("value" in $$props) $$invalidate(1, value = $$props.value);
+    		if ("isParentExpanded" in $$props) $$invalidate(2, isParentExpanded = $$props.isParentExpanded);
+    		if ("isParentArray" in $$props) $$invalidate(3, isParentArray = $$props.isParentArray);
+    		if ("expanded" in $$props) $$invalidate(4, expanded = $$props.expanded);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		JSONNested,
+    		key,
+    		value,
+    		isParentExpanded,
+    		isParentArray,
+    		expanded,
+    		filteredKey,
+    		getValue,
+    		keys,
+    		previewKeys
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("key" in $$props) $$invalidate(0, key = $$props.key);
+    		if ("value" in $$props) $$invalidate(1, value = $$props.value);
+    		if ("isParentExpanded" in $$props) $$invalidate(2, isParentExpanded = $$props.isParentExpanded);
+    		if ("isParentArray" in $$props) $$invalidate(3, isParentArray = $$props.isParentArray);
+    		if ("expanded" in $$props) $$invalidate(4, expanded = $$props.expanded);
+    		if ("keys" in $$props) $$invalidate(5, keys = $$props.keys);
+    		if ("previewKeys" in $$props) $$invalidate(6, previewKeys = $$props.previewKeys);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*value*/ 2) {
+    			$$invalidate(5, keys = Object.getOwnPropertyNames(value));
+    		}
+
+    		if ($$self.$$.dirty & /*keys*/ 32) {
+    			$$invalidate(6, previewKeys = keys.filter(key => !filteredKey.has(key)));
+    		}
+    	};
+
+    	return [
+    		key,
+    		value,
+    		isParentExpanded,
+    		isParentArray,
+    		expanded,
+    		keys,
+    		previewKeys,
+    		getValue
+    	];
+    }
+
+    class JSONArrayNode extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+
+    		init(this, options, instance$a, create_fragment$a, safe_not_equal, {
+    			key: 0,
+    			value: 1,
+    			isParentExpanded: 2,
+    			isParentArray: 3,
+    			expanded: 4
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "JSONArrayNode",
+    			options,
+    			id: create_fragment$a.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*key*/ ctx[0] === undefined && !("key" in props)) {
+    			console.warn("<JSONArrayNode> was created without expected prop 'key'");
+    		}
+
+    		if (/*value*/ ctx[1] === undefined && !("value" in props)) {
+    			console.warn("<JSONArrayNode> was created without expected prop 'value'");
+    		}
+
+    		if (/*isParentExpanded*/ ctx[2] === undefined && !("isParentExpanded" in props)) {
+    			console.warn("<JSONArrayNode> was created without expected prop 'isParentExpanded'");
+    		}
+
+    		if (/*isParentArray*/ ctx[3] === undefined && !("isParentArray" in props)) {
+    			console.warn("<JSONArrayNode> was created without expected prop 'isParentArray'");
+    		}
+    	}
+
+    	get key() {
+    		throw new Error("<JSONArrayNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set key(value) {
+    		throw new Error("<JSONArrayNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get value() {
+    		throw new Error("<JSONArrayNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set value(value) {
+    		throw new Error("<JSONArrayNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isParentExpanded() {
+    		throw new Error("<JSONArrayNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isParentExpanded(value) {
+    		throw new Error("<JSONArrayNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isParentArray() {
+    		throw new Error("<JSONArrayNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isParentArray(value) {
+    		throw new Error("<JSONArrayNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get expanded() {
+    		throw new Error("<JSONArrayNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set expanded(value) {
+    		throw new Error("<JSONArrayNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* node_modules/svelte-json-tree/src/JSONIterableArrayNode.svelte generated by Svelte v3.32.3 */
+
+    function create_fragment$b(ctx) {
+    	let jsonnested;
+    	let current;
+
+    	jsonnested = new JSONNested({
+    			props: {
+    				key: /*key*/ ctx[0],
+    				isParentExpanded: /*isParentExpanded*/ ctx[1],
+    				isParentArray: /*isParentArray*/ ctx[2],
+    				keys: /*keys*/ ctx[4],
+    				getKey,
+    				getValue,
+    				isArray: true,
+    				label: "" + (/*nodeType*/ ctx[3] + "(" + /*keys*/ ctx[4].length + ")"),
+    				bracketOpen: "{",
+    				bracketClose: "}"
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(jsonnested.$$.fragment);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(jsonnested, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			const jsonnested_changes = {};
+    			if (dirty & /*key*/ 1) jsonnested_changes.key = /*key*/ ctx[0];
+    			if (dirty & /*isParentExpanded*/ 2) jsonnested_changes.isParentExpanded = /*isParentExpanded*/ ctx[1];
+    			if (dirty & /*isParentArray*/ 4) jsonnested_changes.isParentArray = /*isParentArray*/ ctx[2];
+    			if (dirty & /*keys*/ 16) jsonnested_changes.keys = /*keys*/ ctx[4];
+    			if (dirty & /*nodeType, keys*/ 24) jsonnested_changes.label = "" + (/*nodeType*/ ctx[3] + "(" + /*keys*/ ctx[4].length + ")");
+    			jsonnested.$set(jsonnested_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(jsonnested.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(jsonnested.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(jsonnested, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$b.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function getKey(key) {
+    	return String(key[0]);
+    }
+
+    function getValue(key) {
+    	return key[1];
+    }
+
+    function instance$b($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("JSONIterableArrayNode", slots, []);
+
+    	let { key } = $$props,
+    		{ value } = $$props,
+    		{ isParentExpanded } = $$props,
+    		{ isParentArray } = $$props,
+    		{ nodeType } = $$props;
+
+    	let keys = [];
+    	const writable_props = ["key", "value", "isParentExpanded", "isParentArray", "nodeType"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<JSONIterableArrayNode> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("key" in $$props) $$invalidate(0, key = $$props.key);
+    		if ("value" in $$props) $$invalidate(5, value = $$props.value);
+    		if ("isParentExpanded" in $$props) $$invalidate(1, isParentExpanded = $$props.isParentExpanded);
+    		if ("isParentArray" in $$props) $$invalidate(2, isParentArray = $$props.isParentArray);
+    		if ("nodeType" in $$props) $$invalidate(3, nodeType = $$props.nodeType);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		JSONNested,
+    		key,
+    		value,
+    		isParentExpanded,
+    		isParentArray,
+    		nodeType,
+    		keys,
+    		getKey,
+    		getValue
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("key" in $$props) $$invalidate(0, key = $$props.key);
+    		if ("value" in $$props) $$invalidate(5, value = $$props.value);
+    		if ("isParentExpanded" in $$props) $$invalidate(1, isParentExpanded = $$props.isParentExpanded);
+    		if ("isParentArray" in $$props) $$invalidate(2, isParentArray = $$props.isParentArray);
+    		if ("nodeType" in $$props) $$invalidate(3, nodeType = $$props.nodeType);
+    		if ("keys" in $$props) $$invalidate(4, keys = $$props.keys);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*value*/ 32) {
+    			{
+    				let result = [];
+    				let i = 0;
+
+    				for (const entry of value) {
+    					result.push([i++, entry]);
+    				}
+
+    				$$invalidate(4, keys = result);
+    			}
+    		}
+    	};
+
+    	return [key, isParentExpanded, isParentArray, nodeType, keys, value];
+    }
+
+    class JSONIterableArrayNode extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+
+    		init(this, options, instance$b, create_fragment$b, safe_not_equal, {
+    			key: 0,
+    			value: 5,
+    			isParentExpanded: 1,
+    			isParentArray: 2,
+    			nodeType: 3
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "JSONIterableArrayNode",
+    			options,
+    			id: create_fragment$b.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*key*/ ctx[0] === undefined && !("key" in props)) {
+    			console.warn("<JSONIterableArrayNode> was created without expected prop 'key'");
+    		}
+
+    		if (/*value*/ ctx[5] === undefined && !("value" in props)) {
+    			console.warn("<JSONIterableArrayNode> was created without expected prop 'value'");
+    		}
+
+    		if (/*isParentExpanded*/ ctx[1] === undefined && !("isParentExpanded" in props)) {
+    			console.warn("<JSONIterableArrayNode> was created without expected prop 'isParentExpanded'");
+    		}
+
+    		if (/*isParentArray*/ ctx[2] === undefined && !("isParentArray" in props)) {
+    			console.warn("<JSONIterableArrayNode> was created without expected prop 'isParentArray'");
+    		}
+
+    		if (/*nodeType*/ ctx[3] === undefined && !("nodeType" in props)) {
+    			console.warn("<JSONIterableArrayNode> was created without expected prop 'nodeType'");
+    		}
+    	}
+
+    	get key() {
+    		throw new Error("<JSONIterableArrayNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set key(value) {
+    		throw new Error("<JSONIterableArrayNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get value() {
+    		throw new Error("<JSONIterableArrayNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set value(value) {
+    		throw new Error("<JSONIterableArrayNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isParentExpanded() {
+    		throw new Error("<JSONIterableArrayNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isParentExpanded(value) {
+    		throw new Error("<JSONIterableArrayNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isParentArray() {
+    		throw new Error("<JSONIterableArrayNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isParentArray(value) {
+    		throw new Error("<JSONIterableArrayNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get nodeType() {
+    		throw new Error("<JSONIterableArrayNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set nodeType(value) {
+    		throw new Error("<JSONIterableArrayNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    class MapEntry {
+      constructor(key, value) {
+        this.key = key;
+        this.value = value;
+      }
+    }
+
+    /* node_modules/svelte-json-tree/src/JSONIterableMapNode.svelte generated by Svelte v3.32.3 */
+
+    function create_fragment$c(ctx) {
+    	let jsonnested;
+    	let current;
+
+    	jsonnested = new JSONNested({
+    			props: {
+    				key: /*key*/ ctx[0],
+    				isParentExpanded: /*isParentExpanded*/ ctx[1],
+    				isParentArray: /*isParentArray*/ ctx[2],
+    				keys: /*keys*/ ctx[4],
+    				getKey: getKey$1,
+    				getValue: getValue$1,
+    				label: "" + (/*nodeType*/ ctx[3] + "(" + /*keys*/ ctx[4].length + ")"),
+    				colon: "",
+    				bracketOpen: "{",
+    				bracketClose: "}"
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(jsonnested.$$.fragment);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(jsonnested, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			const jsonnested_changes = {};
+    			if (dirty & /*key*/ 1) jsonnested_changes.key = /*key*/ ctx[0];
+    			if (dirty & /*isParentExpanded*/ 2) jsonnested_changes.isParentExpanded = /*isParentExpanded*/ ctx[1];
+    			if (dirty & /*isParentArray*/ 4) jsonnested_changes.isParentArray = /*isParentArray*/ ctx[2];
+    			if (dirty & /*keys*/ 16) jsonnested_changes.keys = /*keys*/ ctx[4];
+    			if (dirty & /*nodeType, keys*/ 24) jsonnested_changes.label = "" + (/*nodeType*/ ctx[3] + "(" + /*keys*/ ctx[4].length + ")");
+    			jsonnested.$set(jsonnested_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(jsonnested.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(jsonnested.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(jsonnested, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$c.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function getKey$1(entry) {
+    	return entry[0];
+    }
+
+    function getValue$1(entry) {
+    	return entry[1];
+    }
+
+    function instance$c($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("JSONIterableMapNode", slots, []);
+
+    	let { key } = $$props,
+    		{ value } = $$props,
+    		{ isParentExpanded } = $$props,
+    		{ isParentArray } = $$props,
+    		{ nodeType } = $$props;
+
+    	let keys = [];
+    	const writable_props = ["key", "value", "isParentExpanded", "isParentArray", "nodeType"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<JSONIterableMapNode> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("key" in $$props) $$invalidate(0, key = $$props.key);
+    		if ("value" in $$props) $$invalidate(5, value = $$props.value);
+    		if ("isParentExpanded" in $$props) $$invalidate(1, isParentExpanded = $$props.isParentExpanded);
+    		if ("isParentArray" in $$props) $$invalidate(2, isParentArray = $$props.isParentArray);
+    		if ("nodeType" in $$props) $$invalidate(3, nodeType = $$props.nodeType);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		JSONNested,
+    		MapEntry,
+    		key,
+    		value,
+    		isParentExpanded,
+    		isParentArray,
+    		nodeType,
+    		keys,
+    		getKey: getKey$1,
+    		getValue: getValue$1
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("key" in $$props) $$invalidate(0, key = $$props.key);
+    		if ("value" in $$props) $$invalidate(5, value = $$props.value);
+    		if ("isParentExpanded" in $$props) $$invalidate(1, isParentExpanded = $$props.isParentExpanded);
+    		if ("isParentArray" in $$props) $$invalidate(2, isParentArray = $$props.isParentArray);
+    		if ("nodeType" in $$props) $$invalidate(3, nodeType = $$props.nodeType);
+    		if ("keys" in $$props) $$invalidate(4, keys = $$props.keys);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*value*/ 32) {
+    			{
+    				let result = [];
+    				let i = 0;
+
+    				for (const entry of value) {
+    					result.push([i++, new MapEntry(entry[0], entry[1])]);
+    				}
+
+    				$$invalidate(4, keys = result);
+    			}
+    		}
+    	};
+
+    	return [key, isParentExpanded, isParentArray, nodeType, keys, value];
+    }
+
+    class JSONIterableMapNode extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+
+    		init(this, options, instance$c, create_fragment$c, safe_not_equal, {
+    			key: 0,
+    			value: 5,
+    			isParentExpanded: 1,
+    			isParentArray: 2,
+    			nodeType: 3
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "JSONIterableMapNode",
+    			options,
+    			id: create_fragment$c.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*key*/ ctx[0] === undefined && !("key" in props)) {
+    			console.warn("<JSONIterableMapNode> was created without expected prop 'key'");
+    		}
+
+    		if (/*value*/ ctx[5] === undefined && !("value" in props)) {
+    			console.warn("<JSONIterableMapNode> was created without expected prop 'value'");
+    		}
+
+    		if (/*isParentExpanded*/ ctx[1] === undefined && !("isParentExpanded" in props)) {
+    			console.warn("<JSONIterableMapNode> was created without expected prop 'isParentExpanded'");
+    		}
+
+    		if (/*isParentArray*/ ctx[2] === undefined && !("isParentArray" in props)) {
+    			console.warn("<JSONIterableMapNode> was created without expected prop 'isParentArray'");
+    		}
+
+    		if (/*nodeType*/ ctx[3] === undefined && !("nodeType" in props)) {
+    			console.warn("<JSONIterableMapNode> was created without expected prop 'nodeType'");
+    		}
+    	}
+
+    	get key() {
+    		throw new Error("<JSONIterableMapNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set key(value) {
+    		throw new Error("<JSONIterableMapNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get value() {
+    		throw new Error("<JSONIterableMapNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set value(value) {
+    		throw new Error("<JSONIterableMapNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isParentExpanded() {
+    		throw new Error("<JSONIterableMapNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isParentExpanded(value) {
+    		throw new Error("<JSONIterableMapNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isParentArray() {
+    		throw new Error("<JSONIterableMapNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isParentArray(value) {
+    		throw new Error("<JSONIterableMapNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get nodeType() {
+    		throw new Error("<JSONIterableMapNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set nodeType(value) {
+    		throw new Error("<JSONIterableMapNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* node_modules/svelte-json-tree/src/JSONMapEntryNode.svelte generated by Svelte v3.32.3 */
+
+    function create_fragment$d(ctx) {
+    	let jsonnested;
+    	let current;
+
+    	jsonnested = new JSONNested({
+    			props: {
+    				expanded: /*expanded*/ ctx[4],
+    				isParentExpanded: /*isParentExpanded*/ ctx[2],
+    				isParentArray: /*isParentArray*/ ctx[3],
+    				key: /*isParentExpanded*/ ctx[2]
+    				? String(/*key*/ ctx[0])
+    				: /*value*/ ctx[1].key,
+    				keys: /*keys*/ ctx[5],
+    				getValue: /*getValue*/ ctx[6],
+    				label: /*isParentExpanded*/ ctx[2] ? "Entry " : "=> ",
+    				bracketOpen: "{",
+    				bracketClose: "}"
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(jsonnested.$$.fragment);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(jsonnested, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			const jsonnested_changes = {};
+    			if (dirty & /*expanded*/ 16) jsonnested_changes.expanded = /*expanded*/ ctx[4];
+    			if (dirty & /*isParentExpanded*/ 4) jsonnested_changes.isParentExpanded = /*isParentExpanded*/ ctx[2];
+    			if (dirty & /*isParentArray*/ 8) jsonnested_changes.isParentArray = /*isParentArray*/ ctx[3];
+
+    			if (dirty & /*isParentExpanded, key, value*/ 7) jsonnested_changes.key = /*isParentExpanded*/ ctx[2]
+    			? String(/*key*/ ctx[0])
+    			: /*value*/ ctx[1].key;
+
+    			if (dirty & /*isParentExpanded*/ 4) jsonnested_changes.label = /*isParentExpanded*/ ctx[2] ? "Entry " : "=> ";
+    			jsonnested.$set(jsonnested_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(jsonnested.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(jsonnested.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(jsonnested, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$d.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$d($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("JSONMapEntryNode", slots, []);
+
+    	let { key } = $$props,
+    		{ value } = $$props,
+    		{ isParentExpanded } = $$props,
+    		{ isParentArray } = $$props;
+
+    	let { expanded = false } = $$props;
+    	const keys = ["key", "value"];
+
+    	function getValue(key) {
+    		return value[key];
+    	}
+
+    	const writable_props = ["key", "value", "isParentExpanded", "isParentArray", "expanded"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<JSONMapEntryNode> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("key" in $$props) $$invalidate(0, key = $$props.key);
+    		if ("value" in $$props) $$invalidate(1, value = $$props.value);
+    		if ("isParentExpanded" in $$props) $$invalidate(2, isParentExpanded = $$props.isParentExpanded);
+    		if ("isParentArray" in $$props) $$invalidate(3, isParentArray = $$props.isParentArray);
+    		if ("expanded" in $$props) $$invalidate(4, expanded = $$props.expanded);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		JSONNested,
+    		key,
+    		value,
+    		isParentExpanded,
+    		isParentArray,
+    		expanded,
+    		keys,
+    		getValue
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("key" in $$props) $$invalidate(0, key = $$props.key);
+    		if ("value" in $$props) $$invalidate(1, value = $$props.value);
+    		if ("isParentExpanded" in $$props) $$invalidate(2, isParentExpanded = $$props.isParentExpanded);
+    		if ("isParentArray" in $$props) $$invalidate(3, isParentArray = $$props.isParentArray);
+    		if ("expanded" in $$props) $$invalidate(4, expanded = $$props.expanded);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [key, value, isParentExpanded, isParentArray, expanded, keys, getValue];
+    }
+
+    class JSONMapEntryNode extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+
+    		init(this, options, instance$d, create_fragment$d, safe_not_equal, {
+    			key: 0,
+    			value: 1,
+    			isParentExpanded: 2,
+    			isParentArray: 3,
+    			expanded: 4
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "JSONMapEntryNode",
+    			options,
+    			id: create_fragment$d.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*key*/ ctx[0] === undefined && !("key" in props)) {
+    			console.warn("<JSONMapEntryNode> was created without expected prop 'key'");
+    		}
+
+    		if (/*value*/ ctx[1] === undefined && !("value" in props)) {
+    			console.warn("<JSONMapEntryNode> was created without expected prop 'value'");
+    		}
+
+    		if (/*isParentExpanded*/ ctx[2] === undefined && !("isParentExpanded" in props)) {
+    			console.warn("<JSONMapEntryNode> was created without expected prop 'isParentExpanded'");
+    		}
+
+    		if (/*isParentArray*/ ctx[3] === undefined && !("isParentArray" in props)) {
+    			console.warn("<JSONMapEntryNode> was created without expected prop 'isParentArray'");
+    		}
+    	}
+
+    	get key() {
+    		throw new Error("<JSONMapEntryNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set key(value) {
+    		throw new Error("<JSONMapEntryNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get value() {
+    		throw new Error("<JSONMapEntryNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set value(value) {
+    		throw new Error("<JSONMapEntryNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isParentExpanded() {
+    		throw new Error("<JSONMapEntryNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isParentExpanded(value) {
+    		throw new Error("<JSONMapEntryNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isParentArray() {
+    		throw new Error("<JSONMapEntryNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isParentArray(value) {
+    		throw new Error("<JSONMapEntryNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get expanded() {
+    		throw new Error("<JSONMapEntryNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set expanded(value) {
+    		throw new Error("<JSONMapEntryNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* node_modules/svelte-json-tree/src/JSONValueNode.svelte generated by Svelte v3.32.3 */
+    const file$9 = "node_modules/svelte-json-tree/src/JSONValueNode.svelte";
+
+    function create_fragment$e(ctx) {
+    	let li;
+    	let jsonkey;
+    	let t0;
+    	let span;
+
+    	let t1_value = (/*valueGetter*/ ctx[2]
+    	? /*valueGetter*/ ctx[2](/*value*/ ctx[1])
+    	: /*value*/ ctx[1]) + "";
+
+    	let t1;
+    	let span_class_value;
+    	let current;
+
+    	jsonkey = new JSONKey({
+    			props: {
+    				key: /*key*/ ctx[0],
+    				colon: /*colon*/ ctx[6],
+    				isParentExpanded: /*isParentExpanded*/ ctx[3],
+    				isParentArray: /*isParentArray*/ ctx[4]
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			li = element("li");
+    			create_component(jsonkey.$$.fragment);
+    			t0 = space();
+    			span = element("span");
+    			t1 = text(t1_value);
+    			attr_dev(span, "class", span_class_value = "" + (null_to_empty(/*nodeType*/ ctx[5]) + " svelte-1cphfaj"));
+    			add_location(span, file$9, 58, 2, 985);
+    			attr_dev(li, "class", "svelte-1cphfaj");
+    			toggle_class(li, "indent", /*isParentExpanded*/ ctx[3]);
+    			add_location(li, file$9, 56, 0, 883);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, li, anchor);
+    			mount_component(jsonkey, li, null);
+    			append_dev(li, t0);
+    			append_dev(li, span);
+    			append_dev(span, t1);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			const jsonkey_changes = {};
+    			if (dirty & /*key*/ 1) jsonkey_changes.key = /*key*/ ctx[0];
+    			if (dirty & /*isParentExpanded*/ 8) jsonkey_changes.isParentExpanded = /*isParentExpanded*/ ctx[3];
+    			if (dirty & /*isParentArray*/ 16) jsonkey_changes.isParentArray = /*isParentArray*/ ctx[4];
+    			jsonkey.$set(jsonkey_changes);
+
+    			if ((!current || dirty & /*valueGetter, value*/ 6) && t1_value !== (t1_value = (/*valueGetter*/ ctx[2]
+    			? /*valueGetter*/ ctx[2](/*value*/ ctx[1])
+    			: /*value*/ ctx[1]) + "")) set_data_dev(t1, t1_value);
+
+    			if (!current || dirty & /*nodeType*/ 32 && span_class_value !== (span_class_value = "" + (null_to_empty(/*nodeType*/ ctx[5]) + " svelte-1cphfaj"))) {
+    				attr_dev(span, "class", span_class_value);
+    			}
+
+    			if (dirty & /*isParentExpanded*/ 8) {
+    				toggle_class(li, "indent", /*isParentExpanded*/ ctx[3]);
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(jsonkey.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(jsonkey.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(li);
+    			destroy_component(jsonkey);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$e.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$e($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("JSONValueNode", slots, []);
+
+    	let { key } = $$props,
+    		{ value } = $$props,
+    		{ valueGetter = null } = $$props,
+    		{ isParentExpanded } = $$props,
+    		{ isParentArray } = $$props,
+    		{ nodeType } = $$props;
+
+    	const { colon } = getContext(contextKey);
+    	const writable_props = ["key", "value", "valueGetter", "isParentExpanded", "isParentArray", "nodeType"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<JSONValueNode> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("key" in $$props) $$invalidate(0, key = $$props.key);
+    		if ("value" in $$props) $$invalidate(1, value = $$props.value);
+    		if ("valueGetter" in $$props) $$invalidate(2, valueGetter = $$props.valueGetter);
+    		if ("isParentExpanded" in $$props) $$invalidate(3, isParentExpanded = $$props.isParentExpanded);
+    		if ("isParentArray" in $$props) $$invalidate(4, isParentArray = $$props.isParentArray);
+    		if ("nodeType" in $$props) $$invalidate(5, nodeType = $$props.nodeType);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		getContext,
+    		contextKey,
+    		JSONKey,
+    		key,
+    		value,
+    		valueGetter,
+    		isParentExpanded,
+    		isParentArray,
+    		nodeType,
+    		colon
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("key" in $$props) $$invalidate(0, key = $$props.key);
+    		if ("value" in $$props) $$invalidate(1, value = $$props.value);
+    		if ("valueGetter" in $$props) $$invalidate(2, valueGetter = $$props.valueGetter);
+    		if ("isParentExpanded" in $$props) $$invalidate(3, isParentExpanded = $$props.isParentExpanded);
+    		if ("isParentArray" in $$props) $$invalidate(4, isParentArray = $$props.isParentArray);
+    		if ("nodeType" in $$props) $$invalidate(5, nodeType = $$props.nodeType);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [key, value, valueGetter, isParentExpanded, isParentArray, nodeType, colon];
+    }
+
+    class JSONValueNode extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+
+    		init(this, options, instance$e, create_fragment$e, safe_not_equal, {
+    			key: 0,
+    			value: 1,
+    			valueGetter: 2,
+    			isParentExpanded: 3,
+    			isParentArray: 4,
+    			nodeType: 5
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "JSONValueNode",
+    			options,
+    			id: create_fragment$e.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*key*/ ctx[0] === undefined && !("key" in props)) {
+    			console.warn("<JSONValueNode> was created without expected prop 'key'");
+    		}
+
+    		if (/*value*/ ctx[1] === undefined && !("value" in props)) {
+    			console.warn("<JSONValueNode> was created without expected prop 'value'");
+    		}
+
+    		if (/*isParentExpanded*/ ctx[3] === undefined && !("isParentExpanded" in props)) {
+    			console.warn("<JSONValueNode> was created without expected prop 'isParentExpanded'");
+    		}
+
+    		if (/*isParentArray*/ ctx[4] === undefined && !("isParentArray" in props)) {
+    			console.warn("<JSONValueNode> was created without expected prop 'isParentArray'");
+    		}
+
+    		if (/*nodeType*/ ctx[5] === undefined && !("nodeType" in props)) {
+    			console.warn("<JSONValueNode> was created without expected prop 'nodeType'");
+    		}
+    	}
+
+    	get key() {
+    		throw new Error("<JSONValueNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set key(value) {
+    		throw new Error("<JSONValueNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get value() {
+    		throw new Error("<JSONValueNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set value(value) {
+    		throw new Error("<JSONValueNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get valueGetter() {
+    		throw new Error("<JSONValueNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set valueGetter(value) {
+    		throw new Error("<JSONValueNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isParentExpanded() {
+    		throw new Error("<JSONValueNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isParentExpanded(value) {
+    		throw new Error("<JSONValueNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isParentArray() {
+    		throw new Error("<JSONValueNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isParentArray(value) {
+    		throw new Error("<JSONValueNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get nodeType() {
+    		throw new Error("<JSONValueNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set nodeType(value) {
+    		throw new Error("<JSONValueNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* node_modules/svelte-json-tree/src/ErrorNode.svelte generated by Svelte v3.32.3 */
+    const file$a = "node_modules/svelte-json-tree/src/ErrorNode.svelte";
+
+    function get_each_context$5(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[8] = list[i];
+    	child_ctx[10] = i;
+    	return child_ctx;
+    }
+
+    // (44:2) {#if isParentExpanded}
+    function create_if_block_2$3(ctx) {
+    	let jsonarrow;
+    	let current;
+
+    	jsonarrow = new JSONArrow({
+    			props: { expanded: /*expanded*/ ctx[0] },
+    			$$inline: true
+    		});
+
+    	jsonarrow.$on("click", /*toggleExpand*/ ctx[7]);
+
+    	const block = {
+    		c: function create() {
+    			create_component(jsonarrow.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(jsonarrow, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const jsonarrow_changes = {};
+    			if (dirty & /*expanded*/ 1) jsonarrow_changes.expanded = /*expanded*/ ctx[0];
+    			jsonarrow.$set(jsonarrow_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(jsonarrow.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(jsonarrow.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(jsonarrow, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_2$3.name,
+    		type: "if",
+    		source: "(44:2) {#if isParentExpanded}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (49:2) {#if isParentExpanded}
+    function create_if_block$7(ctx) {
+    	let ul;
+    	let current;
+    	let if_block = /*expanded*/ ctx[0] && create_if_block_1$5(ctx);
+
+    	const block = {
+    		c: function create() {
+    			ul = element("ul");
+    			if (if_block) if_block.c();
+    			attr_dev(ul, "class", "svelte-9psau4");
+    			toggle_class(ul, "collapse", !/*expanded*/ ctx[0]);
+    			add_location(ul, file$a, 49, 4, 1204);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, ul, anchor);
+    			if (if_block) if_block.m(ul, null);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			if (/*expanded*/ ctx[0]) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+
+    					if (dirty & /*expanded*/ 1) {
+    						transition_in(if_block, 1);
+    					}
+    				} else {
+    					if_block = create_if_block_1$5(ctx);
+    					if_block.c();
+    					transition_in(if_block, 1);
+    					if_block.m(ul, null);
+    				}
+    			} else if (if_block) {
+    				group_outros();
+
+    				transition_out(if_block, 1, 1, () => {
+    					if_block = null;
+    				});
+
+    				check_outros();
+    			}
+
+    			if (dirty & /*expanded*/ 1) {
+    				toggle_class(ul, "collapse", !/*expanded*/ ctx[0]);
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(ul);
+    			if (if_block) if_block.d();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$7.name,
+    		type: "if",
+    		source: "(49:2) {#if isParentExpanded}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (51:6) {#if expanded}
+    function create_if_block_1$5(ctx) {
+    	let jsonnode;
+    	let t0;
+    	let li;
+    	let jsonkey;
+    	let t1;
+    	let span;
+    	let current;
+
+    	jsonnode = new JSONNode({
+    			props: {
+    				key: "message",
+    				value: /*value*/ ctx[2].message
+    			},
+    			$$inline: true
+    		});
+
+    	jsonkey = new JSONKey({
+    			props: {
+    				key: "stack",
+    				colon: ":",
+    				isParentExpanded: /*isParentExpanded*/ ctx[3]
+    			},
+    			$$inline: true
+    		});
+
+    	let each_value = /*stack*/ ctx[5];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$5(get_each_context$5(ctx, each_value, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			create_component(jsonnode.$$.fragment);
+    			t0 = space();
+    			li = element("li");
+    			create_component(jsonkey.$$.fragment);
+    			t1 = space();
+    			span = element("span");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			add_location(span, file$a, 54, 10, 1400);
+    			attr_dev(li, "class", "svelte-9psau4");
+    			add_location(li, file$a, 52, 8, 1322);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(jsonnode, target, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, li, anchor);
+    			mount_component(jsonkey, li, null);
+    			append_dev(li, t1);
+    			append_dev(li, span);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(span, null);
+    			}
+
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const jsonnode_changes = {};
+    			if (dirty & /*value*/ 4) jsonnode_changes.value = /*value*/ ctx[2].message;
+    			jsonnode.$set(jsonnode_changes);
+    			const jsonkey_changes = {};
+    			if (dirty & /*isParentExpanded*/ 8) jsonkey_changes.isParentExpanded = /*isParentExpanded*/ ctx[3];
+    			jsonkey.$set(jsonkey_changes);
+
+    			if (dirty & /*stack*/ 32) {
+    				each_value = /*stack*/ ctx[5];
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$5(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block$5(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(span, null);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(jsonnode.$$.fragment, local);
+    			transition_in(jsonkey.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(jsonnode.$$.fragment, local);
+    			transition_out(jsonkey.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(jsonnode, detaching);
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(li);
+    			destroy_component(jsonkey);
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1$5.name,
+    		type: "if",
+    		source: "(51:6) {#if expanded}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (56:12) {#each stack as line, index}
+    function create_each_block$5(ctx) {
+    	let span;
+    	let t_value = /*line*/ ctx[8] + "";
+    	let t;
+    	let br;
+
+    	const block = {
+    		c: function create() {
+    			span = element("span");
+    			t = text(t_value);
+    			br = element("br");
+    			attr_dev(span, "class", "svelte-9psau4");
+    			toggle_class(span, "indent", /*index*/ ctx[10] > 0);
+    			add_location(span, file$a, 56, 14, 1462);
+    			add_location(br, file$a, 56, 58, 1506);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, span, anchor);
+    			append_dev(span, t);
+    			insert_dev(target, br, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*stack*/ 32 && t_value !== (t_value = /*line*/ ctx[8] + "")) set_data_dev(t, t_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(span);
+    			if (detaching) detach_dev(br);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$5.name,
+    		type: "each",
+    		source: "(56:12) {#each stack as line, index}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$f(ctx) {
+    	let li;
+    	let t0;
+    	let jsonkey;
+    	let t1;
+    	let span;
+    	let t2;
+    	let t3_value = (/*expanded*/ ctx[0] ? "" : /*value*/ ctx[2].message) + "";
+    	let t3;
+    	let t4;
+    	let current;
+    	let mounted;
+    	let dispose;
+    	let if_block0 = /*isParentExpanded*/ ctx[3] && create_if_block_2$3(ctx);
+
+    	jsonkey = new JSONKey({
+    			props: {
+    				key: /*key*/ ctx[1],
+    				colon: /*context*/ ctx[6].colon,
+    				isParentExpanded: /*isParentExpanded*/ ctx[3],
+    				isParentArray: /*isParentArray*/ ctx[4]
+    			},
+    			$$inline: true
+    		});
+
+    	let if_block1 = /*isParentExpanded*/ ctx[3] && create_if_block$7(ctx);
+
+    	const block = {
+    		c: function create() {
+    			li = element("li");
+    			if (if_block0) if_block0.c();
+    			t0 = space();
+    			create_component(jsonkey.$$.fragment);
+    			t1 = space();
+    			span = element("span");
+    			t2 = text("Error: ");
+    			t3 = text(t3_value);
+    			t4 = space();
+    			if (if_block1) if_block1.c();
+    			add_location(span, file$a, 47, 2, 1103);
+    			attr_dev(li, "class", "svelte-9psau4");
+    			toggle_class(li, "indent", /*isParentExpanded*/ ctx[3]);
+    			add_location(li, file$a, 42, 0, 901);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, li, anchor);
+    			if (if_block0) if_block0.m(li, null);
+    			append_dev(li, t0);
+    			mount_component(jsonkey, li, null);
+    			append_dev(li, t1);
+    			append_dev(li, span);
+    			append_dev(span, t2);
+    			append_dev(span, t3);
+    			append_dev(li, t4);
+    			if (if_block1) if_block1.m(li, null);
+    			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(span, "click", /*toggleExpand*/ ctx[7], false, false, false);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (/*isParentExpanded*/ ctx[3]) {
+    				if (if_block0) {
+    					if_block0.p(ctx, dirty);
+
+    					if (dirty & /*isParentExpanded*/ 8) {
+    						transition_in(if_block0, 1);
+    					}
+    				} else {
+    					if_block0 = create_if_block_2$3(ctx);
+    					if_block0.c();
+    					transition_in(if_block0, 1);
+    					if_block0.m(li, t0);
+    				}
+    			} else if (if_block0) {
+    				group_outros();
+
+    				transition_out(if_block0, 1, 1, () => {
+    					if_block0 = null;
+    				});
+
+    				check_outros();
+    			}
+
+    			const jsonkey_changes = {};
+    			if (dirty & /*key*/ 2) jsonkey_changes.key = /*key*/ ctx[1];
+    			if (dirty & /*isParentExpanded*/ 8) jsonkey_changes.isParentExpanded = /*isParentExpanded*/ ctx[3];
+    			if (dirty & /*isParentArray*/ 16) jsonkey_changes.isParentArray = /*isParentArray*/ ctx[4];
+    			jsonkey.$set(jsonkey_changes);
+    			if ((!current || dirty & /*expanded, value*/ 5) && t3_value !== (t3_value = (/*expanded*/ ctx[0] ? "" : /*value*/ ctx[2].message) + "")) set_data_dev(t3, t3_value);
+
+    			if (/*isParentExpanded*/ ctx[3]) {
+    				if (if_block1) {
+    					if_block1.p(ctx, dirty);
+
+    					if (dirty & /*isParentExpanded*/ 8) {
+    						transition_in(if_block1, 1);
+    					}
+    				} else {
+    					if_block1 = create_if_block$7(ctx);
+    					if_block1.c();
+    					transition_in(if_block1, 1);
+    					if_block1.m(li, null);
+    				}
+    			} else if (if_block1) {
+    				group_outros();
+
+    				transition_out(if_block1, 1, 1, () => {
+    					if_block1 = null;
+    				});
+
+    				check_outros();
+    			}
+
+    			if (dirty & /*isParentExpanded*/ 8) {
+    				toggle_class(li, "indent", /*isParentExpanded*/ ctx[3]);
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block0);
+    			transition_in(jsonkey.$$.fragment, local);
+    			transition_in(if_block1);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block0);
+    			transition_out(jsonkey.$$.fragment, local);
+    			transition_out(if_block1);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(li);
+    			if (if_block0) if_block0.d();
+    			destroy_component(jsonkey);
+    			if (if_block1) if_block1.d();
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$f.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$f($$self, $$props, $$invalidate) {
+    	let stack;
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("ErrorNode", slots, []);
+
+    	let { key } = $$props,
+    		{ value } = $$props,
+    		{ isParentExpanded } = $$props,
+    		{ isParentArray } = $$props;
+
+    	let { expanded = false } = $$props;
+    	const context = getContext(contextKey);
+    	setContext(contextKey, { ...context, colon: ":" });
+
+    	function toggleExpand() {
+    		$$invalidate(0, expanded = !expanded);
+    	}
+
+    	const writable_props = ["key", "value", "isParentExpanded", "isParentArray", "expanded"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<ErrorNode> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("key" in $$props) $$invalidate(1, key = $$props.key);
+    		if ("value" in $$props) $$invalidate(2, value = $$props.value);
+    		if ("isParentExpanded" in $$props) $$invalidate(3, isParentExpanded = $$props.isParentExpanded);
+    		if ("isParentArray" in $$props) $$invalidate(4, isParentArray = $$props.isParentArray);
+    		if ("expanded" in $$props) $$invalidate(0, expanded = $$props.expanded);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		getContext,
+    		setContext,
+    		contextKey,
+    		JSONArrow,
+    		JSONNode,
+    		JSONKey,
+    		key,
+    		value,
+    		isParentExpanded,
+    		isParentArray,
+    		expanded,
+    		context,
+    		toggleExpand,
+    		stack
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("key" in $$props) $$invalidate(1, key = $$props.key);
+    		if ("value" in $$props) $$invalidate(2, value = $$props.value);
+    		if ("isParentExpanded" in $$props) $$invalidate(3, isParentExpanded = $$props.isParentExpanded);
+    		if ("isParentArray" in $$props) $$invalidate(4, isParentArray = $$props.isParentArray);
+    		if ("expanded" in $$props) $$invalidate(0, expanded = $$props.expanded);
+    		if ("stack" in $$props) $$invalidate(5, stack = $$props.stack);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*value*/ 4) {
+    			$$invalidate(5, stack = value.stack.split("\n"));
+    		}
+
+    		if ($$self.$$.dirty & /*isParentExpanded*/ 8) {
+    			if (!isParentExpanded) {
+    				$$invalidate(0, expanded = false);
+    			}
+    		}
+    	};
+
+    	return [
+    		expanded,
+    		key,
+    		value,
+    		isParentExpanded,
+    		isParentArray,
+    		stack,
+    		context,
+    		toggleExpand
+    	];
+    }
+
+    class ErrorNode extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+
+    		init(this, options, instance$f, create_fragment$f, safe_not_equal, {
+    			key: 1,
+    			value: 2,
+    			isParentExpanded: 3,
+    			isParentArray: 4,
+    			expanded: 0
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "ErrorNode",
+    			options,
+    			id: create_fragment$f.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*key*/ ctx[1] === undefined && !("key" in props)) {
+    			console.warn("<ErrorNode> was created without expected prop 'key'");
+    		}
+
+    		if (/*value*/ ctx[2] === undefined && !("value" in props)) {
+    			console.warn("<ErrorNode> was created without expected prop 'value'");
+    		}
+
+    		if (/*isParentExpanded*/ ctx[3] === undefined && !("isParentExpanded" in props)) {
+    			console.warn("<ErrorNode> was created without expected prop 'isParentExpanded'");
+    		}
+
+    		if (/*isParentArray*/ ctx[4] === undefined && !("isParentArray" in props)) {
+    			console.warn("<ErrorNode> was created without expected prop 'isParentArray'");
+    		}
+    	}
+
+    	get key() {
+    		throw new Error("<ErrorNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set key(value) {
+    		throw new Error("<ErrorNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get value() {
+    		throw new Error("<ErrorNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set value(value) {
+    		throw new Error("<ErrorNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isParentExpanded() {
+    		throw new Error("<ErrorNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isParentExpanded(value) {
+    		throw new Error("<ErrorNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isParentArray() {
+    		throw new Error("<ErrorNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isParentArray(value) {
+    		throw new Error("<ErrorNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get expanded() {
+    		throw new Error("<ErrorNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set expanded(value) {
+    		throw new Error("<ErrorNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    function objType(obj) {
+      const type = Object.prototype.toString.call(obj).slice(8, -1);
+      if (type === 'Object') {
+        if (typeof obj[Symbol.iterator] === 'function') {
+          return 'Iterable';
+        }
+        return obj.constructor.name;
+      }
+
+      return type;
+    }
+
+    /* node_modules/svelte-json-tree/src/JSONNode.svelte generated by Svelte v3.32.3 */
+
+    function create_fragment$g(ctx) {
+    	let switch_instance;
+    	let switch_instance_anchor;
+    	let current;
+    	var switch_value = /*componentType*/ ctx[5];
+
+    	function switch_props(ctx) {
+    		return {
+    			props: {
+    				key: /*key*/ ctx[0],
+    				value: /*value*/ ctx[1],
+    				isParentExpanded: /*isParentExpanded*/ ctx[2],
+    				isParentArray: /*isParentArray*/ ctx[3],
+    				nodeType: /*nodeType*/ ctx[4],
+    				valueGetter: /*valueGetter*/ ctx[6]
+    			},
+    			$$inline: true
+    		};
+    	}
+
+    	if (switch_value) {
+    		switch_instance = new switch_value(switch_props(ctx));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			if (switch_instance) create_component(switch_instance.$$.fragment);
+    			switch_instance_anchor = empty();
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			if (switch_instance) {
+    				mount_component(switch_instance, target, anchor);
+    			}
+
+    			insert_dev(target, switch_instance_anchor, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			const switch_instance_changes = {};
+    			if (dirty & /*key*/ 1) switch_instance_changes.key = /*key*/ ctx[0];
+    			if (dirty & /*value*/ 2) switch_instance_changes.value = /*value*/ ctx[1];
+    			if (dirty & /*isParentExpanded*/ 4) switch_instance_changes.isParentExpanded = /*isParentExpanded*/ ctx[2];
+    			if (dirty & /*isParentArray*/ 8) switch_instance_changes.isParentArray = /*isParentArray*/ ctx[3];
+    			if (dirty & /*nodeType*/ 16) switch_instance_changes.nodeType = /*nodeType*/ ctx[4];
+    			if (dirty & /*valueGetter*/ 64) switch_instance_changes.valueGetter = /*valueGetter*/ ctx[6];
+
+    			if (switch_value !== (switch_value = /*componentType*/ ctx[5])) {
+    				if (switch_instance) {
+    					group_outros();
+    					const old_component = switch_instance;
+
+    					transition_out(old_component.$$.fragment, 1, 0, () => {
+    						destroy_component(old_component, 1);
+    					});
+
+    					check_outros();
+    				}
+
+    				if (switch_value) {
+    					switch_instance = new switch_value(switch_props(ctx));
+    					create_component(switch_instance.$$.fragment);
+    					transition_in(switch_instance.$$.fragment, 1);
+    					mount_component(switch_instance, switch_instance_anchor.parentNode, switch_instance_anchor);
+    				} else {
+    					switch_instance = null;
+    				}
+    			} else if (switch_value) {
+    				switch_instance.$set(switch_instance_changes);
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			if (switch_instance) transition_in(switch_instance.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			if (switch_instance) transition_out(switch_instance.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(switch_instance_anchor);
+    			if (switch_instance) destroy_component(switch_instance, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$g.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$g($$self, $$props, $$invalidate) {
+    	let nodeType;
+    	let componentType;
+    	let valueGetter;
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("JSONNode", slots, []);
+
+    	let { key } = $$props,
+    		{ value } = $$props,
+    		{ isParentExpanded } = $$props,
+    		{ isParentArray } = $$props;
+
+    	function getComponent(nodeType) {
+    		switch (nodeType) {
+    			case "Object":
+    				return JSONObjectNode;
+    			case "Error":
+    				return ErrorNode;
+    			case "Array":
+    				return JSONArrayNode;
+    			case "Iterable":
+    			case "Map":
+    			case "Set":
+    				return typeof value.set === "function"
+    				? JSONIterableMapNode
+    				: JSONIterableArrayNode;
+    			case "MapEntry":
+    				return JSONMapEntryNode;
+    			default:
+    				return JSONValueNode;
+    		}
+    	}
+
+    	function getValueGetter(nodeType) {
+    		switch (nodeType) {
+    			case "Object":
+    			case "Error":
+    			case "Array":
+    			case "Iterable":
+    			case "Map":
+    			case "Set":
+    			case "MapEntry":
+    			case "Number":
+    				return undefined;
+    			case "String":
+    				return raw => `"${raw}"`;
+    			case "Boolean":
+    				return raw => raw ? "true" : "false";
+    			case "Date":
+    				return raw => raw.toISOString();
+    			case "Null":
+    				return () => "null";
+    			case "Undefined":
+    				return () => "undefined";
+    			case "Function":
+    			case "Symbol":
+    				return raw => raw.toString();
+    			default:
+    				return () => `<${nodeType}>`;
+    		}
+    	}
+
+    	const writable_props = ["key", "value", "isParentExpanded", "isParentArray"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<JSONNode> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("key" in $$props) $$invalidate(0, key = $$props.key);
+    		if ("value" in $$props) $$invalidate(1, value = $$props.value);
+    		if ("isParentExpanded" in $$props) $$invalidate(2, isParentExpanded = $$props.isParentExpanded);
+    		if ("isParentArray" in $$props) $$invalidate(3, isParentArray = $$props.isParentArray);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		JSONObjectNode,
+    		JSONArrayNode,
+    		JSONIterableArrayNode,
+    		JSONIterableMapNode,
+    		JSONMapEntryNode,
+    		JSONValueNode,
+    		ErrorNode,
+    		objType,
+    		key,
+    		value,
+    		isParentExpanded,
+    		isParentArray,
+    		getComponent,
+    		getValueGetter,
+    		nodeType,
+    		componentType,
+    		valueGetter
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("key" in $$props) $$invalidate(0, key = $$props.key);
+    		if ("value" in $$props) $$invalidate(1, value = $$props.value);
+    		if ("isParentExpanded" in $$props) $$invalidate(2, isParentExpanded = $$props.isParentExpanded);
+    		if ("isParentArray" in $$props) $$invalidate(3, isParentArray = $$props.isParentArray);
+    		if ("nodeType" in $$props) $$invalidate(4, nodeType = $$props.nodeType);
+    		if ("componentType" in $$props) $$invalidate(5, componentType = $$props.componentType);
+    		if ("valueGetter" in $$props) $$invalidate(6, valueGetter = $$props.valueGetter);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*value*/ 2) {
+    			$$invalidate(4, nodeType = objType(value));
+    		}
+
+    		if ($$self.$$.dirty & /*nodeType*/ 16) {
+    			$$invalidate(5, componentType = getComponent(nodeType));
+    		}
+
+    		if ($$self.$$.dirty & /*nodeType*/ 16) {
+    			$$invalidate(6, valueGetter = getValueGetter(nodeType));
+    		}
+    	};
+
+    	return [
+    		key,
+    		value,
+    		isParentExpanded,
+    		isParentArray,
+    		nodeType,
+    		componentType,
+    		valueGetter
+    	];
+    }
+
+    class JSONNode extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+
+    		init(this, options, instance$g, create_fragment$g, safe_not_equal, {
+    			key: 0,
+    			value: 1,
+    			isParentExpanded: 2,
+    			isParentArray: 3
+    		});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "JSONNode",
+    			options,
+    			id: create_fragment$g.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*key*/ ctx[0] === undefined && !("key" in props)) {
+    			console.warn("<JSONNode> was created without expected prop 'key'");
+    		}
+
+    		if (/*value*/ ctx[1] === undefined && !("value" in props)) {
+    			console.warn("<JSONNode> was created without expected prop 'value'");
+    		}
+
+    		if (/*isParentExpanded*/ ctx[2] === undefined && !("isParentExpanded" in props)) {
+    			console.warn("<JSONNode> was created without expected prop 'isParentExpanded'");
+    		}
+
+    		if (/*isParentArray*/ ctx[3] === undefined && !("isParentArray" in props)) {
+    			console.warn("<JSONNode> was created without expected prop 'isParentArray'");
+    		}
+    	}
+
+    	get key() {
+    		throw new Error("<JSONNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set key(value) {
+    		throw new Error("<JSONNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get value() {
+    		throw new Error("<JSONNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set value(value) {
+    		throw new Error("<JSONNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isParentExpanded() {
+    		throw new Error("<JSONNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isParentExpanded(value) {
+    		throw new Error("<JSONNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get isParentArray() {
+    		throw new Error("<JSONNode>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set isParentArray(value) {
+    		throw new Error("<JSONNode>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* node_modules/svelte-json-tree/src/Root.svelte generated by Svelte v3.32.3 */
+    const file$b = "node_modules/svelte-json-tree/src/Root.svelte";
+
+    function create_fragment$h(ctx) {
+    	let ul;
+    	let jsonnode;
+    	let current;
+
+    	jsonnode = new JSONNode({
+    			props: {
+    				key: /*key*/ ctx[0],
+    				value: /*value*/ ctx[1],
+    				isParentExpanded: true,
+    				isParentArray: false
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			ul = element("ul");
+    			create_component(jsonnode.$$.fragment);
+    			attr_dev(ul, "class", "svelte-1uckgkw");
+    			add_location(ul, file$b, 38, 0, 1244);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, ul, anchor);
+    			mount_component(jsonnode, ul, null);
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			const jsonnode_changes = {};
+    			if (dirty & /*key*/ 1) jsonnode_changes.key = /*key*/ ctx[0];
+    			if (dirty & /*value*/ 2) jsonnode_changes.value = /*value*/ ctx[1];
+    			jsonnode.$set(jsonnode_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(jsonnode.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(jsonnode.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(ul);
+    			destroy_component(jsonnode);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$h.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$h($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots("Root", slots, []);
+    	setContext(contextKey, {});
+    	let { key = "" } = $$props, { value } = $$props;
+    	const writable_props = ["key", "value"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Root> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("key" in $$props) $$invalidate(0, key = $$props.key);
+    		if ("value" in $$props) $$invalidate(1, value = $$props.value);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		JSONNode,
+    		setContext,
+    		contextKey,
+    		key,
+    		value
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("key" in $$props) $$invalidate(0, key = $$props.key);
+    		if ("value" in $$props) $$invalidate(1, value = $$props.value);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [key, value];
+    }
+
+    class Root extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$h, create_fragment$h, safe_not_equal, { key: 0, value: 1 });
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "Root",
+    			options,
+    			id: create_fragment$h.name
+    		});
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+
+    		if (/*value*/ ctx[1] === undefined && !("value" in props)) {
+    			console.warn("<Root> was created without expected prop 'value'");
+    		}
+    	}
+
+    	get key() {
+    		throw new Error("<Root>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set key(value) {
+    		throw new Error("<Root>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get value() {
+    		throw new Error("<Root>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set value(value) {
+    		throw new Error("<Root>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
     }
 
     /* src/App.svelte generated by Svelte v3.32.3 */
 
     const { console: console_1$4 } = globals;
-    const file$6 = "src/App.svelte";
+    const file$c = "src/App.svelte";
 
-    // (100:2) {#if settingDefault}
-    function create_if_block_2$1(ctx) {
+    // (103:2) {#if settingDefault}
+    function create_if_block_3$3(ctx) {
     	let div4;
     	let div3;
     	let p;
@@ -11412,21 +15816,21 @@ var app = (function () {
     			div1 = element("div");
     			div1.textContent = "Save";
     			attr_dev(p, "class", "text-md font-semibold text-gray-900");
-    			add_location(p, file$6, 102, 4, 2804);
+    			add_location(p, file$c, 105, 4, 2884);
     			attr_dev(textarea, "id", textarea_id_value = `default-${/*settingDefault*/ ctx[8].name}`);
     			attr_dev(textarea, "class", "focus:outline-none border-2 border-green-200 text-gray-900 apperance-none bg-white rounded-lg w-full p-2");
     			textarea.value = textarea_value_value = /*settingDefault*/ ctx[8].def;
-    			add_location(textarea, file$6, 103, 5, 2912);
+    			add_location(textarea, file$c, 106, 5, 2992);
     			attr_dev(div0, "class", "bg-red-600 text-white cursor-pointer p-2 rounded-lg flex items-center justify-center mr-6");
-    			add_location(div0, file$6, 105, 5, 3153);
+    			add_location(div0, file$c, 108, 5, 3233);
     			attr_dev(div1, "class", "bg-green-600 text-white cursor-pointer p-2 rounded-lg flex items-center justify-center");
-    			add_location(div1, file$6, 106, 6, 3312);
+    			add_location(div1, file$c, 109, 6, 3392);
     			attr_dev(div2, "class", "w-full flex justify-end");
-    			add_location(div2, file$6, 104, 5, 3110);
+    			add_location(div2, file$c, 107, 5, 3190);
     			attr_dev(div3, "class", "rounded-lg bg-white p-12 flex flex-col items-center justify-center space-y-4");
-    			add_location(div3, file$6, 101, 4, 2709);
+    			add_location(div3, file$c, 104, 4, 2789);
     			attr_dev(div4, "class", "bg-transparent h-screen w-screen z-50 fixed flex items-center justify-center");
-    			add_location(div4, file$6, 100, 3, 2614);
+    			add_location(div4, file$c, 103, 3, 2694);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div4, anchor);
@@ -11442,8 +15846,8 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(div0, "click", /*click_handler*/ ctx[14], false, false, false),
-    					listen_dev(div1, "click", /*click_handler_1*/ ctx[15], false, false, false)
+    					listen_dev(div0, "click", /*click_handler*/ ctx[16], false, false, false),
+    					listen_dev(div1, "click", /*click_handler_1*/ ctx[17], false, false, false)
     				];
 
     				mounted = true;
@@ -11467,33 +15871,33 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_2$1.name,
+    		id: create_if_block_3$3.name,
     		type: "if",
-    		source: "(100:2) {#if settingDefault}",
+    		source: "(103:2) {#if settingDefault}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (117:2) {#if !loggedin}
-    function create_if_block_1$4(ctx) {
+    // (120:2) {#if !loggedin}
+    function create_if_block_2$4(ctx) {
     	let loggedin_1;
     	let updating_currentUser;
     	let updating_loggedin;
     	let current;
 
     	function loggedin_1_currentUser_binding(value) {
-    		/*loggedin_1_currentUser_binding*/ ctx[16](value);
+    		/*loggedin_1_currentUser_binding*/ ctx[18](value);
     	}
 
     	function loggedin_1_loggedin_binding(value) {
-    		/*loggedin_1_loggedin_binding*/ ctx[17](value);
+    		/*loggedin_1_loggedin_binding*/ ctx[19](value);
     	}
 
     	let loggedin_1_props = {
-    		loadData: /*loadData*/ ctx[11],
-    		checkUser: /*checkUser*/ ctx[10]
+    		loadData: /*loadData*/ ctx[13],
+    		checkUser: /*checkUser*/ ctx[12]
     	};
 
     	if (/*currentUser*/ ctx[5] !== void 0) {
@@ -11549,17 +15953,17 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_1$4.name,
+    		id: create_if_block_2$4.name,
     		type: "if",
-    		source: "(117:2) {#if !loggedin}",
+    		source: "(120:2) {#if !loggedin}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (124:2) {:else}
-    function create_else_block$4(ctx) {
+    // (133:2) {:else}
+    function create_else_block_1$1(ctx) {
     	let div2;
     	let div1;
     	let p;
@@ -11583,16 +15987,16 @@ var app = (function () {
     			t3 = space();
     			img = element("img");
     			attr_dev(p, "class", "text-3xl w-96 my-12 text-center font-semibold");
-    			add_location(p, file$6, 126, 5, 4922);
+    			add_location(p, file$c, 135, 5, 5403);
     			attr_dev(div0, "class", "bg-green-200 text-gray-900 font-semibold text-lg p-2 flex items-center justify-center rounded-lg cursor-pointer transform duration-150 shadow-md hover:-translate-y-1 hover:shadow-lg");
-    			add_location(div0, file$6, 127, 5, 5033);
+    			add_location(div0, file$c, 136, 5, 5514);
     			attr_dev(div1, "class", "flex flex-col absolute -ml-48");
-    			add_location(div1, file$6, 125, 4, 4873);
+    			add_location(div1, file$c, 134, 4, 5354);
     			attr_dev(img, "class", "h-3/4 object-scale");
     			if (img.src !== (img_src_value = "./empty.png")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file$6, 129, 4, 5292);
+    			add_location(img, file$c, 138, 4, 5773);
     			attr_dev(div2, "class", "w-3/4 h-full flex items-center -mt-24 justify-center");
-    			add_location(div2, file$6, 124, 3, 4802);
+    			add_location(div2, file$c, 133, 3, 5283);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
@@ -11604,7 +16008,7 @@ var app = (function () {
     			append_dev(div2, img);
 
     			if (!mounted) {
-    				dispose = listen_dev(div0, "click", /*newColHeader*/ ctx[12], false, false, false);
+    				dispose = listen_dev(div0, "click", /*newColHeader*/ ctx[14], false, false, false);
     				mounted = true;
     			}
     		},
@@ -11620,18 +16024,130 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_else_block$4.name,
+    		id: create_else_block_1$1.name,
     		type: "else",
-    		source: "(124:2) {:else}",
+    		source: "(133:2) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (122:2) {#if headers.length > 0}
-    function create_if_block$5(ctx) {
+    // (125:2) {#if headers.length > 0}
+    function create_if_block$8(ctx) {
+    	let current_block_type_index;
+    	let if_block;
+    	let if_block_anchor;
+    	let current;
+    	const if_block_creators = [create_if_block_1$6, create_else_block$5];
+    	const if_blocks = [];
+
+    	function select_block_type_1(ctx, dirty) {
+    		if (/*viewGrid*/ ctx[11]) return 0;
+    		return 1;
+    	}
+
+    	current_block_type_index = select_block_type_1(ctx);
+    	if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+
+    	const block = {
+    		c: function create() {
+    			if_block.c();
+    			if_block_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			if_blocks[current_block_type_index].m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			if_block.p(ctx, dirty);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(if_block);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if_blocks[current_block_type_index].d(detaching);
+    			if (detaching) detach_dev(if_block_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$8.name,
+    		type: "if",
+    		source: "(125:2) {#if headers.length > 0}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (128:3) {:else}
+    function create_else_block$5(ctx) {
+    	let div;
+    	let jsontree;
+    	let current;
+
+    	jsontree = new Root({
+    			props: { value: /*displayedData*/ ctx[1] },
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			create_component(jsontree.$$.fragment);
+    			attr_dev(div, "class", "w-full self-start py-4 px-12");
+    			set_style(div, "--json-tree-font-family", "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"");
+    			add_location(div, file$c, 128, 3, 4927);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			mount_component(jsontree, div, null);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const jsontree_changes = {};
+    			if (dirty & /*displayedData*/ 2) jsontree_changes.value = /*displayedData*/ ctx[1];
+    			jsontree.$set(jsontree_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(jsontree.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(jsontree.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			destroy_component(jsontree);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block$5.name,
+    		type: "else",
+    		source: "(128:3) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (126:3) {#if viewGrid}
+    function create_if_block_1$6(ctx) {
     	let table;
+    	let updating_treeView;
     	let updating_fieldEdit;
     	let updating_settingDefault;
     	let updating_dataTables;
@@ -11639,32 +16155,40 @@ var app = (function () {
     	let updating_headers;
     	let current;
 
+    	function table_treeView_binding(value) {
+    		/*table_treeView_binding*/ ctx[24](value);
+    	}
+
     	function table_fieldEdit_binding(value) {
-    		/*table_fieldEdit_binding*/ ctx[22](value);
+    		/*table_fieldEdit_binding*/ ctx[25](value);
     	}
 
     	function table_settingDefault_binding(value) {
-    		/*table_settingDefault_binding*/ ctx[23](value);
+    		/*table_settingDefault_binding*/ ctx[26](value);
     	}
 
     	function table_dataTables_binding(value) {
-    		/*table_dataTables_binding*/ ctx[24](value);
+    		/*table_dataTables_binding*/ ctx[27](value);
     	}
 
     	function table_displayedData_binding(value) {
-    		/*table_displayedData_binding*/ ctx[25](value);
+    		/*table_displayedData_binding*/ ctx[28](value);
     	}
 
     	function table_headers_binding(value) {
-    		/*table_headers_binding*/ ctx[26](value);
+    		/*table_headers_binding*/ ctx[29](value);
     	}
 
     	let table_props = {
-    		newColHeader: /*newColHeader*/ ctx[12],
+    		newColHeader: /*newColHeader*/ ctx[14],
     		token: /*token*/ ctx[7],
     		activeTable: /*activeTable*/ ctx[3],
     		currentUser: /*currentUser*/ ctx[5]
     	};
+
+    	if (/*treeView*/ ctx[10] !== void 0) {
+    		table_props.treeView = /*treeView*/ ctx[10];
+    	}
 
     	if (/*fieldEdit*/ ctx[9] !== void 0) {
     		table_props.fieldEdit = /*fieldEdit*/ ctx[9];
@@ -11687,6 +16211,7 @@ var app = (function () {
     	}
 
     	table = new Table({ props: table_props, $$inline: true });
+    	binding_callbacks.push(() => bind(table, "treeView", table_treeView_binding));
     	binding_callbacks.push(() => bind(table, "fieldEdit", table_fieldEdit_binding));
     	binding_callbacks.push(() => bind(table, "settingDefault", table_settingDefault_binding));
     	binding_callbacks.push(() => bind(table, "dataTables", table_dataTables_binding));
@@ -11706,6 +16231,12 @@ var app = (function () {
     			if (dirty & /*token*/ 128) table_changes.token = /*token*/ ctx[7];
     			if (dirty & /*activeTable*/ 8) table_changes.activeTable = /*activeTable*/ ctx[3];
     			if (dirty & /*currentUser*/ 32) table_changes.currentUser = /*currentUser*/ ctx[5];
+
+    			if (!updating_treeView && dirty & /*treeView*/ 1024) {
+    				updating_treeView = true;
+    				table_changes.treeView = /*treeView*/ ctx[10];
+    				add_flush_callback(() => updating_treeView = false);
+    			}
 
     			if (!updating_fieldEdit && dirty & /*fieldEdit*/ 512) {
     				updating_fieldEdit = true;
@@ -11755,16 +16286,16 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$5.name,
+    		id: create_if_block_1$6.name,
     		type: "if",
-    		source: "(122:2) {#if headers.length > 0}",
+    		source: "(126:3) {#if viewGrid}",
     		ctx
     	});
 
     	return block;
     }
 
-    function create_fragment$6(ctx) {
+    function create_fragment$i(ctx) {
     	let body;
     	let t0;
     	let apidocs;
@@ -11776,11 +16307,21 @@ var app = (function () {
     	let updating_headers;
     	let updating_displayedData;
     	let t3;
-    	let div;
+    	let div0;
     	let current_block_type_index;
     	let if_block2;
+    	let t4;
+    	let div2;
+    	let div1;
+    	let svg;
+    	let path;
+    	let t5;
+    	let jsontree;
+    	let div2_class_value;
     	let current;
-    	let if_block0 = /*settingDefault*/ ctx[8] && create_if_block_2$1(ctx);
+    	let mounted;
+    	let dispose;
+    	let if_block0 = /*settingDefault*/ ctx[8] && create_if_block_3$3(ctx);
 
     	apidocs = new ApiDocs({
     			props: {
@@ -11791,22 +16332,22 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	let if_block1 = !/*loggedin*/ ctx[4] && create_if_block_1$4(ctx);
+    	let if_block1 = !/*loggedin*/ ctx[4] && create_if_block_2$4(ctx);
 
     	function header_showAPIDocs_binding(value) {
-    		/*header_showAPIDocs_binding*/ ctx[18](value);
+    		/*header_showAPIDocs_binding*/ ctx[20](value);
     	}
 
     	function header_activeTable_binding(value) {
-    		/*header_activeTable_binding*/ ctx[19](value);
+    		/*header_activeTable_binding*/ ctx[21](value);
     	}
 
     	function header_headers_binding(value) {
-    		/*header_headers_binding*/ ctx[20](value);
+    		/*header_headers_binding*/ ctx[22](value);
     	}
 
     	function header_displayedData_binding(value) {
-    		/*header_displayedData_binding*/ ctx[21](value);
+    		/*header_displayedData_binding*/ ctx[23](value);
     	}
 
     	let header_props = {
@@ -11836,7 +16377,7 @@ var app = (function () {
     	binding_callbacks.push(() => bind(header, "activeTable", header_activeTable_binding));
     	binding_callbacks.push(() => bind(header, "headers", header_headers_binding));
     	binding_callbacks.push(() => bind(header, "displayedData", header_displayedData_binding));
-    	const if_block_creators = [create_if_block$5, create_else_block$4];
+    	const if_block_creators = [create_if_block$8, create_else_block_1$1];
     	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
@@ -11846,6 +16387,11 @@ var app = (function () {
 
     	current_block_type_index = select_block_type(ctx);
     	if_block2 = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+
+    	jsontree = new Root({
+    			props: { value: /*treeView*/ ctx[10] },
+    			$$inline: true
+    		});
 
     	const block = {
     		c: function create() {
@@ -11858,12 +16404,38 @@ var app = (function () {
     			t2 = space();
     			create_component(header.$$.fragment);
     			t3 = space();
-    			div = element("div");
+    			div0 = element("div");
     			if_block2.c();
-    			attr_dev(div, "class", "pb-6 w-screen h-full flex justify-center overflow-x-scroll");
-    			add_location(div, file$6, 120, 2, 4432);
+    			t4 = space();
+    			div2 = element("div");
+    			div1 = element("div");
+    			svg = svg_element("svg");
+    			path = svg_element("path");
+    			t5 = space();
+    			create_component(jsontree.$$.fragment);
+    			attr_dev(div0, "class", "pb-6 w-screen h-full flex justify-center overflow-x-scroll");
+    			add_location(div0, file$c, 123, 2, 4512);
+    			attr_dev(path, "stroke-linecap", "round");
+    			attr_dev(path, "stroke-linejoin", "round");
+    			attr_dev(path, "stroke-width", "2.5");
+    			attr_dev(path, "d", "M6 18L18 6M6 6l12 12");
+    			add_location(path, file$c, 145, 5, 6272);
+    			attr_dev(svg, "class", "h-6 w-6");
+    			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
+    			attr_dev(svg, "fill", "none");
+    			attr_dev(svg, "viewBox", "0 0 24 24");
+    			attr_dev(svg, "stroke", "currentColor");
+    			add_location(svg, file$c, 144, 4, 6125);
+    			attr_dev(div1, "class", "w-full flex justify-end");
+    			add_location(div1, file$c, 143, 3, 6083);
+
+    			attr_dev(div2, "class", div2_class_value = `fixed bottom-0 w-screen h-96 rounded-lg bg-white p-6 transform duration-300 ${/*treeView*/ ctx[10]
+			? "translate-y-0"
+			: "translate-y-full"} flex flex-col justify-start space-y-4 border-green-600 border-2 overflow-y-scroll`);
+
+    			add_location(div2, file$c, 142, 2, 5855);
     			attr_dev(body, "class", "h-screen");
-    			add_location(body, file$6, 98, 0, 2564);
+    			add_location(body, file$c, 101, 0, 2644);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -11878,16 +16450,28 @@ var app = (function () {
     			append_dev(body, t2);
     			mount_component(header, body, null);
     			append_dev(body, t3);
-    			append_dev(body, div);
-    			if_blocks[current_block_type_index].m(div, null);
+    			append_dev(body, div0);
+    			if_blocks[current_block_type_index].m(div0, null);
+    			append_dev(body, t4);
+    			append_dev(body, div2);
+    			append_dev(div2, div1);
+    			append_dev(div1, svg);
+    			append_dev(svg, path);
+    			append_dev(div2, t5);
+    			mount_component(jsontree, div2, null);
     			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(svg, "click", /*click_handler_2*/ ctx[30], false, false, false);
+    				mounted = true;
+    			}
     		},
     		p: function update(ctx, [dirty]) {
     			if (/*settingDefault*/ ctx[8]) {
     				if (if_block0) {
     					if_block0.p(ctx, dirty);
     				} else {
-    					if_block0 = create_if_block_2$1(ctx);
+    					if_block0 = create_if_block_3$3(ctx);
     					if_block0.c();
     					if_block0.m(body, t0);
     				}
@@ -11910,7 +16494,7 @@ var app = (function () {
     						transition_in(if_block1, 1);
     					}
     				} else {
-    					if_block1 = create_if_block_1$4(ctx);
+    					if_block1 = create_if_block_2$4(ctx);
     					if_block1.c();
     					transition_in(if_block1, 1);
     					if_block1.m(body, t2);
@@ -11978,7 +16562,17 @@ var app = (function () {
     				}
 
     				transition_in(if_block2, 1);
-    				if_block2.m(div, null);
+    				if_block2.m(div0, null);
+    			}
+
+    			const jsontree_changes = {};
+    			if (dirty & /*treeView*/ 1024) jsontree_changes.value = /*treeView*/ ctx[10];
+    			jsontree.$set(jsontree_changes);
+
+    			if (!current || dirty & /*treeView*/ 1024 && div2_class_value !== (div2_class_value = `fixed bottom-0 w-screen h-96 rounded-lg bg-white p-6 transform duration-300 ${/*treeView*/ ctx[10]
+			? "translate-y-0"
+			: "translate-y-full"} flex flex-col justify-start space-y-4 border-green-600 border-2 overflow-y-scroll`)) {
+    				attr_dev(div2, "class", div2_class_value);
     			}
     		},
     		i: function intro(local) {
@@ -11987,6 +16581,7 @@ var app = (function () {
     			transition_in(if_block1);
     			transition_in(header.$$.fragment, local);
     			transition_in(if_block2);
+    			transition_in(jsontree.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
@@ -11994,6 +16589,7 @@ var app = (function () {
     			transition_out(if_block1);
     			transition_out(header.$$.fragment, local);
     			transition_out(if_block2);
+    			transition_out(jsontree.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
@@ -12003,12 +16599,15 @@ var app = (function () {
     			if (if_block1) if_block1.d();
     			destroy_component(header);
     			if_blocks[current_block_type_index].d();
+    			destroy_component(jsontree);
+    			mounted = false;
+    			dispose();
     		}
     	};
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_fragment$6.name,
+    		id: create_fragment$i.name,
     		type: "component",
     		source: "",
     		ctx
@@ -12017,7 +16616,7 @@ var app = (function () {
     	return block;
     }
 
-    function instance$6($$self, $$props, $$invalidate) {
+    function instance$i($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("App", slots, []);
     	let dataTables = [];
@@ -12030,6 +16629,8 @@ var app = (function () {
     	let token;
     	let settingDefault = "";
     	let fieldEdit;
+    	let viewGrid = true;
+    	let treeView = "";
 
     	const checkUser = async () => {
     		$$invalidate(7, token = window.sessionStorage.getItem("api_key"));
@@ -12135,6 +16736,11 @@ var app = (function () {
     		$$invalidate(1, displayedData);
     	}
 
+    	function table_treeView_binding(value) {
+    		treeView = value;
+    		$$invalidate(10, treeView);
+    	}
+
     	function table_fieldEdit_binding(value) {
     		fieldEdit = value;
     		$$invalidate(9, fieldEdit);
@@ -12160,6 +16766,8 @@ var app = (function () {
     		$$invalidate(2, headers);
     	}
 
+    	const click_handler_2 = () => $$invalidate(10, treeView = "");
+
     	$$self.$capture_state = () => ({
     		onMount,
     		api,
@@ -12170,6 +16778,7 @@ var app = (function () {
     		LoggedIn,
     		ApiDocs,
     		Table,
+    		JSONTree: Root,
     		dataTables,
     		displayedData,
     		headers,
@@ -12180,6 +16789,8 @@ var app = (function () {
     		token,
     		settingDefault,
     		fieldEdit,
+    		viewGrid,
+    		treeView,
     		checkUser,
     		loadData,
     		newColHeader,
@@ -12197,6 +16808,8 @@ var app = (function () {
     		if ("token" in $$props) $$invalidate(7, token = $$props.token);
     		if ("settingDefault" in $$props) $$invalidate(8, settingDefault = $$props.settingDefault);
     		if ("fieldEdit" in $$props) $$invalidate(9, fieldEdit = $$props.fieldEdit);
+    		if ("viewGrid" in $$props) $$invalidate(11, viewGrid = $$props.viewGrid);
+    		if ("treeView" in $$props) $$invalidate(10, treeView = $$props.treeView);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -12214,6 +16827,8 @@ var app = (function () {
     		token,
     		settingDefault,
     		fieldEdit,
+    		treeView,
+    		viewGrid,
     		checkUser,
     		loadData,
     		newColHeader,
@@ -12226,24 +16841,26 @@ var app = (function () {
     		header_activeTable_binding,
     		header_headers_binding,
     		header_displayedData_binding,
+    		table_treeView_binding,
     		table_fieldEdit_binding,
     		table_settingDefault_binding,
     		table_dataTables_binding,
     		table_displayedData_binding,
-    		table_headers_binding
+    		table_headers_binding,
+    		click_handler_2
     	];
     }
 
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$6, create_fragment$6, safe_not_equal, {});
+    		init(this, options, instance$i, create_fragment$i, safe_not_equal, {});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
     			tagName: "App",
     			options,
-    			id: create_fragment$6.name
+    			id: create_fragment$i.name
     		});
     	}
     }

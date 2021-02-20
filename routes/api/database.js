@@ -27,6 +27,6 @@ router.route("/:table")
     .delete(auth, databaseController.destroyField)
 
   router.route("/:table/import")
-    .post(auth, upload.single("filename"), databaseController.importJSON)
+    .post(auth, upload.single("file"), databaseController.importJSON)
 
 module.exports = router;

@@ -44,6 +44,7 @@
     "path": "^0.12.7",
     "sirv-cli": "^1.0.0",
     "socket.io": "^3.1.1",
-    "socket.io-client": "^3.1.1"
+    "socket.io-client": "^3.1.1",
+    "svelte-json-tree": "^0.1.0"
   }
 }

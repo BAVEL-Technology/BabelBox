@@ -1,10 +1,8 @@
 [
   {
-    "question": "hello",
-    "category": "test"
+    "col": "hello"
   },
   {
-    "question": "goodbye",
-    "category": "test"
+    "col": "goodbye"
   }
 ]
