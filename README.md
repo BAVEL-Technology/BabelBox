@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # [BABELBox V2]()
 
 ## The Table of Contents
@@ -22,7 +21,3 @@ As a group of friends, we want to be able to join a game room and play against e
 - [Andrew Doka](https://github.com/andrewdoka)
 ## The Source Code
 The source code for this project can be found over at [our GitHub page](https://github.com/https-github-com-steversonTong/BABELbox-backend).
-=======
-# BabelBox 🤡
-## Backend application for BabelBox. 
->>>>>>> bc175a63a3a283aadaec7a6910d129a8ce89ebbc
