@@ -9,4 +9,7 @@ router.route("/:bread")
   .post(breadController.add)
   .delete(breadController.destroy)
 
+router.route("/push/:bread")
+  .put(breadController.push)
+
 module.exports = router;

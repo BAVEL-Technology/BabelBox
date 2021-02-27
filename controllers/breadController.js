@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 const mongoCreate = require('../utils/mongoCreate.js')
 const camelcase = require('camelcase')
+Array.prototype.asyncForEach = async function (callback) {
+  for (let i = 0; i < this.length; i++) {
+    await callback(this[i], i);
+  }
+};
 module.exports = {
   browse: async (req, res) => {
     try {
@@ -45,12 +50,46 @@ module.exports = {
       console.log(camelcase(req.params.bread)[0].toUpperCase() + req.params.bread.substring(1))
       if (!Model) Model = mongoose.connection.models[camelcase(req.params.bread)[0].toUpperCase() + req.params.bread.substring(1)]
       console.log(Model)
+      let nestedUpdates = Object.keys(req.body.updates)
+      .filter(key => key.includes('.'))
+      .map((key) => [key]: req.body.updates[key])
+      let regularUpdates = Object.keys(req.body.updates)
+      .filter(key => !key.includes('.'))
+      .map((key) => [key]: req.body.updates[key])
       const data = await Model.updateMany(req.body.filters, req.body.updates)
       console.log(req.body.filters)
       console.log(req.body.updates)
       console.log(data)
       const io = req.app.get('socketio');
       io.emit('breadUpdate', data);
+      const respond = await Model.find(req.body.filters)
+      res.status(200).json(respond)
+    } catch (err) {
+      console.log(err)
+      res.status(400).json(err)
+    }
+  },
+
+  push: async (req, res) => {
+    try {
+      let Model = mongoCreate.mongoModels[camelcase(req.params.bread)]
+      console.log(camelcase(req.params.bread)[0].toUpperCase() + req.params.bread.substring(1))
+      if (!Model) Model = mongoose.connection.models[camelcase(req.params.bread)[0].toUpperCase() + req.params.bread.substring(1)]
+      console.log(Model)
+      const push = req.body.push
+      let data
+      let item = await Model.find(req.body.filters)
+      await Object.keys(push).asyncForEach(async (key) => {
+        console.log(key)
+        data = await Model.updateMany(req.body.filters, {
+          $push: { [key]: push[key] }
+       })
+      })
+      console.log(req.body.filters)
+      console.log(req.body.push)
+      console.log(data)
+      const io = req.app.get('socketio');
+      // io.emit('breadUpdate', data);
       const respond = await Model.find(req.body.filters)
       res.status(200).json(respond)
     } catch (err) {
