@@ -19,6 +19,8 @@ app.get('/', (req, res) => {
    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
 
+const users = {};
+
 const start = () => {
   const server = app.listen(PORT, function() {
     console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
@@ -36,7 +38,28 @@ const start = () => {
           socket.join(room);
           io.sockets.in(room).emit('message', 'hi from localhost ' + room);
       });
+      //***code for chat events */
+      socket.on('new-user', username => {
+        const user = {
+          name: username,
+          id: socket.id
+        }
+          users[socket.id] = user;
+          io.emit("connected", user);
+          io.emit("users", Object.values(users));
+        });
+      //***print out chat message event
+      socket.on('chat message', (msg) => {
+          //this will send the message to all the sockets
+          io.emit('chat message', {
+            text: msg,
+            user: users[socket.id]
+          });
+          console.log('message: ' + msg);
+        });
   });
+
+
   app.set('socketio', io);
 }
 
