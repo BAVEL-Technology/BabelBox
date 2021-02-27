@@ -37,5 +37,6 @@ const start = () => {
           socket.join(room);
       });
   });
+}
 
 start()
