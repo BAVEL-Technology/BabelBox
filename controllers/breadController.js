@@ -50,12 +50,6 @@ module.exports = {
       console.log(camelcase(req.params.bread)[0].toUpperCase() + req.params.bread.substring(1))
       if (!Model) Model = mongoose.connection.models[camelcase(req.params.bread)[0].toUpperCase() + req.params.bread.substring(1)]
       console.log(Model)
-      let nestedUpdates = Object.keys(req.body.updates)
-      .filter(key => key.includes('.'))
-      .map((key) => [key]: req.body.updates[key])
-      let regularUpdates = Object.keys(req.body.updates)
-      .filter(key => !key.includes('.'))
-      .map((key) => [key]: req.body.updates[key])
       const data = await Model.updateMany(req.body.filters, req.body.updates)
       console.log(req.body.filters)
       console.log(req.body.updates)
