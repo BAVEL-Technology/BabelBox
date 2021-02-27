@@ -30,16 +30,12 @@ const start = () => {
     }
   });
   app.set('socketio', io);
-  const newConnection = (socket) => {
-    const callback = (data) => {
-      console.log('Got it yall');
-    }
-
-    console.log('new connection: ' + socket.id);
-    socket.on('I got it wrong', callback);
-  }
-
-  io.sockets.on('connection', newConnection);
-}
+  // handle incoming connections from clients
+  io.sockets.on('connection', function(socket) {
+      // once a client has connected, we expect to get a ping from them saying what room they want to join
+      socket.on('room', function(room) {
+          socket.join(room);
+      });
+  });
 
 start()
