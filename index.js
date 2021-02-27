@@ -25,8 +25,9 @@ const start = () => {
   });
   mongoCreate.createDataTables()
   const io = socket(server, {
-  cors: {
-    origin: "*",
+    cors: {
+      origin: '*',
+    }
   });
   app.set('socketio', io);
   const newConnection = (socket) => {
