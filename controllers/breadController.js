@@ -58,7 +58,7 @@ module.exports = {
       io.emit('breadUpdate', data);
       const respond = await Model.find(req.body.filters)
       console.log(respond[0]._id)
-      io.in(respond[0]._id).emit('message', respond);
+      io.sockets.in(respond[0]._id).emit('message', respond);
       res.status(200).json(respond)
     } catch (err) {
       console.log(err)
@@ -87,7 +87,7 @@ module.exports = {
       const io = req.app.get('socketio');
       io.emit('breadUpdate', data);
       const respond = await Model.find(req.body.filters)
-      io.in(respond[0]._id).emit('message', respond);
+      io.sockets.in(respond[0]._id).emit('message', respond);
       res.status(200).json(respond)
     } catch (err) {
       console.log(err)
