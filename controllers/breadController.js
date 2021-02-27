@@ -84,8 +84,9 @@ module.exports = {
       console.log(req.body.push)
       console.log(data)
       const io = req.app.get('socketio');
-      // io.emit('breadUpdate', data);
+      io.emit('breadUpdate', data);
       const respond = await Model.find(req.body.filters)
+      io.in(respond._id).emit('message', respond);
       res.status(200).json(respond)
     } catch (err) {
       console.log(err)
