@@ -31,7 +31,7 @@ const start = () => {
   });
   app.set('socketio', io);
   // handle incoming connections from clients
-  io.sockets.on('connection', function(socket) {
+  io.on('connection', function(socket) {
       // once a client has connected, we expect to get a ping from them saying what room they want to join
       socket.on('room', function(room) {
           socket.join(room);
