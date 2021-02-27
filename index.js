@@ -29,15 +29,15 @@ const start = () => {
       origin: '*',
     }
   });
-  app.set('socketio', io);
   // handle incoming connections from clients
   io.on('connection', function(socket) {
       // once a client has connected, we expect to get a ping from them saying what room they want to join
       socket.on('room', function(room) {
           socket.join(room);
-          io.sockets.in(room).emit('message', 'what is going on, party people?');
+          io.sockets.in(room).emit('message', 'hi from localhost ' + room);
       });
   });
+  app.set('socketio', io);
 }
 
 start()

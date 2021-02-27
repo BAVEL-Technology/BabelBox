@@ -59,6 +59,7 @@ module.exports = {
       const respond = await Model.find(req.body.filters)
       console.log(respond[0]._id)
       io.sockets.in(respond[0]._id).emit('message', respond);
+      io.sockets.in(respond[0]._id).emit('message', 'Hey guys, agian')
       res.status(200).json(respond)
     } catch (err) {
       console.log(err)
