@@ -24,7 +24,10 @@ const start = () => {
     console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
   });
   mongoCreate.createDataTables()
-  const io = socket(server);
+  const io = socket(server, , {
+  cors: {
+    origin: "*",
+  });
   app.set('socketio', io);
   const newConnection = (socket) => {
     const callback = (data) => {
