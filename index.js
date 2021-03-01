@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
 
-const users = {};
+const users = [];
 
 const start = () => {
   const server = app.listen(PORT, function() {
@@ -44,19 +44,38 @@ const start = () => {
           name: username,
           id: socket.id
         }
-          users[socket.id] = user;
+          // users[socket.id] = user;
+          users.push(user);
+          console.log(users);
           io.emit("connected", user);
-          io.emit("users", Object.values(users));
+          // io.emit("users", Object.values(users));
         });
       //***print out chat message event
       socket.on('chat message', (msg) => {
+        const user = users.find(user => {
+          return user.id === socket.id;});
+          console.log(user);
           //this will send the message to all the sockets
           io.emit('chat message', {
             text: msg,
-            user: users[socket.id]
+            user: users.find(user => {
+              return user.id === socket.id;
+            })
           });
           console.log('message: ' + msg);
         });
+
+      const removeUser = (id) => {
+        const index = users.findIndex((user) => user.id === id);
+      
+        if(index !== -1) return users.splice(index, 1)[0];
+      };
+
+      socket.on('disconnect', (data) => {
+        console.log('User has left')
+        console.log(socket.id)
+        removeUser(socket.id);
+        })
   });
 
 
