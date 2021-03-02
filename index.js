@@ -19,7 +19,6 @@ app.get('/', (req, res) => {
    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
 
-const users = [];
 
 const start = () => {
   const server = app.listen(PORT, function() {
@@ -33,49 +32,52 @@ const start = () => {
   });
   // handle incoming connections from clients
   io.on('connection', function(socket) {
-      // once a client has connected, we expect to get a ping from them saying what room they want to join
-      socket.on('room', function(room) {
+    // once a client has connected, we expect to get a ping from them saying what room they want to join
+    socket.on('room', function(room) {
+        const users = [];
           socket.join(room);
           io.sockets.in(room).emit('message', 'hi from localhost ' + room);
-      });
-      //***code for chat events */
-      socket.on('new-user', username => {
-        const user = {
-          name: username,
-          id: socket.id
-        }
-          // users[socket.id] = user;
-          users.push(user);
-          console.log(users);
-          io.emit("connected", user);
-          // io.emit("users", Object.values(users));
-        });
-      //***print out chat message event
-      socket.on('chat message', (msg) => {
-        const user = users.find(user => {
-          return user.id === socket.id;});
-          console.log(user);
-          //this will send the message to all the sockets
-          io.emit('chat message', {
-            text: msg,
-            user: users.find(user => {
-              return user.id === socket.id;
+          //***code for chat events */
+          socket.on('new-user', username => {
+            const user = {
+              name: username,
+              id: socket.id
+            }
+            console.log(user.name);
+              // users[socket.id] = user;
+              users.push(user);
+              console.log(users);
+              io.sockets.in(room).emit("start", user);
+              // io.emit("users", Object.values(users));
+            });
+          //***print out chat message event
+          socket.on('chat message', (msg) => {
+            const user = users.find(user => {
+              return user.id === socket.id;});
+              console.log(user);
+              //this will send the message to all the sockets
+              io.sockets.in(room).emit('chat message', {
+                text: msg,
+                user: users.find(user => {
+                  return user.id === socket.id;
+                })
+              });
+              console.log('message: ' + msg);
+            });
+    
+          const removeUser = (id) => {
+            const index = users.findIndex((user) => user.id === id);
+          
+            if(index !== -1) return users.splice(index, 1)[0];
+          };
+    
+          socket.on('disconnect', (data) => {
+            console.log('User has left')
+            console.log(socket.id)
+            removeUser(socket.id);
             })
-          });
-          console.log('message: ' + msg);
-        });
 
-      const removeUser = (id) => {
-        const index = users.findIndex((user) => user.id === id);
-      
-        if(index !== -1) return users.splice(index, 1)[0];
-      };
-
-      socket.on('disconnect', (data) => {
-        console.log('User has left')
-        console.log(socket.id)
-        removeUser(socket.id);
-        })
+      });
   });
 
 
