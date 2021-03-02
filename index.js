@@ -76,7 +76,6 @@ const start = () => {
             console.log(socket.id)
             removeUser(socket.id);
             })
-
       });
   });
 
