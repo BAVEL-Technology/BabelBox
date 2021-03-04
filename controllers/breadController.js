@@ -93,6 +93,7 @@ module.exports = {
       const roomId = respond[0]._id.toString()
       io.sockets.in(respond[0]._id).emit('message', respond);
       io.sockets.in(roomId).emit('room updated', respond);
+      res.status(200).json(respond)
     } catch (err) {
       console.log(err)
       res.status(400).json(err)
