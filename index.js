@@ -30,6 +30,11 @@ const start = () => {
       origin: '*',
     }
   });
+  io.on('start timer', (data) => {
+    setTimeout(() => {
+      eval(data.function)
+    }, data.time)
+  })
   // handle incoming connections from clients
   io.on('connection', function(socket) {
     // once a client has connected, we expect to get a ping from them saying what room they want to join
@@ -37,11 +42,6 @@ const start = () => {
         const users = [];
           socket.join(room);
           io.sockets.in(room).emit('message', 'hi from localhost ' + room);
-          io.on('start timer', (data) => {
-            setTimeout(() => {
-              eval(data.function)
-            }, data.time)
-          })
           //***code for chat events */
           socket.on('new-user', username => {
             const user = {
