@@ -11,8 +11,6 @@ module.exports = {
     try {
       let Model = mongoCreate.mongoModels[camelcase(req.params.bread)]
       if (!Model) Model = mongoose.connection.models[camelcase(req.params.bread)[0].toUpperCase() + req.params.bread.substring(1)]
-      console.log(Model)
-      console.log(req.query)
       let query = req.query
       let limit = ''
       if (query.limit) {
@@ -34,9 +32,7 @@ module.exports = {
         skip = req.query.skip
         delete query['skip'];
       }
-      console.log(limit)
       const data = await Model.find(req.query).sort(sort).skip(skip).limit(limit)
-      console.log(data)
       res.status(200).json(data)
     } catch (err) {
       console.log(err)
@@ -47,20 +43,19 @@ module.exports = {
   edit: async (req, res) => {
     try {
       let Model = mongoCreate.mongoModels[camelcase(req.params.bread)]
-      console.log(camelcase(req.params.bread)[0].toUpperCase() + req.params.bread.substring(1))
       if (!Model) Model = mongoose.connection.models[camelcase(req.params.bread)[0].toUpperCase() + req.params.bread.substring(1)]
-      console.log(Model)
       const data = await Model.updateMany(req.body.filters, req.body.updates)
-      console.log(req.body.filters)
-      console.log(req.body.updates)
-      console.log(data)
       const io = req.app.get('socketio');
       io.emit('breadUpdate', data);
       const respond = await Model.find(req.body.filters)
-      console.log(respond[0]._id)
       const roomId = respond[0]._id.toString()
       io.sockets.in(respond[0]._id).emit('message', respond);
       io.sockets.in(roomId).emit('room updated', respond);
+      io.sockets.in(roomId).emit('room updated', {
+        data: respond,
+        string: 'this is the data your getting'
+      });
+      console.log('data pushed', respond)
       res.status(200).json(respond)
     } catch (err) {
       console.log(err)
@@ -71,28 +66,25 @@ module.exports = {
   push: async (req, res) => {
     try {
       let Model = mongoCreate.mongoModels[camelcase(req.params.bread)]
-      console.log(camelcase(req.params.bread)[0].toUpperCase() + req.params.bread.substring(1))
       if (!Model) Model = mongoose.connection.models[camelcase(req.params.bread)[0].toUpperCase() + req.params.bread.substring(1)]
-      console.log(Model)
       const push = req.body.push
       let data
       let item = await Model.find(req.body.filters)
       await Object.keys(push).asyncForEach(async (key) => {
-        console.log(key)
         data = await Model.updateMany(req.body.filters, {
           $push: { [key]: push[key] }
        })
       })
-      console.log(req.body.filters)
-      console.log(req.body.push)
-      console.log(data)
       const io = req.app.get('socketio');
       io.emit('breadUpdate', data);
       const respond = await Model.find(req.body.filters)
-      console.log(respond[0]._id)
       const roomId = respond[0]._id.toString()
       io.sockets.in(respond[0]._id).emit('message', respond);
       io.sockets.in(roomId).emit('room updated', respond);
+      io.sockets.in(roomId).emit('room updated', {
+        data: respond,
+        string: 'this is the data your getting'
+      });
       console.log('data pushed', respond)
       res.status(200).json(respond)
     } catch (err) {
