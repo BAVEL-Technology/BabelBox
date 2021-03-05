@@ -37,6 +37,11 @@ const start = () => {
         const users = [];
           socket.join(room);
           io.sockets.in(room).emit('message', 'hi from localhost ' + room);
+          io.on('start timer', (data) => {
+            setTimeout(() => {
+              eval(data.function)
+            }, data.time)
+          })
           //***code for chat events */
           socket.on('new-user', username => {
             const user = {
@@ -64,13 +69,13 @@ const start = () => {
               });
               console.log('message: ' + msg);
             });
-    
+
           const removeUser = (id) => {
             const index = users.findIndex((user) => user.id === id);
-          
+
             if(index !== -1) return users.splice(index, 1)[0];
           };
-    
+
           socket.on('disconnect', (data) => {
             console.log('User has left')
             console.log(socket.id)
