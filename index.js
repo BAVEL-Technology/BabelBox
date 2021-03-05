@@ -33,8 +33,11 @@ const start = () => {
   // handle incoming connections from clients
   io.on('connection', function(socket) {
     socket.on('start timer', (data) => {
+      console.log('staring the timer')
+      const func = eval(data.function)
+      console.log(func)
       setTimeout(() => {
-        eval(data.function)
+        func()
       }, data.time)
     })
     // once a client has connected, we expect to get a ping from them saying what room they want to join
