@@ -76,7 +76,7 @@ module.exports = {
       const respond = await Model.find(req.body.filters)
       const roomId = respond[0]._id.toString()
       // io.sockets.in(respond[0]._id).emit('message', respond);
-      io.sockets.in(roomId).emit('room updated', 'room updated');
+      io.sockets.in(roomId).emit('room updated', JSON.stringify(respond[0]));
       console.log('data pushed', JSON.stringify(respond))
       res.status(200).json(respond)
     } catch (err) {
