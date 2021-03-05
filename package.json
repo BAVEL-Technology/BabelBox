@@ -29,6 +29,7 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "bcrypt": "^5.0.0",
     "camelcase": "^6.2.0",
     "connect-mongo": "^3.2.0",
